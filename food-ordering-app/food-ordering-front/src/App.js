@@ -5,6 +5,7 @@ import NavbarComponent from './components/NavbarComponent';
 import FooterComponent from './components/FooterComponent';
 /*import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; */
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import CreateUserComponent from './components/CreateUserComponent';
 
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path='/' element = {<ListUserComponent/>}></Route> 
             <Route path='/users' element = {<ListUserComponent/>}></Route>
+            <Route path='/create-user' element = {<CreateUserComponent/>}></Route>
           </Routes>
         </div>
         

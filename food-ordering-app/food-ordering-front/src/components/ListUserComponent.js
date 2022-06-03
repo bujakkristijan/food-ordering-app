@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import UserService from '../services/UserService';
 
 const ListUserComponent = () => {
@@ -15,6 +16,7 @@ const ListUserComponent = () => {
   return (
     <div className='container'>
         <h2 className='text-center'>User list</h2>
+        <Link to = "/create-user" className='btn btn-primary mb-2'>Create new user</Link>
         <table className='table table-bordered table-hover'>
             <thead>
                 <tr>
