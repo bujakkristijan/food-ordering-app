@@ -6,8 +6,9 @@ const ListUserComponent = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        UserService.getAllUsers().then((response) =>{
+        UserService.getAllEmployees().then((response) =>{
             setUsers(response.data);
+            console.log(users);
         }).catch(error =>{
             console.log(error);
         })
@@ -25,8 +26,9 @@ const ListUserComponent = () => {
                     <th>Last name</th>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>Address</th>
                     <th>Phone number</th>
+                    <th>Address</th>
+                   
                 </tr>
             </thead>
             <tbody>
@@ -39,8 +41,9 @@ const ListUserComponent = () => {
                           <td>{user.lastName}</td>
                           <td>{user.username}</td>
                           <td>{user.email}</td>
-                          <td>{user.address}</td>
                           <td>{user.phoneNumber}</td>
+                          <td>{user.address}</td>
+                          
                       </tr>
                   )
               }

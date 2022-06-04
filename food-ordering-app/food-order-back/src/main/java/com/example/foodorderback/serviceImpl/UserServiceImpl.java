@@ -38,12 +38,27 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserDTO> findAll() {
+	public List<UserDTO> findAllUsers() {
 		UserDTO userDTO;
 		List<User> users = userRepository.findAll();
 		List<UserDTO> usersDTO = new ArrayList<UserDTO>();
 		for (User u : users) {
 			if(u.getRole().equals(Role.USER)) {
+				userDTO = new UserDTO(u);
+				usersDTO.add(userDTO);
+			}
+			
+		}
+		return usersDTO;
+	}
+	
+	@Override
+	public List<UserDTO> findAllEmployees() {
+		UserDTO userDTO;
+		List<User> users = userRepository.findAll();
+		List<UserDTO> usersDTO = new ArrayList<UserDTO>();
+		for (User u : users) {
+			if(u.getRole().equals(Role.EMPLOYEE)) {
 				userDTO = new UserDTO(u);
 				usersDTO.add(userDTO);
 			}

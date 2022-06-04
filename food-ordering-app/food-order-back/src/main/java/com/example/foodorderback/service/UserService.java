@@ -13,7 +13,8 @@ import com.example.foodorderback.model.User;
 @Service
 public interface UserService {
 	
-	List<UserDTO> findAll();
+	List<UserDTO> findAllUsers();
+	List<UserDTO> findAllEmployees();
 	User save(User user);
 	User findOne(Long id);
 	User findByUsername(String username);

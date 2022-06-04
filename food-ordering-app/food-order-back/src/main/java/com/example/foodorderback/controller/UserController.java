@@ -41,7 +41,7 @@ public class UserController {
 			responseToClient = "emailOrUsernameAlreadyExist";
 		} else {
 			user.setRole(Role.USER); // po defaultu pri registraciji role se setuje na USER
-			user.setPassword(user.getPassword());
+			//user.setPassword(user.getPassword());
 			userService.save(user);
 			//userDTO.setUserAdded("yes");
 			responseToClient = "success";
@@ -64,7 +64,7 @@ public class UserController {
 			responseToClient = "emailOrPassAlreadyExist";
 		} else {
 			user.setRole(Role.EMPLOYEE); // po defaultu kada admin kreira zaposlenog, setuje se role na EMPLOYEE
-			user.setPassword(user.getPassword());
+			//user.setPassword(user.getPassword());
 			userService.save(user);
 			//userDTO.setUserAdded("yes");
 			responseToClient = "success";
@@ -75,7 +75,13 @@ public class UserController {
 	
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> getAllUsers() {
-		List<UserDTO> usersDTO = userService.findAll();
+		List<UserDTO> usersDTO = userService.findAllUsers();
+		return new ResponseEntity<List<UserDTO>>(usersDTO, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getAllEmployees", method = RequestMethod.GET)
+	public ResponseEntity<List<UserDTO>> getAlEmployees() {
+		List<UserDTO> usersDTO = userService.findAllEmployees();
 		return new ResponseEntity<List<UserDTO>>(usersDTO, HttpStatus.OK);
 	}
 	

@@ -1,8 +1,12 @@
 import axios from "axios";
 
 class UserService{
-    getAllUsers(){
-        return axios.get("http://localhost:8080/api/user/getAllUsers");
+    getAllEmployees(){
+        return axios.get("http://localhost:8080/api/user/getAllEmployees");
+    }
+
+    createEmployee(user){
+        return axios.post("http://localhost:8080/api/user/createEmployee", user);
     }
 }
 

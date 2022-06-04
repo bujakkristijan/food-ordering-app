@@ -27,10 +27,10 @@ public class UserDTO {
 	public UserDTO() {
 		
 	}
-	
+	//mora isti redosled da bude kao u donjem konstruktoru
 	public UserDTO(User user) {
 		this(user.getId(), user.getFirstName(), user.getLastName(),
-				user.getEmail(), user.getUsername(), user.getRole(), user.getPhoneNumber(), user.getAddress(), user.isDeleted());
+				user.getEmail(), user.getUsername(), user.getRole(), user.getAddress(), user.getPhoneNumber(), user.isDeleted());
 	}
 	//jedino password ne vraca na front
 	public UserDTO(Long id, String firstName,
