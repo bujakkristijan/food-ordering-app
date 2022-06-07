@@ -16,6 +16,7 @@ public class UserDTO {
 	private String phoneNumber;
 	private String address;
 	private boolean deleted;
+	private String password;
 	
 	//server messages to client
 	/*private String userAlreadyExist;
@@ -24,29 +25,33 @@ public class UserDTO {
 	*/
 	
 	
+	
 	public UserDTO() {
 		
 	}
 	//mora isti redosled da bude kao u donjem konstruktoru
 	public UserDTO(User user) {
 		this(user.getId(), user.getFirstName(), user.getLastName(),
-				user.getEmail(), user.getUsername(), user.getRole(), user.getAddress(), user.getPhoneNumber(), user.isDeleted());
+				user.getEmail(), user.getUsername(), user.getPassword(), user.getRole(), user.getAddress(), user.getPhoneNumber(), user.isDeleted());
 	}
 	//jedino password ne vraca na front
 	public UserDTO(Long id, String firstName,
-			String lastName, String email, String username, Role role, String address, String phoneNumber, boolean deleted) {
+			String lastName, String email, String username, String password, Role role, String address, String phoneNumber, boolean deleted) {
 		this.id = id;
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.username = username;
+		this.password = password;
 		this.role = role;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.deleted = deleted;
 		
 	}
+	
+	
 
 	public Long getId() {
 		return id;
@@ -118,6 +123,13 @@ public class UserDTO {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	/*
 	public String getUserAlreadyExist() {

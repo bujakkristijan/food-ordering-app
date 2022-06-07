@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import UserService from '../services/UserService'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 
-const CreateUserComponent = () => {
+const CreateEmployeeComponent = () => {
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -12,23 +12,69 @@ const CreateUserComponent = () => {
   const [password, setPassword] = useState('')
   const [address, setAddress] = useState('')
 
+
+  //za update
+  const {id} = useParams();
+
   const navigate = useNavigate();
 
+  
+  
+
   //arrow function
-  const createEmployee = (e) => {
+  const createOrUpdateEmployee = (e) => {
     e.preventDefault(); // da se ne bi osvezavala stranica svaki put kad se form submituje, tako kaze indijac na yt
 
     const user = {firstName, lastName, email, username, phoneNumber, password, address}
+
+    //ako id sadrzi neku vrednost, odnosno ako je prosledjenja radi se update
+    console.log("IDDDDD : " + id);
+    if(id){
+      UserService.updateEmployee(id, user).then((response) =>{
+        navigate("/employees");
+      }).catch(error =>{
+        console.log(error);
+      })
+    }else{
+      UserService.createEmployee(user).then((response) =>{
+
+        console.log(response.data);
+        navigate("/employees");
+  
+      }).catch(error =>{
+        console.log("Error: " + error);
+      })
+    }
     
-    UserService.createEmployee(user).then((response) =>{
-
-      console.log(response.data);
-      navigate("/users");
-
-    }).catch(error =>{
-      console.log(error);
-    })
+   
   }
+//zasto se ovo izvrsava samo kad je update ????
+useEffect(() => {
+  UserService.getEmployeeById(id).then((response) =>{
+    setFirstName(response.data.firstName);
+    setLastName(response.data.lastName);
+    setEmail(response.data.email);
+    setPhoneNumber(response.data.phoneNumber);
+    setUsername(response.data.username);
+    setPassword(response.data.password);
+    setAddress(response.data.address);
+  }).catch(error =>{
+    console.log(error)
+  })
+}, [])
+
+const title = () => {
+  if(id){
+    return <h2 className='text-center'>Update employee</h2>
+  }
+  else{
+    return <h2 className='text-center'>Create employee</h2>
+  }
+}
+
+
+
+
   //br da pomeri karticu od navbara
   return (
     <div>
@@ -36,7 +82,9 @@ const CreateUserComponent = () => {
         <div className='container-add-employee'>
           <div className='row'>
             <div className='card col-md-6 offset-md-3 offset-md-3'>
-              <h2 className='text-center'>Create new employee</h2>
+              {
+                title()
+              }
               <div className='card-body'>
                 <form>
                   <div className='form-group mb-2'>
@@ -71,7 +119,7 @@ const CreateUserComponent = () => {
                     <label className='form-label'>Email: </label>
                     <input  
                         type="text"
-                        placeholder="Insert email name" 
+                        placeholder="Insert email" 
                         name = "email" 
                         className="form-control" 
                         value={email}
@@ -137,8 +185,8 @@ const CreateUserComponent = () => {
                     </input>
                   </div>
 
-                  <button className='btn btn-success' onClick={(e) => createEmployee(e)}>Add new employee</button>
-
+                  <button className='btn btn-success' onClick={(e) => createOrUpdateEmployee(e)}>Submit</button>
+                  <Link to="/employees" className='btn btn-danger'>Cancel</Link>
                 </form>
               </div>
             </div>
@@ -149,4 +197,4 @@ const CreateUserComponent = () => {
   )
 }
 
-export default CreateUserComponent
+export default CreateEmployeeComponent

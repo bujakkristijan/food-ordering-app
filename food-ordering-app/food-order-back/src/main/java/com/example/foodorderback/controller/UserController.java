@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -95,10 +96,43 @@ public class UserController {
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/updateUserByIdAndDetails/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> updateUserByIdAndDetails(@PathVariable Long id, @RequestBody User employeeDetails) {
+		if (userService.findOne(id) == null) {
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		}
+		// ovo sam dodao da ne puca, jer sa fronta ne salje id i role
+		User user = userService.findOne(id);
+		employeeDetails.setId(user.getId());
+		employeeDetails.setRole(user.getRole());
+		String validationStatus = userService.validateUserUpdate(employeeDetails);
+		if (!validationStatus.equals("valid")) {
+			return new ResponseEntity<String>(validationStatus, HttpStatus.OK);
+		}
+		/*String response = userService.updateUser(u);
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+		*/
+		
+		
+		
+		String response = userService.updateUser(employeeDetails);
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/getCurrentUser", method = RequestMethod.GET)
 	public ResponseEntity<User> getCurrentUser() {
 		User user = userService.getCurrentUser();
 		// UserDTO userDTO = UserMapper.INSTANCE.entityToDTO(user);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
+		if (userService.findOne(id) == null) {
+			return new ResponseEntity<UserDTO>(HttpStatus.NOT_FOUND);
+		}	
+		User user = userService.findOne(id);
+	
+		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);
 	}
 }
