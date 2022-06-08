@@ -186,7 +186,7 @@ const title = () => {
                   </div>
 
                   <button className='btn btn-success' onClick={(e) => createOrUpdateEmployee(e)}>Submit</button>
-                  <Link to="/employees" className='btn btn-danger'>Cancel</Link>
+                  <Link to="/employees" className='btn btn-danger' style={{marginLeft:"5px"}}>Cancel</Link>
                 </form>
               </div>
             </div>

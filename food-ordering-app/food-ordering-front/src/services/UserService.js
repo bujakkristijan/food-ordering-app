@@ -16,6 +16,10 @@ class UserService{
     updateEmployee(employeeId, employee){
         return axios.put("http://localhost:8080/api/user/updateUserByIdAndDetails/" + employeeId, employee);
     }
+    //logicko brisanje, setuje se isDeleted na true
+    deleteEmployee(employeeId){
+        return axios.put("http://localhost:8080/api/user/deactivateUser/" + employeeId);
+    }
 }
 
 export default new UserService();

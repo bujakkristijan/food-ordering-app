@@ -135,4 +135,14 @@ public class UserController {
 	
 		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);
 	}
+	//mora bez consumes, jer se sad ne salje nikakav json objekat, vec samo id u putanji
+	@RequestMapping(value = "/deactivateUser/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> deactivateUser(@PathVariable Long id) {
+		if (userService.findOne(id) == null) {
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		}
+		String response = userService.deactivateUser(id);
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}
+	
 }

@@ -2,6 +2,7 @@ package com.example.foodorderback.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
 		List<User> users = userRepository.findAll();
 		List<UserDTO> usersDTO = new ArrayList<UserDTO>();
 		for (User u : users) {
-			if(u.getRole().equals(Role.EMPLOYEE)) {
+			if(u.getRole().equals(Role.EMPLOYEE) && u.isDeleted() == false) {
 				userDTO = new UserDTO(u);
 				usersDTO.add(userDTO);
 			}
@@ -150,6 +151,19 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(u.getEmail());
 		userRepository.save(user);
 		return "success";
+	}
+	
+	@Override
+	public String deactivateUser(Long id) {
+		try {
+			User user = userRepository.findById(id).get(); //mora get() jos
+			user.setDeleted(true);
+			userRepository.save(user);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
+		
 	}
 	
 	

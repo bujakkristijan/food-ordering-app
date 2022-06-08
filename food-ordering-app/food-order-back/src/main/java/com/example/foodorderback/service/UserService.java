@@ -25,5 +25,6 @@ public interface UserService {
 	String updateUser(User u);
 	LoginDTO generateToken(Login login); 
 	String isValidLogout();
+	String deactivateUser(Long id);
 
 }
