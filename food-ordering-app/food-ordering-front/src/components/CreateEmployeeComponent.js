@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import UserService from '../services/UserService'
 import {Link, useNavigate, useParams} from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const CreateEmployeeComponent = () => {
 
@@ -31,7 +32,16 @@ const CreateEmployeeComponent = () => {
     console.log("IDDDDD : " + id);
     if(id){
       UserService.updateEmployee(id, user).then((response) =>{
-        navigate("/employees");
+        if(response.data.toString() == "success"){
+          alertSuccess();
+          navigate("/employees");
+        }
+        else if(response.data.toString() == "invalidInput"){
+          alertInvalid(response.data.toString());
+        }
+        else if(response.data.toString() == "emailAlreadyExist"){
+          alertInvalid(response.data.toString());
+        }
       }).catch(error =>{
         console.log(error);
       })
@@ -39,7 +49,17 @@ const CreateEmployeeComponent = () => {
       UserService.createEmployee(user).then((response) =>{
 
         console.log(response.data);
-        navigate("/employees");
+        if(response.data.toString() == "success"){
+          alertSuccess();
+          navigate("/employees");
+        }
+        else if(response.data.toString() == "invalidInput"){
+          alertInvalid(response.data.toString());
+        }
+        else if(response.data.toString() == "emailOrUsernameAlreadyExist"){
+          alertInvalid(response.data.toString());
+        }
+        
   
       }).catch(error =>{
         console.log("Error: " + error);
@@ -47,6 +67,45 @@ const CreateEmployeeComponent = () => {
     }
     
    
+  }
+
+
+  const alertSuccess = () =>{
+    if(id){
+      var titleContent = 'Successfully updated employee!';
+    }
+    else{
+      var titleContent = 'Successfully added employee!';
+    }
+    Swal.fire({
+      position: 'top',
+      icon: 'success',
+      //title: 'Successfully added employee!',
+      title: titleContent,
+      showConfirmButton: false,
+      timer: 1500
+    });
+
+    /* TEST */
+
+ 
+  }
+
+  const alertInvalid = (invalidText) =>{
+    if(invalidText == "invalidInput"){
+      var titleContent = "Invalid input, make sure everything is filed correctly and try again!";
+    }
+    else if(invalidText == "emailOrUsernameAlreadyExist"){
+      var titleContent = "Username or email already exist, try again!";
+    }
+    else if(invalidText == "emailAlreadyExist"){
+      var titleContent = "Email already exist, try again!";
+    }
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: titleContent,
+    })
   }
 //zasto se ovo izvrsava samo kad je update ????
 useEffect(() => {
@@ -71,6 +130,39 @@ const title = () => {
     return <h2 className='text-center'>Create employee</h2>
   }
 }
+
+const usernameInput = () => {
+  if(id){
+    return <input  
+                        type="text"
+                        placeholder="Insert username" 
+                        name = "username" 
+                        className="form-control" 
+                        value={username}
+                        onChange = {(e) => setUsername(e.target.value)}
+                        disabled = {true}
+                        >
+                        
+                    </input>
+  }
+  else{
+    return <input  
+    type="text"
+    placeholder="Insert username" 
+    name = "username" 
+    className="form-control" 
+    value={username}
+    onChange = {(e) => setUsername(e.target.value)}
+    >
+    </input>
+  }
+}
+
+
+
+
+
+
 
 
 
@@ -145,16 +237,9 @@ const title = () => {
 
                   <div className='form-group mb-2'>
                     <label className='form-label'>Username: </label>
-                    <input  
-                        type="text"
-                        placeholder="Insert username" 
-                        name = "username" 
-                        className="form-control" 
-                        value={username}
-                        onChange = {(e) => setUsername(e.target.value)}
-                        >
-                        
-                    </input>
+                    {
+                      usernameInput()
+                    }
                   </div>
 
                   <div className='form-group mb-2'>

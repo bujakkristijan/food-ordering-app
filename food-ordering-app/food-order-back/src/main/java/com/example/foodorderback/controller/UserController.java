@@ -62,7 +62,7 @@ public class UserController {
 		} else if (userService.findByUsername(user.getUsername()) != null
 				|| userService.validateUser(user).equals("not unique")) {
 			//userDTO.setUserAlreadyExist("yes");
-			responseToClient = "emailOrPassAlreadyExist";
+			responseToClient = "emailOrUsernameAlreadyExist";
 		} else {
 			user.setRole(Role.EMPLOYEE); // po defaultu kada admin kreira zaposlenog, setuje se role na EMPLOYEE
 			//user.setPassword(user.getPassword());

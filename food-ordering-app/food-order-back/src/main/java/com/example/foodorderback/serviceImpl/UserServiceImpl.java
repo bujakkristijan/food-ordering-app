@@ -103,6 +103,8 @@ public class UserServiceImpl implements UserService {
 				|| user.getLastName().trim().isEmpty() || user.getFirstName() == null
 				|| user.getFirstName().trim().isEmpty() || user.getUsername() == null
 				|| user.getUsername().trim().isEmpty() || user.getPhoneNumber() == null
+				|| user.getAddress().trim().isEmpty() || user.getAddress() == null
+				|| user.getPassword().trim().isEmpty() || user.getPassword() == null
 				|| user.getPhoneNumber().trim().isEmpty() || !user.getEmail().matches("^(.+)@(.+)$")) {
 			return "invalid";
 		}
@@ -118,14 +120,16 @@ public class UserServiceImpl implements UserService {
 				|| user.getLastName().trim().isEmpty() || user.getFirstName() == null
 				|| user.getFirstName().trim().isEmpty() || user.getUsername() == null
 				|| user.getUsername().trim().isEmpty() || user.getPhoneNumber() == null
+				|| user.getAddress().trim().isEmpty() || user.getAddress() == null
+				|| user.getPassword().trim().isEmpty() || user.getPassword() == null
 				|| user.getPhoneNumber().trim().isEmpty() || !user.getEmail().matches("^(.+)@(.+)$")) {
-			return "invalid";
+			return "invalidInput";
 		}
 		List<User> allUsers = userRepository.findAll();
 		allUsers.remove(userRepository.findById(user.getId()).get());
 		for (User u : allUsers) {
 			if (u.getEmail().equals(user.getEmail())) {
-				return "not unique";
+				return "emailAlreadyExist";
 			}
 		}
 		return "valid";
