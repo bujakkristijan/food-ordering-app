@@ -6,13 +6,14 @@ import FooterComponent from './components/FooterComponent';
 /*import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; */
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import CreateEmployeeComponent from './components/CreateEmployeeComponent';
-
+import NavbarStyledComponent from './components/Navbar/NavbarStyledComponent';
+// <NavbarComponent/> ovo je bilo pre nego sto sam menjao
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 function App() {
   return (
     <div>
       <Router>
-        <NavbarComponent/>
+        <NavbarStyledComponent/>
         <div className='container'>
           <Routes>
             <Route path='/' element = {<ListEmployeeComponent/>}></Route> 

@@ -133,7 +133,7 @@ const title = () => {
     return <h2 className='text-center'>Create employee</h2>
   }
 }
-
+//ako postoji id, odnosno ako je izmena, disabluje se input
 const usernameInput = () => {
   if(id){
     return <input  
