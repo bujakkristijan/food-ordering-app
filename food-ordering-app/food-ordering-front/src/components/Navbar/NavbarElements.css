@@ -1,0 +1,29 @@
+.logo{
+    height: 70px;
+    width: 70px;
+}
+
+/*#employeeLink{
+    font-size: x-large;
+}
+*/
+
+.registrationLine{
+    background-color: white;
+    height: 4px;
+    width: 100px;
+    border-radius: 50px;
+    
+}
+
+/*.registrationLine:hover{
+    background-color: green;
+} */
+
+.registrationLink{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}

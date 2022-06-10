@@ -112,7 +112,8 @@ const CreateEmployeeComponent = () => {
 
 //zasto se ovo izvrsava samo kad je update ????
 useEffect(() => {
-  UserService.getEmployeeById(id).then((response) =>{
+  console.log("krerewrw");
+  id && UserService.getEmployeeById(id).then((response) =>{
     setFirstName(response.data.firstName);
     setLastName(response.data.lastName);
     setEmail(response.data.email);
