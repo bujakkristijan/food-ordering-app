@@ -1,45 +1,46 @@
 import React from 'react'
-import { Nav, NavLink, Bars,NavMenu,NavBtn,NavBtnLink } from './NavbarElements'
-import styles from './NavbarElements.css'
+/*import { Nav, NavLink, Bars,NavMenu,NavBtn,NavBtnLink } from './NavbarElements' */
+import styles from './NavbarElements.css' // OVO MORA DA BI UCITAO CSS, IAKO SE STYLES NE KORISTI NIGDE DIREKTNO !!!!
+import { Link } from 'react-router-dom'
 
 const NavbarStyledComponent = () => {
 
-     /**/ 
+     /*Link je brzi dosta od a elementa*/ 
   return (
     
-        <Nav className='header'>
-            <NavLink to="/">
+        <div className='header'>
+            <Link to="/employees">
               {/* <h1 className='logo'>Logo</h1> */}
               <img className='logo' src={require('../../images/logo.png')} alt=''/>  
-            </NavLink>
-           <Bars/>
-           <NavMenu>
-               <NavLink id='employeeLink' to='/employees' >
+            </Link>
+           <div/>
+           <div className='navMenu'>
+               <Link className='navLink' id='employeeLink' to='/employees' >
                     Employees
-               </NavLink>
-               <NavLink to='/employees' >
+               </Link>
+               <Link className='navLink' to='/employees' >
                     Users
-               </NavLink>
-               <NavLink to='/employees' >
+               </Link>
+               <Link className='navLink' to='/employees' >
                     Menu
-               </NavLink>
-               <NavLink to='/signin' >
+               </Link>
+               <Link className='navLink' to='/signin' >
                     Order history
-               </NavLink>
-           </NavMenu>
-           <NavBtn>
-                <NavLink className='registrationLink' to='/signin' >
+               </Link>
+           </div>
+           <div className='navBtn'>
+                <Link className='registrationLink' to='/registration' >
                  
 
                 Registration
                     <div className='registrationLine'></div>
                   
                     
-               </NavLink>
+               </Link>
 
-               <NavBtnLink className='btn btn-success' to='signin'>Sign in</NavBtnLink>
-           </NavBtn>
-        </Nav>
+               <Link id='signInBtn' className='btn btn-success' to='login'>Sign in</Link>
+           </div>
+        </div>
        
     
   )

@@ -20,6 +20,11 @@ class UserService{
     deleteEmployee(employeeId){
         return axios.put("http://localhost:8080/api/user/deactivateUser/" + employeeId);
     }
+
+
+    createUser(user){
+        return axios.post("http://localhost:8080/api/user/registration", user);
+    }
 }
 
 export default new UserService();

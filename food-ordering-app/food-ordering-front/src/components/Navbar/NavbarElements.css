@@ -1,12 +1,17 @@
 .logo{
-    height: 70px;
-    width: 70px;
+    height: 75px;
+    width: 75px;
+    /*align-items: center;
+    text-align: center;
+    justify-content: center; */
+    margin-top: 2px;
+    margin-left: 5px;
 }
 
 /*#employeeLink{
     font-size: x-large;
-}
-*/
+} */
+
 
 .registrationLine{
     background-color: white;
@@ -25,5 +30,103 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    color: #fff;
     
 }
+
+
+.header{
+    background: #ff3838;
+    height: 80px;
+    display: flex;
+    /*justify-content: space-between; */
+    padding: 0.5rem calc((100vm - 1000px) / 2);
+    z-index: 10;
+    /* da krene od loga */
+    justify-content: flex-start;
+    position: sticky;
+    top: 0; /*bez ovoga ne radi*/
+}
+     
+
+.navLink{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+
+    /*&.active{
+        color: #ffffff;
+    } proveriti ovo kako se u css pise */ 
+    /*
+    &:hover {
+        transition: all 0.2s ease-in-out;
+        background: #fff;
+        color: #010606;
+      }
+      */
+}
+    
+
+/*export const Bars = styled(FaBars)`
+    display: none;
+    color: #fff;
+`;
+
+*/
+
+.navMenu{
+    display: flex;
+    align-items: center;
+    /*margin-right: -24px; */
+    width: 100vm;
+    white-space: nowrap;
+}
+    
+
+
+.navBtn{
+    display: flex;
+  align-items: center;
+  margin-right: 24px;
+  /* Third Nav */
+  justify-content: flex-end;
+  width: 100vw; 
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+  
+
+
+#signInBtn{
+    border-radius: 4px;
+  /*background: #256ce1; */
+  padding: 10px 22px;
+  color: #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  /* Second Nav */
+  margin-left: 24px;
+  
+}
+
+#signInBtn:hover{
+   
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    color: #010606;
+      
+}
+  
+
+
+
+
