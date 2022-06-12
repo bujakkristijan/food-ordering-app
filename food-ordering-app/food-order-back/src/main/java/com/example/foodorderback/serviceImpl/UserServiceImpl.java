@@ -1,6 +1,7 @@
 package com.example.foodorderback.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.example.foodorderback.dto.LoginDTO;
@@ -95,6 +99,17 @@ public class UserServiceImpl implements UserService {
 		User currentUser = userRepository.findByUsername(currentPrincipalName);
 		return currentUser;
 	}
+	
+	@Override
+	public void setCurrentUser(User user) {
+		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
+		Authentication authentication = new PreAuthenticatedAuthenticationToken(user.getId(), null, authorities);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//Long id = Long.parseLong(auth.getName());
+		
+	}
 
 
 	@Override
@@ -177,13 +192,14 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		
 		try {
-			//authenticationManager.authenticate(
-			//		new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
-			 user = findByUsername(login.getUsername());
-			 if(user.getPassword().equals(login.getPassword())) {
+			authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
+			 //user = findByUsername(login.getUsername());
+			 //if(user.getPassword().equals(login.getPassword())) {
 				String token = jwtUtil.generateToken(login.getUsername());
 				loginDTO = new LoginDTO(token, user, "no");
-			 }
+				//setCurrentUser(user);
+			 //}
 			
 		} catch (Exception e) {
 			loginDTO = new LoginDTO();

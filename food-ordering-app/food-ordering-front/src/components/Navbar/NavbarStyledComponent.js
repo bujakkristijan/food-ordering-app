@@ -29,6 +29,13 @@ const NavbarStyledComponent = () => {
                </Link>
            </div>
            <div className='navBtn'>
+           <Link className='myProfileLink' to='/my-profile' >
+                 
+
+                 MyProfile
+                   
+                     
+                </Link>
                 <Link className='registrationLink' to='/registration' >
                  
 

@@ -26,5 +26,7 @@ public interface UserService {
 	LoginDTO generateToken(Login login); 
 	String isValidLogout();
 	String deactivateUser(Long id);
+	
+	public void setCurrentUser(User user);
 
 }

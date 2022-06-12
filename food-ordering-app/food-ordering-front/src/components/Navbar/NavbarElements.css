@@ -35,6 +35,19 @@
     
 }
 
+.myProfileLink{
+   /* display: flex; 
+    flex-direction: column;
+    */
+    /*justify-content: center; */
+    /*align-items: center; */
+    
+    margin-right: 10px;
+    text-decoration: none;
+    color: #fff;
+    
+}
+
 
 .header{
     background: #ff3838;

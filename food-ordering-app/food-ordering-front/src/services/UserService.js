@@ -25,6 +25,10 @@ class UserService{
     createUser(user){
         return axios.post("http://localhost:8080/api/user/registration", user);
     }
+
+    getCurrentUser(){
+        return axios.get("http://localhost:8080/api/user/getCurrentUser");
+    }
 }
 
 export default new UserService();
