@@ -3,6 +3,8 @@ import UserService from '../../services/UserService'
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import styles from './MyProfileComponent.css'
+import EditMyProfileComponent from './EditMyProfileComponent'
+import { Modal, Button } from 'react-bootstrap'
 
 const MyProfileComponent = () => {
 
@@ -15,10 +17,19 @@ const MyProfileComponent = () => {
     const [address, setAddress] = useState('')
     /*const [role, setRole] = useState(0) */
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+        setShow(false);
+        }
+    const handleShow = () => setShow(true);
+
 
     useEffect(() => {
         console.log("krerewrw");
+        handleClose();
         getCurrentUser();
+        
         
       }, [])
 
@@ -39,9 +50,12 @@ const MyProfileComponent = () => {
           })
     }
 
+   
+
     
 
   return (
+    <>
     <div> 
         <div className="container">
 
@@ -165,7 +179,7 @@ const MyProfileComponent = () => {
                     <hr></hr>
                     <div className="row">
                         <div className="col-sm-12">
-                            <button className="btn btn-success">Edit password or profile</button>
+                            <button className="btn btn-success" onClick={handleShow}>Edit password or profile</button>
                             
                         </div>
                     </div>
@@ -182,6 +196,22 @@ const MyProfileComponent = () => {
             </div>
         </div>
     </div>
+    {/* NE MOZE MODAL.DIALOG, MORA OVAKO */}
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+        <Modal.Title>Edit profile</Modal.Title>
+        </Modal.Header>
+
+            <Modal.Body>
+                <EditMyProfileComponent/>
+            </Modal.Body>
+
+        <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>Close</Button>
+        <Button variant="primary">Save changes</Button>
+        </Modal.Footer>
+    </Modal>
+    </>
   )
 }
 
