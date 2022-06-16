@@ -29,6 +29,10 @@ class UserService{
     getCurrentUser(){
         return axios.get("http://localhost:8080/api/user/getCurrentUser");
     }
+
+    updateUser(user){
+        return axios.put("http://localhost:8080/api/user/updateUser", user);
+    }
 }
 
 export default new UserService();

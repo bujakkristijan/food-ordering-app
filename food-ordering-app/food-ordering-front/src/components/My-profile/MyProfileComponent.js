@@ -8,42 +8,85 @@ import { Modal, Button } from 'react-bootstrap'
 
 const MyProfileComponent = () => {
 
+    const [id, setId] = useState(null);
+
     const [firstName, setFirstName] = useState('')
+    const [firstNameEdit, setFirstNameEdit] = useState('')
+
     const [lastName, setLastName] = useState('')
+    const [lastNameEdit, setLastNameEdit] = useState('')
+
     const [username, setUsername] = useState('')
+    const [usernameEdit, setUsernameEdit] = useState('')
+
     const [email, setEmail] = useState('')
+    const [emailEdit, setEmailEdit] = useState('')
+
     const [phoneNumber, setPhoneNumber] = useState('')
+    const [phoneNumberEdit, setPhoneNumberEdit] = useState('')
+
     const [password, setPassword] = useState('')
+    const [passwordEdit, setPasswordEdit] = useState('')
+
     const [address, setAddress] = useState('')
+    const [addressEdit, setAddressEdit] = useState('')
+
+    const user = {firstNameEdit, setFirstNameEdit, lastNameEdit, setLastNameEdit, usernameEdit, setUsernameEdit, emailEdit, setEmailEdit, phoneNumberEdit, setPhoneNumberEdit, passwordEdit, setPasswordEdit,  addressEdit, setAddressEdit}
+    const userEdit = { id, firstName: firstNameEdit, lastName: lastNameEdit, username: usernameEdit, email: emailEdit, phoneNumber: phoneNumberEdit, address: addressEdit, password: passwordEdit }
     /*const [role, setRole] = useState(0) */
+    console.log(`firstName: ${firstName}`)
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
         setShow(false);
         }
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true)
+        setFirstNameEdit(firstName);
+        setLastNameEdit(lastName);
+        setEmailEdit(email);
+        setPhoneNumberEdit(phoneNumber);
+        setPasswordEdit(password);
+        setUsernameEdit(username);
+        setAddressEdit(address);
+    };
+
+        
 
 
     useEffect(() => {
-        console.log("krerewrw");
-        handleClose();
+
         getCurrentUser();
         
         
-      }, [])
+      }, [firstName]) //kad je prazan dependendy, useEffect se izvrsi se samo kada se prvi put ucita komponenta, dok kada se promeni u ovom slucaju firstName, pozvace se svaki put
 
     const getCurrentUser = () =>{
         UserService.getCurrentUser().then((response) =>{
             console.log("RESPONSE data : " + response.data.firstName)
             console.log("RESPONSE: " + response)
+            setId(response.data.id);
             setFirstName(response.data.firstName);
+            
+
             setLastName(response.data.lastName);
+            
+
             setEmail(response.data.email);
+            
+
             setPhoneNumber(response.data.phoneNumber);
+            
+
             setUsername(response.data.username);
+           
+
             setPassword(response.data.password);
+            
+
             setAddress(response.data.address);
+            
             /*setRole(response.data.role.toString()); */
           }).catch(error =>{
             console.log(error)
@@ -51,7 +94,17 @@ const MyProfileComponent = () => {
     }
 
    
-
+    const handleSubmit = () => {
+        console.log(userEdit.id);
+        UserService.updateUser(userEdit).then((response) =>{
+            const responseFromServer = response.data;
+            if(responseFromServer == "success"){
+                alert("Uspeno");
+                getCurrentUser();
+            }
+        }).finally(()=> handleClose())
+        
+    }
     
 
   return (
@@ -163,7 +216,7 @@ const MyProfileComponent = () => {
                         <div className="col-sm-3">
                         <h4 className="mb-0">Role</h4>
                         </div>
-                        <div class="col-sm-9 text-secondary">
+                        <div className="col-sm-9 text-secondary">
                             {address}
                         </div>
                     </div>
@@ -196,19 +249,19 @@ const MyProfileComponent = () => {
             </div>
         </div>
     </div>
-    {/* NE MOZE MODAL.DIALOG, MORA OVAKO */}
+    {/* NE MOZE MODAL.DIALOG, MORA MODAL SAMO */}
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
         <Modal.Title>Edit profile</Modal.Title>
         </Modal.Header>
 
             <Modal.Body>
-                <EditMyProfileComponent/>
+                <EditMyProfileComponent user = {user} handleSubmit={handleSubmit}/>
             </Modal.Body>
 
         <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>Close</Button>
-        <Button variant="primary">Save changes</Button>
+        <Button variant="primary" onClick={handleSubmit}>Save changes</Button>
         </Modal.Footer>
     </Modal>
     </>
