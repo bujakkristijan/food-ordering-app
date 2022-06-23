@@ -21,21 +21,28 @@ public class MealType {
 	
 	public String typeName;
 	
-	@JsonIgnore
+	/*@JsonIgnore
 	@OneToMany(mappedBy="mealType" ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Meal> meals = new ArrayList<Meal>();
+	*/
 	
 	public MealType() {
 		
 	}
 	
 
-	public MealType(Long id, String typeName, List<Meal> meals) {
+	/*public MealType(Long id, String typeName, List<Meal> meals) {
 		super();
 		this.id = id;
 		this.typeName = typeName;
 		this.meals = meals;
-	}
+	} */
+	public MealType(Long id, String typeName) {
+		super();
+		this.id = id;
+		this.typeName = typeName;
+		
+	} 
 
 
 	public Long getId() {
@@ -54,13 +61,13 @@ public class MealType {
 		this.typeName = typeName;
 	}
 
-	public List<Meal> getMeals() {
+	/*public List<Meal> getMeals() {
 		return meals;
 	}
 
 	public void setMeals(List<Meal> meals) {
 		this.meals = meals;
-	}
+	} */
 	
 	
 

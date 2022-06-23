@@ -58,6 +58,7 @@ const MyProfileComponent = () => {
     useEffect(() => {
 
         getCurrentUser();
+        console.log('test');
         
         
       }, [firstName]) //kad je prazan dependendy, useEffect se izvrsi se samo kada se prvi put ucita komponenta, dok kada se promeni u ovom slucaju firstName, pozvace se svaki put

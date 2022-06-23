@@ -27,6 +27,9 @@ const NavbarStyledComponent = () => {
                <Link className='navLink' to='/signin' >
                     Order history
                </Link>
+               <Link className='navLink' to='/meals' >
+                    Meals
+               </Link>
            </div>
            <div className='navBtn'>
            <Link className='myProfileLink' to='/my-profile' >
