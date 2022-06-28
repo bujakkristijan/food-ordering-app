@@ -6,8 +6,8 @@ class MealService{
         return axios.get("http://localhost:8080/api/meal/getAllMeals");
     }
 
-    createMeal(meal){
-        return axios.post("http://localhost:8080/api/meal/createMeal", meal);
+    createMeal(fd){
+        return axios.post("http://localhost:8080/api/meal/createMeal", fd);
     }
 
     deleteMeal(mealId){
@@ -16,6 +16,10 @@ class MealService{
 
     getAllMealTypes(){
         return axios.get("http://localhost:8080/api/mealType/getAllMealTypes");
+    }
+
+    updateMeal(meal){
+        return axios.put("http://localhost:8080/api/meal/updateMeal", meal);
     }
 
 }

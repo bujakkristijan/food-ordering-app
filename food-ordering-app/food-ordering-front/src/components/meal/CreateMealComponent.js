@@ -4,9 +4,11 @@ import {Form} from 'react-bootstrap'
 
 const CreateMealComponent = (props) => {
   const meal = props.meal // u props se nalazi i user i metoda handle submit
+  const selectedFile = props.file
   // const {user} = props !!!!
   // className = 'form-control', bootstrapov input forme, da lepse izgleda
   const [mealTypes, setMealTypes] = useState([]);
+  
 
   useEffect(() => {
     getAllMealTypes();
@@ -19,6 +21,11 @@ const CreateMealComponent = (props) => {
     }).catch(error =>{
             console.log(error);
         })
+  }
+
+  const onChoseFile = (e) =>{
+    console.log(e.target.files[0]);
+    selectedFile.setSelectedFile(e.target.files[0]);
   }
 
 
@@ -82,6 +89,26 @@ const CreateMealComponent = (props) => {
                   </div>
                   
                   }
+
+                  <div className='form-group mb-2'>
+                    <label className='form-label'>Upload image </label>
+                    <input  
+                        type="file"
+                        placeholder="Insert price" 
+                        name = "image" 
+                        className="form-control" 
+                        
+                        
+                        onChange = {(e) =>onChoseFile(e)}
+                        
+                        >
+                        
+                    </input>
+                  </div>
+
+                 
+
+           
                 {/*
                   <div className='form-group mb-2'>
                     <label className='form-label'>Upload picture: </label>

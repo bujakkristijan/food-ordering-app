@@ -49,5 +49,11 @@ public class MealController {
 		
 
 	}
+	
+	@RequestMapping(value = "/updateMeal", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> editMeal(@RequestBody Meal meal){
+		String response = mealService.editMeal(meal);
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}
 
 }

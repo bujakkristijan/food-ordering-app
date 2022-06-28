@@ -9,11 +9,16 @@ import EditMealComponent from './EditMealComponent';
 const ListMealComponent = () => {
 
     const [meals, setMeals] = useState([]);
+    const fd =  new FormData();
 
     const [id, setId] = useState(0);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [mealType, setMealType] = useState({id: 1, typeName: 'PIZZA'});
+
+    const [selectedFile, setSelectedFile] = useState(undefined);
+
+    const file = {selectedFile, setSelectedFile};
 
     const meal = {id, name, price, mealType, setName, setPrice, setMealType}
 
@@ -45,13 +50,13 @@ const ListMealComponent = () => {
 
         }
 
-        const handleCloseEdit = () => {
-            setShowEdit(false);
-            meal.setName('');
-            meal.setPrice('');
-            meal.setMealType({id: 1, typeName: 'PIZZA'});
-    
-            }
+    const handleCloseEdit = () => {
+        setShowEdit(false);
+        meal.setName('');
+        meal.setPrice('');
+        meal.setMealType({id: 1, typeName: 'PIZZA'});
+
+        }
     const handleShow = () => {
         setShow(true);
         
@@ -59,6 +64,7 @@ const ListMealComponent = () => {
 
     const handleShowEdit = (meal) => {
         setShowEdit(true);
+        setId(meal.id);
         setName(meal.name);
         setPrice(meal.price);
         setMealType(meal.mealType);
@@ -69,9 +75,9 @@ const ListMealComponent = () => {
        
         MealService.updateMeal(meal).then((response) =>{
             const responseFromServer = response.data;
-            if(responseFromServer == "valid"){
-                alert("Uspesno");
-                handleClose();
+            if(responseFromServer == "success"){
+                alert("Uspesno editovano");
+                handleCloseEdit();
                 getAllMeals();
                 
             }
@@ -80,8 +86,17 @@ const ListMealComponent = () => {
     }
 
     const handleSubmit = () => {
-       
-        MealService.createMeal(meal).then((response) =>{
+       if(selectedFile != null && selectedFile != undefined){
+        
+        fd.append('image', selectedFile);
+        fd.append('meal', meal);
+        console.log("Selected fileeee" + selectedFile);
+       }
+       else{
+        fd.append('image', '');
+        fd.append('meal', meal);
+       }
+        MealService.createMeal(fd).then((response) =>{
             const responseFromServer = response.data;
             if(responseFromServer == "valid"){
                 alert("Uspesno");
@@ -172,7 +187,7 @@ const ListMealComponent = () => {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <CreateMealComponent meal={meal}/>
+                    <CreateMealComponent meal={meal} file = {file}/>
                 </Modal.Body>
 
                 <Modal.Footer>
