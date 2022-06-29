@@ -28,6 +28,8 @@ public class Meal {
 	private MealType mealType;
 	
 	
+	
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="meal" ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<OrderItem> orders = new ArrayList<OrderItem>();
@@ -35,17 +37,29 @@ public class Meal {
  	private String name;
  	private int price;
  	
+ 	@OneToOne 
+	private Image image;
+ 	
  	public Meal() {
  		
  	}
 
-	public Meal(Long id, MealType mealType, List<OrderItem> orders, String name, int price) {
+	public Meal(Long id, MealType mealType, List<OrderItem> orders, String name, int price, Image image) {
 		super();
 		this.id = id;
 		this.mealType = mealType;
 		this.orders = orders;
 		this.name = name;
 		this.price = price;
+		this.image = image;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public Long getId() {

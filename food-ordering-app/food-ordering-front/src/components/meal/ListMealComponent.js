@@ -86,15 +86,16 @@ const ListMealComponent = () => {
     }
 
     const handleSubmit = () => {
+        console.log("Meal" + meal);
        if(selectedFile != null && selectedFile != undefined){
         
         fd.append('image', selectedFile);
-        fd.append('meal', meal);
+        fd.append('meal', JSON.stringify(meal));
         console.log("Selected fileeee" + selectedFile);
        }
        else{
         fd.append('image', '');
-        fd.append('meal', meal);
+        fd.append('meal', JSON.stringify(meal));
        }
         MealService.createMeal(fd).then((response) =>{
             const responseFromServer = response.data;

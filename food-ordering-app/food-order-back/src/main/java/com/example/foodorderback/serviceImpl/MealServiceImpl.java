@@ -1,13 +1,21 @@
 package com.example.foodorderback.serviceImpl;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.foodorderback.dto.MealDTO;
+import com.example.foodorderback.model.Image;
 import com.example.foodorderback.model.Meal;
+import com.example.foodorderback.repository.FileSystemRepository;
+import com.example.foodorderback.repository.ImageDbRepository;
 import com.example.foodorderback.repository.MealRepository;
 import com.example.foodorderback.service.MealService;
 
@@ -18,20 +26,21 @@ public class MealServiceImpl implements MealService {
 	@Autowired
 	MealRepository mealRepository;
 	
-	private String localpatch = getLocalPatch();
+	@Autowired
+	FileSystemRepository fileSystemRepository;
 	
-	// C:\Users\cileb\Desktop\foapp\food-ordering-app\food-order-back\image-meals
+	
+    @Autowired
+    ImageDbRepository imageDbRepository;
+    
+    @Override
+    public Long saveImage(byte[] bytes, String imageName) {
+        String location = fileSystemRepository.save(bytes, imageName);
 
-	private String getLocalPatch() {
-		String patch = "C:";
-		Character s = '\\';
-		String[] tokens = { "Users", "cileb", "Desktop", "foapp", "food-ordering-app", "food-order-back", "image-meals" };
-		for (int i = 0; i < tokens.length; i++) {
-			patch += s + tokens[i];
-		}
-		patch += s;
-		return patch;
-	}
+        return imageDbRepository.save(new Image(imageName, location))
+            .getId();
+    }
+	
 	
 	@Override
 	public String isValidInput(Meal meal) {
