@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.foodorderback.dto.MealDTO;
+import com.example.foodorderback.model.Image;
 import com.example.foodorderback.model.Meal;
 import com.example.foodorderback.model.Role;
 import com.example.foodorderback.model.User;
 import com.example.foodorderback.service.FileLocationService;
+import com.example.foodorderback.service.ImageService;
 import com.example.foodorderback.service.MealService;
 import com.google.gson.Gson;
 @CrossOrigin("*")
@@ -33,6 +35,9 @@ public class MealController {
 	
 	@Autowired
 	MealService mealService;
+	
+	@Autowired 
+	ImageService imageService;
 	
 	 @Autowired
 	 FileLocationService fileLocationService;
@@ -57,7 +62,10 @@ public class MealController {
 		responseToClient = mealService.isValidInput(meal);
 		if (responseToClient.equals("valid")) {
 			try {
-				fileLocationService.save(image.getBytes(), image.getOriginalFilename());
+				Long imageID = fileLocationService.save(image.getBytes(), image.getOriginalFilename());
+				Image imageObj = imageService.findOne(imageID);
+				meal.setImage(imageObj);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
