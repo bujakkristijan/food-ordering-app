@@ -2,8 +2,12 @@ package com.example.foodorderback.dto;
 
 
 
+import org.springframework.core.io.FileSystemResource;
+
+import com.example.foodorderback.model.Image;
 import com.example.foodorderback.model.Meal;
 import com.example.foodorderback.model.MealType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 public class MealDTO {
@@ -13,19 +17,34 @@ public class MealDTO {
  	private String name;
  	private int price;
  	
- 	public MealDTO() {
+ 	//@JsonIgnoreProperties("hibernateLazyInitializer")
+ 	//private FileSystemResource imageFSR;
+ 	
+ 	private String image;
+ 	
+ 	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public MealDTO() {
  		
  	}
  	
  	public MealDTO(Meal meal) {
- 		this(meal.getId(), meal.getMealType(), meal.getName(), meal.getPrice());
+ 		this(meal.getId(), meal.getMealType(), meal.getName(), meal.getPrice(), meal.getImage());
  	}
  	
- 	public MealDTO(Long id, MealType mealType, String name, int price) {
+ 	public MealDTO(Long id, MealType mealType, String name, int price, String image) {
  		this.id = id;
  		this.mealType = mealType;
  		this.name = name;
  		this.price = price;
+ 		this.image = image;
+ 		
  	}
  	
  	/*public MealDTO(Meal meal) {
@@ -35,6 +54,14 @@ public class MealDTO {
  		this.name = meal.getName();
  		this.price = meal.getPrice();
  	} */
+
+	/*public FileSystemResource getImageFSR() {
+		return imageFSR;
+	}
+
+	public void setImageFSR(FileSystemResource imageFSR) {
+		this.imageFSR = imageFSR;
+	}*/
 
 	public Long getId() {
 		return id;

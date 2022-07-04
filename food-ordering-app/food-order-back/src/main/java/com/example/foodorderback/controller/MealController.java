@@ -1,6 +1,7 @@
 package com.example.foodorderback.controller;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,8 @@ import com.example.foodorderback.service.FileLocationService;
 import com.example.foodorderback.service.ImageService;
 import com.example.foodorderback.service.MealService;
 import com.google.gson.Gson;
+
+import antlr.StringUtils;
 @CrossOrigin("*")
 @RestController
 @RequestMapping(value = "api/meal")
@@ -61,8 +64,9 @@ public class MealController {
 		String responseToClient;
 		responseToClient = mealService.isValidInput(meal);
 		if (responseToClient.equals("valid")) {
-			try {
+			/*try {
 				Long imageID = fileLocationService.save(image.getBytes(), image.getOriginalFilename());
+				//meal.setImageFSR(fileLocationService.find(imageID));
 				Image imageObj = imageService.findOne(imageID);
 				meal.setImage(imageObj);
 				
@@ -73,6 +77,18 @@ public class MealController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} // za sliku
+			*/
+			/*String fileName = StringUtils.cleanPath(image.getOriginalFilename());
+			if(fileName.contains(".."))
+			{
+				System.out.println("not a a valid file");
+			}*/
+			try {
+				meal.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			//meal.setImage(Base64.getEncoder().encodeToString(file.getBytes()))
 			mealService.save(meal);
 			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 

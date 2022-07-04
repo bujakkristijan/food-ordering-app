@@ -1,18 +1,24 @@
 package com.example.foodorderback.model;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
+import org.springframework.core.io.FileSystemResource;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
@@ -37,33 +43,56 @@ public class Meal {
  	private String name;
  	private int price;
  	
- 	@OneToOne 
-	private Image image;
+ 	@Lob
+	@Column(columnDefinition = "MEDIUMBLOB")
+	private String image;
+ 	//@OneToOne 
+	//private Image image;
+ 	
+ 	//@Transient
+ 	//FileSystemResource imageFSR;
  	
  	public Meal() {
  		
  	}
 
-	public Meal(Long id, MealType mealType, List<OrderItem> orders, String name, int price, Image image) {
+	public Meal(Long id, MealType mealType, List<OrderItem> orders, String name, int price) {
 		super();
 		this.id = id;
 		this.mealType = mealType;
 		this.orders = orders;
 		this.name = name;
 		this.price = price;
-		this.image = image;
+		//this.image = image;
+		//this.imageFSR = imageFSR;
 	}
 
-	public Image getImage() {
+	/*public FileSystemResource getImageFSR() {
+		return imageFSR;
+	}
+
+	public void setImageFSR(FileSystemResource imageFSR) {
+		this.imageFSR = imageFSR;
+	} */
+
+	/*public Image getImage() {
 		return image;
 	}
 
 	public void setImage(Image image) {
 		this.image = image;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public void setId(Long id) {

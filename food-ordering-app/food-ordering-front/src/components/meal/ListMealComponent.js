@@ -14,13 +14,14 @@ const ListMealComponent = () => {
     const [id, setId] = useState(0);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
+    const [image, setImage] = useState('');
     const [mealType, setMealType] = useState({id: 1, typeName: 'PIZZA'});
 
     const [selectedFile, setSelectedFile] = useState(undefined);
 
     const file = {selectedFile, setSelectedFile};
 
-    const meal = {id, name, price, mealType, setName, setPrice, setMealType}
+    const meal = {id, name, price, image, mealType, setName, setPrice, setImage, setMealType}
 
     useEffect(() => {
         console.log("USAOOOO")
@@ -33,7 +34,8 @@ const ListMealComponent = () => {
         MealService.getAllMeals().then((response) =>{
             console.log("response " + response.data[0].name);
             setMeals(response.data);
-            console.log("MEALS " + meals[0].name.toString());
+           
+            console.log("RESPONSE DATA  " + JSON.stringify(response.data));
         }).catch(error =>{
             console.log(error);
         })
@@ -52,6 +54,7 @@ const ListMealComponent = () => {
 
     const handleCloseEdit = () => {
         setShowEdit(false);
+        //meal.setId(0);
         meal.setName('');
         meal.setPrice('');
         meal.setMealType({id: 1, typeName: 'PIZZA'});
@@ -59,6 +62,7 @@ const ListMealComponent = () => {
         }
     const handleShow = () => {
         setShow(true);
+        setId(null); //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
         
     };
 
@@ -87,6 +91,8 @@ const ListMealComponent = () => {
 
     const handleSubmit = () => {
         console.log("Meal" + meal);
+        //meal.setId(undefined);
+        //setId(undefined);
        if(selectedFile != null && selectedFile != undefined){
         
         fd.append('image', selectedFile);
@@ -152,6 +158,7 @@ const ListMealComponent = () => {
                 <thead>
                     <tr>
                         <th>Meal ID</th>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Type</th>
                         <th>Price</th>
@@ -160,10 +167,17 @@ const ListMealComponent = () => {
 
                     </tr>
                 </thead>
+                {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
                 <tbody>
                     {meals.map(
                         meal => <tr key={meal.id}>
                             <td>{meal.id}</td>
+                            <td>
+                            
+                              <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
+                            
+                                </td>
+                                
                             <td>{meal.name}</td>
                             <td>{meal.mealType.typeName}</td>
                             <td>{meal.price}</td>

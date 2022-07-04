@@ -17,6 +17,7 @@ import com.example.foodorderback.model.Meal;
 import com.example.foodorderback.repository.FileSystemRepository;
 import com.example.foodorderback.repository.ImageDbRepository;
 import com.example.foodorderback.repository.MealRepository;
+import com.example.foodorderback.service.FileLocationService;
 import com.example.foodorderback.service.MealService;
 
 
@@ -32,6 +33,9 @@ public class MealServiceImpl implements MealService {
 	
     @Autowired
     ImageDbRepository imageDbRepository;
+    
+    @Autowired
+	FileLocationService fileLocationService;
     
     @Override
     public Long saveImage(byte[] bytes, String imageName) {
@@ -59,12 +63,17 @@ public class MealServiceImpl implements MealService {
 	@Override
 	public List<MealDTO> findAll() {
 		List<Meal> allMealList = mealRepository.findAll();
+		
 		List<MealDTO> allMealDTOList = new ArrayList<MealDTO>();
+		MealDTO mealDTO = new MealDTO();
 
 		for (Meal meal : allMealList) {
 			//MealDTO mealDTO = MealMapper.INSTANCE.entityToDTO(meal);
-			MealDTO mealDTO = new MealDTO(meal);
-			allMealDTOList.add(mealDTO);
+			mealDTO = new MealDTO(meal);
+			
+				allMealDTOList.add(mealDTO);
+		
+			
 		}
 		return allMealDTOList;
 	}

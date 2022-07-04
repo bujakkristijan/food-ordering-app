@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import MealService from '../../services/MealService';
 import {Form} from 'react-bootstrap'
+import styles from './ListMealComponent.css';
 
 const CreateMealComponent = (props) => {
   const meal = props.meal // u props se nalazi i user i metoda handle submit
