@@ -26,6 +26,52 @@
   margin-bottom: 50px;
 }
 
+.container-main{
+  position: relative;
+ 
+  width: 100%;
+  height: 100%;
+  
+  
+}
+
+/*.container:before{
+ 
+  
+  display: block;
+    height: 100%;
+    width: 100%;
+    background-image: url('./images/backimage.jpg'); 
+
+    
+    background-repeat: no-repeat;  
+    background-repeat: repeat; 
+  
+    background-size: cover;
+  
+  
+    background-position: center;
+    background-attachment: fixed; 
+  
+      content: "";   
+  
+    position: absolute; 
+   
+    top: 0;
+    left: 0;
+   
+    
+    
+      z-index: -1;  
+     opacity: 0.15; 
+  
+  
+  
+}
+*/
+
+
+
 
 
 * {

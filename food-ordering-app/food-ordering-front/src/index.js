@@ -9,7 +9,7 @@ import { jwtInterceptor } from './components/interceptor/Interceptor';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 jwtInterceptor();
 root.render(
-  <React.StrictMode>
+  <React.StrictMode>   
     <App />
   </React.StrictMode>
 );

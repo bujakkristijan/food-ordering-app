@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -85,6 +86,7 @@ public class MealController {
 			}*/
 			try {
 				meal.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
+				meal.setImageName(image.getOriginalFilename());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -96,12 +98,7 @@ public class MealController {
 			responseToClient = "invalid";
 			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 		}
-		
-		
-		
-		
-		
-		
+
 
 	}
 	
@@ -109,6 +106,21 @@ public class MealController {
 	public ResponseEntity<String> editMeal(@RequestBody Meal meal){
 		String response = mealService.editMeal(meal);
 		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/deleteMeal/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable Long id) {
+		String responseToClient;
+		Meal meal = mealService.findOne(id);
+
+		if (meal == null) {
+			responseToClient = "fail";
+			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
+		}
+
+		mealService.delete(meal);
+		responseToClient = "success";
+		return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 	}
 
 }

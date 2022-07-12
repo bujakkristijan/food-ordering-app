@@ -21,6 +21,7 @@ public class MealDTO {
  	//private FileSystemResource imageFSR;
  	
  	private String image;
+ 	private String imageName;
  	
  	public String getImage() {
 		return image;
@@ -35,16 +36,16 @@ public class MealDTO {
  	}
  	
  	public MealDTO(Meal meal) {
- 		this(meal.getId(), meal.getMealType(), meal.getName(), meal.getPrice(), meal.getImage());
+ 		this(meal.getId(), meal.getMealType(), meal.getName(), meal.getPrice(), meal.getImage(), meal.getImageName());
  	}
  	
- 	public MealDTO(Long id, MealType mealType, String name, int price, String image) {
+ 	public MealDTO(Long id, MealType mealType, String name, int price, String image, String imageName) {
  		this.id = id;
  		this.mealType = mealType;
  		this.name = name;
  		this.price = price;
  		this.image = image;
- 		
+ 		this.imageName = imageName;
  	}
  	
  	/*public MealDTO(Meal meal) {
@@ -62,6 +63,14 @@ public class MealDTO {
 	public void setImageFSR(FileSystemResource imageFSR) {
 		this.imageFSR = imageFSR;
 	}*/
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 
 	public Long getId() {
 		return id;

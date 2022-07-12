@@ -1,40 +1,42 @@
-import MealService from '../../services/MealService'
+import MealTypeService from '../../services/MealTypeService'
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Modal, Button } from 'react-bootstrap'
-import CreateMealComponent from './CreateMealComponent'
-import EditMealComponent from './EditMealComponent';
+import CreateMealTypeComponent from './CreateMealTypeComponent'
+import EditMealTypeComponent from './EditMealTypeComponent';
 
-const ListMealComponent = () => {
+const ListMealTypeComponent = () => {
 
-    const [meals, setMeals] = useState([]);
+    const [mealTypes, setMealTypes] = useState([]);
     const fd =  new FormData();
 
     const [id, setId] = useState(0);
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
+    const [typeName, setTypeName] = useState('');
+    
     const [image, setImage] = useState('');
     const [imageName, setImageName] = useState('');
-    const [mealType, setMealType] = useState({id: 1, typeName: 'PIZZA'});
+    const [description, setDescription] = useState('');
+    
 
     const [selectedFile, setSelectedFile] = useState(undefined);
 
     const file = {selectedFile, setSelectedFile};
 
-    const meal = {id, name, price, image, imageName, mealType, setName, setPrice, setImage, setImageName, setMealType}
+    const mealType = {id, typeName, description, image, imageName,  setImage, setImageName, setTypeName, setDescription}
 
     useEffect(() => {
         console.log("USAOOOO")
-      getAllMeals();
+      getAllMealTypes();
       
     }, [])
     
 
-    const getAllMeals = () =>{
-        MealService.getAllMeals().then((response) =>{
-            console.log("response " + response.data[0].name);
-            setMeals(response.data);
+    const getAllMealTypes = () =>{
+        MealTypeService.getAllMealTypes().then((response) =>{
+           
+            setMealTypes(response.data);
+            sortMealTypesById();
             
            
             console.log("RESPONSE DATA  " + JSON.stringify(response.data));
@@ -43,23 +45,26 @@ const ListMealComponent = () => {
         })
     }
 
+    const sortMealTypesById = () =>{
+        mealTypes.sort((a, b) => a.id - b.id);
+    }
+
     const [show, setShow] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
 
     const handleClose = () => {
         setShow(false);
-        meal.setName('');
-        meal.setPrice('');
-        meal.setMealType({id: 1, typeName: 'PIZZA'});
+        mealType.setTypeName('');
+        mealType.setDescription('');
+        
 
         }
 
     const handleCloseEdit = () => {
         setShowEdit(false);
         //meal.setId(0);
-        meal.setName('');
-        meal.setPrice('');
-        meal.setMealType({id: 1, typeName: 'PIZZA'});
+        mealType.setTypeName('');
+        mealType.setDescription('');
 
         }
     const handleShow = () => {
@@ -70,21 +75,21 @@ const ListMealComponent = () => {
 
     const handleShowEdit = (meal) => {
         setShowEdit(true);
-        setId(meal.id);
-        setName(meal.name);
-        setPrice(meal.price);
-        setMealType(meal.mealType);
+        setId(mealType.id);
+        setTypeName(mealType.typeName);
+        setDescription(mealType.description);
+        
         
     };
 
     const handleSubmitEdit = () => {
        
-        MealService.updateMeal(meal).then((response) =>{
+        MealTypeService.updateMealType(mealType).then((response) =>{
             const responseFromServer = response.data;
             if(responseFromServer == "success"){
                 alert("Uspesno editovano");
                 handleCloseEdit();
-                getAllMeals();
+                getAllMealTypes();
                 
             }
         })
@@ -92,25 +97,25 @@ const ListMealComponent = () => {
     }
 
     const handleSubmit = () => {
-        console.log("Meal" + meal);
+        console.log("MealType " + mealType);
         //meal.setId(undefined);
         //setId(undefined);
        if(selectedFile != null && selectedFile != undefined){
         
         fd.append('image', selectedFile);
-        fd.append('meal', JSON.stringify(meal));
+        fd.append('mealType', JSON.stringify(mealType));
         console.log("Selected fileeee" + selectedFile);
        }
        else{
         fd.append('image', '');
-        fd.append('meal', JSON.stringify(meal));
+        fd.append('mealType', JSON.stringify(mealType));
        }
-        MealService.createMeal(fd).then((response) =>{
+        MealTypeService.createMealType(fd).then((response) =>{
             const responseFromServer = response.data;
             if(responseFromServer == "valid"){
                 alert("Uspesno");
                 handleClose();
-                getAllMeals();
+                getAllMealTypes();
                 
             }
         })
@@ -118,10 +123,10 @@ const ListMealComponent = () => {
     }
 
 
-    const deleteMeal = (mealId) =>{
-        console.log("ID EMPLOYEE: " + mealId);
-        MealService.deleteMeal(mealId).then((response) =>{
-            getAllMeals();
+    const deleteMealType = (mealTypeId) =>{
+        console.log("ID EMPLOYEE: " + mealTypeId);
+        MealTypeService.deleteMealType(mealTypeId).then((response) =>{
+            getAllMealTypes();
         }).catch(error => {
             console.log(error);
         })
@@ -132,7 +137,7 @@ const ListMealComponent = () => {
       
           Swal.fire({
             title: 'Are you sure?',
-            text: "If you click yes, meal will be deleted!",
+            text: "If you click yes, meal type will be deleted!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -140,10 +145,10 @@ const ListMealComponent = () => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-              deleteMeal(id);
+              deleteMealType(id);
               Swal.fire(
                 'Deleted!',
-                'Meal has been deleted.',
+                'Meal type has been deleted.',
                 'success'
               )
             }
@@ -154,39 +159,39 @@ const ListMealComponent = () => {
     
     <>
     <div className='container'>
-            <h2 className='text-center'>Meal list</h2>
-            <button className="btn btn-success" onClick={handleShow}>Create new meal</button>
+            <h2 className='text-center'>Meal type list</h2>
+            <button className="btn btn-success" onClick={handleShow}>Create new meal type</button>
             <table className='table table-bordered table-hover'>
-                <thead>
+                <thead className='thead-name'>
                     <tr>
-                        <th>Meal ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th className='theadth'>Meal ID</th>
+                        <th className='theadth'>Image</th>
+                        <th className='theadth'>Type name</th>
+                        <th className='theadth'>Description</th>
+                       
+                        <th className='theadth'>Action</th>
                         
 
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
                 <tbody>
-                    {meals.map(
-                        meal => <tr key={meal.id}>
-                            <td>{meal.id}</td>
-                            <td>
+                    {mealTypes.map(
+                        mealType => <tr key={mealType.id}>
+                            <td className='td-content'>{mealType.id}</td>
+                            <td className='td-content-img'>
                             
-                              <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
+                              <img className='mealPic' src={"data:image/png;base64," + mealType.image} alt=''/> 
                             
                                 </td>
                                 
-                            <td>{meal.name}</td>
-                            <td>{meal.mealType.typeName}</td>
-                            <td>{meal.price}</td>
+                            <td className='td-content'>{mealType.typeName}</td>
+                            <td className='td-content'>{mealType.description}</td>
                             
-                            <td>
-                                <button className='btn btn-info' onClick={() =>handleShowEdit(meal)}>Update</button>
-                                <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(meal.id)}
+                            
+                            <td className='td-content'>
+                                <button className='btn btn-info' onClick={() =>handleShowEdit(mealType)}>Update</button>
+                                <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(mealType.id)}
                                     style={{ marginLeft: "5px" }}>Delete</button>
                             </td>
 
@@ -200,11 +205,11 @@ const ListMealComponent = () => {
 
         <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create new meal</Modal.Title>
+                    <Modal.Title>Create new meal type</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <CreateMealComponent meal={meal} file = {file}/>
+                    <CreateMealTypeComponent mealType={mealType} file = {file}/>
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -215,11 +220,11 @@ const ListMealComponent = () => {
 
             <Modal show={showEdit} onHide={handleCloseEdit}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create new meal</Modal.Title>
+                    <Modal.Title>Edit meal type</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <EditMealComponent meal={meal} file = {file}/>
+                    <EditMealTypeComponent mealType={mealType} file = {file}/>
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -232,4 +237,4 @@ const ListMealComponent = () => {
   )
 }
 
-export default ListMealComponent
+export default ListMealTypeComponent

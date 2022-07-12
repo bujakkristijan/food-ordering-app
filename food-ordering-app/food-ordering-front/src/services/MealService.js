@@ -11,7 +11,7 @@ class MealService{
     }
 
     deleteMeal(mealId){
-        return axios.put("http://localhost:8080/api/meal/deleteMeal/" + mealId);
+        return axios.delete("http://localhost:8080/api/meal/deleteMeal/" + mealId);
     }
 
     getAllMealTypes(){

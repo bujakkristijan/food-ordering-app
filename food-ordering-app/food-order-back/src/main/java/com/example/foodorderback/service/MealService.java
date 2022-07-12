@@ -17,7 +17,7 @@ public interface MealService {
 	Meal save(Meal meal);
 	
 	Meal delete(Meal meal);
-	MealDTO findOne(Long id);
+	Meal findOne(Long id);
 	String editMeal(Meal meal);
 	Long saveImage(byte[] content, String imageName);
 	

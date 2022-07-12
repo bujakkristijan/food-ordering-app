@@ -1,0 +1,60 @@
+.container-mealType{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+.card-meal-type{
+    margin: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    /*height: 150px; */
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    
+    border: 2px solid grey;
+    border-radius: 10px;
+    /*padding: 10px 10px; */
+    padding-bottom: 5px;
+    transition:  all .2s ease-in-out; /* mora da ovde stoji a ne u hover, jer kad se skloni nema izlaznog trasitiona */
+    
+}
+.card-meal-type:hover{
+
+    transform: scale(1.07);
+    
+    
+}
+
+.image-container{
+    width: 160px;
+    height: 100px;
+}
+
+.image{
+    width: 100%;
+    /* height: 100px; */
+    /* border: 3px solid rgb(216, 158, 158); */
+    height: 170px;
+    object-fit: cover;
+    border-top-right-radius: 10px; 
+    border-top-left-radius: 10px;
+    box-shadow: 0 5px 10px rgb(131, 131, 131);
+}
+
+.name-container{
+    margin-top: 15px;
+}
+
+.description-container{
+    justify-content: center;
+    text-align: center;
+}
+
+.name-content{
+    font-weight: 600;
+}

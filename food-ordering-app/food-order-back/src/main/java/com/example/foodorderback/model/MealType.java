@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,6 +21,13 @@ public class MealType {
 	public Long id;
 	
 	public String typeName;
+	
+	@Lob
+	public String image;
+	
+	public String imageName;
+	
+	public String description;
 	
 	/*@JsonIgnore
 	@OneToMany(mappedBy="mealType" ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
@@ -37,12 +45,45 @@ public class MealType {
 		this.typeName = typeName;
 		this.meals = meals;
 	} */
-	public MealType(Long id, String typeName) {
+	public MealType(Long id, String typeName, String image, String imageName, String description) {
 		super();
 		this.id = id;
 		this.typeName = typeName;
+		this.image = image;
+		this.imageName = imageName;
+		this.description = description;
 		
 	} 
+
+
+	public String getImageName() {
+		return imageName;
+	}
+
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 
 	public Long getId() {

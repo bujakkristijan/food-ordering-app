@@ -44,8 +44,10 @@ public class Meal {
  	private int price;
  	
  	@Lob
-	@Column(columnDefinition = "MEDIUMBLOB")
+	//@Column(columnDefinition = "MEDIUMBLOB")
 	private String image;
+ 	
+ 	private String imageName;
  	//@OneToOne 
 	//private Image image;
  	
@@ -56,13 +58,14 @@ public class Meal {
  		
  	}
 
-	public Meal(Long id, MealType mealType, List<OrderItem> orders, String name, int price) {
+	public Meal(Long id, MealType mealType, List<OrderItem> orders, String name, int price, String imageName) {
 		super();
 		this.id = id;
 		this.mealType = mealType;
 		this.orders = orders;
 		this.name = name;
 		this.price = price;
+		this.imageName = imageName;
 		//this.image = image;
 		//this.imageFSR = imageFSR;
 	}
@@ -82,6 +85,14 @@ public class Meal {
 	public void setImage(Image image) {
 		this.image = image;
 	}*/
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 
 	public Long getId() {
 		return id;

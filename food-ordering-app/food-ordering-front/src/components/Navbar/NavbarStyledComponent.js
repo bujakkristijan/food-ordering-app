@@ -21,7 +21,7 @@ const NavbarStyledComponent = () => {
                <Link className='navLink' to='/employees' >
                     Users
                </Link>
-               <Link className='navLink' to='/employees' >
+               <Link className='navLink' to='/menu' >
                     Menu
                </Link>
                <Link className='navLink' to='/signin' >
@@ -29,6 +29,9 @@ const NavbarStyledComponent = () => {
                </Link>
                <Link className='navLink' to='/meals' >
                     Meals
+               </Link>
+               <Link className='navLink' to='/meal-types' >
+                    Meal types
                </Link>
            </div>
            <div className='navBtn'>

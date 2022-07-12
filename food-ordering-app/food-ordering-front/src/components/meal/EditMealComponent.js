@@ -4,6 +4,7 @@ import MealService from '../../services/MealService';
 
 const EditMealComponent = (props) => {
     const meal = props.meal // u props se nalazi i user i metoda handle submit
+    const selectedFile = props.file;
   // const {user} = props !!!!
   // className = 'form-control', bootstrapov input forme, da lepse izgleda
   const [mealTypes, setMealTypes] = useState([]);
@@ -19,6 +20,11 @@ const EditMealComponent = (props) => {
     }).catch(error =>{
             console.log(error);
         })
+  }
+
+  const onChoseFile = (e) =>{
+    console.log(e.target.files[0]);
+    selectedFile.setSelectedFile(e.target.files[0]);
   }
 
 
@@ -67,7 +73,7 @@ const EditMealComponent = (props) => {
                   </div>
 
                  
-                 { 
+                  
                  
                  <div className='form-group mb-2'>
                     <label className='form-label'>Type: </label>
@@ -82,7 +88,24 @@ const EditMealComponent = (props) => {
                   </div>
                   
                   
-                  }
+                  <div className='form-group mb-2'>
+                    <label className='form-label'>Upload image </label>
+                    <input  
+                        type="file"
+                        placeholder="Insert price" 
+                        name = "image" 
+                        className="form-control" 
+                        
+                        
+                        onChange = {(e) =>onChoseFile(e)}
+                        
+                        >
+                        
+                    </input>
+                  </div>
+
+
+
                 {/*
                   <div className='form-group mb-2'>
                     <label className='form-label'>Upload picture: </label>

@@ -13,5 +13,4 @@ insert into foodorderdb.meal_type (id, type_name) values (6, "PASTA");
 insert into foodorderdb.meal (id, name, price, meal_type_id) values (1, "CAPRICCIOSA", 600, 1);
 insert into foodorderdb.meal (id, name, price, meal_type_id) values (2, "SLATKA PALACINKA", 600, 4);
 insert into foodorderdb.meal (id, name, price, meal_type_id) values (3, "RUSKA SALATA", 600, 3);
-insert into foodorderdb.meal (id, name, price, meal_type_id) values (4, "VELIKI BURGER", 600, 5);
-insert into foodorderdb.meal (id, name, price, meal_type_id) values (5, "PASTA NEKA", 600, 6);
+insert into foodorderdb.meal (id, name, price, meal_type_id) values (4, "NESTOOO", 600, 3);

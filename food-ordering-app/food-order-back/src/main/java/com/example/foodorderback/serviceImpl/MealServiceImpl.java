@@ -88,11 +88,12 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Override
-	public MealDTO findOne(Long id) {
+	public Meal findOne(Long id) {
 		Meal meal = mealRepository.findById(id).get();
 		//MealDTO mealDTO = MealMapper.INSTANCE.entityToDTO(meal);
-		MealDTO mealDTO = new MealDTO(meal);
-		return mealDTO;
+		//MealDTO mealDTO = new MealDTO(meal);
+		//return mealDTO;
+		return meal;
 	}
 
 	
