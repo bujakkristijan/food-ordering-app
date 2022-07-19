@@ -35,13 +35,20 @@ const NavbarStyledComponent = () => {
                </Link>
            </div>
            <div className='navBtn'>
+           <Link className='cartLink' to='/cart' >
+                 
+               <div className='number-cart'>2</div>
+               <img className='logo-cart' src={require('../../images/cart2.png')} alt=''/>  
+                   
+                     
+          </Link>
            <Link className='myProfileLink' to='/my-profile' >
                  
 
                  MyProfile
                    
                      
-                </Link>
+          </Link>
                 <Link className='registrationLink' to='/registration' >
                  
 

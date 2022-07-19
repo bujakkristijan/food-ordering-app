@@ -12,6 +12,8 @@ import MyProfileComponent from './components/My-profile/MyProfileComponent';
 import ListMealComponent from './components/meal/ListMealComponent';
 import MenuMealTypeComponent from './components/menu/MenuMealTypeComponent';
 import ListMealTypeComponent from './components/meal-type/ListMealTypeComponent';
+import ListMealByMealTypeComponent from './components/meals-by-meal-type/ListMealByMealTypeComponent';
+import CartComponent from './components/cart/CartComponent';
 // <NavbarComponent/> ovo je bilo pre nego sto sam menjao
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 function App() {
@@ -32,6 +34,8 @@ function App() {
             <Route path='/meals' element = {<ListMealComponent/>}></Route>
             <Route path='/menu' element = {<MenuMealTypeComponent/>}></Route>
             <Route path='/meal-types' element = {<ListMealTypeComponent/>}></Route>
+            <Route path='/meals-by-meal-type/:mealTypeId' element = {<ListMealByMealTypeComponent/>}></Route>
+            <Route path='/cart' element = {<CartComponent/>}></Route>
           </Routes>
         </div>
         

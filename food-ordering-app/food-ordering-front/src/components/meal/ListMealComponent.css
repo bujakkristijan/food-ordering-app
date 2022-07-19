@@ -1,11 +1,15 @@
-.mealPic{
+.mealPicture{
     
-        height: 50px;
-        width: 50px;
+        height: 110px;
+        width: 90%;
+        object-fit: cover; /* da ne razvuce sliku */
+         border: 2px rgb(173, 135, 135) solid ; 
+        border-radius: 5px;
         /*align-items: center;
         text-align: center;
         justify-content: center; */
-        margin-top: 2px;
-        margin-left: 5px;
+        margin-right: 0px;
+        margin-left: 0px;
+        /* text-align: center;  */
    
 }

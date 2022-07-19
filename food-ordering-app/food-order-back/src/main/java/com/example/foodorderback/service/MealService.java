@@ -21,5 +21,7 @@ public interface MealService {
 	String editMeal(Meal meal);
 	Long saveImage(byte[] content, String imageName);
 	
+	List<MealDTO> getMealsByMealTypeId(Long id);
+	
 
 }

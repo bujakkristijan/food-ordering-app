@@ -77,6 +77,21 @@ public class MealServiceImpl implements MealService {
 		}
 		return allMealDTOList;
 	}
+	
+	@Override
+	public List<MealDTO> getMealsByMealTypeId(Long mealTypeId){
+		List<Meal> allMealList = mealRepository.findAll();
+		
+		List<MealDTO> mealsByMealTypeIdDTO = new ArrayList<MealDTO>();
+		MealDTO mealDTO = new MealDTO();
+		for(Meal meal: allMealList) {
+			if(meal.getMealType().getId() == mealTypeId) {
+				mealDTO = new MealDTO(meal);
+				mealsByMealTypeIdDTO.add(mealDTO);
+			}
+		}
+		return mealsByMealTypeIdDTO;
+	}
 
 	@Override
 	public Meal delete(Meal meal) {

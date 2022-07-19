@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Modal, Button } from 'react-bootstrap'
 import CreateMealComponent from './CreateMealComponent'
 import EditMealComponent from './EditMealComponent';
+import './ListMealComponent.css';
 
 const ListMealComponent = () => {
 
@@ -176,7 +177,7 @@ const ListMealComponent = () => {
                             <td>{meal.id}</td>
                             <td>
                             
-                              <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
+                              <img className='mealPicture' src={"data:image/png;base64," + meal.image} alt=''/> 
                             
                                 </td>
                                 

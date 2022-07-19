@@ -51,6 +51,13 @@ public class MealController {
 		List<MealDTO> allMealDTOList = mealService.findAll();
 		return new ResponseEntity<List<MealDTO>>(allMealDTOList, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/getMealsByMealTypeId/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<MealDTO>> getMealsByMealTypeId(@PathVariable Long id){
+		List<MealDTO> mealsByMealTypeId = mealService.getMealsByMealTypeId(id);
+		return new ResponseEntity<List<MealDTO>>(mealsByMealTypeId, HttpStatus.OK);
+	}
+	
 	//, @RequestParam("meal") MultipartFile meal
 	@RequestMapping(value = "/createMeal", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<String> createMeal(@RequestParam("image") MultipartFile image, HttpServletRequest request) {

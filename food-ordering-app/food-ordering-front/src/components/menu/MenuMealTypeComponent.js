@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import MealTypeService from '../../services/MealTypeService';
 import './MenuMealTypeComponent.css';
+import { Link } from 'react-router-dom';
 
 const MenuMealTypeComponent = () => {
 
@@ -24,7 +25,7 @@ const getAllMealTypes = () =>{
         {
             mealTypes.map((mealType) => {
                 return(
-                    <div className='card-meal-type'>
+                    <div className='card-meal-type' key={mealType.id}>
                     {/* <div className='image-container'> */}
                     <img className='image' src={"data:image/png;base64," + mealType.image} alt=''></img>
                     {/* </div> */}
@@ -35,7 +36,8 @@ const getAllMealTypes = () =>{
                         <p>{mealType.description}</p>
                     </div>
                     {/* <div className='button-container'> */}
-                        <button className='btn btn-success'>See items</button>
+                    <Link className='btn btn-success' to={`/meals-by-meal-type/${mealType.id}`}>See items</Link>
+                        {/* <button className='btn btn-success'>See items</button> */}
                     {/* </div> */}
                 </div>
                 )
