@@ -19,8 +19,9 @@ const ListMealByMealTypeComponent = () => {
     const [id, setId] = useState(0);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
+    const [image, setImage] = useState('');
 
-    const meal = {id, name, price};
+    const meal = {id, name, price, image};
 
     const orderItem = {meal, quantity: mealQuantity};
     console.log(" order item ", orderItem);
@@ -35,6 +36,7 @@ const ListMealByMealTypeComponent = () => {
         setId(meal.id);
         setName(meal.name);
         setPrice(meal.price);
+        setImage(meal.image);
         setMealQuantity(1);
         setShow(true);
         
@@ -45,6 +47,7 @@ const ListMealByMealTypeComponent = () => {
         setId(null);
         setName('');
         setPrice('');
+        setImage('');
         setMealQuantity(1);
         
 

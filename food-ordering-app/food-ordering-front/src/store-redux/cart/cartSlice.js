@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { act } from 'react-dom/test-utils';
-
-const initialState = [];
 
 // const initialState ={
 //     orderItems: [orderItem]
@@ -9,13 +6,36 @@ const initialState = [];
   
 export const cartSlice = createSlice({
     name: 'cart',
-    initialState,
+    initialState: [],
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
     
-    addItem:(state, action) =>{
-        //state = [...state, action.payload]; // da dodaje na state, da ga ne pregazi vec da pravi novi 
-        state +=1
+    addItem: (state, action) =>{
+      let alreadyExistMeal = 0
+      //state = [...state, action.payload]; // da dodaje na state, da ga ne pregazi vec da pravi novi - ne radi!!!!!!!
+       for(let i=0; i<state.length; i++){
+         if(state[i].meal.id === action.payload.meal.id){
+           state[i].quantity += action.payload.quantity
+              alreadyExistMeal = 1;
+        }
+       }
+      if(alreadyExistMeal === 0){
+        state.push(action.payload);
+      }
+      
+      // const result = state.filter((item)=>{
+      //   if(item.meal.id === action.payload.meal.id){
+      //     item.quantity += action.payload.quantity
+      //     return true; //
+      //   }})
+
+      // if(result.length===0){ // ako ne nadje ni jedan u filteru odnosno ako se ne poklapaju id-jevi, dodaj novi state, a ako ih prethodno nadje, izmenice quanitity 
+      //   state.push(action.payload);
+      // }
+
+    // const a = [1,2,3];
+    // const b = [5,6,7];
+    // const c = [...a,...b] // c=[1,2,3,5,6,7];
     },
       
     //   incrementByAmount: (state, action) => {

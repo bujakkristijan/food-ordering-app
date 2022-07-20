@@ -1,9 +1,19 @@
-import React from 'react'
+import React, {useSelector} from 'react-redux';
 /*import { Nav, NavLink, Bars,NavMenu,NavBtn,NavBtnLink } from './NavbarElements' */
 import styles from './NavbarElements.css' // OVO MORA DA BI UCITAO CSS, IAKO SE STYLES NE KORISTI NIGDE DIREKTNO !!!!
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react';
 
 const NavbarStyledComponent = () => {
+
+     const cart = useSelector((state) => state.cart);
+     let sumQuantityFromCartItems = 0;
+     if(cart.length>0){
+          for(let i = 0; i<cart.length; i++){
+               sumQuantityFromCartItems += cart[i].quantity;
+         }
+     }
+     // const sumQuantityFromCartItems = cart.reduce((prev,curr)=>prev+=curr,0);
 
      /*Link je brzi dosta od a elementa*/ 
   return (
@@ -37,7 +47,7 @@ const NavbarStyledComponent = () => {
            <div className='navBtn'>
            <Link className='cartLink' to='/cart' >
                  
-               <div className='number-cart'>2</div>
+               <div className='number-cart'>{sumQuantityFromCartItems}</div>
                <img className='logo-cart' src={require('../../images/cart2.png')} alt=''/>  
                    
                      

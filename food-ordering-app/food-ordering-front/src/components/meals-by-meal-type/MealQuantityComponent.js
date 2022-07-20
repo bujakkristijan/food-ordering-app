@@ -33,13 +33,13 @@ const MealQuantityComponent = (props) => {
                   <div className='form-group mb-2'>
                     <h5 className='form-label'>Insert quantity: </h5>
                     <input  
-                        type="text"
+                        type="number"
                         placeholder="Insert name" 
                         name = "name" 
                         className="form-control" 
-                        
+                        min={1}
                         value={mealQuantity.mealQuantity}
-                        onChange = {(e) => mealQuantity.setMealQuantity(e.target.value)}
+                        onChange = {(e) => mealQuantity.setMealQuantity(+e.target.value)}
                         
                         >
                         
