@@ -10,6 +10,7 @@ const NavbarStyledComponent = () => {
      let sumQuantityFromCartItems = 0;
      if(cart.length>0){
           for(let i = 0; i<cart.length; i++){
+               console.log("USAOOOO OPET OVDEEEEE");
                sumQuantityFromCartItems += cart[i].quantity;
          }
      }

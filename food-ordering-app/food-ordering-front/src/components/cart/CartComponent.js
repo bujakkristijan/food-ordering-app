@@ -1,23 +1,25 @@
 import React, {useState, useEffect} from 'react'
-
+import Swal from 'sweetalert2';
 import MealService from '../../services/MealService'
 import { Modal, Button } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom';
-
+import {editItem, deleteItem, deleteAllItems} from '../../store-redux/cart/cartSlice'
 
 import { useDispatch, useSelector } from 'react-redux';
+import EditItemQuantityComponent from './EditItemQuantityComponent';
 
 const CartComponent = () => {
 
-  const [show, setShow] = useState(false);
+ const dispatch = useDispatch();
   const [showEdit, setShowEdit] = useState(false);
 
   const [id, setId] = useState(0);
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
+  const [item, setItem] = useState(null);
+  const [itemQuantity, setItemQuantity] = useState(1);
 
   const itemsFromCart = useSelector((state) => state.cart);
+
+  const itemObjToStore = { item, itemQuantity}
   
     useEffect(() => {
     
@@ -25,12 +27,55 @@ const CartComponent = () => {
   }, [])
 
    
-    const handleShow = () => {
-        setShow(true);
+    const handleShowEdit = (itemFromCart) => {
+        setShowEdit(true);
         setId(null); //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
-        
+        setItem(itemFromCart);
+        setItemQuantity(itemFromCart.quantity)
     };
 
+    const handleCloseEdit = () => {
+        setShowEdit(false);
+        setItem(null)
+    }
+
+    
+
+    const alertAreYouSureDelete = (id) =>{
+       
+      console.log("okok: ",id)
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "If you click yes, items will be deleted!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // deleteItemFromCart(id);
+            dispatch(deleteItem(id));
+            Swal.fire(
+              'Deactivated!',
+              'User has been deactivated.',
+              'success'
+            )
+          }
+        })
+      }
+    
+
+      const submitFinalOrder = (itemsFromCart) =>{
+        MealService.sendItemsForFinalOrder(itemsFromCart).then((response) =>{
+            const responseFromServer = response.data;
+            if(responseFromServer == "valid"){
+                dispatch(deleteAllItems());
+                
+                
+            }
+        })
+      }
     
 
     
@@ -38,15 +83,14 @@ const CartComponent = () => {
     <>
     <div className='container'>
     <h2 className='text-center'>Meal list</h2>
-    <button className="btn btn-success" onClick={handleShow}>Create new meal</button>
+    <button className="btn btn-success" onClick={() => submitFinalOrder(itemsFromCart)}>Send final order</button>
     <table className='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>Meal ID</th>
                 <th>Image</th>
                 <th>Name</th>
-                <th>Type</th>
                 <th>Price</th>
+                <th>Quantity</th>
                 <th>Action</th>
                 
 
@@ -68,9 +112,9 @@ const CartComponent = () => {
                     <td>{itemFromCart.quantity}</td>
                     
                     <td>
-                        {/* <button className='btn btn-info' onClick={() =>handleShowEdit(meal)}>Update</button>
-                        <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(meal.id)} 
-                        style={{ marginLeft: "5px" }}>Delete</button> */}
+                        <button className='btn btn-info' onClick={() =>handleShowEdit(itemFromCart)}>Update</button>
+                        <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(itemFromCart.meal.id)} 
+                        style={{ marginLeft: "5px" }}>Delete</button> 
                     </td>
 
                 </tr>
@@ -96,21 +140,22 @@ const CartComponent = () => {
             <Button variant="primary" onClick={handleSubmit}>Save changes</Button>
         </Modal.Footer>
     </Modal>
-
+    */
+}
     <Modal show={showEdit} onHide={handleCloseEdit}>
         <Modal.Header closeButton>
             <Modal.Title>Create new meal</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-            <EditMealComponent meal={meal} file = {file}/>
+            <EditItemQuantityComponent itemFromCart={item} itemQuantity={itemQuantity} setItemQuantity={setItemQuantity} />
         </Modal.Body>
 
         <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-            <Button variant="primary" onClick={handleSubmitEdit}>Save changes</Button>
+            <Button variant="primary" onClick={()=>dispatch(editItem(itemObjToStore))}>Save changes</Button>
         </Modal.Footer>
-    </Modal> */}
+    </Modal> 
     </>
   )
 }
