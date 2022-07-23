@@ -21,8 +21,7 @@ public class OrderItem {
 	public Meal meal;
 	
 	
-	@ManyToOne
-	public User user;
+	
 	
 	//@JsonIgnore 
 	@ManyToOne
@@ -35,11 +34,11 @@ public class OrderItem {
 		
 	}
 
-	public OrderItem(Long id, Meal meal, User user, FinalOrder finalOrder, int quantity) {
+	public OrderItem(Long id, Meal meal,FinalOrder finalOrder, int quantity) {
 		super();
 		this.id = id;
 		this.meal = meal;
-		this.user = user;
+		
 		this.finalOrder = finalOrder;
 		this.quantity = quantity;
 	}
@@ -60,13 +59,7 @@ public class OrderItem {
 		this.meal = meal;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 
 	public FinalOrder getFinalOrder() {
 		return finalOrder;

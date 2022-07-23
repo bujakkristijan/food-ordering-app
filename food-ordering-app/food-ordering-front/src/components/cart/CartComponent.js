@@ -7,17 +7,26 @@ import {editItem, deleteItem, deleteAllItems} from '../../store-redux/cart/cartS
 
 import { useDispatch, useSelector } from 'react-redux';
 import EditItemQuantityComponent from './EditItemQuantityComponent';
+import InsertDetailsNotLoggedComponent from './InsertDetailsNotLoggedComponent';
 
 const CartComponent = () => {
 
  const dispatch = useDispatch();
   const [showEdit, setShowEdit] = useState(false);
+  const [showInsertDetails, setShowInsertDetails] = useState(false);
 
   const [id, setId] = useState(0);
   const [item, setItem] = useState(null);
   const [itemQuantity, setItemQuantity] = useState(1);
 
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   const itemsFromCart = useSelector((state) => state.cart);
+  const itemsFromCartFinalOrder = { itemsFromCart, address, phoneNumber, setAddress, setPhoneNumber };
+
+  //ako nije ulogovan mora da unese adresu i br telefona
+  
 
   const itemObjToStore = { item, itemQuantity}
   
@@ -65,16 +74,41 @@ const CartComponent = () => {
         })
       }
     
-
-      const submitFinalOrder = (itemsFromCart) =>{
-        MealService.sendItemsForFinalOrder(itemsFromCart).then((response) =>{
+      
+      const submitFinalOrder = (itemsFromCartFinalOrder) =>{
+        console.log("items fo" + JSON.stringify(itemsFromCartFinalOrder));
+        MealService.sendItemsForFinalOrder(itemsFromCartFinalOrder).then((response) =>{
             const responseFromServer = response.data;
-            if(responseFromServer == "valid"){
+            if(responseFromServer == "success"){
                 dispatch(deleteAllItems());
+                alert("success");
                 
                 
             }
+            else{
+              alert("failed");
+            }
         })
+      }
+
+      
+      const checkIfLoggedInBeforeSubmit = () =>{
+        if(localStorage.token == null || localStorage.token == ''){
+          handleShowInsertDetails();
+        }
+        else{
+          submitFinalOrder(itemsFromCartFinalOrder);
+        }
+      }
+
+      const handleShowInsertDetails = () =>{
+        setShowInsertDetails(true);
+      }
+
+      const handleCloseInsertDetails = () =>{
+        setShowInsertDetails(false);
+        setAddress('');
+        setPhoneNumber('');
       }
     
 
@@ -82,8 +116,8 @@ const CartComponent = () => {
   return (
     <>
     <div className='container'>
-    <h2 className='text-center'>Meal list</h2>
-    <button className="btn btn-success" onClick={() => submitFinalOrder(itemsFromCart)}>Send final order</button>
+    <h2 className='text-center'>Items from cart</h2>
+    <button className="btn btn-success" onClick={() => checkIfLoggedInBeforeSubmit()}>Make final order</button>
     <table className='table table-bordered table-hover'>
         <thead>
             <tr>
@@ -144,7 +178,7 @@ const CartComponent = () => {
 }
     <Modal show={showEdit} onHide={handleCloseEdit}>
         <Modal.Header closeButton>
-            <Modal.Title>Create new meal</Modal.Title>
+            <Modal.Title>Edit quantity</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -156,6 +190,22 @@ const CartComponent = () => {
             <Button variant="primary" onClick={()=>dispatch(editItem(itemObjToStore))}>Save changes</Button>
         </Modal.Footer>
     </Modal> 
+
+    <Modal show={showInsertDetails} onHide={handleCloseInsertDetails}>
+        <Modal.Header closeButton>
+            <Modal.Title>Insert neccessary details</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+            <InsertDetailsNotLoggedComponent details={itemsFromCartFinalOrder} />
+        </Modal.Body>
+
+        <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
+            <Button variant="primary" onClick={() => submitFinalOrder(itemsFromCartFinalOrder)}>Save changes</Button>
+        </Modal.Footer>
+    </Modal> 
+
     </>
   )
 }

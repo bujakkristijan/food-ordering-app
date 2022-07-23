@@ -32,13 +32,14 @@ public class FinalOrder {
 	private Date date;
 	private int finalPrice;
 	private String address;
+	private String phoneNumber;
 	private Status status;
 	
 	public FinalOrder() {
 		
 	}
 
-	public FinalOrder(Long id, User user, List<OrderItem> orders, Date date, int finalPrice, String address,
+	public FinalOrder(Long id, User user, List<OrderItem> orders, Date date, int finalPrice, String address, String phoneNumber,
 			Status status) {
 		super();
 		this.id = id;
@@ -47,7 +48,16 @@ public class FinalOrder {
 		this.date = date;
 		this.finalPrice = finalPrice;
 		this.address = address;
+		this.phoneNumber = phoneNumber;
 		this.status = status;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public Long getId() {

@@ -33,9 +33,7 @@ public class User {
 	private String address;
 	private boolean deleted;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<OrderItem> orders = new ArrayList<OrderItem>();
+	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
@@ -46,7 +44,7 @@ public class User {
 	}
 
 	public User(Long id, String firstName, String lastName, String username, String password, String email, Role role,
-			String phoneNumber, String address, boolean deleted, List<OrderItem> orders, List<FinalOrder> finalOrders) {
+			String phoneNumber, String address, boolean deleted,List<FinalOrder> finalOrders) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -58,7 +56,7 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.deleted = deleted;
-		this.orders = orders;
+		
 		this.finalOrders = finalOrders;
 	}
 
@@ -142,13 +140,6 @@ public class User {
 		this.deleted = deleted;
 	}
 
-	public List<OrderItem> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<OrderItem> orders) {
-		this.orders = orders;
-	}
 
 	public List<FinalOrder> getFinalOrders() {
 		return finalOrders;

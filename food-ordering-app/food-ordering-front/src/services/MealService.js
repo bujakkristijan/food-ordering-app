@@ -26,9 +26,17 @@ class MealService{
         return axios.get("http://localhost:8080/api/meal/getMealsByMealTypeId/" + mealTypeId);
     }
 
-    sendItemsForFinalOrder(itemsFromCart){
-        return axios.post("http://localhost:8080/api/meal/createFinalOrder", itemsFromCart);
+    sendItemsForFinalOrder(itemsFromCartFinalOrder){
+        return axios.post("http://localhost:8080/api/finalOrder/createFinalOrder", itemsFromCartFinalOrder);
     }
+
+    welcomeTest(){
+        
+        return axios.get("http://localhost:8080/api/finalOrder/welcomeTest");
+        
+    }
+
+    
 
 }
 
