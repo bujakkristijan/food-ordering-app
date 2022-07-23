@@ -62,7 +62,16 @@ export const cartSlice = createSlice({
          }
       },
       deleteAllItems: (state) =>{
-        state = [];
+        // console.log("USOO BRAJKO OVDEE");
+        // state = [];
+        for(let i=0; i<state.length; i++){
+          
+
+          
+             state.splice(i);
+             
+          
+         }
       }
 
       

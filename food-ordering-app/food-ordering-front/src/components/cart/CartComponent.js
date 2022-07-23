@@ -81,6 +81,7 @@ const CartComponent = () => {
             const responseFromServer = response.data;
             if(responseFromServer == "success"){
                 dispatch(deleteAllItems());
+                console.log("cart posle birsanja ", itemsFromCart)
                 alert("success");
                 
                 
