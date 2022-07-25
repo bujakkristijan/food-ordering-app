@@ -18,10 +18,10 @@ import CartComponent from './components/cart/CartComponent';
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 function App() {
   return (
-    <div className='container-main'>
+    // <div className='container-main'>
       <Router>
         <NavbarStyledComponent/>
-        <div className='container'>
+        <div className='router-view'>
          
           <Routes>
             <Route path='/' element = {<ListEmployeeComponent/>}></Route> 
@@ -42,7 +42,7 @@ function App() {
         <FooterComponent/>
       </Router>
       
-    </div>
+    // </div>
   );
 }
 

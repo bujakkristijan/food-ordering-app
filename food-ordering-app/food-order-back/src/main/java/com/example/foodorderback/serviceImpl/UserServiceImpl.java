@@ -222,6 +222,7 @@ public class UserServiceImpl implements UserService {
 		String responseToClient;
 		if (getCurrentUser() != null) {
 			SecurityContextHolder.clearContext();
+			//getCurrentUser();
 			responseToClient = "valid";
 		} else {
 			responseToClient = "invalid";

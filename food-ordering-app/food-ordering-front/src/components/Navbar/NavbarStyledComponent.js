@@ -3,6 +3,9 @@ import React, {useSelector} from 'react-redux';
 import styles from './NavbarElements.css' // OVO MORA DA BI UCITAO CSS, IAKO SE STYLES NE KORISTI NIGDE DIREKTNO !!!!
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react';
+import LoginService from '../../services/LoginService';
+import Swal from 'sweetalert2'
+import { Button } from 'bootstrap';
 
 const NavbarStyledComponent = () => {
 
@@ -14,6 +17,39 @@ const NavbarStyledComponent = () => {
                sumQuantityFromCartItems += cart[i].quantity;
          }
      }
+
+
+     const logout = () =>{
+          LoginService.logout().then((response) =>{
+               const responseFromServer = response.data;
+               if(responseFromServer === "valid"){
+                    clearLocalStorage();
+                    alertSuccess();
+               }
+               else{
+                    alert("failed to logout");
+               }
+          })
+     }
+
+     const clearLocalStorage = () =>{
+          localStorage.clear();
+     }
+
+     const alertSuccess = () =>{
+  
+          Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Successfully signed out!',
+            showConfirmButton: false,
+            timer: 1500
+          });
+      
+          /* TEST */
+      
+       
+        }
      // const sumQuantityFromCartItems = cart.reduce((prev,curr)=>prev+=curr,0);
 
      /*Link je brzi dosta od a elementa*/ 
@@ -69,7 +105,14 @@ const NavbarStyledComponent = () => {
                     
                </Link>
 
-               <Link id='signInBtn' className='btn btn-success' to='login'>Sign in</Link>
+               <Link id='signInBtn' className='btn btn-success' to='login'>
+                    Sign in
+               </Link>
+
+               <button id='signOutBtn' className='btn btn-success' onClick={() => logout() }>
+                    Sign out
+               </button>
+
            </div>
         </div>
        

@@ -37,6 +37,7 @@ public class LoginController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ResponseEntity<String> Logout() throws Exception{
 		String responseToClient = userService.isValidLogout();
+		
 		return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 	}
 }
