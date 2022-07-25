@@ -1,15 +1,22 @@
 import React, {useSelector} from 'react-redux';
 /*import { Nav, NavLink, Bars,NavMenu,NavBtn,NavBtnLink } from './NavbarElements' */
 import styles from './NavbarElements.css' // OVO MORA DA BI UCITAO CSS, IAKO SE STYLES NE KORISTI NIGDE DIREKTNO !!!!
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import LoginService from '../../services/LoginService';
 import Swal from 'sweetalert2'
 import { Button } from 'bootstrap';
+import { useDispatch } from 'react-redux';
+import {deleteAllItems} from '../../store-redux/cart/cartSlice'
 
 const NavbarStyledComponent = () => {
 
+     const navigate = useNavigate();
+     const dispatch = useDispatch();
+
+
      const cart = useSelector((state) => state.cart);
+
      let sumQuantityFromCartItems = 0;
      if(cart.length>0){
           for(let i = 0; i<cart.length; i++){
@@ -25,6 +32,8 @@ const NavbarStyledComponent = () => {
                if(responseFromServer === "valid"){
                     clearLocalStorage();
                     alertSuccess();
+                    navigate("/menu");
+                    dispatch(deleteAllItems());
                }
                else{
                     alert("failed to logout");
