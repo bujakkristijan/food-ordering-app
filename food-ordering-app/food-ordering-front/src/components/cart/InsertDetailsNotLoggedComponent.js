@@ -9,6 +9,7 @@ const InsertDetailsNotLoggedComponent = (props) => {
    const phoneNumber = props.details.phoneNumber;
    const setAddress = props.details.setAddress;
    const setPhoneNumber = props.details.setPhoneNumber;
+   const finalPrice = props.details.finalPricePrecision;
 
 //    const [itemQuantity, setItemQuantity] = useState(itemFromCart.quantity);
 //   const {itemFromCart} = props; 
@@ -32,7 +33,7 @@ const InsertDetailsNotLoggedComponent = (props) => {
     <div>
       
         <div className='container-add-meal'>
-                <h5>Final price: </h5>
+                <h5>Final price: {finalPrice} RSD </h5>
                 <form>
                   <div className='form-group mb-2'>
                     <h5 className='form-label'>Insert address: </h5>

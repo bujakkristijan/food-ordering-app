@@ -21,9 +21,11 @@ const CartComponent = () => {
 
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  var finalPrice = 0;
+  const [finalPricePrecision, setFinalPricePrecision] = useState(0);
 
   const itemsFromCart = useSelector((state) => state.cart);
-  const itemsFromCartFinalOrder = { itemsFromCart, address, phoneNumber, setAddress, setPhoneNumber };
+  const itemsFromCartFinalOrder = { itemsFromCart, address, phoneNumber, finalPricePrecision, setAddress, setPhoneNumber };
 
   //ako nije ulogovan mora da unese adresu i br telefona
   
@@ -105,6 +107,8 @@ const CartComponent = () => {
 
       const handleShowInsertDetails = () =>{
         setShowInsertDetails(true);
+        sumFinalPrice();
+        setFinalPricePrecision(finalPrice);
       }
 
       const handleCloseInsertDetails = () =>{
@@ -116,10 +120,18 @@ const CartComponent = () => {
 
       const alertAreYouSureFinalOrder = () =>{
        
-      
+        sumFinalPrice();
+        console.log(JSON.stringify(finalPrice));
+        console.log(finalPrice);
+        let textStr;
+        if(localStorage.token == null || localStorage.token == ''){
+           textStr = "Final price is: "+ finalPrice + " RSD. If you click yes, you will make final order!";
+        }else{
+           textStr = "Final price is: "+ finalPrice + " RSD. (10% DISCOUNT INCLUDED)! If you click yes, you will make final order!";
+        }
         Swal.fire({
           title: 'Are you sure?',
-          text: "If you click yes, you will make final order!",
+          text: textStr,
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -128,13 +140,36 @@ const CartComponent = () => {
         }).then((result) => {
           if (result.isConfirmed) {
             submitFinalOrder(itemsFromCart);
+            finalPrice = 0;
             Swal.fire(
               'Ordered!',
               'Final order has been successfully sent!.',
               'success'
             )
           }
+          else{
+            finalPrice = 0;
+          }
         })
+      }
+
+      const sumFinalPrice = () =>{
+        console.log("items from cart" + itemsFromCart);
+        if(localStorage.token == null || localStorage.token == ''){
+          
+          for(let i=0; i<itemsFromCart.length; i++){
+            console.log(itemsFromCart[i].meal.price);
+            finalPrice += itemsFromCart[i].meal.price*itemsFromCart[i].quantity;
+          }
+          // setFinalPricePrecision(finalPrice.toPrecision(2));
+        }
+        else{
+          for(let i=0; i<itemsFromCart.length; i++){
+            console.log("items from cart for" + itemsFromCart[i].meal.price);
+            finalPrice += (itemsFromCart[i].meal.price)*0.9*itemsFromCart[i].quantity;
+          }
+          // setFinalPricePrecision(finalPrice.toPrecision(2));
+        }
       }
 
     
