@@ -41,15 +41,17 @@ body {
 .router-view {
   overflow-y: scroll;
   height: calc(100vh - 110px);
+  overflow-x: hidden;
 }
 
-#root {
+/* #root {
   height: 100%;
   width: 100%;
   position: relative;
-}
+} */
 
 #root:before{
+  position: relative;
   display: block;
   height: 100vh;
   width: 100vw;
@@ -63,7 +65,7 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.15;
+  opacity: 0.4;
 }
 
 

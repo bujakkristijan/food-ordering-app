@@ -160,8 +160,8 @@ const ListMealTypeComponent = () => {
     <>
     <div className='container'>
             <h2 className='text-center'>Meal type list</h2>
-            <button className="btn btn-success" onClick={handleShow}>Create new meal type</button>
-            <table className='table table-bordered table-hover'>
+            <button className="btn btn-success mb-2" onClick={handleShow}>Create new meal type</button>
+            <table id='table' className='table table-bordered table-hover'>
                 <thead className='thead-name'>
                     <tr>
                         <th className='theadth'>Meal ID</th>

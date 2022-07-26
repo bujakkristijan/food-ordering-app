@@ -18,6 +18,7 @@
     /* justify-content: center; */
     /* align-items: center; */
     text-align: center;
+    font-size: larger;
 }
 
 .td-content-img{
@@ -29,4 +30,13 @@
 
 /* text-align: center; */
  align-items: center;
+ font-size: larger;
 }
+
+#table{
+    background-color: whitesmoke;
+    border: 2px solid  rgb(131, 131, 131);
+    /* border-radius: 10px; ne savije ivice kako treba */
+    /* opacity: 0.7; */
+}
+

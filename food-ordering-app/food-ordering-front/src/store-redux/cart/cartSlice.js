@@ -7,6 +7,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: [],
+    
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
     
@@ -16,6 +17,7 @@ export const cartSlice = createSlice({
        for(let i=0; i<state.length; i++){
          if(state[i].meal.id === action.payload.meal.id){
            state[i].quantity += action.payload.quantity
+          
               alreadyExistMeal = 1;
         }
        }

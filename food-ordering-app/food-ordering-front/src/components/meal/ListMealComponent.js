@@ -156,7 +156,7 @@ const ListMealComponent = () => {
     <>
     <div className='container'>
             <h2 className='text-center'>Meal list</h2>
-            <button className="btn btn-success" onClick={handleShow}>Create new meal</button>
+            <button className="btn btn-success mb-2" onClick={handleShow}>Create new meal</button>
             <table id="table" className='table table-bordered table-hover'>
                 <thead>
                     <tr>

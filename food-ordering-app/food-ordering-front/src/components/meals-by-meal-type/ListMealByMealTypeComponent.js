@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import MealQuantityComponent from './MealQuantityComponent';
 import { addItem } from '../../store-redux/cart/cartSlice';
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const ListMealByMealTypeComponent = () => {
 
@@ -13,6 +14,7 @@ const ListMealByMealTypeComponent = () => {
     const [meals, setMeals] = useState([]);
 
     const [mealQuantity, setMealQuantity] = useState(1);
+    
 
     const [show, setShow] = useState(false);
 
@@ -64,6 +66,38 @@ const ListMealByMealTypeComponent = () => {
         })
     }
 
+    const handleAddItemToCart = () =>{
+        
+        if(orderItem.quantity>0){
+            dispatch(addItem(orderItem));
+            alertSuccess();
+            handleClose();
+        }
+        else{
+            alertInvalidInput();
+        }
+    }
+
+    const alertSuccess = () =>{
+  
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Successfully added item to cart!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+
+      const alertInvalidInput =() =>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Invalid input, quantity must be positve number!'
+          
+        });
+      }
+
     useEffect(() => {
         getMealsByMealTypeId();
     }, [])
@@ -73,7 +107,7 @@ const ListMealByMealTypeComponent = () => {
     <>
     <div className='container'>
             <h2 className='text-center'>Meals</h2>
-            <button className="btn btn-success" >Go to cart</button>
+            <button className="btn btn-success mb-2" >Go to cart</button>
             <table className='table table-bordered table-hover'>
                 <thead className='thead-name'>
                     <tr>
@@ -125,7 +159,7 @@ const ListMealByMealTypeComponent = () => {
 
         <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>Close</Button>
-            <Button variant="primary" onClick={() => dispatch(addItem(orderItem))}>Confirm</Button> 
+            <Button variant="primary" onClick={() => handleAddItemToCart()}>Confirm</Button> 
             {/* onClick={handleSubmit} */}
         </Modal.Footer>
         </Modal>

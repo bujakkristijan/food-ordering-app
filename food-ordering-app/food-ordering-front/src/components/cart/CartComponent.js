@@ -98,7 +98,8 @@ const CartComponent = () => {
           handleShowInsertDetails();
         }
         else{
-          submitFinalOrder(itemsFromCartFinalOrder);
+          // submitFinalOrder(itemsFromCartFinalOrder);
+          alertAreYouSureFinalOrder();
         }
       }
 
@@ -113,13 +114,36 @@ const CartComponent = () => {
       }
     
 
+      const alertAreYouSureFinalOrder = () =>{
+       
+      
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "If you click yes, you will make final order!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, make it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            submitFinalOrder(itemsFromCart);
+            Swal.fire(
+              'Ordered!',
+              'Final order has been successfully sent!.',
+              'success'
+            )
+          }
+        })
+      }
+
     
   return (
     <>
     <div className='container'>
     <h2 className='text-center'>Items from cart</h2>
-    <button className="btn btn-success" onClick={() => checkIfLoggedInBeforeSubmit()}>Make final order</button>
-    <table className='table table-bordered table-hover'>
+    <button className="btn btn-success mb-2" onClick={() => checkIfLoggedInBeforeSubmit()}>Make final order</button>
+    <table id="table" className='table table-bordered table-hover'>
         <thead>
             <tr>
                 <th>Image</th>

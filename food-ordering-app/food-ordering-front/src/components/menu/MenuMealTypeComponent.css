@@ -21,6 +21,7 @@
     /*padding: 10px 10px; */
     padding-bottom: 5px;
     transition:  all .2s ease-in-out; /* mora da ovde stoji a ne u hover, jer kad se skloni nema izlaznog trasitiona */
+    background-color: white; 
     
 }
 .card-meal-type:hover{
