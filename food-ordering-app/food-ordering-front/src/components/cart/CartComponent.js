@@ -21,11 +21,12 @@ const CartComponent = () => {
 
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  var finalPrice = 0;
-  const [finalPricePrecision, setFinalPricePrecision] = useState(0);
+  var finalPriceVar = 0;
+  const [finalPrice, setFinalPrice] = useState(0);
 
   const itemsFromCart = useSelector((state) => state.cart);
-  const itemsFromCartFinalOrder = { itemsFromCart, address, phoneNumber, finalPricePrecision, setAddress, setPhoneNumber };
+  const itemsFromCartWhenLoggedWithFinalPrice = { itemsFromCart, finalPrice}
+  const itemsFromCartFinalOrder = { itemsFromCart, address, phoneNumber, finalPrice, setAddress, setPhoneNumber };
 
   //ako nije ulogovan mora da unese adresu i br telefona
   
@@ -106,28 +107,33 @@ const CartComponent = () => {
       }
 
       const handleShowInsertDetails = () =>{
-        setShowInsertDetails(true);
         sumFinalPrice();
-        setFinalPricePrecision(finalPrice);
+        setFinalPrice(finalPriceVar);
+        setShowInsertDetails(true);
+        
       }
 
       const handleCloseInsertDetails = () =>{
         setShowInsertDetails(false);
         setAddress('');
         setPhoneNumber('');
+        
+        // setFinalPrice(0);
+        // finalPriceVar = 0;
       }
     
 
       const alertAreYouSureFinalOrder = () =>{
        
         sumFinalPrice();
-        console.log(JSON.stringify(finalPrice));
-        console.log(finalPrice);
+        setFinalPrice(finalPriceVar);
+        console.log(JSON.stringify(finalPriceVar));
+        console.log(finalPriceVar);
         let textStr;
         if(localStorage.token == null || localStorage.token == ''){
-           textStr = "Final price is: "+ finalPrice + " RSD. If you click yes, you will make final order!";
+           textStr = "Final price is: "+ finalPriceVar + " RSD. If you click yes, you will make final order!";
         }else{
-           textStr = "Final price is: "+ finalPrice + " RSD. (10% DISCOUNT INCLUDED)! If you click yes, you will make final order!";
+           textStr = "Final price is: "+ finalPriceVar + " RSD. (10% OFF)! If you click yes, you will make final order!";
         }
         Swal.fire({
           title: 'Are you sure?',
@@ -139,7 +145,7 @@ const CartComponent = () => {
           confirmButtonText: 'Yes, make it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            submitFinalOrder(itemsFromCart);
+            submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
             finalPrice = 0;
             Swal.fire(
               'Ordered!',
@@ -148,7 +154,7 @@ const CartComponent = () => {
             )
           }
           else{
-            finalPrice = 0;
+            finalPriceVar = 0;
           }
         })
       }
@@ -159,14 +165,14 @@ const CartComponent = () => {
           
           for(let i=0; i<itemsFromCart.length; i++){
             console.log(itemsFromCart[i].meal.price);
-            finalPrice += itemsFromCart[i].meal.price*itemsFromCart[i].quantity;
+            finalPriceVar += itemsFromCart[i].meal.price*itemsFromCart[i].quantity;
           }
           // setFinalPricePrecision(finalPrice.toPrecision(2));
         }
         else{
           for(let i=0; i<itemsFromCart.length; i++){
             console.log("items from cart for" + itemsFromCart[i].meal.price);
-            finalPrice += (itemsFromCart[i].meal.price)*0.9*itemsFromCart[i].quantity;
+            finalPriceVar += (itemsFromCart[i].meal.price)*0.9*itemsFromCart[i].quantity;
           }
           // setFinalPricePrecision(finalPrice.toPrecision(2));
         }

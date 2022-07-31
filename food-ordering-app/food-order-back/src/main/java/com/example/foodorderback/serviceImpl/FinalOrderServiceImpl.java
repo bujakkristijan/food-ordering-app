@@ -45,6 +45,8 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 			FinalOrder finalOrder = new FinalOrder();
 			finalOrder.setDate(new Date());
 			finalOrder.setStatus(Status.ORDERED);
+			finalOrder.setFinalPrice(orderItemDTO.getFinalPrice());
+			
 			
 			
 			

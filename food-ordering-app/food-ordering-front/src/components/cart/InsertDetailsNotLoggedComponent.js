@@ -9,7 +9,7 @@ const InsertDetailsNotLoggedComponent = (props) => {
    const phoneNumber = props.details.phoneNumber;
    const setAddress = props.details.setAddress;
    const setPhoneNumber = props.details.setPhoneNumber;
-   const finalPrice = props.details.finalPricePrecision;
+   const finalPrice = props.details.finalPrice;
 
 //    const [itemQuantity, setItemQuantity] = useState(itemFromCart.quantity);
 //   const {itemFromCart} = props; 

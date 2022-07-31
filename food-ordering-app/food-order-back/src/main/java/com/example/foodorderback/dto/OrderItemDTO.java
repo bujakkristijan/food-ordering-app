@@ -7,7 +7,16 @@ public class OrderItemDTO {
 	private List<ItemFromCartDTO> itemsFromCart;
 	private String address;
 	private String phoneNumber;
+	private int finalPrice;
 	
+	public int getFinalPrice() {
+		return finalPrice;
+	}
+
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+
 	public OrderItemDTO() {
 		
 	}
