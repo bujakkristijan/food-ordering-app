@@ -82,10 +82,31 @@ const CartComponent = () => {
         console.log("items fo" + JSON.stringify(itemsFromCartFinalOrder));
         MealService.sendItemsForFinalOrder(itemsFromCartFinalOrder).then((response) =>{
             const responseFromServer = response.data;
-            if(responseFromServer == "success"){
+            alert("Response from server: " + responseFromServer);
+            //ako je response razlicit od 0, znaci da je uspesno upisan final order i prosledjen id, po defaultu je 0
+            if(responseFromServer != 0){
+              Swal.fire('Any fool can use a computer')
                 dispatch(deleteAllItems());
                 console.log("cart posle birsanja ", itemsFromCart)
-                alert("success");
+                if(localStorage.token == null || localStorage.token == ''){
+                  handleCloseInsertDetails();
+                  // alert(responseFromServer);
+                  
+                  //alertSuccessOrdered();
+                  //hocu alertsuccess prvo pa timer pa onda da ispise poruku sa id
+                  alertFinalOrderStringCheckInfo(responseFromServer);
+                }
+                else{
+                  alertSuccessOrdered();
+                }
+                // Swal.fire(
+                //   'The Internet?',
+                //   'That thing is still around?',
+                //   'question'
+                // );
+                //alertFinalOrderStringCheckInfo(responseFromServer);
+                //alertSuccessOrdered();
+                
                 
                 
             }
@@ -147,6 +168,7 @@ const CartComponent = () => {
           if (result.isConfirmed) {
             submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
             finalPrice = 0;
+           
             Swal.fire(
               'Ordered!',
               'Final order has been successfully sent!.',
@@ -176,6 +198,55 @@ const CartComponent = () => {
           }
           // setFinalPricePrecision(finalPrice.toPrecision(2));
         }
+      }
+
+      const editItemQuantity = () =>{
+        dispatch(editItem(itemObjToStore));
+        handleCloseEdit();
+        alertSuccessEdit();
+      }
+
+      const alertSuccessEdit = () =>{
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Successfully edited item quantity!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+
+      const alertSuccessOrdered = () =>{
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Successfully ordered items!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+
+      // const generateStringForOrderToCheckIfNotLoggedIn =(finalOrderId)=>{
+      //    let textStr = "localhost:3000/finalOrder/"+finalOrderId;
+      //    return textStr;
+      // }
+
+      const alertFinalOrderStringCheckInfo = (finalOrderId) =>{
+        let textStr = "localhost:3000/finalOrder/"+finalOrderId;
+        Swal.fire({
+          title: 'Successfully ordered items! You can check status opening this link',
+          icon: 'success',
+          html:
+            
+            `<a href=${textStr}textStr>${textStr}</a>`,
+            
+          showCloseButton: true,
+          focusConfirm: false,
+          confirmButtonText:
+            '<i class="fa fa-thumbs-up"></i> Okay!',
+          confirmButtonAriaLabel: 'Thumbs up, great!',
+          
+        })
       }
 
     
@@ -253,9 +324,10 @@ const CartComponent = () => {
 
         <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-            <Button variant="primary" onClick={()=>dispatch(editItem(itemObjToStore))}>Save changes</Button>
+            <Button variant="primary" onClick={()=>editItemQuantity()}>Save changes</Button>
         </Modal.Footer>
     </Modal> 
+    {/* ()=>dispatch(editItem(itemObjToStore)) */}
 
     <Modal show={showInsertDetails} onHide={handleCloseInsertDetails}>
         <Modal.Header closeButton>
@@ -268,7 +340,7 @@ const CartComponent = () => {
 
         <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-            <Button variant="primary" onClick={() => submitFinalOrder(itemsFromCartFinalOrder)}>Save changes</Button>
+            <Button variant="primary" onClick={() => submitFinalOrder(itemsFromCartFinalOrder)}>Confirm final order</Button>
         </Modal.Footer>
     </Modal> 
 

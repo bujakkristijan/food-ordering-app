@@ -9,6 +9,7 @@ import com.example.foodorderback.model.FinalOrder;
 public interface FinalOrderService {
 	
 	FinalOrder save(FinalOrder finalOrder);
-	String makeFinalOrder(OrderItemDTO orderItemDTO);
+	Long makeFinalOrder(OrderItemDTO orderItemDTO);
+	FinalOrder findOne(Long id);
 
 }

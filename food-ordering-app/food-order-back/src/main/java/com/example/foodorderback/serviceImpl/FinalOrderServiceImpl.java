@@ -30,14 +30,22 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	FinalOrderService finalOrderService;
+	
+	@Override
+	public FinalOrder findOne(Long id) {
+		return finalOrderRepository.findById(id).get();
+	}
+	
 	@Override
 	public FinalOrder save(FinalOrder finalOrder) {
 		return finalOrderRepository.save(finalOrder);
 	}
 	
 	@Override
-	public String makeFinalOrder(OrderItemDTO orderItemDTO) {
-		String responseToClient = "success";
+	public Long makeFinalOrder(OrderItemDTO orderItemDTO) {
+		Long finalOrderId = (long) 0;
 		try {
 			List<OrderItem> orderItems = new ArrayList<OrderItem>();
 			OrderItem orderItem = new OrderItem();
@@ -62,6 +70,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 			
 			
 			FinalOrder savedFinalOrder = save(finalOrder);
+			finalOrderId = savedFinalOrder.getId();
 			
 			for(ItemFromCartDTO itc: orderItemDTO.getItemsFromCart()) {
 				orderItem.setMeal(itc.getMeal());
@@ -74,9 +83,9 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 				orderItemRepository.save(oi);
 			}
 		} catch (Exception e) {
-			responseToClient = "fail";
+			finalOrderId = (long) 0;
 		}
-		return responseToClient;
+		return finalOrderId;
 		
 		
 	}
