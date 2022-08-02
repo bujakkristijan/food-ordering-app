@@ -1,6 +1,7 @@
 package com.example.foodorderback.dto;
 
 import com.example.foodorderback.model.Meal;
+import com.example.foodorderback.model.OrderItem;
 
 public class ItemFromCartDTO {
 	
@@ -9,6 +10,11 @@ public class ItemFromCartDTO {
 	
 	public ItemFromCartDTO() {
 		
+	}
+	
+	public ItemFromCartDTO(OrderItem orderItem) {
+		this.meal = orderItem.getMeal();
+		this.quantity = orderItem.getQuantity();
 	}
 
 	public Meal getMeal() {

@@ -1,5 +1,8 @@
 package com.example.foodorderback.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +19,9 @@ import com.example.foodorderback.dto.FinalOrderNotLoggedDTO;
 import com.example.foodorderback.dto.ItemFromCartDTO;
 import com.example.foodorderback.dto.OrderItemDTO;
 import com.example.foodorderback.model.FinalOrder;
+import com.example.foodorderback.model.OrderItem;
 import com.example.foodorderback.service.FinalOrderService;
+import com.example.foodorderback.service.OrderItemService;
 import com.example.foodorderback.service.UserService;
 
 @CrossOrigin("*")
@@ -27,6 +32,9 @@ public class FinalOrderController {
 	
 	@Autowired
 	FinalOrderService finalOrderService;
+	
+	@Autowired
+	OrderItemService orderItemService;
 	
 	@Autowired
 	UserService userService;
@@ -45,15 +53,35 @@ public class FinalOrderController {
 	}
 	
 	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)
-	public ResponseEntity<FinalOrderNotLoggedDTO> getFinalOrderById(@PathVariable Long id){
-		FinalOrderNotLoggedDTO finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
+	public ResponseEntity<FinalOrder> getFinalOrderById(@PathVariable Long id){
+		FinalOrder finalOrder = new FinalOrder();
 		try {
-			FinalOrder finalOrder = finalOrderService.findOne(id);
-			finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO(finalOrder);
+			finalOrder = finalOrderService.findOne(id);
+			
 		} catch (Exception e) {
-			finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
+			finalOrder = new FinalOrder();
 		}
 		
-		return new ResponseEntity<FinalOrderNotLoggedDTO>(finalOrderNotLoggedDTO, HttpStatus.OK);
+		return new ResponseEntity<FinalOrder>(finalOrder, HttpStatus.OK);
+	}
+	
+//	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)
+//	public ResponseEntity<FinalOrderNotLoggedDTO> getFinalOrderById(@PathVariable Long id){
+//		FinalOrderNotLoggedDTO finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
+//		try {
+//			FinalOrder finalOrder = finalOrderService.findOne(id);
+//			finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO(finalOrder);
+//		} catch (Exception e) {
+//			finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
+//		}
+//		
+//		return new ResponseEntity<FinalOrderNotLoggedDTO>(finalOrderNotLoggedDTO, HttpStatus.OK);
+//	}
+	
+	@RequestMapping(value ="/getOrderItemsByFinalOrderId/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<ItemFromCartDTO>> getOrderItemsByFinalOrderId(@PathVariable Long id){
+		List<ItemFromCartDTO> itemsFromCartByFinalOrderId = new ArrayList<ItemFromCartDTO>();
+		itemsFromCartByFinalOrderId = orderItemService.getItemFromCartByFinalOrderId(id);
+		return new ResponseEntity<List<ItemFromCartDTO>>(itemsFromCartByFinalOrderId, HttpStatus.OK);
 	}
 }

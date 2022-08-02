@@ -40,6 +40,10 @@ class MealService{
         return axios.get("http://localhost:8080/api/finalOrder/getFinalOrderById/" + finalOrderId);
     }
 
+    getOrderItemsByFinalOrderId(finalOrderId){
+        return axios.get("http://localhost:8080/api/finalOrder/getOrderItemsByFinalOrderId/" + finalOrderId);
+    }
+
     
 
 }
