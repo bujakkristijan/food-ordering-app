@@ -232,13 +232,15 @@ const CartComponent = () => {
       // }
 
       const alertFinalOrderStringCheckInfo = (finalOrderId) =>{
-        let textStr = "localhost:3000/finalOrder/"+finalOrderId;
+        let linkStr = "/final-order/"+finalOrderId;
+        let textStr = "localhost:3000/final-order/"+finalOrderId;
+        // <Link to={`/final-order/${finalOrderId}`}>localhost:3000/final-order/{finalOrderId}</Link>
         Swal.fire({
           title: 'Successfully ordered items! You can check status opening this link',
           icon: 'success',
           html:
-            
-            `<a href=${textStr}textStr>${textStr}</a>`,
+          // <Link to={`/final-order/${finalOrderId}`}>localhost:3000/final-order/{finalOrderId}</Link>,
+            `<a href=${linkStr}>${textStr}</a>`,
             
           showCloseButton: true,
           focusConfirm: false,

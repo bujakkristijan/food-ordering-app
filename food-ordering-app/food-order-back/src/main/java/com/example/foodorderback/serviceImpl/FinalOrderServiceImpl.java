@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.foodorderback.dto.FinalOrderDTO;
 import com.example.foodorderback.dto.ItemFromCartDTO;
 import com.example.foodorderback.dto.OrderItemDTO;
 import com.example.foodorderback.model.FinalOrder;
@@ -30,8 +31,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	FinalOrderService finalOrderService;
+	
 	
 	@Override
 	public FinalOrder findOne(Long id) {

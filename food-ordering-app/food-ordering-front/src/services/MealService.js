@@ -36,6 +36,10 @@ class MealService{
         
     }
 
+    getFinalOrderById(finalOrderId){
+        return axios.get("http://localhost:8080/api/finalOrder/getFinalOrderById/" + finalOrderId);
+    }
+
     
 
 }

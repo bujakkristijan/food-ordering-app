@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.foodorderback.dto.FinalOrderDTO;
+import com.example.foodorderback.dto.FinalOrderNotLoggedDTO;
 import com.example.foodorderback.dto.ItemFromCartDTO;
 import com.example.foodorderback.dto.OrderItemDTO;
+import com.example.foodorderback.model.FinalOrder;
 import com.example.foodorderback.service.FinalOrderService;
 import com.example.foodorderback.service.UserService;
 
@@ -42,8 +44,16 @@ public class FinalOrderController {
 		return new ResponseEntity<Long>(responseToClient, HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)
-//	public ResponseEntity<FinalOrderDTO> getFinalOrderById(@PathVariable Long id){
-//		
-//	}
+	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)
+	public ResponseEntity<FinalOrderNotLoggedDTO> getFinalOrderById(@PathVariable Long id){
+		FinalOrderNotLoggedDTO finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
+		try {
+			FinalOrder finalOrder = finalOrderService.findOne(id);
+			finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO(finalOrder);
+		} catch (Exception e) {
+			finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
+		}
+		
+		return new ResponseEntity<FinalOrderNotLoggedDTO>(finalOrderNotLoggedDTO, HttpStatus.OK);
+	}
 }
