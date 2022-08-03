@@ -13,7 +13,7 @@ const FinalOrderByIdComponent = () => {
     const [finalOrder, setFinalOrder] = useState({}); // mora {} ne moze null ili undefined
     
 
-    const orderItemsByFinalOrderIdList = {orderItemsByFinalOrderId} //nzm jel mora ovako kad hocu da saljem modalu
+    //const orderItemsByFinalOrderIdList = {orderItemsByFinalOrderId}; //nzm jel mora ovako kad hocu da saljem modalu OVAKO NIJE HTELO DA RADI KAD OVO SALJEM MODALU!!!
 
     const [show, setShow] = useState(false);
 
@@ -22,32 +22,34 @@ const FinalOrderByIdComponent = () => {
     
 
     useEffect(() => {
-        getFinalOrderById();
-        alert("FinalOrder kasnije eff" + JSON.stringify(finalOrder));
+        getFinalOrderById(id);
+        //alert("FinalOrder kasnije eff" + JSON.stringify(finalOrder));
         console.log(JSON.stringify(finalOrder));
-        console.log(JSON.stringify(finalOrder));
+        
     }, [])
 
 
-    const getFinalOrderById = () =>{
+    const getFinalOrderById = (id) =>{
         MealService.getFinalOrderById(id).then((response) =>{
             setFinalOrder(response.data);
             //alert("FinalOrder " + JSON.stringify(finalOrder));
             //setOrderItemsByFinalOrderId(response.data.orders);
             // alert("Setovani order itemsi", JSON.stringify(orderItemsByFinalOrderId));
         });
-        alert("FinalOrder kasnije" + JSON.stringify(finalOrder));
+        //alert("FinalOrder kasnije" + JSON.stringify(finalOrder));
     }
     
 
     const handleShowItemsByFinalOrderId = (finalOrderId) => {
+        
         getOrderItemsByFinalOrderId(finalOrderId);
-        
-        
-        
-        
-        
         setShow(true);
+        
+        
+        
+        
+        
+        
         
     };
 
@@ -58,9 +60,10 @@ const FinalOrderByIdComponent = () => {
 
     const getOrderItemsByFinalOrderId = (finalOrderId) =>{
         MealService.getOrderItemsByFinalOrderId(finalOrderId).then((response) =>{
-            alert("RESPONSE ORDER ITEMS " + JSON.stringify(response.data));
+            //alert("RESPONSE ORDER ITEMS " + JSON.stringify(response.data));
             setOrderItemsByFinalOrderId(response.data); //ZASTO NE RADIIII OVO SRANJEEEE
             alert("ORDER ITEMS SETOVANI" + JSON.stringify(orderItemsByFinalOrderId));
+            console.log('s');
         }).catch(error =>{
             console.log(error);
         })
@@ -114,7 +117,7 @@ const FinalOrderByIdComponent = () => {
     </Modal.Header>
 
     <Modal.Body>
-        <ItemsByFinalOrderIdComponent orderItemsByFinalOrderIdList = {orderItemsByFinalOrderIdList}/>
+        <ItemsByFinalOrderIdComponent orderItemsList = {orderItemsByFinalOrderId}/>
     </Modal.Body>
 
     <Modal.Footer>

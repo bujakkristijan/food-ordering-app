@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 const ItemsByFinalOrderIdComponent = (props) => {
 
-    const orderItems = props.orderItemsByFinalOrderIdList;
+    const orderItems = props.orderItemsList;
+
+   console.log(JSON.stringify(orderItems));
 
   return (
     <div className='container'>
@@ -23,7 +25,7 @@ const ItemsByFinalOrderIdComponent = (props) => {
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
                 <tbody>
                     {orderItems.map(
-                        orderItem => <tr key={orderItem.id}>
+                        orderItem => <tr key={orderItem.meal.id}>
                             <td>{orderItem.meal.name}</td>
                             <td>{orderItem.meal.mealType.typeName}</td>
                             <td>{orderItem.meal.price}</td>

@@ -48,7 +48,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		Long finalOrderId = (long) 0;
 		try {
 			List<OrderItem> orderItems = new ArrayList<OrderItem>();
-			OrderItem orderItem = new OrderItem();
+			//OrderItem orderItem = new OrderItem();
 			
 			FinalOrder finalOrder = new FinalOrder();
 			finalOrder.setDate(new Date());
@@ -73,15 +73,18 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 			finalOrderId = savedFinalOrder.getId();
 			
 			for(ItemFromCartDTO itc: orderItemDTO.getItemsFromCart()) {
+				OrderItem orderItem = new OrderItem();
 				orderItem.setMeal(itc.getMeal());
 				orderItem.setQuantity(itc.getQuantity());
-				orderItems.add(orderItem);	
+				orderItem.setFinalOrder(savedFinalOrder);
+				orderItemRepository.save(orderItem);
+				//orderItems.add(orderItem);	
 				}
 			
-			for(OrderItem oi: orderItems) {
-				oi.setFinalOrder(savedFinalOrder);
-				orderItemRepository.save(oi);
-			}
+//			for(OrderItem oi: orderItems) {
+//				oi.setFinalOrder(savedFinalOrder);
+//				orderItemRepository.save(oi);
+//			}
 		} catch (Exception e) {
 			finalOrderId = (long) 0;
 		}
