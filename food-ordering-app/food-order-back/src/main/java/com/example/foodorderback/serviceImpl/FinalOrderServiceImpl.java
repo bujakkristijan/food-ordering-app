@@ -63,6 +63,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 				finalOrder.setAddress(loggedUser.getAddress());
 				finalOrder.setPhoneNumber(loggedUser.getPhoneNumber());
 				finalOrder.setUser(loggedUser);
+				finalOrder.setFinalPrice(orderItemDTO.getFinalPrice());
 			}else {
 				finalOrder.setAddress(orderItemDTO.getAddress());
 				finalOrder.setPhoneNumber(orderItemDTO.getPhoneNumber());

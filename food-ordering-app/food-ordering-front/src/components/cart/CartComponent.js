@@ -167,7 +167,7 @@ const CartComponent = () => {
         }).then((result) => {
           if (result.isConfirmed) {
             submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
-            finalPrice = 0;
+            //finalPrice = 0;
            
             Swal.fire(
               'Ordered!',

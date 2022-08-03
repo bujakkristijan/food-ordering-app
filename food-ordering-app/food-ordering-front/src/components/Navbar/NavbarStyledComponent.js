@@ -13,9 +13,14 @@ const NavbarStyledComponent = () => {
 
      const navigate = useNavigate();
      const dispatch = useDispatch();
+     const role = "";
+     // const role = localStorage.role;
+     //console.log("ROLE12: ",role)
+     console.log("RENDEEEERRRRR")
 
 
      const cart = useSelector((state) => state.cart);
+     
 
      let sumQuantityFromCartItems = 0;
      if(cart.length>0){
@@ -59,6 +64,16 @@ const NavbarStyledComponent = () => {
       
        
         }
+
+        const checkRole = () =>{
+          console.log("ROLEEE",role)
+          if(role === "admin"){
+               return (<Link className='navLink' to='/employees' >
+               Users
+          </Link>)
+         
+          }
+        }
      // const sumQuantityFromCartItems = cart.reduce((prev,curr)=>prev+=curr,0);
 
      /*Link je brzi dosta od a elementa*/ 
@@ -71,12 +86,15 @@ const NavbarStyledComponent = () => {
             </Link>
            <div/>
            <div className='navMenu'>
-               <Link className='navLink' id='employeeLink' to='/employees' >
+               {role==="admin" && <Link className='navLink' id='employeeLink' to='/employees' >
                     Employees
-               </Link>
-               <Link className='navLink' to='/employees' >
+               </Link>}
+               
+                {
+                checkRole()/* <Link className='navLink' to='/employees' >
                     Users
-               </Link>
+               </Link> */}
+              
                <Link className='navLink' to='/menu' >
                     Menu
                </Link>

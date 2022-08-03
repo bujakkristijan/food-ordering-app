@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Modal, Button } from 'react-bootstrap'
 import CreateMealTypeComponent from './CreateMealTypeComponent'
 import EditMealTypeComponent from './EditMealTypeComponent';
+import './ListMealTypeComponent.css';
 
 const ListMealTypeComponent = () => {
 
@@ -161,7 +162,7 @@ const ListMealTypeComponent = () => {
     <div className='container'>
             <h2 className='text-center'>Meal type list</h2>
             <button className="btn btn-success mb-2" onClick={handleShow}>Create new meal type</button>
-            <table id='table' className='table table-bordered table-hover'>
+            <table id='table' className='table table-hover nesto'>
                 <thead className='thead-name'>
                     <tr>
                         <th className='theadth'>Meal ID</th>

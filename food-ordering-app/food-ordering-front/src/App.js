@@ -18,6 +18,7 @@ import FinalOrderByIdComponent from './components/final-order-by-id/FinalOrderBy
 // <NavbarComponent/> ovo je bilo pre nego sto sam menjao
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 function App() {
+  const ROLE = "ADMIN"
   return (
     // <div className='container-main'>
       <Router>
@@ -27,7 +28,7 @@ function App() {
           <Routes>
             <Route path='/' element = {<ListEmployeeComponent/>}></Route> 
             <Route path='/employees' element = {<ListEmployeeComponent/>}></Route>
-            <Route path='/create-employee' element = {<CreateEmployeeComponent/>}></Route>
+            {ROLE==="ADMIN" && <Route path='/create-employee' element = {<CreateEmployeeComponent/>}/>}
             <Route path='/edit-employee/:id' element = {<CreateEmployeeComponent/>}></Route>
             <Route path='/registration' element = {<RegistrationComponent/>}></Route>
             <Route path='/login' element = {<LoginComponent/>}></Route>

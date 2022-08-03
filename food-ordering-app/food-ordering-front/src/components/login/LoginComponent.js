@@ -25,6 +25,7 @@ const submitLogin = (e) =>{
         if(responseFromServer == "no"){
             alertSuccess();
             localStorage.token = response.data.token;
+            //localStorage.role = "admin";
             console.log("TOKEN " + localStorage.token.toString());
             console.log(response.data);
             navigate('/employees');

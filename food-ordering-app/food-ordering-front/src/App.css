@@ -39,7 +39,7 @@ body {
 }
 
 .router-view {
-  overflow-y: scroll;
+  overflow-y: auto; 
   height: calc(100vh - 110px);
   overflow-x: hidden;
 }
@@ -51,7 +51,7 @@ body {
 } */
 
 #root:before{
-  position: relative;
+  /* position: relative; */
   display: block;
   height: 100vh;
   width: 100vw;

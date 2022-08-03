@@ -7,6 +7,8 @@ const MenuMealTypeComponent = () => {
 
 const [mealTypes, setMealTypes] = useState([]);
 
+console.log("ASIOASJAKSMAKLSNLASKNKLASNLNKASNKLASNKLSA");
+
 useEffect(() =>{
     getAllMealTypes();
 }, [])

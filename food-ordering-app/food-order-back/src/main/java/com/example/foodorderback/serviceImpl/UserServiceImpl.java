@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import com.example.foodorderback.dto.JWTLogin;
 import com.example.foodorderback.dto.LoginDTO;
 import com.example.foodorderback.dto.UserDTO;
 import com.example.foodorderback.model.Login;
@@ -194,9 +195,13 @@ public class UserServiceImpl implements UserService {
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
+			User userFromDB = findByUsername(login.getUsername());
+			JWTLogin jwtDetails = new JWTLogin();
+			jwtDetails.setRole(userFromDB.getRole().toString());
+			jwtDetails.setUsername(userFromDB.getUsername());
 			 //user = findByUsername(login.getUsername());
 			 //if(user.getPassword().equals(login.getPassword())) {
-				String token = jwtUtil.generateToken(login.getUsername());
+				String token = jwtUtil.generateToken(jwtDetails);
 				loginDTO = new LoginDTO(token, user, "no");
 				//setCurrentUser(user);
 			 //}

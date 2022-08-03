@@ -33,10 +33,20 @@
  font-size: larger;
 }
 
-#table{
-    background-color: whitesmoke;
-    border: 2px solid  rgb(131, 131, 131);
-    /* border-radius: 10px; ne savije ivice kako treba */
-    /* opacity: 0.7; */
-}
+/* #table{
+    
+   
+}  */
 
+.nesto{
+    margin-top: 20px;
+    background-color: whitesmoke; 
+
+    border-radius: 30px !important;
+    border: 3px solid; 
+    border-collapse: separate !important; /*mora ovo separate zbog bootstrapa, ne savije border, jer bootstrap setuje na collapse
+    /* border: 10px solid rgb(241, 0, 0) !important da pregazi bootstrapov border */
+    box-shadow: 0 0 15px 15px rgb(133, 127, 127);
+}
+    
+   

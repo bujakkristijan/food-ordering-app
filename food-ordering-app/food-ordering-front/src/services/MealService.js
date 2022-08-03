@@ -2,6 +2,7 @@ import axios from "axios";
 
 class MealService{
 
+    
     getAllMeals(){
         return axios.get("http://localhost:8080/api/meal/getAllMeals");
     }

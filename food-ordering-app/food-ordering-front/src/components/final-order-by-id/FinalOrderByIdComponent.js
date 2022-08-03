@@ -33,10 +33,11 @@ const FinalOrderByIdComponent = () => {
         MealService.getFinalOrderById(id).then((response) =>{
             setFinalOrder(response.data);
             //alert("FinalOrder " + JSON.stringify(finalOrder));
-            //setOrderItemsByFinalOrderId(response.data.orders);
+            
             // alert("Setovani order itemsi", JSON.stringify(orderItemsByFinalOrderId));
         });
-        //alert("FinalOrder kasnije" + JSON.stringify(finalOrder));
+        alert("FinalOrder kasnije" + JSON.stringify(finalOrder));
+        
     }
     
 
@@ -62,7 +63,7 @@ const FinalOrderByIdComponent = () => {
         MealService.getOrderItemsByFinalOrderId(finalOrderId).then((response) =>{
             //alert("RESPONSE ORDER ITEMS " + JSON.stringify(response.data));
             setOrderItemsByFinalOrderId(response.data); //ZASTO NE RADIIII OVO SRANJEEEE
-            alert("ORDER ITEMS SETOVANI" + JSON.stringify(orderItemsByFinalOrderId));
+            
             console.log('s');
         }).catch(error =>{
             console.log(error);
