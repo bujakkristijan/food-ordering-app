@@ -45,6 +45,10 @@ class MealService{
         return axios.get("http://localhost:8080/api/finalOrder/getOrderItemsByFinalOrderId/" + finalOrderId);
     }
 
+    getAllActiveFinalOrders(){
+        return axios.get("http://localhost:8080/api/finalOrder/getAllActiveFinalOrders");
+    }
+
     
 
 }

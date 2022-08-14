@@ -18,7 +18,7 @@ public class FinalOrderDTO {
 	private int finalPrice;
 	private String address;
 	private Status status;
-	private String username;
+	
 	
 	public FinalOrderDTO() {
 		
@@ -31,16 +31,11 @@ public class FinalOrderDTO {
 		this.date = finalOrder.getDate();
 		this.finalPrice = finalOrder.getFinalPrice();
 		this.status = finalOrder.getStatus();
-		this.username = finalOrder.getUser().getUsername();
+		
+		
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 
 	public Long getId() {
 		return id;

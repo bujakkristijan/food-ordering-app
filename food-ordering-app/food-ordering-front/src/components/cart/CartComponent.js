@@ -166,8 +166,9 @@ const CartComponent = () => {
           confirmButtonText: 'Yes, make it!'
         }).then((result) => {
           if (result.isConfirmed) {
+            console.log("FINAL PRICE SETOVAANNN" + JSON.stringify(finalPrice));
             submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
-            //finalPrice = 0;
+            
            
             Swal.fire(
               'Ordered!',
