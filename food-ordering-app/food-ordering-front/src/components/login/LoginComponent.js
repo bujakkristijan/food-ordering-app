@@ -3,6 +3,7 @@ import {Link, useNavigate, useParams} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import LoginService from '../../services/LoginService'
 import styles from './LoginComponent.css'
+import jwt_decode from 'jwt-decode';
 
 
 const LoginComponent = () => {
@@ -25,10 +26,14 @@ const submitLogin = (e) =>{
         if(responseFromServer == "no"){
             alertSuccess();
             localStorage.token = response.data.token;
+            const decodedToken = jwt_decode(response.data.token);
+            // console.log("DECODED TOKEN " + JSON.stringify(decodedToken));
+            // console.log("DECODED ROLE " + decodedToken.role);
             //localStorage.role = "admin";
-            console.log("TOKEN " + localStorage.token.toString());
-            console.log(response.data);
-            navigate('/employees');
+            localStorage.role = decodedToken.role; //stavlja se role u localstorage nakon sto se dekodira pomocu jwt-decode
+            //console.log("TOKEN " + localStorage.token.toString());
+            console.log("DECODED ROLE LOCAL STORAGE" + localStorage.role);
+            navigateDependingOnRole(localStorage.role);
 
         }
         else if(responseFromServer == "yes"){
@@ -39,6 +44,18 @@ const submitLogin = (e) =>{
             alertInvalid(responseFromServer);
         }
     })
+}
+
+const navigateDependingOnRole = (role) =>{
+  if(role === "ADMIN"){
+    navigate('/meals')
+  }
+  else if(role === "USER"){
+    navigate('/menu')
+  }
+  else if(role === "EMPLOYEE"){
+    navigate('/active-final-orders')
+  }
 }
 
 const alertSuccess = () =>{

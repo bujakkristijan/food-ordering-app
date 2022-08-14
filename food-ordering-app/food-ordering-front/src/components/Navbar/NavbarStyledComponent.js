@@ -13,7 +13,7 @@ const NavbarStyledComponent = () => {
 
      const navigate = useNavigate();
      const dispatch = useDispatch();
-     const role = "";
+     
      // const role = localStorage.role;
      //console.log("ROLE12: ",role)
      console.log("RENDEEEERRRRR")
@@ -66,8 +66,8 @@ const NavbarStyledComponent = () => {
         }
 
         const checkRole = () =>{
-          console.log("ROLEEE",role)
-          if(role === "admin"){
+          
+          if(localStorage.role === "ADMIN"){
                return (<Link className='navLink' to='/employees' >
                Users
           </Link>)
@@ -86,7 +86,7 @@ const NavbarStyledComponent = () => {
             </Link>
            <div/>
            <div className='navMenu'>
-               {role==="admin" && <Link className='navLink' id='employeeLink' to='/employees' >
+               {localStorage.role==="ADMIN" && <Link className='navLink' id='employeeLink' to='/employees' >
                     Employees
                </Link>}
                
@@ -98,31 +98,39 @@ const NavbarStyledComponent = () => {
                <Link className='navLink' to='/menu' >
                     Menu
                </Link>
-               <Link className='navLink' to='/signin' >
+               {localStorage.role==="ADMIN" || localStorage.role ==="EMPLOYEE" && <Link className='navLink' to='/signin' >
                     Order history
-               </Link>
-               <Link className='navLink' to='/meals' >
+               </Link>}
+               {localStorage.role==="ADMIN" && <Link className='navLink' to='/meals' >
                     Meals
-               </Link>
-               <Link className='navLink' to='/meal-types' >
+               </Link>}
+               {localStorage.role==="ADMIN" && <Link className='navLink' to='/meal-types' >
                     Meal types
-               </Link>
+               </Link>}
            </div>
            <div className='navBtn'>
-           <Link className='cartLink' to='/cart' >
+           {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='cartLink' to='/cart' >
                  
                <div className='number-cart'>{sumQuantityFromCartItems}</div>
                <img className='logo-cart' src={require('../../images/cart2.png')} alt=''/>  
                    
                      
-          </Link>
-           <Link className='myProfileLink' to='/my-profile' >
+          </Link>}
+          {/* nzm sto nece da prikaze myprofile kad je role user a za employee radi */}
+           {localStorage.role==="USER" || localStorage.role==="EMPLOYEE" && <Link className='myProfileLink' to='/my-profile' >
                  
 
-                 MyProfile
+                 My Profile
                    
                      
-          </Link>
+          </Link>}
+          {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-profile' >
+                 
+
+                 My active orders
+                   
+                     
+          </Link>}
                 <Link className='registrationLink' to='/registration' >
                  
 
@@ -132,13 +140,13 @@ const NavbarStyledComponent = () => {
                     
                </Link>
 
-               <Link id='signInBtn' className='btn btn-success' to='login'>
+               {localStorage.token == null && <Link id='signInBtn' className='btn btn-success' to='login'>
                     Sign in
-               </Link>
-
-               <button id='signOutBtn' className='btn btn-success' onClick={() => logout() }>
+               </Link>}
+               {/* proveriti zasto nije htelo da radi kad se doda ||  */}
+               {localStorage.token != null && <button id='signOutBtn' className='btn btn-success' onClick={() => logout() }>
                     Sign out
-               </button>
+               </button>}
 
            </div>
         </div>
