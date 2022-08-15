@@ -22,6 +22,7 @@ const CartComponent = () => {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   var finalPriceVar = 0;
+  
   const [finalPrice, setFinalPrice] = useState(0);
 
   const itemsFromCart = useSelector((state) => state.cart);
@@ -166,7 +167,9 @@ const CartComponent = () => {
           confirmButtonText: 'Yes, make it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            console.log("FINAL PRICE SETOVAANNN" + JSON.stringify(finalPrice));
+            console.log("FINAL PRICE VAR " + finalPriceVar);
+            console.log("OBJ " + JSON.stringify(itemsFromCartWhenLoggedWithFinalPrice));
+            console.log("FINAL PRICE SETOVAANNN " + JSON.stringify(finalPrice));
             submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
             
            

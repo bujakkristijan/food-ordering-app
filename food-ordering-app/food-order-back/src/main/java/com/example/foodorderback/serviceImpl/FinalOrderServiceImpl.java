@@ -113,4 +113,20 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		
 		
 	}
+	
+	@Override
+	public String setFinalOrderToDelivered(Long finalOrderId) {
+		String responseToClient = "fail";
+		try {
+			FinalOrder finalOrder = findOne(finalOrderId);
+			finalOrder.setStatus(Status.DELIVERED);
+			finalOrderRepository.save(finalOrder);
+			responseToClient = "success";
+		} catch (Exception e) {
+			return responseToClient;
+		}
+		return responseToClient;
+		
+		
+	}
 }

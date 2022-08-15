@@ -15,5 +15,6 @@ public interface FinalOrderService {
 	Long makeFinalOrder(OrderItemDTO orderItemDTO);
 	FinalOrder findOne(Long id);
 	List<FinalOrderDTO> getAllActiveFinalOrders();
+	String setFinalOrderToDelivered(Long finalOrderId);
 
 }

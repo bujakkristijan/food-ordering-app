@@ -19,6 +19,7 @@ import com.example.foodorderback.dto.FinalOrderNotLoggedDTO;
 import com.example.foodorderback.dto.ItemFromCartDTO;
 import com.example.foodorderback.dto.OrderItemDTO;
 import com.example.foodorderback.model.FinalOrder;
+import com.example.foodorderback.model.Meal;
 import com.example.foodorderback.model.OrderItem;
 import com.example.foodorderback.service.FinalOrderService;
 import com.example.foodorderback.service.OrderItemService;
@@ -90,5 +91,11 @@ public class FinalOrderController {
 		List<ItemFromCartDTO> itemsFromCartByFinalOrderId = new ArrayList<ItemFromCartDTO>();
 		itemsFromCartByFinalOrderId = orderItemService.getItemFromCartByFinalOrderId(id);
 		return new ResponseEntity<List<ItemFromCartDTO>>(itemsFromCartByFinalOrderId, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/setFinalOrderToDelivered/{finalOrderId}", method = RequestMethod.PUT)
+	public ResponseEntity<String> setFinalOrderToDelivered(@PathVariable Long finalOrderId){
+		String response = finalOrderService.setFinalOrderToDelivered(finalOrderId);
+		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
 }

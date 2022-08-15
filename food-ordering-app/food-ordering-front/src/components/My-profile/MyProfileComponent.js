@@ -31,6 +31,8 @@ const MyProfileComponent = () => {
     const [address, setAddress] = useState('')
     const [addressEdit, setAddressEdit] = useState('')
 
+    const [role, setRole] = useState('');
+
     const user = {firstNameEdit, setFirstNameEdit, lastNameEdit, setLastNameEdit, usernameEdit, setUsernameEdit, emailEdit, setEmailEdit, phoneNumberEdit, setPhoneNumberEdit, passwordEdit, setPasswordEdit,  addressEdit, setAddressEdit}
     const userEdit = { id, firstName: firstNameEdit, lastName: lastNameEdit, username: usernameEdit, email: emailEdit, phoneNumber: phoneNumberEdit, address: addressEdit, password: passwordEdit }
     /*const [role, setRole] = useState(0) */
@@ -87,6 +89,8 @@ const MyProfileComponent = () => {
             
 
             setAddress(response.data.address);
+
+            setRole(response.data.role);
             
             /*setRole(response.data.role.toString()); */
           }).catch(error =>{
@@ -218,7 +222,7 @@ const MyProfileComponent = () => {
                         <h4 className="mb-0">Role</h4>
                         </div>
                         <div className="col-sm-9 text-secondary">
-                            {address}
+                            {role}
                         </div>
                     </div>
                     <hr></hr>

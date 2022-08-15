@@ -95,10 +95,10 @@ const NavbarStyledComponent = () => {
                     Users
                </Link> */}
               
-               <Link className='navLink' to='/menu' >
+               {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='navLink' to='/menu' >
                     Menu
-               </Link>
-               {localStorage.role==="ADMIN" || localStorage.role ==="EMPLOYEE" && <Link className='navLink' to='/signin' >
+               </Link>}
+               {(localStorage.role==="ADMIN" || localStorage.role ==="EMPLOYEE") && <Link className='navLink' to='/signin' >
                     Order history
                </Link>}
                {localStorage.role==="ADMIN" && <Link className='navLink' to='/meals' >
@@ -106,6 +106,9 @@ const NavbarStyledComponent = () => {
                </Link>}
                {localStorage.role==="ADMIN" && <Link className='navLink' to='/meal-types' >
                     Meal types
+               </Link>}
+               {localStorage.role==="EMPLOYEE" && <Link className='navLink' to='/active-final-orders' >
+                    Active orders
                </Link>}
            </div>
            <div className='navBtn'>
