@@ -53,6 +53,9 @@ class MealService{
         return axios.put("http://localhost:8080/api/finalOrder/setFinalOrderToDelivered/" + finalOrderId);
     }
     
+    getAllDeliveredFinalOrders(){
+        return axios.get("http://localhost:8080/api/finalOrder/getAllDeliveredFinalOrders");
+    }
 
 }
 

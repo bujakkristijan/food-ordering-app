@@ -66,6 +66,13 @@ public class FinalOrderController {
 		return new ResponseEntity<FinalOrder>(finalOrder, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value ="/getAllDeliveredFinalOrders", method = RequestMethod.GET)
+	public ResponseEntity<List<FinalOrderDTO>> getAllDeliveredFinalOrders(){	
+		List<FinalOrderDTO> allDeliveredFinalOrders = new ArrayList<FinalOrderDTO>();
+		allDeliveredFinalOrders = finalOrderService.getAllDeliveredFinalOrders();
+		return new ResponseEntity<List<FinalOrderDTO>>(allDeliveredFinalOrders, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value ="/getAllActiveFinalOrders", method = RequestMethod.GET)
 	public ResponseEntity<List<FinalOrderDTO>> getAllActiveFinalOrders(){	
 		List<FinalOrderDTO> allActiveFinalOrders = new ArrayList<FinalOrderDTO>();

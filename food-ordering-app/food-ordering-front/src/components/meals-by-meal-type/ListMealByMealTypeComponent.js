@@ -108,7 +108,7 @@ const ListMealByMealTypeComponent = () => {
     <div className='container'>
             <h2 className='text-center'>Meals</h2>
             <button className="btn btn-success mb-2" >Go to cart</button>
-            <table className='table table-bordered table-hover'>
+            <table className='table table-hover tableElement'>
                 <thead className='thead-name'>
                     <tr>
                         
@@ -127,7 +127,7 @@ const ListMealByMealTypeComponent = () => {
                         meal => <tr key={meal.id}>
                             <td className='td-content-img'>
                             
-                              <img className='mealPicture' src={"data:image/png;base64," + meal.image} alt=''/> 
+                              <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
                             
                                 </td>
                                 

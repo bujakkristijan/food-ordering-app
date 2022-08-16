@@ -1,29 +1,9 @@
-.mealPic{
-    
-    height: 110px;
-    width: 90%;
-    object-fit: cover; /* da ne razvuce sliku */
-     border: 2px rgb(173, 135, 135) solid ; 
-    border-radius: 5px;
-    /*align-items: center;
-    text-align: center;
-    justify-content: center; */
-    margin-right: 0px;
-    margin-left: 0px;
-    /* text-align: center;  */
-}
-
 .theadth{
     
     /* justify-content: center; */
     /* align-items: center; */
     text-align: center;
     font-size: larger;
-}
-
-.td-content-img{
-    display: flex; 
-    justify-content: center;
 }
 
 .td-content{
@@ -48,4 +28,3 @@
     /* border: 10px solid rgb(241, 0, 0) !important da pregazi bootstrapov border */
     box-shadow: 0 0 15px 15px rgb(133, 127, 127);
 }
-    

@@ -98,7 +98,7 @@ const NavbarStyledComponent = () => {
                {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='navLink' to='/menu' >
                     Menu
                </Link>}
-               {(localStorage.role==="ADMIN" || localStorage.role ==="EMPLOYEE") && <Link className='navLink' to='/signin' >
+               {(localStorage.role==="ADMIN" || localStorage.role ==="EMPLOYEE") && <Link className='navLink' to='/order-history' >
                     Order history
                </Link>}
                {localStorage.role==="ADMIN" && <Link className='navLink' to='/meals' >

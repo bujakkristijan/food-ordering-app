@@ -157,15 +157,15 @@ const ListMealComponent = () => {
     <div className='container'>
             <h2 className='text-center'>Meal list</h2>
             <button className="btn btn-success mb-2" onClick={handleShow}>Create new meal</button>
-            <table id="table" className='table table-bordered table-hover'>
-                <thead>
+            <table id="table" className='table table-hover tableElement'>
+                <thead className='thead-name'>
                     <tr>
-                        <th>Meal ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th className='theadth'>Meal ID</th>
+                        <th className='theadth'>Image</th>
+                        <th className='theadth'>Name</th>
+                        <th className='theadth'>Type</th>
+                        <th className='theadth'>Price</th>
+                        <th className='theadth'>Action</th>
                         
 
                     </tr>
@@ -174,18 +174,18 @@ const ListMealComponent = () => {
                 <tbody>
                     {meals.map(
                         meal => <tr key={meal.id}>
-                            <td>{meal.id}</td>
-                            <td>
+                            <td className='td-content'>{meal.id}</td>
+                            <td className='td-content-pic'>
                             
-                              <img className='mealPicture' src={"data:image/png;base64," + meal.image} alt=''/> 
+                              <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
                             
                                 </td>
                                 
-                            <td>{meal.name}</td>
-                            <td>{meal.mealType.typeName}</td>
-                            <td>{meal.price}</td>
+                            <td className='td-content'>{meal.name}</td>
+                            <td className='td-content'>{meal.mealType.typeName}</td>
+                            <td className='td-content'>{meal.price}</td>
                             
-                            <td>
+                            <td className='td-content'>
                                 <button className='btn btn-info' onClick={() =>handleShowEdit(meal)}>Update</button>
                                 <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(meal.id)}
                                     style={{ marginLeft: "5px" }}>Delete</button>

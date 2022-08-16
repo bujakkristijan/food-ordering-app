@@ -8,6 +8,7 @@ import {editItem, deleteItem, deleteAllItems} from '../../store-redux/cart/cartS
 import { useDispatch, useSelector } from 'react-redux';
 import EditItemQuantityComponent from './EditItemQuantityComponent';
 import InsertDetailsNotLoggedComponent from './InsertDetailsNotLoggedComponent';
+import './CartComponent.css';
 
 const CartComponent = () => {
 
@@ -261,14 +262,14 @@ const CartComponent = () => {
     <div className='container'>
     <h2 className='text-center'>Items from cart</h2>
     <button className="btn btn-success mb-2" onClick={() => checkIfLoggedInBeforeSubmit()}>Make final order</button>
-    <table id="table" className='table table-bordered table-hover'>
-        <thead>
+    <table id="table" className='table table-hover tableElement'>
+        <thead className='thead-name'>
             <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Action</th>
+                <th className='theadth'>Image</th>
+                <th className='theadth'>Name</th>
+                <th className='theadth'>Price</th>
+                <th className='theadth'>Quantity</th>
+                <th className='theadth'>Action</th>
                 
 
             </tr>
@@ -278,17 +279,17 @@ const CartComponent = () => {
             {itemsFromCart.map(
                 itemFromCart => <tr key={itemFromCart.meal.id}>
                     
-                    <td>
+                    <td className='td-content-img'>
                     
-                      <img className='mealPicture' src={"data:image/png;base64," + itemFromCart.meal.image} alt=''/> 
+                      <img className='mealPic' src={"data:image/png;base64," + itemFromCart.meal.image} alt=''/> 
                     
                         </td>
                         
-                    <td>{itemFromCart.meal.name}</td>
-                    <td>{itemFromCart.meal.price}</td>
-                    <td>{itemFromCart.quantity}</td>
+                    <td className='td-content'>{itemFromCart.meal.name}</td>
+                    <td className='td-content'>{itemFromCart.meal.price}</td>
+                    <td className='td-content'>{itemFromCart.quantity}</td>
                     
-                    <td>
+                    <td className='td-content'>
                         <button className='btn btn-info' onClick={() =>handleShowEdit(itemFromCart)}>Update</button>
                         <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(itemFromCart.meal.id)} 
                         style={{ marginLeft: "5px" }}>Delete</button> 
