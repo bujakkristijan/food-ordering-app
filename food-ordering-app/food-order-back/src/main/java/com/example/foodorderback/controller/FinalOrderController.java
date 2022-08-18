@@ -21,6 +21,7 @@ import com.example.foodorderback.dto.OrderItemDTO;
 import com.example.foodorderback.model.FinalOrder;
 import com.example.foodorderback.model.Meal;
 import com.example.foodorderback.model.OrderItem;
+import com.example.foodorderback.model.User;
 import com.example.foodorderback.service.FinalOrderService;
 import com.example.foodorderback.service.OrderItemService;
 import com.example.foodorderback.service.UserService;
@@ -78,6 +79,20 @@ public class FinalOrderController {
 		List<FinalOrderDTO> allActiveFinalOrders = new ArrayList<FinalOrderDTO>();
 		allActiveFinalOrders = finalOrderService.getAllActiveFinalOrders();
 		return new ResponseEntity<List<FinalOrderDTO>>(allActiveFinalOrders, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value ="/getAllMyActiveFinalOrders", method = RequestMethod.GET)
+	public ResponseEntity<List<FinalOrderDTO>> getAllMyActiveFinalOrders(){	
+		List<FinalOrderDTO> allMyActiveFinalOrders = new ArrayList<FinalOrderDTO>();
+		User currentUser = new User();
+		try {
+			currentUser = userService.getCurrentUser();
+		} catch (Exception e) {
+			return new ResponseEntity<List<FinalOrderDTO>>(allMyActiveFinalOrders, HttpStatus.NOT_FOUND);
+		}
+		
+		allMyActiveFinalOrders = finalOrderService.getAllMyActiveFinalOrders(currentUser.getId());
+		return new ResponseEntity<List<FinalOrderDTO>>(allMyActiveFinalOrders, HttpStatus.OK);
 	}
 	
 //	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)

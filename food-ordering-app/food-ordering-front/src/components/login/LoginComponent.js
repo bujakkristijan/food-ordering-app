@@ -23,6 +23,7 @@ const submitLogin = (e) =>{
 
     LoginService.login(loginParams).then((response) =>{
         responseFromServer = response.data.messageInvalidUsernameOrPassword.toString();
+        console.log("responsesss: ",responseFromServer)
         if(responseFromServer == "no"){
             alertSuccess();
             localStorage.token = response.data.token;
@@ -33,6 +34,7 @@ const submitLogin = (e) =>{
             localStorage.role = decodedToken.role; //stavlja se role u localstorage nakon sto se dekodira pomocu jwt-decode
             //console.log("TOKEN " + localStorage.token.toString());
             console.log("DECODED ROLE LOCAL STORAGE" + localStorage.role);
+            
             navigateDependingOnRole(localStorage.role);
 
         }
@@ -47,6 +49,7 @@ const submitLogin = (e) =>{
 }
 
 const navigateDependingOnRole = (role) =>{
+  console.log("ROLAAA:",role)
   if(role === "ADMIN"){
     navigate('/meals')
   }

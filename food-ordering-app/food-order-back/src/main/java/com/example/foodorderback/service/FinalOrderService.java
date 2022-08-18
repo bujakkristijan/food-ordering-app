@@ -17,5 +17,6 @@ public interface FinalOrderService {
 	List<FinalOrderDTO> getAllActiveFinalOrders();
 	List<FinalOrderDTO> getAllDeliveredFinalOrders();
 	String setFinalOrderToDelivered(Long finalOrderId);
+	List<FinalOrderDTO> getAllMyActiveFinalOrders(Long currentUserId);
 
 }

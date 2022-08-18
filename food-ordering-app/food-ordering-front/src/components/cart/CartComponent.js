@@ -22,12 +22,12 @@ const CartComponent = () => {
 
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  var finalPriceVar = 0;
+  var finalPriceVar;
   
   const [finalPrice, setFinalPrice] = useState(0);
 
   const itemsFromCart = useSelector((state) => state.cart);
-  const itemsFromCartWhenLoggedWithFinalPrice = { itemsFromCart, finalPrice}
+  let itemsFromCartWhenLoggedWithFinalPrice = { itemsFromCart, finalPrice}
   const itemsFromCartFinalOrder = { itemsFromCart, address, phoneNumber, finalPrice, setAddress, setPhoneNumber };
 
   //ako nije ulogovan mora da unese adresu i br telefona
@@ -154,10 +154,11 @@ const CartComponent = () => {
         console.log(finalPriceVar);
         let textStr;
         if(localStorage.token == null || localStorage.token == ''){
-           textStr = "Final price is: "+ finalPriceVar + " RSD. If you click yes, you will make final order!";
+           textStr = "Final price is: "+ finalPriceVar.toFixed(1) + " RSD. If you click yes, you will make final order!";
         }else{
-           textStr = "Final price is: "+ finalPriceVar + " RSD. (10% OFF)! If you click yes, you will make final order!";
+           textStr = "Final price is: "+ finalPriceVar.toFixed(1) + " RSD. (10% OFF)! If you click yes, you will make final order!";
         }
+        
         Swal.fire({
           title: 'Are you sure?',
           text: textStr,
@@ -171,6 +172,9 @@ const CartComponent = () => {
             console.log("FINAL PRICE VAR " + finalPriceVar);
             console.log("OBJ " + JSON.stringify(itemsFromCartWhenLoggedWithFinalPrice));
             console.log("FINAL PRICE SETOVAANNN " + JSON.stringify(finalPrice));
+            setFinalPrice(finalPriceVar);
+            console.log("krajnja vrednost: ",itemsFromCartWhenLoggedWithFinalPrice)
+            itemsFromCartWhenLoggedWithFinalPrice = { itemsFromCart, finalPrice: finalPriceVar}
             submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
             
            
@@ -187,6 +191,7 @@ const CartComponent = () => {
       }
 
       const sumFinalPrice = () =>{
+        finalPriceVar = 0;
         console.log("items from cart" + itemsFromCart);
         if(localStorage.token == null || localStorage.token == ''){
           

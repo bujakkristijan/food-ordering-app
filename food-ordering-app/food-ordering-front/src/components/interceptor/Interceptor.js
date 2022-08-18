@@ -9,6 +9,7 @@ axios.interceptors.request.use(function (config) {
         
         axios.defaults.headers.common['Authorization'] = tokenBearer;
         
+        
     } else {
         axios.defaults.headers.common['Authorization'] = null;
         // delete axios.defaults.headers.common['Authorization'];

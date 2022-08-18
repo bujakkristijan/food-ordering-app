@@ -51,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.cors().disable();
 		http.csrf().disable().authorizeRequests().anyRequest().permitAll();
     } 
-	*/
+	*/ 
+//	"/api/finalOrder/getOrderItemsByFinalOrderId/{id}", "/api/finalOrder/getAllActiveFinalOrders","/api/finalOrder/getFinalOrderById/{id}", "/api/finalOrder/createFinalOrder", "/api/meal/getAllMeals", "/api/mealType/getAllMealTypes", "/api/user/getCurrentUser", "/api/user/getAllEmployees"
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 		http.cors().disable();

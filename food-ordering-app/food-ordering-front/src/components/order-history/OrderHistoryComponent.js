@@ -72,7 +72,7 @@ const OrderHistoryComponent = () => {
                         <td className='td-content'>{activeFinalOrder.id}</td>
                         <td className='td-content'>{activeFinalOrder.address}</td>
                         <td className='td-content'>{activeFinalOrder.phoneNumber}</td>
-                        <td className='td-content'>{activeFinalOrder.date}</td>
+                        <td className='td-content'>{activeFinalOrder.date} </td>
                         <td className='td-content'>{activeFinalOrder.status}</td>
                         <td className='td-content'>{activeFinalOrder.finalPrice}</td>    
                         <td className='td-content'>

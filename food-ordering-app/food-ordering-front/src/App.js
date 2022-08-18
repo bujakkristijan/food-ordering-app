@@ -21,7 +21,7 @@ import OrderHistoryComponent from './components/order-history/OrderHistoryCompon
 // <NavbarComponent/> ovo je bilo pre nego sto sam menjao
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 function App() {
-  const ROLE = "ADMIN"
+  const role = localStorage.role;
   return (
     // <div className='container-main'>
       <Router>
@@ -31,7 +31,7 @@ function App() {
           <Routes>
             <Route path='/' element = {<LoginComponent/>}></Route> 
             <Route path='/employees' element = {<ListEmployeeComponent/>}></Route>
-            {ROLE==="ADMIN" && <Route path='/create-employee' element = {<CreateEmployeeComponent/>}/>}
+            {role==="ADMIN" && <Route path='/create-employee' element = {<CreateEmployeeComponent/>}/>}
             <Route path='/edit-employee/:id' element = {<CreateEmployeeComponent/>}></Route>
             <Route path='/registration' element = {<RegistrationComponent/>}></Route>
             <Route path='/login' element = {<LoginComponent/>}></Route>
