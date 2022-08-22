@@ -76,6 +76,28 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 	}
 	
 	@Override
+	public List<FinalOrderDTO> getAllMyDeliveredFinalOrders(Long currentUserId){
+		List<FinalOrder> allFinalOrders = new ArrayList<FinalOrder>();
+		List<FinalOrder> allFinalOrdersWithStatusDelivered = new ArrayList<FinalOrder>();
+		List<FinalOrderDTO> allFinalOrdersWithStatusDeliveredDTO = new ArrayList<FinalOrderDTO>();
+		
+		FinalOrderDTO finalOrderDTO = new FinalOrderDTO();
+
+		allFinalOrders = finalOrderRepository.findAll();
+		
+		for(FinalOrder fo: allFinalOrders) {
+			if(fo.getStatus().equals(Status.DELIVERED) && fo.getUser().getId() == currentUserId) {
+				allFinalOrdersWithStatusDelivered.add(fo);
+			}
+		}
+		for(FinalOrder foStatusOrdered: allFinalOrdersWithStatusDelivered) {
+			finalOrderDTO = new FinalOrderDTO(foStatusOrdered);
+			allFinalOrdersWithStatusDeliveredDTO.add(finalOrderDTO);
+		}
+		return allFinalOrdersWithStatusDeliveredDTO;
+	}
+	
+	@Override
 	public List<FinalOrderDTO> getAllDeliveredFinalOrders(){
 		List<FinalOrder> allFinalOrders = new ArrayList<FinalOrder>();
 		List<FinalOrder> allFinalOrdersWithStatusDelivered = new ArrayList<FinalOrder>();

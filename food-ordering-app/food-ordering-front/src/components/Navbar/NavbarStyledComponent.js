@@ -127,13 +127,20 @@ const NavbarStyledComponent = () => {
                    
                      
           </Link>}
-          {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-profile' >
-                 
+               {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-active-final-orders' >
+                    
 
-                 My active orders
-                   
-                     
-          </Link>}
+                    My active orders
+                    
+                         
+               </Link>}
+               {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-delivered-final-orders' >
+                    
+
+                    My order history
+                    
+                         
+               </Link>}
                 <Link className='registrationLink' to='/registration' >
                  
 

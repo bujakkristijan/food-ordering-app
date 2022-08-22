@@ -95,6 +95,20 @@ public class FinalOrderController {
 		return new ResponseEntity<List<FinalOrderDTO>>(allMyActiveFinalOrders, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value ="/getAllMyDeliveredFinalOrders", method = RequestMethod.GET)
+	public ResponseEntity<List<FinalOrderDTO>> getAllMyDeliveredFinalOrders(){	
+		List<FinalOrderDTO> allMyDeliveredFinalOrders = new ArrayList<FinalOrderDTO>();
+		User currentUser = new User();
+		try {
+			currentUser = userService.getCurrentUser();
+		} catch (Exception e) {
+			return new ResponseEntity<List<FinalOrderDTO>>(allMyDeliveredFinalOrders, HttpStatus.NOT_FOUND);
+		}
+		
+		allMyDeliveredFinalOrders = finalOrderService.getAllMyDeliveredFinalOrders(currentUser.getId());
+		return new ResponseEntity<List<FinalOrderDTO>>(allMyDeliveredFinalOrders, HttpStatus.OK);
+	}
+	
 //	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)
 //	public ResponseEntity<FinalOrderNotLoggedDTO> getFinalOrderById(@PathVariable Long id){
 //		FinalOrderNotLoggedDTO finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
