@@ -5,6 +5,10 @@ class UserService{
         return axios.get("http://localhost:8080/api/user/getAllEmployees");
     }
 
+    getAllUsers(){
+        return axios.get("http://localhost:8080/api/user/getAllUsers");
+    }
+
     createEmployee(user){
         return axios.post("http://localhost:8080/api/user/createEmployee", user);
     }

@@ -19,6 +19,7 @@ import { ActiveFinalOrdersComponent } from './components/active-final-orders/Act
 import MyActiveFinalOrdersComponent from './components/my-active-final-orders/MyActiveFinalOrdersComponent';
 import OrderHistoryComponent from './components/order-history/OrderHistoryComponent';
 import MyDeliveredFinalOrdersComponent from './components/my-delivered-final-orders/MyDeliveredFinalOrdersComponent';
+import ListUserComponent from './components/user/ListUserComponent';
 // <NavbarComponent/> ovo je bilo pre nego sto sam menjao
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 function App() {
@@ -47,6 +48,8 @@ function App() {
             <Route path='/my-active-final-orders' element = {<MyActiveFinalOrdersComponent/>}></Route>
             <Route path='/my-delivered-final-orders' element = {<MyDeliveredFinalOrdersComponent/>}></Route>
             <Route path='/order-history' element = {<OrderHistoryComponent/>}></Route>
+            <Route path='/users' element = {<ListUserComponent/>}></Route>
+
           </Routes>
         </div>
         

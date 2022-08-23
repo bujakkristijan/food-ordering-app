@@ -77,15 +77,15 @@ const FinalOrderByIdComponent = () => {
         <>
         <div className='container'>
         <h2 className='text-center'>Final order with id: {id}</h2>
-        <table id="table" className='table table-bordered table-hover'>
-            <thead>
+        <table id="table" className='table table-hover tableElement'>
+            <thead className='thead-name'>
                 <tr>
                     {/* <th>Order ID</th> */}
-                    <th>Address</th>
-                    <th>Phone number</th>
-                    <th>Final price</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th className='theadth'>Address</th>
+                    <th className='theadth'>Phone number</th>
+                    <th className='theadth'>Final price</th>
+                    <th className='theadth'>Status</th>
+                    <th className='theadth'>Action</th>
                     
 
                 </tr>
@@ -94,13 +94,13 @@ const FinalOrderByIdComponent = () => {
             <tbody>
                     <tr>
                         {/* <td>{finalOrder.id}</td> */}
-                        <td>{finalOrder.address}</td>
-                        <td>{finalOrder.phoneNumber}</td>  
-                        <td>{finalOrder.finalPrice}</td>
-                        <td>{finalOrder.status}</td>
+                        <td className='td-content'>{finalOrder.address}</td>
+                        <td className='td-content'>{finalOrder.phoneNumber}</td>  
+                        <td className='td-content'>{finalOrder.finalPrice}</td>
+                        <td className='td-content'>{finalOrder.status}</td>
                         
                         
-                        <td>
+                        <td className='td-content'>
                             <button className='btn btn-info' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
                         </td>
 

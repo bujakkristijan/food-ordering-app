@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import UserService from '../services/UserService';
 import Swal from 'sweetalert2';
+import './ListEmployeeComponent.css';
 
 const ListEmployeeComponent = () => {
     const [employees, setEmployees] = useState([]);
@@ -56,17 +57,17 @@ const ListEmployeeComponent = () => {
     <div className='container'>
         <h2 className='text-center'>Employee list</h2>
         <Link to = "/create-employee" className='btn btn-success mb-2'>Create new employee</Link>
-        <table className='table table-bordered table-hover'>
-            <thead>
+        <table className='table table-hover tableElement'>
+            <thead className='thead-name'>
                 <tr>
-                    <th>User ID</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Phone number</th>
-                    <th>Address</th>
-                    <th>Action</th>
+                    <th className='theadth'>User ID</th>
+                    <th className='theadth'>First name</th>
+                    <th className='theadth'>Last name</th>
+                    <th className='theadth'>Username</th>
+                    <th className='theadth'>Email</th>
+                    <th className='theadth'>Phone number</th>
+                    <th className='theadth'>Address</th>
+                    <th className='theadth'>Action</th>
                    
                 </tr>
             </thead>
@@ -75,13 +76,13 @@ const ListEmployeeComponent = () => {
                   employees.map(
                       employee =>
                       <tr key= {employee.id}>
-                          <td>{employee.id}</td>
-                          <td>{employee.firstName}</td>
-                          <td>{employee.lastName}</td>
-                          <td>{employee.username}</td>
-                          <td>{employee.email}</td>
-                          <td>{employee.phoneNumber}</td>
-                          <td>{employee.address}</td>
+                          <td className="td-content">{employee.id}</td>
+                          <td className="td-content">{employee.firstName}</td>
+                          <td className="td-content">{employee.lastName}</td>
+                          <td className="td-content">{employee.username}</td>
+                          <td className="td-content">{employee.email}</td>
+                          <td className="td-content">{employee.phoneNumber}</td>
+                          <td className="td-content">{employee.address}</td>
                           <td>
                               <Link className='btn btn-info' to={`/edit-employee/${employee.id}`}>Update</Link>
                               <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(employee.id)}

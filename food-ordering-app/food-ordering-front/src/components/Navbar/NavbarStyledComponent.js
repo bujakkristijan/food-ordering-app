@@ -68,7 +68,7 @@ const NavbarStyledComponent = () => {
         const checkRole = () =>{
           
           if(localStorage.role === "ADMIN"){
-               return (<Link className='navLink' to='/employees' >
+               return (<Link className='navLink' to='/users' >
                Users
           </Link>)
          
