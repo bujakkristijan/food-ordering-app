@@ -84,7 +84,7 @@ const CartComponent = () => {
         console.log("items fo" + JSON.stringify(itemsFromCartFinalOrder));
         MealService.sendItemsForFinalOrder(itemsFromCartFinalOrder).then((response) =>{
             const responseFromServer = response.data;
-            alert("Response from server: " + responseFromServer);
+            // alert("Response from server: " + responseFromServer);
             //ako je response razlicit od 0, znaci da je uspesno upisan final order i prosledjen id, po defaultu je 0
             if(responseFromServer != 0){
               Swal.fire('Any fool can use a computer')
