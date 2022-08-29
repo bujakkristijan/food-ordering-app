@@ -80,9 +80,9 @@ const NavbarStyledComponent = () => {
   return (
     
         <div className='header'>
-            <Link to="/employees">
+            <Link to="/menu">
               {/* <h1 className='logo'>Logo</h1> */}
-              <img className='logo' src={require('../../images/logo.png')} alt=''/>  
+              <img className='logo' src={require('../../images/logo2.png')} alt=''/>  
             </Link>
            <div/>
            <div className='navMenu'>
