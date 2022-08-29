@@ -65,9 +65,17 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		allFinalOrders = finalOrderRepository.findAll();
 		
 		for(FinalOrder fo: allFinalOrders) {
-			if((fo.getStatus().equals("ORDERED") || fo.getStatus().equals("IN PREPARATION")) && fo.getUser().getId() == currentUserId) {
-				allFinalOrdersWithStatusOrdered.add(fo);
+			try {
+				if((fo.getStatus().equals("ORDERED") || fo.getStatus().equals("IN PREPARATION")) && fo.getUser().getId() != null) {
+					if(fo.getUser().getId() == currentUserId) {
+						allFinalOrdersWithStatusOrdered.add(fo);
+					}
+					
+				}
+			} catch (Exception e) {
+				continue;
 			}
+			
 		}
 		for(FinalOrder foStatusOrdered: allFinalOrdersWithStatusOrdered) {
 			finalOrderDTO = new FinalOrderDTO(foStatusOrdered);
@@ -87,9 +95,17 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		allFinalOrders = finalOrderRepository.findAll();
 		
 		for(FinalOrder fo: allFinalOrders) {
-			if(fo.getStatus().equals("IN DELIVERY") && fo.getUser().getId() == currentUserId) {
-				allFinalOrdersWithStatusDelivered.add(fo);
+			try {
+				if(fo.getStatus().equals("IN DELIVERY") && fo.getUser().getId() != null) {
+					if(fo.getUser().getId() == currentUserId){
+						allFinalOrdersWithStatusDelivered.add(fo);
+					}
+					
+				}
+			} catch (Exception e) {
+				continue;
 			}
+			
 		}
 		for(FinalOrder foStatusOrdered: allFinalOrdersWithStatusDelivered) {
 			finalOrderDTO = new FinalOrderDTO(foStatusOrdered);

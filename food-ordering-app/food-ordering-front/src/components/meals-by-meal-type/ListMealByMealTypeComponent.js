@@ -136,7 +136,7 @@ const ListMealByMealTypeComponent = () => {
                             <td className='td-content'>{meal.price}</td>
                             
                             <td className='td-content'>
-                                <button className='btn btn-info' onClick={() =>handleShowMealQuantity(meal)}>Add to cart</button>
+                                <button className='btn btn-success' onClick={() =>handleShowMealQuantity(meal)}>Add to cart</button>
                                 
                             </td>
 

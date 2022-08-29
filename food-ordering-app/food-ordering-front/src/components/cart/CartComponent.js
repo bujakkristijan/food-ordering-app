@@ -295,7 +295,7 @@ const CartComponent = () => {
                     <td className='td-content'>{itemFromCart.quantity}</td>
                     
                     <td className='td-content'>
-                        <button className='btn btn-info' onClick={() =>handleShowEdit(itemFromCart)}>Update</button>
+                        <button className='btn btn-success' onClick={() =>handleShowEdit(itemFromCart)}>Update</button>
                         <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(itemFromCart.meal.id)} 
                         style={{ marginLeft: "5px" }}>Delete</button> 
                     </td>

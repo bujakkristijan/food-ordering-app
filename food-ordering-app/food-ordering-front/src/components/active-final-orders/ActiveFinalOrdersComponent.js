@@ -16,6 +16,9 @@ export const ActiveFinalOrdersComponent = () => {
     //proba
     const [status, setStatus] = useState('');
     const [activeOrderId, setActiveOrderId] = useState(1);
+
+
+    let activeOrderIdLet = 0;
     
 
     const statusOptions = ["ORDERED", "IN PREPARATION", "IN DELIVERY"];
@@ -72,16 +75,19 @@ export const ActiveFinalOrdersComponent = () => {
 
     const changeFinalOrderStatus = (activeFinalOrderId, status) =>{
         setStatus(status);
-        setActiveOrderId(activeFinalOrderId);
-        const finalOrderWithStatusAndId = { activeOrderId, status };
+        activeOrderIdLet = activeFinalOrderId; // OVAKO SAM MORAO DA NE PAMTI VREDNOST OD PRETHODNOG
+        // setActiveOrderId(activeFinalOrderId); ZASTO PAMTI VREDNOST PRETHODNOG ??? 
+        const finalOrderWithStatusAndId = { activeOrderId: activeOrderIdLet, status };
         console.log("fosi  " + JSON.stringify(finalOrderWithStatusAndId));
         MealService.changeFinalOrderStatus(finalOrderWithStatusAndId).then((response)=>{
             const responseFromServer = response.data;
             if(responseFromServer === "success"){
                 alertSuccess();
                 getAllActiveFinalOrders();
+                activeOrderIdLet = 0;
             }
             else{
+                activeOrderIdLet = 0;
                 alertFail();
             }
         })

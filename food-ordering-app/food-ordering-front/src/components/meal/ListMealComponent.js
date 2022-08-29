@@ -186,7 +186,7 @@ const ListMealComponent = () => {
                             <td className='td-content'>{meal.price}</td>
                             
                             <td className='td-content'>
-                                <button className='btn btn-info' onClick={() =>handleShowEdit(meal)}>Update</button>
+                                <button className='btn btn-success' onClick={() =>handleShowEdit(meal)}>Update</button>
                                 <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(meal.id)}
                                     style={{ marginLeft: "5px" }}>Delete</button>
                             </td>
