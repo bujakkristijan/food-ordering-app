@@ -13,7 +13,7 @@ public class FinalOrderNotLoggedDTO {
 	private Date date;
 	private int finalPrice;
 	private String address;
-	private Status status;
+	private String status;
 	
 	public FinalOrderNotLoggedDTO() {
 		
@@ -69,11 +69,11 @@ public class FinalOrderNotLoggedDTO {
 		this.address = address;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	

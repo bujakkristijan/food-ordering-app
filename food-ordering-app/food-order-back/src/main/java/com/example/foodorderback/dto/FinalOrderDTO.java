@@ -3,7 +3,8 @@ package com.example.foodorderback.dto;
 import java.util.Date;
 
 import com.example.foodorderback.model.FinalOrder;
-import com.example.foodorderback.model.Status;
+
+
 
 public class FinalOrderDTO {
 	
@@ -17,7 +18,7 @@ public class FinalOrderDTO {
 	private Date date;
 	private int finalPrice;
 	private String address;
-	private Status status;
+	private String status;
 	
 	
 	public FinalOrderDTO() {
@@ -77,11 +78,11 @@ public class FinalOrderDTO {
 		this.address = address;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	

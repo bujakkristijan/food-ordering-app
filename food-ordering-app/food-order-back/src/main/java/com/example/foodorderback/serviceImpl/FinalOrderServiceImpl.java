@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.foodorderback.dto.FinalOrderDTO;
+import com.example.foodorderback.dto.FinalOrderIdAndStatusDTO;
 import com.example.foodorderback.dto.ItemFromCartDTO;
 import com.example.foodorderback.dto.OrderItemDTO;
 import com.example.foodorderback.model.FinalOrder;
@@ -42,7 +43,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		allFinalOrders = finalOrderRepository.findAll();
 		
 		for(FinalOrder fo: allFinalOrders) {
-			if(fo.getStatus().equals(Status.ORDERED)) {
+			if(fo.getStatus().equals("ORDERED") || fo.getStatus().equals("IN PREPARATION")) {
 				allFinalOrdersWithStatusOrdered.add(fo);
 			}
 		}
@@ -64,7 +65,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		allFinalOrders = finalOrderRepository.findAll();
 		
 		for(FinalOrder fo: allFinalOrders) {
-			if(fo.getStatus().equals(Status.ORDERED) && fo.getUser().getId() == currentUserId) {
+			if((fo.getStatus().equals("ORDERED") || fo.getStatus().equals("IN PREPARATION")) && fo.getUser().getId() == currentUserId) {
 				allFinalOrdersWithStatusOrdered.add(fo);
 			}
 		}
@@ -86,7 +87,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		allFinalOrders = finalOrderRepository.findAll();
 		
 		for(FinalOrder fo: allFinalOrders) {
-			if(fo.getStatus().equals(Status.DELIVERED) && fo.getUser().getId() == currentUserId) {
+			if(fo.getStatus().equals("IN DELIVERY") && fo.getUser().getId() == currentUserId) {
 				allFinalOrdersWithStatusDelivered.add(fo);
 			}
 		}
@@ -108,7 +109,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		allFinalOrders = finalOrderRepository.findAll();
 		
 		for(FinalOrder fo: allFinalOrders) {
-			if(fo.getStatus().equals(Status.DELIVERED)) {
+			if(fo.getStatus().equals("IN DELIVERY")) {
 				allFinalOrdersWithStatusDelivered.add(fo);
 			}
 		}
@@ -138,7 +139,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 			
 			FinalOrder finalOrder = new FinalOrder();
 			finalOrder.setDate(new Date());
-			finalOrder.setStatus(Status.ORDERED);
+			finalOrder.setStatus("ORDERED");
 			finalOrder.setFinalPrice(orderItemDTO.getFinalPrice());
 			
 			
@@ -185,7 +186,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		String responseToClient = "fail";
 		try {
 			FinalOrder finalOrder = findOne(finalOrderId);
-			finalOrder.setStatus(Status.DELIVERED);
+			finalOrder.setStatus("DELIVERED");
 			finalOrderRepository.save(finalOrder);
 			responseToClient = "success";
 		} catch (Exception e) {
@@ -194,5 +195,22 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 		return responseToClient;
 		
 		
+	}
+	@Override
+	public String changeFinalOrderStatus (FinalOrderIdAndStatusDTO foIdStatus) {
+		String responseToClient = "fail";
+		try {
+			FinalOrder finalOrder = findOne(foIdStatus.getActiveOrderId());
+			
+			finalOrder.setStatus(foIdStatus.getStatus());
+			
+			
+			
+			finalOrderRepository.save(finalOrder);
+			responseToClient = "success";
+		} catch (Exception e) {
+			return responseToClient;
+		}
+		return responseToClient;
 	}
 }

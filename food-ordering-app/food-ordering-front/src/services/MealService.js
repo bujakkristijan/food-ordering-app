@@ -65,6 +65,10 @@ class MealService{
         return axios.get("http://localhost:8080/api/finalOrder/getAllMyDeliveredFinalOrders");
     }
 
+   changeFinalOrderStatus(finalOrderWithStatusAndId){
+        return axios.put("http://localhost:8080/api/finalOrder/changeStatus", finalOrderWithStatusAndId);
+    }
+
 }
 
 export default new MealService();

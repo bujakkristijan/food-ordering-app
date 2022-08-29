@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.foodorderback.dto.FinalOrderDTO;
+import com.example.foodorderback.dto.FinalOrderIdAndStatusDTO;
 import com.example.foodorderback.dto.FinalOrderNotLoggedDTO;
 import com.example.foodorderback.dto.ItemFromCartDTO;
 import com.example.foodorderback.dto.OrderItemDTO;
@@ -134,4 +135,11 @@ public class FinalOrderController {
 		String response = finalOrderService.setFinalOrderToDelivered(finalOrderId);
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/changeStatus", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> editStatus(@RequestBody FinalOrderIdAndStatusDTO foIdStatus){
+		String response = finalOrderService.changeFinalOrderStatus(foIdStatus);
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}
+	
 }

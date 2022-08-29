@@ -33,14 +33,15 @@ public class FinalOrder {
 	private int finalPrice;
 	private String address;
 	private String phoneNumber;
-	private Status status;
+//	private Status status;
+	private String status;
 	
 	public FinalOrder() {
 		
 	}
 
 	public FinalOrder(Long id, User user, List<OrderItem> orders, Date date, int finalPrice, String address, String phoneNumber,
-			Status status) {
+			String status) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -108,11 +109,11 @@ public class FinalOrder {
 		this.address = address;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	

@@ -5,12 +5,20 @@ import Swal from 'sweetalert2';
 import { Modal, Button } from 'react-bootstrap'
 import './ActiveFinalOrdersComponent.css';
 import ItemsByFinalOrderIdComponent from '../final-order-by-id/ItemsByFinalOrderIdComponent';
+import {Form} from 'react-bootstrap'
 
 export const ActiveFinalOrdersComponent = () => {
 
     const [allActiveFinalOrders, setAllActiveFinalOrders] = useState([]);
     const [orderItemsByFinalOrderId, setOrderItemsByFinalOrderId] = useState([]);
     const [show, setShow] = useState(false);
+
+    //proba
+    const [status, setStatus] = useState('');
+    const [activeOrderId, setActiveOrderId] = useState(1);
+    
+
+    const statusOptions = ["ORDERED", "IN PREPARATION", "IN DELIVERY"];
 
     
 
@@ -62,6 +70,23 @@ export const ActiveFinalOrdersComponent = () => {
         })
     }
 
+    const changeFinalOrderStatus = (activeFinalOrderId, status) =>{
+        setStatus(status);
+        setActiveOrderId(activeFinalOrderId);
+        const finalOrderWithStatusAndId = { activeOrderId, status };
+        console.log("fosi  " + JSON.stringify(finalOrderWithStatusAndId));
+        MealService.changeFinalOrderStatus(finalOrderWithStatusAndId).then((response)=>{
+            const responseFromServer = response.data;
+            if(responseFromServer === "success"){
+                alertSuccess();
+                getAllActiveFinalOrders();
+            }
+            else{
+                alertFail();
+            }
+        })
+    }
+
     const handleHtmlDependingOnFinalOrderStatus = (activeFinalOrder) =>{
         if(activeFinalOrder.status === "ORDERED"){
             return  <td className='td-content'>
@@ -102,7 +127,7 @@ export const ActiveFinalOrdersComponent = () => {
         Swal.fire({
           position: 'top',
           icon: 'success',
-          title: 'Successfully delivered final order!',
+          title: 'Successfully changed status!',
           showConfirmButton: false,
           timer: 1500
         });
@@ -131,7 +156,7 @@ export const ActiveFinalOrdersComponent = () => {
                         <th className='theadth'>Status</th>
                         <th className='theadth'>Final price</th>
                         <th className='theadth'>Orders</th>
-                        <th className='theadth'>Action</th>
+                        <th className='theadth'>Change status</th>
                         
 
                     </tr>
@@ -154,9 +179,18 @@ export const ActiveFinalOrdersComponent = () => {
                             {/* <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => setFinalOrderToDelivered(activeFinalOrder.id)}>Click if delivered</button>
                             </td> */}
-                            {
+                            {/* {
                                 handleHtmlDependingOnFinalOrderStatus(activeFinalOrder)
-                            }
+                            } */}
+
+                        <Form.Select className='selectStatus' value={JSON.stringify(activeFinalOrder.status)} onChange={(e)=>changeFinalOrderStatus(activeFinalOrder.id, JSON.parse(e.target.value))}>
+                                            {statusOptions.map((statusOption)=> {
+                                            return (
+                                                <option key={activeFinalOrder.id} value={JSON.stringify(statusOption)} >{statusOption}</option>
+                                            )
+                                            })}
+                        
+                        </Form.Select>
 
                         </tr>
                     )}
