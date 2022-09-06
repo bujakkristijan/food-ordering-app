@@ -36,9 +36,9 @@ public class Meal {
 	
 	
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="meal" ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<OrderItem> orders = new ArrayList<OrderItem>();
+//	@JsonIgnore
+//	@OneToMany(mappedBy="meal" ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+//	private List<OrderItem> orders = new ArrayList<OrderItem>();
  	
  	private String name;
  	private int price;
@@ -58,11 +58,10 @@ public class Meal {
  		
  	}
 
-	public Meal(Long id, MealType mealType, List<OrderItem> orders, String name, int price, String imageName) {
+	public Meal(Long id, MealType mealType, String name, int price, String imageName) {
 		super();
 		this.id = id;
 		this.mealType = mealType;
-		this.orders = orders;
 		this.name = name;
 		this.price = price;
 		this.imageName = imageName;
@@ -118,13 +117,13 @@ public class Meal {
 		this.mealType = mealType;
 	}
 
-	public List<OrderItem> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<OrderItem> orders) {
-		this.orders = orders;
-	}
+//	public List<OrderItem> getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(List<OrderItem> orders) {
+//		this.orders = orders;
+//	}
 
 	public String getName() {
 		return name;

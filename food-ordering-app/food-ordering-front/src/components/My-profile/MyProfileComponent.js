@@ -129,8 +129,8 @@ const MyProfileComponent = () => {
                         <h4>{firstName} {lastName}</h4>
                         <p className="text-secondary mb-1">Full Stack Developer</p>
                         <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                        <button className="btn btn-primary">Follow</button>
-                        <button className="btn btn-outline-primary">Message</button>
+                        <Link className='btn btn-success' to={`/my-active-final-orders`}>Active orders</Link>
+                        <Link className='btn btn-danger' style={{marginLeft:"5px"}} to={`/my-delivered-final-orders`}>Order history</Link>
                         </div>
                     </div>
                     </div>

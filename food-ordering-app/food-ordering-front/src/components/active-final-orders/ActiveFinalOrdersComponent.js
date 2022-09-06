@@ -6,6 +6,7 @@ import { Modal, Button } from 'react-bootstrap'
 import './ActiveFinalOrdersComponent.css';
 import ItemsByFinalOrderIdComponent from '../final-order-by-id/ItemsByFinalOrderIdComponent';
 import {Form} from 'react-bootstrap'
+import Moment from 'moment';
 
 export const ActiveFinalOrdersComponent = () => {
 
@@ -39,6 +40,7 @@ export const ActiveFinalOrdersComponent = () => {
     const handleShowItemsByFinalOrderId = (finalOrderId) => {
         
         getOrderItemsByFinalOrderId(finalOrderId);
+        setActiveOrderId(finalOrderId);
         setShow(true);
 
         
@@ -174,13 +176,13 @@ export const ActiveFinalOrdersComponent = () => {
                             <td className='td-content'>{activeFinalOrder.id}</td>
                             <td className='td-content'>{activeFinalOrder.address}</td>
                             <td className='td-content'>{activeFinalOrder.phoneNumber}</td>
-                            <td className='td-content'>{activeFinalOrder.date}</td>
+                            <td className='td-content'>{Moment(activeFinalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
                             <td className='td-content'>{activeFinalOrder.status}</td>
                             <td className='td-content'>{activeFinalOrder.finalPrice}</td>
                             
                             
                             <td className='td-content'>
-                                <button className='btn btn-info' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
+                                <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                             </td>
                             {/* <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => setFinalOrderToDelivered(activeFinalOrder.id)}>Click if delivered</button>
@@ -208,7 +210,7 @@ export const ActiveFinalOrdersComponent = () => {
 
         <Modal size='lg' centered show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-            <Modal.Title>Ordered items</Modal.Title>
+            <Modal.Title>Ordered items for id: {activeOrderId}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

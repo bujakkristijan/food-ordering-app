@@ -84,7 +84,7 @@ const ListEmployeeComponent = () => {
                           <td className="td-content">{employee.phoneNumber}</td>
                           <td className="td-content">{employee.address}</td>
                           <td>
-                              <Link className='btn btn-info' to={`/edit-employee/${employee.id}`}>Update</Link>
+                              <Link className='btn btn-success' to={`/edit-employee/${employee.id}`}>Update</Link>
                               <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(employee.id)}
                               style={{marginLeft:"5px"}}>Delete</button>
                           </td>

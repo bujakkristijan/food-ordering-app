@@ -33,7 +33,6 @@ public class FinalOrder {
 	private int finalPrice;
 	private String address;
 	private String phoneNumber;
-//	private Status status;
 	private String status;
 	
 	public FinalOrder() {

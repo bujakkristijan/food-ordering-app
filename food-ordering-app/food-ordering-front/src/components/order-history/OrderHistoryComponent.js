@@ -13,6 +13,8 @@ const OrderHistoryComponent = () => {
     const [orderItemsByFinalOrderId, setOrderItemsByFinalOrderId] = useState([]);
     const [show, setShow] = useState(false);
 
+    const [activeOrderId, setActiveOrderId] = useState(1);
+
     
 
 
@@ -29,6 +31,7 @@ const OrderHistoryComponent = () => {
     const handleShowItemsByFinalOrderId = (finalOrderId) => {
         
         getOrderItemsByFinalOrderId(finalOrderId);
+        setActiveOrderId(finalOrderId);
         setShow(true);
 
         
@@ -77,7 +80,7 @@ const OrderHistoryComponent = () => {
                         <td className='td-content'>{activeFinalOrder.status}</td>
                         <td className='td-content'>{activeFinalOrder.finalPrice}</td>    
                         <td className='td-content'>
-                            <button className='btn btn-info' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
+                            <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                         </td>
                     </tr>
                 )}
@@ -89,7 +92,7 @@ const OrderHistoryComponent = () => {
 
     <Modal size='lg' centered show={show} onHide={handleClose}>
     <Modal.Header closeButton>
-        <Modal.Title>Ordered items</Modal.Title>
+        <Modal.Title>Ordered items for id: {activeOrderId}</Modal.Title>
     </Modal.Header>
 
     <Modal.Body>

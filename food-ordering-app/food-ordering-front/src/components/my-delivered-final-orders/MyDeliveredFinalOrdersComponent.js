@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Modal, Button } from 'react-bootstrap'
 import './MyDeliveredFinalOrdersComponent.css';
 import ItemsByFinalOrderIdComponent from '../final-order-by-id/ItemsByFinalOrderIdComponent';
+import Moment from 'moment';
 
 const MyDeliveredFinalOrdersComponent = () => {
 
@@ -12,7 +13,7 @@ const MyDeliveredFinalOrdersComponent = () => {
     const [orderItemsByFinalOrderId, setOrderItemsByFinalOrderId] = useState([]);
     const [show, setShow] = useState(false);
 
-    
+    const [activeOrderId, setActiveOrderId] = useState(1);
 
 
     useEffect(() => {
@@ -28,6 +29,7 @@ const MyDeliveredFinalOrdersComponent = () => {
     const handleShowItemsByFinalOrderId = (finalOrderId) => {
         
         getOrderItemsByFinalOrderId(finalOrderId);
+        setActiveOrderId(finalOrderId);
         setShow(true);
 
         
@@ -85,13 +87,13 @@ const MyDeliveredFinalOrdersComponent = () => {
                             <td className='td-content'>{activeFinalOrder.id}</td>
                             <td className='td-content'>{activeFinalOrder.address}</td>
                             <td className='td-content'>{activeFinalOrder.phoneNumber}</td>
-                            <td className='td-content'>{activeFinalOrder.date}</td>
+                            <td className='td-content'>{Moment(activeFinalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
                             <td className='td-content'>{activeFinalOrder.status}</td>
                             <td className='td-content'>{activeFinalOrder.finalPrice}</td>
                             
                             
                             <td className='td-content'>
-                                <button className='btn btn-info' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
+                                <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                             </td>
                             {/* <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => setFinalOrderToDelivered(activeFinalOrder.id)}>Click if delivered</button>
@@ -108,7 +110,7 @@ const MyDeliveredFinalOrdersComponent = () => {
 
         <Modal size='lg' centered show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-            <Modal.Title>Ordered items</Modal.Title>
+            <Modal.Title>Ordered items for id: {activeOrderId}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

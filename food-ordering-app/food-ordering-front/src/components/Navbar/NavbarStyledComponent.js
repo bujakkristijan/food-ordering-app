@@ -120,7 +120,7 @@ const NavbarStyledComponent = () => {
                      
           </Link>}
           {/* nzm sto nece da prikaze myprofile kad je role user a za employee radi */}
-           {localStorage.role==="USER" || localStorage.role==="EMPLOYEE" && <Link className='myProfileLink' to='/my-profile' >
+           {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-profile' >
                  
 
                  My Profile

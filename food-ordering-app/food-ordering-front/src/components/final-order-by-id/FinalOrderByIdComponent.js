@@ -101,7 +101,7 @@ const FinalOrderByIdComponent = () => {
                         
                         
                         <td className='td-content'>
-                            <button className='btn btn-info' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
+                            <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
                         </td>
 
                     </tr>
