@@ -13,7 +13,6 @@ const EditMealComponent = (props) => {
     getAllMealTypes();
   }, [])
   
-
   const getAllMealTypes = () =>{
     MealService.getAllMealTypes().then((response) =>{
         setMealTypes(response.data);
@@ -27,18 +26,9 @@ const EditMealComponent = (props) => {
     selectedFile.setSelectedFile(e.target.files[0]);
   }
 
-
-  
   return (
     <div>
-      
-        <div className='container-add-meal'>
-          
-            
-              
-                
-              
-              
+        <div className='container-add-meal'>   
                 <form>
                   <div className='form-group mb-2'>
                     <label className='form-label'>Name: </label>
@@ -47,12 +37,9 @@ const EditMealComponent = (props) => {
                         placeholder="Insert name" 
                         name = "name" 
                         className="form-control" 
-                        
                         value={meal.name}
-                        onChange = {(e) => meal.setName(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => meal.setName(e.target.value)}                       
+                        >                       
                     </input>
                   </div>
 
@@ -62,19 +49,13 @@ const EditMealComponent = (props) => {
                         type="text"
                         placeholder="Insert price" 
                         name = "price" 
-                        className="form-control" 
-                        
+                        className="form-control"                      
                         value={meal.price}
-                        onChange = {(e) => meal.setPrice(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => meal.setPrice(e.target.value)}                       
+                        >                     
                     </input>
                   </div>
 
-                 
-                  
-                 
                  <div className='form-group mb-2'>
                     <label className='form-label'>Type: </label>
                     <Form.Select value={JSON.stringify(meal.mealType)} onChange={(e)=>meal.setMealType(JSON.parse(e.target.value))}>
@@ -83,29 +64,20 @@ const EditMealComponent = (props) => {
                         <option key={mealTypeItem.id} value={JSON.stringify(mealTypeItem)} >{mealTypeItem.typeName}</option>
                       )
                     })}
-                    
                     </Form.Select>
                   </div>
-                  
-                  
+ 
                   <div className='form-group mb-2'>
                     <label className='form-label'>Upload image </label>
                     <input  
                         type="file"
                         placeholder="Insert price" 
                         name = "image" 
-                        className="form-control" 
-                        
-                        
-                        onChange = {(e) =>onChoseFile(e)}
-                        
-                        >
-                        
+                        className="form-control"       
+                        onChange = {(e) =>onChoseFile(e)}                       
+                        >                       
                     </input>
                   </div>
-
-
-
                 {/*
                   <div className='form-group mb-2'>
                     <label className='form-label'>Upload picture: </label>
@@ -123,19 +95,9 @@ const EditMealComponent = (props) => {
                     </input>
                   </div>
                   */
-                }
-                  
-
-
-                  
-
-                  
-                </form>
-              
-            </div>
-          
-        
-        
+                }          
+                </form>             
+            </div>     
     </div>
   )
 }

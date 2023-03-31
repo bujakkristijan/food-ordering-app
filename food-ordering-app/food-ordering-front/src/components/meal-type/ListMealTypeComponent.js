@@ -18,7 +18,9 @@ const ListMealTypeComponent = () => {
     const [image, setImage] = useState('');
     const [imageName, setImageName] = useState('');
     const [description, setDescription] = useState('');
-    
+
+    const [show, setShow] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
 
     const [selectedFile, setSelectedFile] = useState(undefined);
 
@@ -27,20 +29,13 @@ const ListMealTypeComponent = () => {
     const mealType = {id, typeName, description, image, imageName,  setImage, setImageName, setTypeName, setDescription}
 
     useEffect(() => {
-        console.log("USAOOOO")
       getAllMealTypes();
-      
     }, [])
     
-
     const getAllMealTypes = () =>{
         MealTypeService.getAllMealTypes().then((response) =>{
-           
             setMealTypes(response.data);
             sortMealTypesById();
-            
-           
-            console.log("RESPONSE DATA  " + JSON.stringify(response.data));
         }).catch(error =>{
             console.log(error);
         })
@@ -50,15 +45,10 @@ const ListMealTypeComponent = () => {
         mealTypes.sort((a, b) => a.id - b.id);
     }
 
-    const [show, setShow] = useState(false);
-    const [showEdit, setShowEdit] = useState(false);
-
     const handleClose = () => {
         setShow(false);
         mealType.setTypeName('');
         mealType.setDescription('');
-        
-
         }
 
     const handleCloseEdit = () => {
@@ -66,35 +56,29 @@ const ListMealTypeComponent = () => {
         //meal.setId(0);
         mealType.setTypeName('');
         mealType.setDescription('');
-
         }
+
     const handleShow = () => {
         setShow(true);
         setId(null); //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
-        
     };
 
     const handleShowEdit = (meal) => {
         setShowEdit(true);
         setId(mealType.id);
         setTypeName(mealType.typeName);
-        setDescription(mealType.description);
-        
-        
+        setDescription(mealType.description); 
     };
 
     const handleSubmitEdit = () => {
-       
         MealTypeService.updateMealType(mealType).then((response) =>{
             const responseFromServer = response.data;
             if(responseFromServer == "success"){
                 alert("Uspesno editovano");
                 handleCloseEdit();
-                getAllMealTypes();
-                
+                getAllMealTypes();   
             }
-        })
-        
+        })  
     }
 
     const handleSubmit = () => {
@@ -102,7 +86,6 @@ const ListMealTypeComponent = () => {
         //meal.setId(undefined);
         //setId(undefined);
        if(selectedFile != null && selectedFile != undefined){
-        
         fd.append('image', selectedFile);
         fd.append('mealType', JSON.stringify(mealType));
         console.log("Selected fileeee" + selectedFile);
@@ -116,16 +99,13 @@ const ListMealTypeComponent = () => {
             if(responseFromServer == "valid"){
                 alert("Uspesno");
                 handleClose();
-                getAllMealTypes();
-                
+                getAllMealTypes();    
             }
         })
-        
     }
 
 
     const deleteMealType = (mealTypeId) =>{
-        console.log("ID EMPLOYEE: " + mealTypeId);
         MealTypeService.deleteMealType(mealTypeId).then((response) =>{
             getAllMealTypes();
         }).catch(error => {
@@ -133,9 +113,7 @@ const ListMealTypeComponent = () => {
         })
     }
 
-    const alertAreYouSureDelete = (id) =>{
-       
-      
+    const alertAreYouSureDelete = (id) =>{ 
           Swal.fire({
             title: 'Are you sure?',
             text: "If you click yes, meal type will be deleted!",
@@ -168,11 +146,8 @@ const ListMealTypeComponent = () => {
                         <th className='theadth'>Meal ID</th>
                         <th className='theadth'>Image</th>
                         <th className='theadth'>Type name</th>
-                        <th className='theadth'>Description</th>
-                       
-                        <th className='theadth'>Action</th>
-                        
-
+                        <th className='theadth'>Description</th> 
+                        <th className='theadth'>Action</th>                   
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -180,28 +155,20 @@ const ListMealTypeComponent = () => {
                     {mealTypes.map(
                         mealType => <tr key={mealType.id}>
                             <td className='td-content'>{mealType.id}</td>
-                            <td className='td-content-img'>
-                            
-                              <img className='mealPic' src={"data:image/png;base64," + mealType.image} alt=''/> 
-                            
-                                </td>
-                                
+                            <td className='td-content-img'>                           
+                              <img className='mealPic' src={"data:image/png;base64," + mealType.image} alt=''/>                         
+                            </td>                               
                             <td className='td-content'>{mealType.typeName}</td>
-                            <td className='td-content'>{mealType.description}</td>
-                            
-                            
+                            <td className='td-content'>{mealType.description}</td>                                           
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() =>handleShowEdit(mealType)}>Update</button>
                                 <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(mealType.id)}
                                     style={{ marginLeft: "5px" }}>Delete</button>
                             </td>
-
                         </tr>
                     )}
                 </tbody>
-
             </table>
-
         </div>
 
         <Modal show={show} onHide={handleClose}>
@@ -234,7 +201,6 @@ const ListMealTypeComponent = () => {
                 </Modal.Footer>
             </Modal>
         </>
-    
   )
 }
 

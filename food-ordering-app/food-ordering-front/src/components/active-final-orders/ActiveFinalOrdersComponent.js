@@ -80,7 +80,6 @@ export const ActiveFinalOrdersComponent = () => {
         activeOrderIdLet = activeFinalOrderId; // OVAKO SAM MORAO DA NE PAMTI VREDNOST OD PRETHODNOG
         // setActiveOrderId(activeFinalOrderId); ZASTO PAMTI VREDNOST PRETHODNOG ??? 
         const finalOrderWithStatusAndId = { activeOrderId: activeOrderIdLet, status };
-        console.log("fosi  " + JSON.stringify(finalOrderWithStatusAndId));
         MealService.changeFinalOrderStatus(finalOrderWithStatusAndId).then((response)=>{
             const responseFromServer = response.data;
             if(responseFromServer === "success"){

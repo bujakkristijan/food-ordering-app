@@ -9,13 +9,11 @@ const CreateMealComponent = (props) => {
   // const {user} = props !!!!
   // className = 'form-control', bootstrapov input forme, da lepse izgleda
   const [mealTypes, setMealTypes] = useState([]);
-  
 
   useEffect(() => {
     getAllMealTypes();
   }, [])
   
-
   const getAllMealTypes = () =>{
     MealService.getAllMealTypes().then((response) =>{
         setMealTypes(response.data);
@@ -29,18 +27,9 @@ const CreateMealComponent = (props) => {
     selectedFile.setSelectedFile(e.target.files[0]);
   }
 
-
-  
   return (
-    <div>
-      
-        <div className='container-add-meal'>
-          
-            
-              
-                
-              
-              
+    <div>      
+        <div className='container-add-meal'>          
                 <form>
                   <div className='form-group mb-2'>
                     <label className='form-label'>Name: </label>
@@ -48,13 +37,10 @@ const CreateMealComponent = (props) => {
                         type="text"
                         placeholder="Insert name" 
                         name = "name" 
-                        className="form-control" 
-                        
+                        className="form-control"                         
                         value={meal.name}
-                        onChange = {(e) => meal.setName(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => meal.setName(e.target.value)}                        
+                        >                       
                     </input>
                   </div>
 
@@ -64,19 +50,13 @@ const CreateMealComponent = (props) => {
                         type="text"
                         placeholder="Insert price" 
                         name = "price" 
-                        className="form-control" 
-                        
+                        className="form-control"                        
                         value={meal.price}
-                        onChange = {(e) => meal.setPrice(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => meal.setPrice(e.target.value)}                       
+                        >                       
                     </input>
-                  </div>
-
-                 
-                 { 
-                 
+                  </div>               
+                 {      
                  <div className='form-group mb-2'>
                     <label className='form-label'>Type: </label>
                     <Form.Select onChange={(e)=>meal.setMealType(JSON.parse(e.target.value))}>
@@ -84,11 +64,9 @@ const CreateMealComponent = (props) => {
                       return (
                         <option key={mealTypeItem.id} value={JSON.stringify(mealTypeItem)} >{mealTypeItem.typeName}</option>
                       )
-                    })}
-                    
+                    })}             
                     </Form.Select>
-                  </div>
-                  
+                  </div>  
                   }
 
                   <div className='form-group mb-2'>
@@ -97,19 +75,11 @@ const CreateMealComponent = (props) => {
                         type="file"
                         placeholder="Insert price" 
                         name = "image" 
-                        className="form-control" 
-                        
-                        
-                        onChange = {(e) =>onChoseFile(e)}
-                        
-                        >
-                        
+                        className="form-control"   
+                        onChange = {(e) =>onChoseFile(e)}                        
+                        >                       
                     </input>
-                  </div>
-
-                 
-
-           
+                  </div>       
                 {/*
                   <div className='form-group mb-2'>
                     <label className='form-label'>Upload picture: </label>
@@ -127,19 +97,9 @@ const CreateMealComponent = (props) => {
                     </input>
                   </div>
                   */
-                }
-                  
-
-
-                  
-
-                  
-                </form>
-              
-            </div>
-          
-        
-        
+                }        
+                </form>             
+            </div>      
     </div>
   )
 }

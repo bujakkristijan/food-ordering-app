@@ -7,14 +7,7 @@ const EditMyProfileComponent = (props) => {
   
   return (
     <div>
-      
         <div className='container-add-employee'>
-          
-            
-              
-                
-              
-              
                 <form>
                   <div className='form-group mb-2'>
                     <label className='form-label'>First name: </label>
@@ -22,13 +15,10 @@ const EditMyProfileComponent = (props) => {
                         type="text"
                         placeholder="Insert first name" 
                         name = "firstName" 
-                        className="form-control" 
-                        
+                        className="form-control"  
                         value={user.firstNameEdit}
-                        onChange = {(e) => user.setFirstNameEdit(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => user.setFirstNameEdit(e.target.value)}  
+                        >  
                     </input>
                   </div>
 
@@ -38,13 +28,10 @@ const EditMyProfileComponent = (props) => {
                         type="text"
                         placeholder="Insert last name" 
                         name = "lastName" 
-                        className="form-control" 
-                        
+                        className="form-control"      
                         value={user.lastNameEdit}
-                        onChange = {(e) => user.setLastNameEdit(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => user.setLastNameEdit(e.target.value)}      
+                        >      
                     </input>
                   </div>
 
@@ -54,13 +41,10 @@ const EditMyProfileComponent = (props) => {
                         type="text"
                         placeholder="Insert email" 
                         name = "email" 
-                        className="form-control" 
-                        
+                        className="form-control"     
                         value={user.emailEdit}
-                        onChange = {(e) => user.setEmailEdit(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => user.setEmailEdit(e.target.value)}     
+                        >      
                     </input>
                   </div>
 
@@ -70,13 +54,10 @@ const EditMyProfileComponent = (props) => {
                         type="text"
                         placeholder="Insert phone number" 
                         name = "phoneNumber" 
-                        className="form-control" 
-                        
+                        className="form-control"        
                         value={user.phoneNumberEdit}
-                        onChange = {(e) => user.setPhoneNumberEdit(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => user.setPhoneNumberEdit(e.target.value)}        
+                        >         
                     </input>
                   </div>
 
@@ -86,12 +67,10 @@ const EditMyProfileComponent = (props) => {
                       type="text"
                       placeholder="Insert username" 
                       name = "username" 
-                      className="form-control" 
-                      
+                      className="form-control"             
                       value={user.usernameEdit}
                       onChange = {(e) => user.setUsernameEdit(e.target.value)}
-                      disabled = {true}
-                      
+                      disabled = {true}           
                       >
                       </input>
                   </div>
@@ -102,12 +81,9 @@ const EditMyProfileComponent = (props) => {
                       type="text"
                       placeholder="Insert address" 
                       name = "address" 
-                      className="form-control" 
-                      
+                      className="form-control"                
                       value={user.addressEdit}
-                      onChange = {(e) => user.setAddressEdit(e.target.value)}
-                      
-                      
+                      onChange = {(e) => user.setAddressEdit(e.target.value)}                              
                       >
                       </input>
                   </div>
@@ -118,26 +94,14 @@ const EditMyProfileComponent = (props) => {
                         type="text"
                         placeholder="Insert password" 
                         name = "password" 
-                        className="form-control" 
-                        
+                        className="form-control"                 
                         value={user.passwordEdit}
-                        onChange = {(e) => user.setPasswordEdit(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => user.setPasswordEdit(e.target.value)}                 
+                        >                 
                     </input>
-                  </div>
-
-
-                  
-
-                  
-                </form>
-              
-            </div>
-          
-        
-        
+                  </div>        
+                </form>       
+            </div>  
     </div>
   )
 }

@@ -15,9 +15,6 @@ const OrderHistoryComponent = () => {
 
     const [activeOrderId, setActiveOrderId] = useState(1);
 
-    
-
-
     useEffect(() => {
       getAllDeliveredFinalOrders();
     }, [])
@@ -29,12 +26,9 @@ const OrderHistoryComponent = () => {
     }
     
     const handleShowItemsByFinalOrderId = (finalOrderId) => {
-        
         getOrderItemsByFinalOrderId(finalOrderId);
         setActiveOrderId(finalOrderId);
-        setShow(true);
-
-        
+        setShow(true); 
     };
 
     const handleClose= () => {
@@ -50,7 +44,6 @@ const OrderHistoryComponent = () => {
         })
     }
 
-
   return (
    <>
     <div className='container'>
@@ -65,8 +58,6 @@ const OrderHistoryComponent = () => {
                     <th className='theadth'>Status</th>
                     <th className='theadth'>Final price</th>
                     <th className='theadth'>Orders</th>
-                    
-
                 </tr>
             </thead>
             {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -85,9 +76,7 @@ const OrderHistoryComponent = () => {
                     </tr>
                 )}
             </tbody>
-
         </table>
-
     </div>
 
     <Modal size='lg' centered show={show} onHide={handleClose}>

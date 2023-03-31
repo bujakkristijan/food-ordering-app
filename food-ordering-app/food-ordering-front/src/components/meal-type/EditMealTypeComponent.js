@@ -7,27 +7,18 @@ const EditMealTypeComponent = (props) => {
     const selectedFile = props.file;
   // const {user} = props !!!!
   // className = 'form-control', bootstrapov input forme, da lepse izgleda
-  
 
-  useEffect(() => {
-   
+  useEffect(() => { 
   }, [])
-  
-
-  
 
   const onChoseFile = (e) =>{
     console.log(e.target.files[0]);
     selectedFile.setSelectedFile(e.target.files[0]);
   }
 
-
-  
   return (
-    <div>
-      
+    <div> 
         <div className='container-add-meal'>
-  
                 <form>
                   <div className='form-group mb-2'>
                     <label className='form-label'>TypeName: </label>
@@ -35,13 +26,10 @@ const EditMealTypeComponent = (props) => {
                         type="text"
                         placeholder="Insert name" 
                         name = "typeName" 
-                        className="form-control" 
-                        
+                        className="form-control"                       
                         value={mealType.typeName}
-                        onChange = {(e) => mealType.setTypeName(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => mealType.setTypeName(e.target.value)}                    
+                        >                   
                     </input>
                   </div>
 
@@ -51,44 +39,26 @@ const EditMealTypeComponent = (props) => {
                         type="text"
                         placeholder="Insert description" 
                         name = "description" 
-                        className="form-control" 
-                        
+                        className="form-control"                        
                         value={mealType.description}
-                        onChange = {(e) => mealType.setDescription(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => mealType.setDescription(e.target.value)}                      
+                        >                        
                     </input>
                   </div>
-
-                 
-                  
-                 
-                
-                  
-                  
+             
                   <div className='form-group mb-2'>
                     <label className='form-label'>Upload image </label>
                     <input  
                         type="file"
                         placeholder="Insert price" 
                         name = "image" 
-                        className="form-control" 
-                        
-                        
-                        onChange = {(e) =>onChoseFile(e)}
-                        
-                        >
-                        
+                        className="form-control"                       
+                        onChange = {(e) =>onChoseFile(e)}                      
+                        >                        
                     </input>
                   </div>
-  
-                </form>
-              
-            </div>
-          
-        
-        
+                </form>           
+            </div>     
     </div>
   )
 }

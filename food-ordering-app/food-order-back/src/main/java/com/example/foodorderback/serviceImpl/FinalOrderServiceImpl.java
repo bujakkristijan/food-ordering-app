@@ -150,16 +150,11 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 	public Long makeFinalOrder(OrderItemDTO orderItemDTO) {
 		Long finalOrderId = (long) 0;
 		try {
-			List<OrderItem> orderItems = new ArrayList<OrderItem>();
-			//OrderItem orderItem = new OrderItem();
-			
+			//List<OrderItem> orderItems = new ArrayList<OrderItem>();
 			FinalOrder finalOrder = new FinalOrder();
 			finalOrder.setDate(new Date());
 			finalOrder.setStatus("ORDERED");
 			finalOrder.setFinalPrice(orderItemDTO.getFinalPrice());
-			
-			
-			
 			
 			if(userService.getCurrentUser()!=null) {
 				User loggedUser = userService.getCurrentUser();
@@ -170,9 +165,7 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 			}else {
 				finalOrder.setAddress(orderItemDTO.getAddress());
 				finalOrder.setPhoneNumber(orderItemDTO.getPhoneNumber());
-			}
-			
-			
+			}			
 			FinalOrder savedFinalOrder = save(finalOrder);
 			finalOrderId = savedFinalOrder.getId();
 			
@@ -181,20 +174,12 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 				orderItem.setMeal(itc.getMeal());
 				orderItem.setQuantity(itc.getQuantity());
 				orderItem.setFinalOrder(savedFinalOrder);
-				orderItemRepository.save(orderItem);
-				//orderItems.add(orderItem);	
+				orderItemRepository.save(orderItem);	
 				}
-			
-//			for(OrderItem oi: orderItems) {
-//				oi.setFinalOrder(savedFinalOrder);
-//				orderItemRepository.save(oi);
-//			}
 		} catch (Exception e) {
 			finalOrderId = (long) 0;
 		}
-		return finalOrderId;
-		
-		
+		return finalOrderId;	
 	}
 	
 	@Override

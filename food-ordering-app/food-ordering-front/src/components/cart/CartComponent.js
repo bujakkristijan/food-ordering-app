@@ -32,15 +32,11 @@ const CartComponent = () => {
 
   //ako nije ulogovan mora da unese adresu i br telefona
   
-
   const itemObjToStore = { item, itemQuantity}
-  
+
     useEffect(() => {
-    
-    
   }, [])
 
-   
     const handleShowEdit = (itemFromCart) => {
         setShowEdit(true);
         setId(null); //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
@@ -53,11 +49,7 @@ const CartComponent = () => {
         setItem(null)
     }
 
-    
-
     const alertAreYouSureDelete = (id) =>{
-       
-      console.log("okok: ",id)
         Swal.fire({
           title: 'Are you sure?',
           text: "If you click yes, items will be deleted!",
@@ -78,39 +70,23 @@ const CartComponent = () => {
           }
         })
       }
-    
-      
+         
       const submitFinalOrder = (itemsFromCartFinalOrder) =>{
-        console.log("items fo" + JSON.stringify(itemsFromCartFinalOrder));
+        // console.log("items fo" + JSON.stringify(itemsFromCartFinalOrder));
         MealService.sendItemsForFinalOrder(itemsFromCartFinalOrder).then((response) =>{
             const responseFromServer = response.data;
             // alert("Response from server: " + responseFromServer);
             //ako je response razlicit od 0, znaci da je uspesno upisan final order i prosledjen id, po defaultu je 0
             if(responseFromServer != 0){
-              Swal.fire('Any fool can use a computer')
                 dispatch(deleteAllItems());
-                console.log("cart posle birsanja ", itemsFromCart)
+                // console.log("cart posle birsanja ", itemsFromCart)
                 if(localStorage.token == null || localStorage.token == ''){
                   handleCloseInsertDetails();
-                  // alert(responseFromServer);
-                  
-                  //alertSuccessOrdered();
-                  //hocu alertsuccess prvo pa timer pa onda da ispise poruku sa id
                   alertFinalOrderStringCheckInfo(responseFromServer);
                 }
                 else{
                   alertSuccessOrdered();
-                }
-                // Swal.fire(
-                //   'The Internet?',
-                //   'That thing is still around?',
-                //   'question'
-                // );
-                //alertFinalOrderStringCheckInfo(responseFromServer);
-                //alertSuccessOrdered();
-                
-                
-                
+                }     
             }
             else{
               alert("failed");
@@ -118,13 +94,11 @@ const CartComponent = () => {
         })
       }
 
-      
       const checkIfLoggedInBeforeSubmit = () =>{
         if(localStorage.token == null || localStorage.token == ''){
           handleShowInsertDetails();
         }
         else{
-          // submitFinalOrder(itemsFromCartFinalOrder);
           alertAreYouSureFinalOrder();
         }
       }
@@ -139,26 +113,19 @@ const CartComponent = () => {
       const handleCloseInsertDetails = () =>{
         setShowInsertDetails(false);
         setAddress('');
-        setPhoneNumber('');
-        
+        setPhoneNumber(''); 
         // setFinalPrice(0);
         // finalPriceVar = 0;
       }
     
 
       const alertAreYouSureFinalOrder = () =>{
-       
         sumFinalPrice();
         setFinalPrice(finalPriceVar);
-        console.log(JSON.stringify(finalPriceVar));
-        console.log(finalPriceVar);
+        // console.log(JSON.stringify(finalPriceVar));
+        // console.log(finalPriceVar);
         let textStr;
-        if(localStorage.token == null || localStorage.token == ''){
-           textStr = "Final price is: "+ finalPriceVar.toFixed(1) + " RSD. If you click yes, you will make final order!";
-        }else{
-           textStr = "Final price is: "+ finalPriceVar.toFixed(1) + " RSD. (10% OFF)! If you click yes, you will make final order!";
-        }
-        
+        textStr = "Final price is: "+ finalPriceVar.toFixed(1) + " RSD. (10% OFF)! If you click yes, you will make final order!";
         Swal.fire({
           title: 'Are you sure?',
           text: textStr,
@@ -169,20 +136,13 @@ const CartComponent = () => {
           confirmButtonText: 'Yes, make it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            console.log("FINAL PRICE VAR " + finalPriceVar);
-            console.log("OBJ " + JSON.stringify(itemsFromCartWhenLoggedWithFinalPrice));
-            console.log("FINAL PRICE SETOVAANNN " + JSON.stringify(finalPrice));
+            // console.log("FINAL PRICE VAR " + finalPriceVar);
+            // console.log("OBJ " + JSON.stringify(itemsFromCartWhenLoggedWithFinalPrice));
+            // console.log("FINAL PRICE SETOVAН " + JSON.stringify(finalPrice));
             setFinalPrice(finalPriceVar);
-            console.log("krajnja vrednost: ",itemsFromCartWhenLoggedWithFinalPrice)
+            // console.log("krajnja vrednost: ",itemsFromCartWhenLoggedWithFinalPrice)
             itemsFromCartWhenLoggedWithFinalPrice = { itemsFromCart, finalPrice: finalPriceVar}
             submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
-            
-           
-            Swal.fire(
-              'Ordered!',
-              'Final order has been successfully sent!.',
-              'success'
-            )
           }
           else{
             finalPriceVar = 0;
@@ -192,21 +152,18 @@ const CartComponent = () => {
 
       const sumFinalPrice = () =>{
         finalPriceVar = 0;
-        console.log("items from cart" + itemsFromCart);
+        // console.log("items from cart" + itemsFromCart);
         if(localStorage.token == null || localStorage.token == ''){
-          
           for(let i=0; i<itemsFromCart.length; i++){
             console.log(itemsFromCart[i].meal.price);
             finalPriceVar += itemsFromCart[i].meal.price*itemsFromCart[i].quantity;
           }
-          // setFinalPricePrecision(finalPrice.toPrecision(2));
         }
         else{
           for(let i=0; i<itemsFromCart.length; i++){
-            console.log("items from cart for" + itemsFromCart[i].meal.price);
+            // console.log("items from cart for" + itemsFromCart[i].meal.price);
             finalPriceVar += (itemsFromCart[i].meal.price)*0.9*itemsFromCart[i].quantity;
           }
-          // setFinalPricePrecision(finalPrice.toPrecision(2));
         }
       }
 
@@ -235,7 +192,6 @@ const CartComponent = () => {
           timer: 1500
         });
       }
-
       // const generateStringForOrderToCheckIfNotLoggedIn =(finalOrderId)=>{
       //    let textStr = "localhost:3000/finalOrder/"+finalOrderId;
       //    return textStr;
@@ -251,7 +207,6 @@ const CartComponent = () => {
           html:
           // <Link to={`/final-order/${finalOrderId}`}>localhost:3000/final-order/{finalOrderId}</Link>,
             `<a href=${linkStr}>${textStr}</a>`,
-            
           showCloseButton: true,
           focusConfirm: false,
           confirmButtonText:
@@ -274,40 +229,29 @@ const CartComponent = () => {
                 <th className='theadth'>Name</th>
                 <th className='theadth'>Price</th>
                 <th className='theadth'>Quantity</th>
-                <th className='theadth'>Action</th>
-                
-
+                <th className='theadth'>Action</th>               
             </tr>
         </thead>
         {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
         <tbody>
             {itemsFromCart.map(
-                itemFromCart => <tr key={itemFromCart.meal.id}>
-                    
-                    <td className='td-content-img'>
-                    
-                      <img className='mealPic' src={"data:image/png;base64," + itemFromCart.meal.image} alt=''/> 
-                    
-                        </td>
-                        
+                itemFromCart => <tr key={itemFromCart.meal.id}>                    
+                    <td className='td-content-img'>                  
+                      <img className='mealPic' src={"data:image/png;base64," + itemFromCart.meal.image} alt=''/>                   
+                    </td>                       
                     <td className='td-content'>{itemFromCart.meal.name}</td>
                     <td className='td-content'>{itemFromCart.meal.price}</td>
-                    <td className='td-content'>{itemFromCart.quantity}</td>
-                    
+                    <td className='td-content'>{itemFromCart.quantity}</td>                    
                     <td className='td-content'>
                         <button className='btn btn-success' onClick={() =>handleShowEdit(itemFromCart)}>Update</button>
                         <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(itemFromCart.meal.id)} 
                         style={{ marginLeft: "5px" }}>Delete</button> 
                     </td>
-
                 </tr>
             )}
         </tbody>
-
     </table>
-
 </div>
-
 
 {/* <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -355,7 +299,6 @@ const CartComponent = () => {
             <Button variant="primary" onClick={() => submitFinalOrder(itemsFromCartFinalOrder)}>Confirm final order</Button>
         </Modal.Footer>
     </Modal> 
-
     </>
   )
 }

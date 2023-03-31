@@ -7,28 +7,17 @@ const EditItemQuantityComponent = (props) => {
    const itemFromCart = props.itemFromCart;
    const itemQuantity = props.itemQuantity
    const setItemQuantity = props.setItemQuantity;
-
 //    const [itemQuantity, setItemQuantity] = useState(itemFromCart.quantity);
 //   const {itemFromCart} = props; 
   // const {user} = props !!!!
   // className = 'form-control', bootstrapov input forme, da lepse izgleda
   
-  
-
   useEffect(() => {
    
   }, [])
-  
-
-  
-
-  
-
-
-  
+   
   return (
-    <div>
-      
+    <div>    
         <div className='container-add-meal'>
                 <h5>Meal: {itemFromCart?.meal.name}</h5>
                 <h5>Price: {itemFromCart?.meal.price},00 RSD</h5>
@@ -42,19 +31,12 @@ const EditItemQuantityComponent = (props) => {
                         className="form-control" 
                         min={1}
                         value={itemQuantity}
-                        onChange = {(e) => setItemQuantity(+e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => setItemQuantity(+e.target.value)}                     
+                        >            
                     </input>
-                  </div>
-   
-                </form>
-              
-            </div>
-          
-        
-        
+                  </div> 
+                </form>             
+            </div>       
     </div>
   )
 }

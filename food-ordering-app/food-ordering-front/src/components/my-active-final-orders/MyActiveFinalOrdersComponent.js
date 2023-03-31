@@ -14,8 +14,6 @@ const MyActiveFinalOrdersComponent = () => {
     const [show, setShow] = useState(false);
 
     const [activeOrderId, setActiveOrderId] = useState(1);
-    
-
 
     useEffect(() => {
       getMyActiveFinalOrders();
@@ -27,13 +25,10 @@ const MyActiveFinalOrdersComponent = () => {
         })
     }
     
-    const handleShowItemsByFinalOrderId = (finalOrderId) => {
-        
+    const handleShowItemsByFinalOrderId = (finalOrderId) => { 
         getOrderItemsByFinalOrderId(finalOrderId);
         setActiveOrderId(finalOrderId);
-        setShow(true);
-
-        
+        setShow(true);   
     };
 
     const handleClose= () => {
@@ -44,23 +39,12 @@ const MyActiveFinalOrdersComponent = () => {
     const getOrderItemsByFinalOrderId = (finalOrderId) =>{
         MealService.getOrderItemsByFinalOrderId(finalOrderId).then((response) =>{
             //alert("RESPONSE ORDER ITEMS " + JSON.stringify(response.data));
-            setOrderItemsByFinalOrderId(response.data); //ZASTO NE RADIIII OVO SRANJEEEE
-            
+            setOrderItemsByFinalOrderId(response.data); //ZASTO NE RADIIII OVO SRANJEEEE       
             console.log('s');
         }).catch(error =>{
             console.log(error);
         })
     }
-
-   
-
-   
-
-
-    
-
-
-    
 
   return (
     <>
@@ -76,9 +60,6 @@ const MyActiveFinalOrdersComponent = () => {
                         <th className='theadth'>Status</th>
                         <th className='theadth'>Final price</th>
                         <th className='theadth'>Orders</th>
-                        
-                        
-
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -90,23 +71,17 @@ const MyActiveFinalOrdersComponent = () => {
                             <td className='td-content'>{activeFinalOrder.phoneNumber}</td>
                             <td className='td-content'>{Moment(activeFinalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
                             <td className='td-content'>{activeFinalOrder.status}</td>
-                            <td className='td-content'>{activeFinalOrder.finalPrice}</td>
-                            
-                            
+                            <td className='td-content'>{activeFinalOrder.finalPrice}</td>                         
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                             </td>
                             {/* <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => setFinalOrderToDelivered(activeFinalOrder.id)}>Click if delivered</button>
                             </td> */}
-                            
-
                         </tr>
                     )}
                 </tbody>
-
             </table>
-
         </div>
 
         <Modal size='lg' centered show={show} onHide={handleClose}>

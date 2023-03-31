@@ -243,14 +243,8 @@ const MyProfileComponent = () => {
                     </div>
                     </div>
                 </div>
-
-                
-
-
-
                 </div>
             </div>
-
             </div>
         </div>
     </div>

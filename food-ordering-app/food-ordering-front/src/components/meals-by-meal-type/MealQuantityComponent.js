@@ -6,26 +6,15 @@ import {Form} from 'react-bootstrap'
 const MealQuantityComponent = (props) => {
   const mealQuantity = props.mealQuantity; // u props se nalazi i user i metoda handle submit
   const meal = props.meal;
-  
   // const {user} = props !!!!
   // className = 'form-control', bootstrapov input forme, da lepse izgleda
-  
-  
 
   useEffect(() => {
    
   }, [])
   
-
-  
-
-  
-
-
-  
   return (
-    <div>
-      
+    <div>  
         <div className='container-add-meal'>
                 <h5>Meal: {meal.name}</h5>
                 <h5>Price: {meal.price},00 RSD</h5>
@@ -39,19 +28,12 @@ const MealQuantityComponent = (props) => {
                         className="form-control" 
                         min={1}
                         value={mealQuantity.mealQuantity}
-                        onChange = {(e) => mealQuantity.setMealQuantity(+e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => mealQuantity.setMealQuantity(+e.target.value)}                     
+                        >                      
                     </input>
-                  </div>
-   
-                </form>
-              
-            </div>
-          
-        
-        
+                  </div>  
+                </form>         
+            </div>    
     </div>
   )
 }

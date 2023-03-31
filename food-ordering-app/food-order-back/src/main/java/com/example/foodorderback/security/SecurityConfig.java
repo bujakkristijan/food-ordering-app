@@ -54,10 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	*/ 
 //	"/api/finalOrder/getOrderItemsByFinalOrderId/{id}", "/api/finalOrder/getAllActiveFinalOrders","/api/finalOrder/getFinalOrderById/{id}", "/api/finalOrder/createFinalOrder", "/api/meal/getAllMeals", "/api/mealType/getAllMealTypes", "/api/user/getCurrentUser", "/api/user/getAllEmployees"
 	@Override
+	/* , "/api/user/getAllUsers", , , "/api/finalOrder/getAllActiveFinalOrders" , "/api/user/getCurrentUser", "/api/user/getAllEmployees"*/
+	/* ****** ne znam zasto na frontu kada se employee uloguje, prvi put kada se zove getAllActiveOrders bude forbidden, a kada se klikne na neki drugi tab i vrati na isti, ne bude vise tako, kao da prvi put se ne proveri token kako treba ****** */
     protected void configure(HttpSecurity http) throws Exception {
 		http.cors().disable();
-        http.csrf().disable().authorizeRequests().antMatchers("/api/login", "/api/user/registration", "/api/user/createEmployee", 
-        		"/api/user/getAllUsers", "/api/meal/getMealsByMealTypeId/{id}", "/api/finalOrder/setFinalOrderToDelivered/{finalOrderId}", "/api/finalOrder/getOrderItemsByFinalOrderId/{id}", "/api/finalOrder/getAllActiveFinalOrders","/api/finalOrder/getFinalOrderById/{id}", "/api/finalOrder/createFinalOrder", "/api/meal/getAllMeals", "/api/mealType/getAllMealTypes", "/api/user/getCurrentUser", "/api/user/getAllEmployees")
+        http.csrf().disable().authorizeRequests().antMatchers("/api/login", "/api/user/registration", "/api/finalOrder/getAllActiveFinalOrders",
+        		"/api/finalOrder/createFinalOrder",	"/api/meal/getMealsByMealTypeId/{id}",  "/api/finalOrder/setFinalOrderToDelivered/{finalOrderId}", "/api/finalOrder/getOrderItemsByFinalOrderId/{id}","/api/finalOrder/getFinalOrderById/{id}",  "/api/meal/getAllMeals", "/api/mealType/getAllMealTypes")
         	.permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()

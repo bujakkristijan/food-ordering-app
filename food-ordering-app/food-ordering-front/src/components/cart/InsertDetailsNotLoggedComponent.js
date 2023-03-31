@@ -11,27 +11,8 @@ const InsertDetailsNotLoggedComponent = (props) => {
    const setPhoneNumber = props.details.setPhoneNumber;
    const finalPrice = props.details.finalPrice;
 
-//    const [itemQuantity, setItemQuantity] = useState(itemFromCart.quantity);
-//   const {itemFromCart} = props; 
-  // const {user} = props !!!!
-  // className = 'form-control', bootstrapov input forme, da lepse izgleda
-  
-  
-
-  useEffect(() => {
-   
-  }, [])
-  
-
-  
-
-  
-
-
-  
   return (
-    <div>
-      
+    <div> 
         <div className='container-add-meal'>
                 <h5>Final price: {finalPrice} RSD </h5>
                 <form>
@@ -43,10 +24,8 @@ const InsertDetailsNotLoggedComponent = (props) => {
                         name = "address" 
                         className="form-control" 
                         value={address}
-                        onChange = {(e) => setAddress(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => setAddress(e.target.value)}                       
+                        >                     
                     </input>
                   </div>
 
@@ -58,19 +37,12 @@ const InsertDetailsNotLoggedComponent = (props) => {
                         name = "phoneNumber" 
                         className="form-control" 
                         value={phoneNumber}
-                        onChange = {(e) => setPhoneNumber(e.target.value)}
-                        
-                        >
-                        
+                        onChange = {(e) => setPhoneNumber(e.target.value)}                 
+                        >              
                     </input>
                   </div>
-   
-                </form>
-              
-            </div>
-          
-        
-        
+                </form>  
+            </div>   
     </div>
   )
 }

@@ -7,8 +7,6 @@ const MenuMealTypeComponent = () => {
 
 const [mealTypes, setMealTypes] = useState([]);
 
-console.log("ASIOASJAKSMAKLSNLASKNKLASNLNKASNKLASNKLSA");
-
 useEffect(() =>{
     getAllMealTypes();
 }, [])
@@ -20,33 +18,24 @@ const getAllMealTypes = () =>{
         console.log(error);
     })
 }
-
-
   return (
     <div className='container-mealType'>
         {
             mealTypes.map((mealType) => {
                 return(
-                    <div className='card-meal-type' key={mealType.id}>
-                    {/* <div className='image-container'> */}
-                    <img className='image' src={"data:image/png;base64," + mealType.image} alt=''></img>
-                    {/* </div> */}
-                    <div className='name-container'>
-                        <h4 className='name-content'>{mealType.typeName}</h4>
+                    <div className='card-meal-type' key={mealType.id}>   
+                        <img className='image' src={"data:image/png;base64," + mealType.image} alt=''></img>     
+                        <div className='name-container'>
+                            <h4 className='name-content'>{mealType.typeName}</h4>
+                        </div>
+                        <div className='description-container'>
+                            <p>{mealType.description}</p>
+                        </div>
+                        <Link className='btn btn-success' to={`/meals-by-meal-type/${mealType.id}`}>See items</Link>
                     </div>
-                    <div className='description-container'>
-                        <p>{mealType.description}</p>
-                    </div>
-                    {/* <div className='button-container'> */}
-                    <Link className='btn btn-success' to={`/meals-by-meal-type/${mealType.id}`}>See items</Link>
-                        {/* <button className='btn btn-success'>See items</button> */}
-                    {/* </div> */}
-                </div>
                 )
             })
         }
-        
-    
     </div>
   )
 }

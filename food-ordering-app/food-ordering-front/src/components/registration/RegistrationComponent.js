@@ -16,16 +16,10 @@ const [address, setAddress] = useState('')
 
 const navigate = useNavigate();
 
-
-
 const createUser = (e) => {
     e.preventDefault(); // da se ne bi osvezavala stranica svaki put kad se form submituje, tako kaze indijac na yt
-
     const user = {firstName, lastName, email, username, phoneNumber, password, address}
-
-
     UserService.createUser(user).then((response) =>{
-
         console.log(response.data);
         if(response.data.toString() == "success"){
           alertSuccess();
@@ -37,12 +31,9 @@ const createUser = (e) => {
         else if(response.data.toString() == "emailOrUsernameAlreadyExist"){
           alertInvalid(response.data.toString());
         }
-        
-  
       }).catch(error =>{
         console.log("Error: " + error);
       })
-
 }
 
 const alertSuccess = () =>{
@@ -54,10 +45,6 @@ const alertSuccess = () =>{
       showConfirmButton: false,
       timer: 1500
     });
-
-    /* TEST */
-
- 
   }
 
   const alertInvalid = (invalidText) =>{
@@ -76,8 +63,6 @@ const alertSuccess = () =>{
       text: titleContent,
     })
   }
-
-
 
   return (
     <div>
@@ -99,8 +84,7 @@ const alertSuccess = () =>{
                         className="form-control" 
                         value={firstName}
                         onChange = {(e) => setFirstName(e.target.value)}
-                        >
-                        
+                        >    
                     </input>
                   </div>
 
@@ -113,8 +97,7 @@ const alertSuccess = () =>{
                         className="form-control" 
                         value={lastName}
                         onChange = {(e) => setLastName(e.target.value)}
-                        >
-                        
+                        >                      
                     </input>
                   </div>
 
@@ -127,8 +110,7 @@ const alertSuccess = () =>{
                         className="form-control" 
                         value={email}
                         onChange = {(e) => setEmail(e.target.value)}
-                        >
-                        
+                        >                        
                     </input>
                   </div>
 
@@ -141,8 +123,7 @@ const alertSuccess = () =>{
                         className="form-control" 
                         value={phoneNumber}
                         onChange = {(e) => setPhoneNumber(e.target.value)}
-                        >
-                        
+                        >                       
                     </input>
                   </div>
 
@@ -170,8 +151,7 @@ const alertSuccess = () =>{
                         className="form-control" 
                         value={password}
                         onChange = {(e) => setPassword(e.target.value)}
-                        >
-                        
+                        >                      
                     </input>
                   </div>
 
@@ -184,19 +164,16 @@ const alertSuccess = () =>{
                         className="form-control" 
                         value={address}
                         onChange = {(e) => setAddress(e.target.value)}
-                        >
-                        
+                        >                    
                     </input>
                   </div>
-
                   <button id='registrationBtn' className='btn btn-success' onClick={(e) => createUser(e)}>Submit</button>
                   <Link to="/employees" className='btn btn-danger' style={{marginLeft:"5px"}}>Cancel</Link>
                 </form>
               </div>
             </div>
           </div>
-        </div>
-        
+        </div>    
     </div>
   )
 }

@@ -19,6 +19,9 @@ const ListMealComponent = () => {
     const [imageName, setImageName] = useState('');
     const [mealType, setMealType] = useState({id: 1, typeName: 'PIZZA'});
 
+    const [show, setShow] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
+
     const [selectedFile, setSelectedFile] = useState(undefined);
 
     const file = {selectedFile, setSelectedFile};
@@ -26,33 +29,22 @@ const ListMealComponent = () => {
     const meal = {id, name, price, image, imageName, mealType, setName, setPrice, setImage, setImageName, setMealType}
 
     useEffect(() => {
-        console.log("USAOOOO")
       getAllMeals();
-      
     }, [])
     
-
     const getAllMeals = () =>{
         MealService.getAllMeals().then((response) =>{
-            console.log("response " + response.data[0].name);
             setMeals(response.data);
-            
-           
-            console.log("RESPONSE DATA  " + JSON.stringify(response.data));
         }).catch(error =>{
             console.log(error);
         })
     }
-
-    const [show, setShow] = useState(false);
-    const [showEdit, setShowEdit] = useState(false);
 
     const handleClose = () => {
         setShow(false);
         meal.setName('');
         meal.setPrice('');
         meal.setMealType({id: 1, typeName: 'PIZZA'});
-
         }
 
     const handleCloseEdit = () => {
@@ -61,12 +53,10 @@ const ListMealComponent = () => {
         meal.setName('');
         meal.setPrice('');
         meal.setMealType({id: 1, typeName: 'PIZZA'});
-
         }
     const handleShow = () => {
         setShow(true);
         setId(null); //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
-        
     };
 
     const handleShowEdit = (meal) => {
@@ -75,21 +65,17 @@ const ListMealComponent = () => {
         setName(meal.name);
         setPrice(meal.price);
         setMealType(meal.mealType);
-        
     };
 
     const handleSubmitEdit = () => {
-       
         MealService.updateMeal(meal).then((response) =>{
             const responseFromServer = response.data;
             if(responseFromServer == "success"){
                 alert("Uspesno editovano");
                 handleCloseEdit();
-                getAllMeals();
-                
+                getAllMeals();  
             }
-        })
-        
+        }) 
     }
 
     const handleSubmit = () => {
@@ -97,7 +83,6 @@ const ListMealComponent = () => {
         //meal.setId(undefined);
         //setId(undefined);
        if(selectedFile != null && selectedFile != undefined){
-        
         fd.append('image', selectedFile);
         fd.append('meal', JSON.stringify(meal));
         console.log("Selected fileeee" + selectedFile);
@@ -111,11 +96,9 @@ const ListMealComponent = () => {
             if(responseFromServer == "valid"){
                 alert("Uspesno");
                 handleClose();
-                getAllMeals();
-                
+                getAllMeals(); 
             }
         })
-        
     }
 
 
@@ -129,8 +112,6 @@ const ListMealComponent = () => {
     }
 
     const alertAreYouSureDelete = (id) =>{
-       
-      
           Swal.fire({
             title: 'Are you sure?',
             text: "If you click yes, meal will be deleted!",
@@ -152,7 +133,6 @@ const ListMealComponent = () => {
         }
 
   return (
-    
     <>
     <div className='container'>
             <h2 className='text-center'>Meal list</h2>
@@ -166,8 +146,6 @@ const ListMealComponent = () => {
                         <th className='theadth'>Type</th>
                         <th className='theadth'>Price</th>
                         <th className='theadth'>Action</th>
-                        
-
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -176,27 +154,20 @@ const ListMealComponent = () => {
                         meal => <tr key={meal.id}>
                             <td className='td-content'>{meal.id}</td>
                             <td className='td-content-pic'>
-                            
                               <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
-                            
-                                </td>
-                                
+                            </td>  
                             <td className='td-content'>{meal.name}</td>
                             <td className='td-content'>{meal.mealType.typeName}</td>
-                            <td className='td-content'>{meal.price}</td>
-                            
+                            <td className='td-content'>{meal.price}</td>                         
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() =>handleShowEdit(meal)}>Update</button>
                                 <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(meal.id)}
                                     style={{ marginLeft: "5px" }}>Delete</button>
                             </td>
-
                         </tr>
                     )}
                 </tbody>
-
             </table>
-
         </div>
 
         <Modal show={show} onHide={handleClose}>
@@ -216,7 +187,7 @@ const ListMealComponent = () => {
 
             <Modal show={showEdit} onHide={handleCloseEdit}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create new meal</Modal.Title>
+                    <Modal.Title>Edit meal</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -229,7 +200,6 @@ const ListMealComponent = () => {
                 </Modal.Footer>
             </Modal>
         </>
-    
   )
 }
 

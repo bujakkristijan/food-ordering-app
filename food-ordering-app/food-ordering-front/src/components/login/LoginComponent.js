@@ -16,27 +16,16 @@ const navigate = useNavigate();
 var responseFromServer;
 
 const submitLogin = (e) =>{
-
     e.preventDefault();
-
     const loginParams = {username, password}
-
     LoginService.login(loginParams).then((response) =>{
         responseFromServer = response.data.messageInvalidUsernameOrPassword.toString();
-        console.log("responsesss: ",responseFromServer)
         if(responseFromServer == "no"){
             alertSuccess();
             localStorage.token = response.data.token;
             const decodedToken = jwt_decode(response.data.token);
-            // console.log("DECODED TOKEN " + JSON.stringify(decodedToken));
-            // console.log("DECODED ROLE " + decodedToken.role);
-            //localStorage.role = "admin";
-            localStorage.role = decodedToken.role; //stavlja se role u localstorage nakon sto se dekodira pomocu jwt-decode
-            //console.log("TOKEN " + localStorage.token.toString());
-            console.log("DECODED ROLE LOCAL STORAGE" + localStorage.role);
-            
+            localStorage.role = decodedToken.role; //stavlja se role u localstorage nakon sto se dekodira pomocu jwt-decode  
             navigateDependingOnRole(localStorage.role);
-
         }
         else if(responseFromServer == "yes"){
             console.log(responseFromServer);
@@ -49,7 +38,6 @@ const submitLogin = (e) =>{
 }
 
 const navigateDependingOnRole = (role) =>{
-  console.log("ROLAAA:",role)
   if(role === "ADMIN"){
     navigate('/meals')
   }
@@ -62,7 +50,6 @@ const navigateDependingOnRole = (role) =>{
 }
 
 const alertSuccess = () =>{
-  
     Swal.fire({
       position: 'top',
       icon: 'success',
@@ -70,10 +57,6 @@ const alertSuccess = () =>{
       showConfirmButton: false,
       timer: 1500
     });
-
-    /* TEST */
-
- 
   }
 
   const alertInvalid = (invalidText) =>{
@@ -97,9 +80,7 @@ const alertSuccess = () =>{
         <div id='loginContainerId' className='loginContainer'>
           <div className='row'>
             <div className='card col-md-4 offset-md-4 offset-md-4'>
-              {
                 <h2 className='text-center'>Sign in</h2>
-              }
               <div className='card-body'>
                 <form>
                   <div className='form-group mb-2'>
@@ -111,11 +92,9 @@ const alertSuccess = () =>{
                         className="form-control" 
                         value={username}
                         onChange = {(e) => setUsername(e.target.value)}
-                        >
-                        
+                        > 
                     </input>
                   </div>
-
                   <div className='form-group mb-2'>
                     <label className='form-label'>Password: </label>
                     <input  
@@ -125,15 +104,11 @@ const alertSuccess = () =>{
                         className="form-control" 
                         value={password}
                         onChange = {(e) => setPassword(e.target.value)}
-                        >
-                        
+                        >  
                     </input>
                   </div>
-                
                 <button id='submitBtn'className='btn btn-success' onClick={(e) => submitLogin(e)}>Log in</button>
-                <Link to="/registration" className='btn btn-danger' style={{marginLeft:"5px"}}>Register</Link>
-                
-                  
+                <Link to="/registration" className='btn btn-danger' style={{marginLeft:"5px"}}>Register</Link> 
                 </form>
               </div>
             </div>

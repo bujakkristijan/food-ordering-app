@@ -15,7 +15,6 @@ const ListMealByMealTypeComponent = () => {
 
     const [mealQuantity, setMealQuantity] = useState(1);
     
-
     const [show, setShow] = useState(false);
 
     const [id, setId] = useState(0);
@@ -26,22 +25,19 @@ const ListMealByMealTypeComponent = () => {
     const meal = {id, name, price, image};
 
     const orderItem = {meal, quantity: mealQuantity};
-    console.log(" order item ", orderItem);
      
     const mealQuantityObj = {mealQuantity, setMealQuantity};
 
     const dispatch = useDispatch()
 
-    const handleShowMealQuantity = (meal) => {
-        
+    const handleShowMealQuantity = (meal) => {   
        //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
         setId(meal.id);
         setName(meal.name);
         setPrice(meal.price);
         setImage(meal.image);
         setMealQuantity(1);
-        setShow(true);
-        
+        setShow(true); 
     };
 
     const handleClose = () => {
@@ -51,14 +47,9 @@ const ListMealByMealTypeComponent = () => {
         setPrice('');
         setImage('');
         setMealQuantity(1);
-        
-
         }
 
-
-
     const getMealsByMealTypeId = () =>{
-        console.log("mealtypeid" + mealTypeId);
         MealService.getMealsByMealTypeId(mealTypeId).then((response)=>{
             setMeals(response.data);
         }).catch(error => {
@@ -66,8 +57,7 @@ const ListMealByMealTypeComponent = () => {
         })
     }
 
-    const handleAddItemToCart = () =>{
-        
+    const handleAddItemToCart = () =>{    
         if(orderItem.quantity>0){
             dispatch(addItem(orderItem));
             alertSuccess();
@@ -79,7 +69,6 @@ const ListMealByMealTypeComponent = () => {
     }
 
     const alertSuccess = () =>{
-  
         Swal.fire({
           position: 'top',
           icon: 'success',
@@ -93,8 +82,7 @@ const ListMealByMealTypeComponent = () => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Invalid input, quantity must be positve number!'
-          
+          text: 'Invalid input, quantity must be positve number!'  
         });
       }
 
@@ -102,7 +90,6 @@ const ListMealByMealTypeComponent = () => {
         getMealsByMealTypeId();
     }, [])
  
-
   return (
     <>
     <div className='container'>
@@ -110,15 +97,12 @@ const ListMealByMealTypeComponent = () => {
             <button className="btn btn-success mb-2" >Go to cart</button>
             <table className='table table-hover tableElement'>
                 <thead className='thead-name'>
-                    <tr>
-                        
+                    <tr>                      
                         <th className='theadth'>Image</th>
                         <th className='theadth'>Name</th>
                         <th className='theadth'>Type</th>
                         <th className='theadth'>Price</th>
                         <th className='theadth'>Action</th>
-                        
-
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -126,26 +110,18 @@ const ListMealByMealTypeComponent = () => {
                     {meals.map(
                         meal => <tr key={meal.id}>
                             <td className='td-content-img'>
-                            
                               <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
-                            
-                                </td>
-                                
+                            </td>  
                             <td className='td-content'>{meal.name}</td>
                             <td className='td-content'>{meal.mealType.typeName}</td>
                             <td className='td-content'>{meal.price}</td>
-                            
                             <td className='td-content'>
-                                <button className='btn btn-success' onClick={() =>handleShowMealQuantity(meal)}>Add to cart</button>
-                                
+                                <button className='btn btn-success' onClick={() =>handleShowMealQuantity(meal)}>Add to cart</button>    
                             </td>
-
                         </tr>
                     )}
                 </tbody>
-
             </table>
-
         </div>
 
         <Modal show={show} onHide={handleClose}>
@@ -160,7 +136,6 @@ const ListMealByMealTypeComponent = () => {
         <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>Close</Button>
             <Button variant="primary" onClick={() => handleAddItemToCart()}>Confirm</Button> 
-            {/* onClick={handleSubmit} */}
         </Modal.Footer>
         </Modal>
         </>

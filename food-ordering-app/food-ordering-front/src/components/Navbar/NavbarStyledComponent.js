@@ -13,15 +13,9 @@ const NavbarStyledComponent = () => {
 
      const navigate = useNavigate();
      const dispatch = useDispatch();
-     
      // const role = localStorage.role;
      //console.log("ROLE12: ",role)
-     console.log("RENDEEEERRRRR")
-
-
      const cart = useSelector((state) => state.cart);
-     
-
      let sumQuantityFromCartItems = 0;
      if(cart.length>0){
           for(let i = 0; i<cart.length; i++){
@@ -29,7 +23,6 @@ const NavbarStyledComponent = () => {
                sumQuantityFromCartItems += cart[i].quantity;
          }
      }
-
 
      const logout = () =>{
           LoginService.logout().then((response) =>{
@@ -51,7 +44,6 @@ const NavbarStyledComponent = () => {
      }
 
      const alertSuccess = () =>{
-  
           Swal.fire({
             position: 'top',
             icon: 'success',
@@ -59,32 +51,24 @@ const NavbarStyledComponent = () => {
             showConfirmButton: false,
             timer: 1500
           });
-      
-          /* TEST */
-      
-       
         }
 
         const checkRole = () =>{
-          
           if(localStorage.role === "ADMIN"){
                return (<Link className='navLink' to='/users' >
                Users
           </Link>)
-         
           }
         }
      // const sumQuantityFromCartItems = cart.reduce((prev,curr)=>prev+=curr,0);
-
      /*Link je brzi dosta od a elementa*/ 
   return (
-    
         <div className='header'>
             <Link to="/menu">
               {/* <h1 className='logo'>Logo</h1> */}
               <img className='logo' src={require('../../images/logo2.png')} alt=''/>  
             </Link>
-           <div/>
+           {/* <div/> */}
            <div className='navMenu'>
                {localStorage.role==="ADMIN" && <Link className='navLink' id='employeeLink' to='/employees' >
                     Employees
@@ -115,41 +99,22 @@ const NavbarStyledComponent = () => {
            {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='cartLink' to='/cart' >
                  
                <div className='number-cart'>{sumQuantityFromCartItems}</div>
-               <img className='logo-cart' src={require('../../images/cart2.png')} alt=''/>  
-                   
-                     
+               <img className='logo-cart' src={require('../../images/cart2.png')} alt=''/>         
           </Link>}
           {/* nzm sto nece da prikaze myprofile kad je role user a za employee radi */}
-           {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-profile' >
-                 
-
-                 My Profile
-                   
-                     
+           {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-profile' >  
+                 My Profile      
           </Link>}
                {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-active-final-orders' >
-                    
-
-                    My active orders
-                    
-                         
+                    My active orders                   
                </Link>}
-               {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-delivered-final-orders' >
-                    
-
-                    My order history
-                    
-                         
+               {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-delivered-final-orders' >                  
+                    My order history                   
                </Link>}
-                <Link className='registrationLink' to='/registration' >
-                 
-
-                Registration
-                    <div className='registrationLine'></div>
-                  
-                    
+                <Link className='registrationLink' to='/registration' >          
+                    Registration
+                    <div className='registrationLine'></div>                
                </Link>
-
                {localStorage.token == null && <Link id='signInBtn' className='btn btn-success' to='login'>
                     Sign in
                </Link>}
@@ -157,7 +122,6 @@ const NavbarStyledComponent = () => {
                {localStorage.token != null && <button id='signOutBtn' className='btn btn-success' onClick={() => logout() }>
                     Sign out
                </button>}
-
            </div>
         </div>
        

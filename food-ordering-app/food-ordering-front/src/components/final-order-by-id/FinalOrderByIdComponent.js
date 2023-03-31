@@ -11,47 +11,27 @@ const FinalOrderByIdComponent = () => {
     const {id} = useParams();
     const [orderItemsByFinalOrderId, setOrderItemsByFinalOrderId] = useState([]);
     const [finalOrder, setFinalOrder] = useState({}); // mora {} ne moze null ili undefined
-    
-
     //const orderItemsByFinalOrderIdList = {orderItemsByFinalOrderId}; //nzm jel mora ovako kad hocu da saljem modalu OVAKO NIJE HTELO DA RADI KAD OVO SALJEM MODALU!!!
-
     const [show, setShow] = useState(false);
-
-
-
-    
 
     useEffect(() => {
         getFinalOrderById(id);
         //alert("FinalOrder kasnije eff" + JSON.stringify(finalOrder));
-        console.log(JSON.stringify(finalOrder));
-        
+        // console.log(JSON.stringify(finalOrder));    
     }, [])
-
 
     const getFinalOrderById = (id) =>{
         MealService.getFinalOrderById(id).then((response) =>{
             setFinalOrder(response.data);
-            //alert("FinalOrder " + JSON.stringify(finalOrder));
-            
+            //alert("FinalOrder " + JSON.stringify(finalOrder));           
             // alert("Setovani order itemsi", JSON.stringify(orderItemsByFinalOrderId));
         });
-        alert("FinalOrder kasnije" + JSON.stringify(finalOrder));
-        
+        // alert("FinalOrder kasnije" + JSON.stringify(finalOrder));      
     }
     
-
-    const handleShowItemsByFinalOrderId = (finalOrderId) => {
-        
+    const handleShowItemsByFinalOrderId = (finalOrderId) => {      
         getOrderItemsByFinalOrderId(finalOrderId);
-        setShow(true);
-        
-        
-        
-        
-        
-        
-        
+        setShow(true);   
     };
 
     const handleClose= () => {
@@ -62,16 +42,12 @@ const FinalOrderByIdComponent = () => {
     const getOrderItemsByFinalOrderId = (finalOrderId) =>{
         MealService.getOrderItemsByFinalOrderId(finalOrderId).then((response) =>{
             //alert("RESPONSE ORDER ITEMS " + JSON.stringify(response.data));
-            setOrderItemsByFinalOrderId(response.data); //ZASTO NE RADIIII OVO SRANJEEEE
-            
+            setOrderItemsByFinalOrderId(response.data); //ZASTO NE RADIIII OVO SRANJEEEE          
             console.log('s');
         }).catch(error =>{
             console.log(error);
         })
     }
-
-
-
 
     return (
         <>
@@ -86,8 +62,6 @@ const FinalOrderByIdComponent = () => {
                     <th className='theadth'>Final price</th>
                     <th className='theadth'>Status</th>
                     <th className='theadth'>Action</th>
-                    
-
                 </tr>
             </thead>
             {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -97,19 +71,13 @@ const FinalOrderByIdComponent = () => {
                         <td className='td-content'>{finalOrder.address}</td>
                         <td className='td-content'>{finalOrder.phoneNumber}</td>  
                         <td className='td-content'>{finalOrder.finalPrice}</td>
-                        <td className='td-content'>{finalOrder.status}</td>
-                        
-                        
+                        <td className='td-content'>{finalOrder.status}</td>      
                         <td className='td-content'>
                             <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
                         </td>
-
                     </tr>
-                
             </tbody>
-
         </table>
-
     </div>
 
     <Modal size='lg' centered show={show} onHide={handleClose}>

@@ -4,12 +4,8 @@ const ItemsByFinalOrderIdComponent = (props) => {
 
     const orderItems = props.orderItemsList;
 
-   console.log(JSON.stringify(orderItems));
-
   return (
-    <div className='container'>
-            
-            
+    <div className='container'>     
             <table id="table" className='table table-bordered table-hover'>
                 <thead>
                     <tr>
@@ -17,9 +13,6 @@ const ItemsByFinalOrderIdComponent = (props) => {
                         <th>Meal type</th>
                         <th>Price for one</th>
                         <th>Quantity</th>
-                        
-                        
-
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -30,13 +23,10 @@ const ItemsByFinalOrderIdComponent = (props) => {
                             <td>{orderItem.meal.mealType.typeName}</td>
                             <td>{orderItem.meal.price}</td>
                             <td>{orderItem.quantity}</td>
-
                         </tr>
                     )}
                 </tbody>
-
             </table>
-
         </div>
   )
 }

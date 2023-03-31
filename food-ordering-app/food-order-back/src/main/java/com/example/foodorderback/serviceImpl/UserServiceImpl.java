@@ -199,19 +199,14 @@ public class UserServiceImpl implements UserService {
 			JWTLogin jwtDetails = new JWTLogin();
 			jwtDetails.setRole(userFromDB.getRole().toString());
 			jwtDetails.setUsername(userFromDB.getUsername());
-			 //user = findByUsername(login.getUsername());
-			 //if(user.getPassword().equals(login.getPassword())) {
 				String token = jwtUtil.generateToken(jwtDetails);
 				loginDTO = new LoginDTO(token, user, "no");
-				//setCurrentUser(user);
-			 //}
 			
 		} catch (Exception e) {
 			loginDTO = new LoginDTO();
 			loginDTO.setMessageInvalidUsernameOrPassword("yes");
 			loginDTO.setUser(user);
 			return loginDTO;
-			// throw new Exception("Invalid username or password!");
 		}
 		if(user.isDeleted()) {
 			loginDTO = new LoginDTO();

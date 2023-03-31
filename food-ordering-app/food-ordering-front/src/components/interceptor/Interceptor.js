@@ -6,10 +6,7 @@ axios.interceptors.request.use(function (config) {
         const token = localStorage.token;
         console.log("token from interceptor: " + token);
         var tokenBearer = `Bearer ${token}`;
-        
-        axios.defaults.headers.common['Authorization'] = tokenBearer;
-        
-        
+        axios.defaults.headers.common['Authorization'] = tokenBearer; 
     } else {
         axios.defaults.headers.common['Authorization'] = null;
         // delete axios.defaults.headers.common['Authorization'];
