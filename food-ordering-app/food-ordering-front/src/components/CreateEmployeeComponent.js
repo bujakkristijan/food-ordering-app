@@ -13,14 +13,10 @@ const CreateEmployeeComponent = () => {
   const [password, setPassword] = useState('')
   const [address, setAddress] = useState('')
 
-
   //za update
   const {id} = useParams();
 
   const navigate = useNavigate();
-
-  
-  
 
   //arrow function
   const createOrUpdateEmployee = (e) => {
@@ -29,7 +25,6 @@ const CreateEmployeeComponent = () => {
     const user = {firstName, lastName, email, username, phoneNumber, password, address}
 
     //ako id sadrzi neku vrednost, odnosno ako je prosledjenja radi se update
-    console.log("IDDDDD : " + id);
     if(id){
       UserService.updateEmployee(id, user).then((response) =>{
         if(response.data.toString() == "success"){
@@ -47,7 +42,6 @@ const CreateEmployeeComponent = () => {
       })
     }else{
       UserService.createEmployee(user).then((response) =>{
-
         console.log(response.data);
         if(response.data.toString() == "success"){
           alertSuccess();
@@ -59,16 +53,11 @@ const CreateEmployeeComponent = () => {
         else if(response.data.toString() == "emailOrUsernameAlreadyExist"){
           alertInvalid(response.data.toString());
         }
-        
-  
       }).catch(error =>{
         console.log("Error: " + error);
       })
-    }
-    
-   
+    } 
   }
-
 
   const alertSuccess = () =>{
     if(id){
@@ -85,10 +74,6 @@ const CreateEmployeeComponent = () => {
       showConfirmButton: false,
       timer: 1500
     });
-
-    /* TEST */
-
- 
   }
 
   const alertInvalid = (invalidText) =>{
@@ -108,11 +93,8 @@ const CreateEmployeeComponent = () => {
     })
   }
 
-
-
 //zasto se ovo izvrsava samo kad je update ????
 useEffect(() => {
-  console.log("krerewrw");
   id && UserService.getEmployeeById(id).then((response) =>{
     setFirstName(response.data.firstName);
     setLastName(response.data.lastName);

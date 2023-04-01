@@ -84,9 +84,7 @@ const ListUserComponent = () => {
                   )
               }
             </tbody>
-
         </table>
-
     </div>
   )
 }

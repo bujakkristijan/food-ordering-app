@@ -11,11 +11,7 @@ const EditItemQuantityComponent = (props) => {
 //   const {itemFromCart} = props; 
   // const {user} = props !!!!
   // className = 'form-control', bootstrapov input forme, da lepse izgleda
-  
-  useEffect(() => {
-   
-  }, [])
-   
+
   return (
     <div>    
         <div className='container-add-meal'>

@@ -36,8 +36,7 @@ const createUser = (e) => {
       })
 }
 
-const alertSuccess = () =>{
-  
+const alertSuccess = () =>{  
     Swal.fire({
       position: 'top',
       icon: 'success',

@@ -13,19 +13,13 @@ export const ActiveFinalOrdersComponent = () => {
     const [allActiveFinalOrders, setAllActiveFinalOrders] = useState([]);
     const [orderItemsByFinalOrderId, setOrderItemsByFinalOrderId] = useState([]);
     const [show, setShow] = useState(false);
-
     //proba
     const [status, setStatus] = useState('');
     const [activeOrderId, setActiveOrderId] = useState(1);
 
-
     let activeOrderIdLet = 0;
     
-
     const statusOptions = ["ORDERED", "IN PREPARATION", "IN DELIVERY"];
-
-    
-
 
     useEffect(() => {
       getAllActiveFinalOrders();
@@ -38,12 +32,9 @@ export const ActiveFinalOrdersComponent = () => {
     }
     
     const handleShowItemsByFinalOrderId = (finalOrderId) => {
-        
         getOrderItemsByFinalOrderId(finalOrderId);
         setActiveOrderId(finalOrderId);
         setShow(true);
-
-        
     };
 
     const handleClose= () => {
@@ -54,8 +45,7 @@ export const ActiveFinalOrdersComponent = () => {
     const getOrderItemsByFinalOrderId = (finalOrderId) =>{
         MealService.getOrderItemsByFinalOrderId(finalOrderId).then((response) =>{
             //alert("RESPONSE ORDER ITEMS " + JSON.stringify(response.data));
-            setOrderItemsByFinalOrderId(response.data); //ZASTO NE RADIIII OVO SRANJEEEE
-            
+            setOrderItemsByFinalOrderId(response.data);
             console.log('s');
         }).catch(error =>{
             console.log(error);
@@ -109,8 +99,6 @@ export const ActiveFinalOrdersComponent = () => {
 
 
     const alertAreYouSureFinalOrderToDelivered = (activeFinalOrder) =>{
-       
-        
         Swal.fire({
           title: 'Are you sure?',
           text: 'If you click yes, you will confirm that final order is delivered!',
@@ -120,17 +108,13 @@ export const ActiveFinalOrdersComponent = () => {
           cancelButtonColor: '#d33',
           confirmButtonText: 'Yes, confirm it!'
         }).then((result) => {
-          if (result.isConfirmed) {
-           
+          if (result.isConfirmed) {         
             setFinalOrderToDelivered(activeFinalOrder.id)
-            
           }
         })
       }
 
-
     const alertSuccess = () =>{
-  
         Swal.fire({
           position: 'top',
           icon: 'success',
@@ -144,8 +128,7 @@ export const ActiveFinalOrdersComponent = () => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Something went wrong!'
-          
+          text: 'Something went wrong!'      
         });
       }
 
@@ -163,9 +146,7 @@ export const ActiveFinalOrdersComponent = () => {
                         <th className='theadth'>Status</th>
                         <th className='theadth'>Final price</th>
                         <th className='theadth'>Orders</th>
-                        <th className='theadth'>Change status</th>
-                        
-
+                        <th className='theadth'>Change status</th>                       
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -177,9 +158,7 @@ export const ActiveFinalOrdersComponent = () => {
                             <td className='td-content'>{activeFinalOrder.phoneNumber}</td>
                             <td className='td-content'>{Moment(activeFinalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
                             <td className='td-content'>{activeFinalOrder.status}</td>
-                            <td className='td-content'>{activeFinalOrder.finalPrice}</td>
-                            
-                            
+                            <td className='td-content'>{activeFinalOrder.finalPrice}</td>                                                     
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                             </td>
@@ -189,22 +168,17 @@ export const ActiveFinalOrdersComponent = () => {
                             {/* {
                                 handleHtmlDependingOnFinalOrderStatus(activeFinalOrder)
                             } */}
-
                         <Form.Select className='selectStatus' value={JSON.stringify(activeFinalOrder.status)} onChange={(e)=>changeFinalOrderStatus(activeFinalOrder.id, JSON.parse(e.target.value))}>
                                             {statusOptions.map((statusOption)=> {
                                             return (
                                                 <option key={activeFinalOrder.id} value={JSON.stringify(statusOption)} >{statusOption}</option>
                                             )
-                                            })}
-                        
+                                            })}                       
                         </Form.Select>
-
                         </tr>
                     )}
                 </tbody>
-
             </table>
-
         </div>
 
         <Modal size='lg' centered show={show} onHide={handleClose}>
@@ -221,6 +195,5 @@ export const ActiveFinalOrdersComponent = () => {
         </Modal.Footer>
         </Modal>
         </>
-
   )
 }

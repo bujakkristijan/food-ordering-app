@@ -124,8 +124,6 @@ const NavbarStyledComponent = () => {
                </button>}
            </div>
         </div>
-       
-    
   )
 }
 

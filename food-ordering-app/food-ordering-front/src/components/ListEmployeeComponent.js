@@ -30,8 +30,6 @@ const ListEmployeeComponent = () => {
     }
 
     const alertAreYouSureDelete = (id) =>{
-       
-      
           Swal.fire({
             title: 'Are you sure?',
             text: "If you click yes, employee will be deactivated!",
@@ -51,8 +49,7 @@ const ListEmployeeComponent = () => {
             }
           })
         }
-      
-    
+        
   return (
     <div className='container'>
         <h2 className='text-center'>Employee list</h2>
@@ -67,8 +64,7 @@ const ListEmployeeComponent = () => {
                     <th className='theadth'>Email</th>
                     <th className='theadth'>Phone number</th>
                     <th className='theadth'>Address</th>
-                    <th className='theadth'>Action</th>
-                   
+                    <th className='theadth'>Action</th>                  
                 </tr>
             </thead>
             <tbody>
@@ -87,15 +83,12 @@ const ListEmployeeComponent = () => {
                               <Link className='btn btn-success' to={`/edit-employee/${employee.id}`}>Update</Link>
                               <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(employee.id)}
                               style={{marginLeft:"5px"}}>Delete</button>
-                          </td>
-                          
+                          </td>                        
                       </tr>
                   )
               }
             </tbody>
-
         </table>
-
     </div>
   )
 }

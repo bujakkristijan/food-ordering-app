@@ -8,9 +8,6 @@ const EditMealTypeComponent = (props) => {
   // const {user} = props !!!!
   // className = 'form-control', bootstrapov input forme, da lepse izgleda
 
-  useEffect(() => { 
-  }, [])
-
   const onChoseFile = (e) =>{
     console.log(e.target.files[0]);
     selectedFile.setSelectedFile(e.target.files[0]);

@@ -28,7 +28,11 @@ const ListMealByMealTypeComponent = () => {
      
     const mealQuantityObj = {mealQuantity, setMealQuantity};
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        getMealsByMealTypeId();
+    }, [])
 
     const handleShowMealQuantity = (meal) => {   
        //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
@@ -86,10 +90,6 @@ const ListMealByMealTypeComponent = () => {
         });
       }
 
-    useEffect(() => {
-        getMealsByMealTypeId();
-    }, [])
- 
   return (
     <>
     <div className='container'>

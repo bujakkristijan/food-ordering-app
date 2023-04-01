@@ -135,7 +135,6 @@ const ListMealTypeComponent = () => {
         }
 
   return (
-    
     <>
     <div className='container'>
             <h2 className='text-center'>Meal type list</h2>
