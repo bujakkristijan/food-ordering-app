@@ -61,16 +61,6 @@ Users that are not logged-in need to insert details such as address and phone nu
 
 ![insertdetailsnotlogged](https://user-images.githubusercontent.com/76042091/207380537-85ba0143-dad8-466c-8263-b51f7c4af82b.jpg)
 
-Employee can see and change status of the final order depending on real status of the order, which user can track.
-
-![status1](https://user-images.githubusercontent.com/76042091/207382882-c0bc7deb-b991-4896-aaf5-e60b7d88de9b.jpg)
-
-![status2](https://user-images.githubusercontent.com/76042091/207382915-d5d1e7a7-8c55-4eb2-b6a1-ba1123f73b8e.jpg)
-
-Clicking on "Show items" button, employee can see all items from the (final) order.
-
-![ацтивефиналордерсхоњ](https://user-images.githubusercontent.com/76042091/207574541-1210417e-8523-47a1-b0f8-4af1ce9d858e.jpg)
-
 When the user in not logged-in, he can track order status clicking on the link after the order is confirmed.
 
 ![statusnotlogged](https://user-images.githubusercontent.com/76042091/207575418-b4af2a5d-0e1c-4a12-828f-cc32b34209d9.jpg)
@@ -80,6 +70,16 @@ When the user in not logged-in, he can track order status clicking on the link a
 Clicking on "Show items" button, user can see all items from the (final) order.
 
 ![showitemsnotlogged](https://user-images.githubusercontent.com/76042091/207575732-50de1794-2b44-45e4-93c5-1203438ed3b6.jpg)
+
+Employee can see and change status of the final order depending on real status of the order, which user can track.
+
+![status1](https://user-images.githubusercontent.com/76042091/207382882-c0bc7deb-b991-4896-aaf5-e60b7d88de9b.jpg)
+
+![status2](https://user-images.githubusercontent.com/76042091/207382915-d5d1e7a7-8c55-4eb2-b6a1-ba1123f73b8e.jpg)
+
+Clicking on "Show items" button, employee can see all items from the (final) order.
+
+![ацтивефиналордерсхоњ](https://user-images.githubusercontent.com/76042091/207574541-1210417e-8523-47a1-b0f8-4af1ce9d858e.jpg)
 
 Login component shows when the app starts.
 
