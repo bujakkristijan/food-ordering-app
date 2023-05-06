@@ -33,6 +33,18 @@ The application is primarily intended to be accessed via a browser from a DESKTO
 
 ### Application UI preview:
 
+Every user can see meals after choosing the meal type first.
+
+![menu2](https://user-images.githubusercontent.com/76042091/207375484-c348115b-9f37-46ea-8c4c-f1b886a171da.jpg)
+
+Users can add items (meals) to cart after they insert quantity.
+
+![pancakemenuadd](https://user-images.githubusercontent.com/76042091/207381480-321455da-eaa7-4957-855e-e980b8f99c00.jpg)
+
+After inserting quantity, item is successfully added to cart.
+
+![successaddtocart](https://user-images.githubusercontent.com/76042091/207573422-dee15923-7e98-42b8-8f10-348b217481b0.jpg)
+
 There are additional tabs in the navigation bar that logged-in user can use.
 
 ![cartloggedin](https://user-images.githubusercontent.com/76042091/207377274-be2a1ddd-0dfa-4312-97f8-d4993d654a8d.jpg)
@@ -73,10 +85,6 @@ Login component shows when the app starts.
 
 ![login2](https://user-images.githubusercontent.com/76042091/207374137-7b5acf55-8416-4b1c-9620-008cca1fd5de.jpg)
 
-Every user can see meals after choosing the meal type first.
-
-![menu2](https://user-images.githubusercontent.com/76042091/207375484-c348115b-9f37-46ea-8c4c-f1b886a171da.jpg)
-
 Logged-in users can access their profile page where they can see and change details if necessary.
 
 ![myprofile](https://user-images.githubusercontent.com/76042091/207382087-b5d9a567-6ff1-41ff-94a3-19c0ee2fea6d.jpg)
@@ -89,10 +97,3 @@ Alert if email already or username already exist in the database.
 
 ![alertfailusernameoremailexist](https://user-images.githubusercontent.com/76042091/207576724-b19efb2a-7770-4b2d-acb0-6cfc268375ab.jpg)
 
-Users can add items (meals) to cart after they insert quantity.
-
-![pancakemenuadd](https://user-images.githubusercontent.com/76042091/207381480-321455da-eaa7-4957-855e-e980b8f99c00.jpg)
-
-After inserting quantity, item is successfully added to cart.
-
-![successaddtocart](https://user-images.githubusercontent.com/76042091/207573422-dee15923-7e98-42b8-8f10-348b217481b0.jpg)
