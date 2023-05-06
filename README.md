@@ -37,7 +37,7 @@ There are additional tabs in the navigation bar that logged-in user can use.
 
 ![cartloggedin](https://user-images.githubusercontent.com/76042091/207377274-be2a1ddd-0dfa-4312-97f8-d4993d654a8d.jpg)
 
-Additional tabs are not shown in the navigation bar.
+Additional tabs are not shown in the navigation bar when user is not logged in.
 
 ![cart2](https://user-images.githubusercontent.com/76042091/207376805-303f7a19-023d-4a10-9e3c-672d2b92a457.jpg)
 
