@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import {deleteAllItems} from '../../store-redux/cart/cartSlice'
 
 const NavbarStyledComponent = () => {
-
+     console.log("WWTTEFF")
      const navigate = useNavigate();
      const dispatch = useDispatch();
      // const role = localStorage.role;

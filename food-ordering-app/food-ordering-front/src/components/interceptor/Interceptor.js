@@ -4,7 +4,7 @@ export function jwtInterceptor() {
 axios.interceptors.request.use(function (config) {
     if (localStorage.token != '' && localStorage.token != null ) {
         const token = localStorage.token;
-        console.log("token from interceptor: " + token);
+        // console.log("token from interceptor: " + token);
         var tokenBearer = `Bearer ${token}`;
         axios.defaults.headers.common['Authorization'] = tokenBearer; 
     } else {

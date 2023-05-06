@@ -51,8 +51,7 @@ const ListUserComponent = () => {
     //         }
     //       })
     //     }
-      
-    
+       
   return (
     <div className='container'>
         <h2 className='text-center'>User list</h2>

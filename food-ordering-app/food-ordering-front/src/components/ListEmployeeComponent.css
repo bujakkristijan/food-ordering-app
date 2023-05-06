@@ -1,13 +1,9 @@
-
-
 .theadth{
-    
     /* justify-content: center; */
     /* align-items: center; */
     text-align: center;
     font-size: larger;
 }
-
 
 .td-content{
 
@@ -16,15 +12,9 @@
  font-size: larger;
 }
 
-/* #table{
-    
-   
-}  */
-
 .tableElement{
     margin-top: 20px;
     background-color: whitesmoke; 
-
     border-radius: 30px !important;
     border: 3px solid; 
     border-collapse: separate !important; /*mora ovo separate zbog bootstrapa, ne savije border, jer bootstrap setuje na collapse
