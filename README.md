@@ -1,4 +1,4 @@
-Project is implemented using ReactJS (Hooks) and Java Spring Boot framework (Hibernate, Spring Secuirty with JSON Web token, REST API) with some additional libraries (Bootstrap, AXIOS, Sweetalert, Redux and few more).
+Project is implemented using ReactJS (Hooks) library and Java Spring Boot framework (Hibernate, Spring Secuirty with JSON Web token, REST API) with some additional libraries (Bootstrap, AXIOS, Sweetalert, Redux and few more).
 
 ### Project specification
 
@@ -28,8 +28,6 @@ A user with the *ADMIN* role has the ability to:
 - logically deletes users (status changes, data remains in the database)
 - view the order history
 - create, delete and update data for employees (users with *EMPLOYEE* role)
-
-The application is primarily intended to be accessed via a browser from a DESKTOP or LAPTOP computer.
 
 ### Application UI preview:
 
