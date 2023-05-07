@@ -1,3 +1,5 @@
+### Food ordering application 
+
 Project is implemented using ReactJS (Hooks) library and Java Spring Boot framework (Hibernate, Spring Secuirty with JSON Web token, REST API) with some additional libraries (Bootstrap, AXIOS, Sweetalert, Redux and few more).
 
 ### Project specification
