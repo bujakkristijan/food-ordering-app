@@ -4,32 +4,32 @@ Project is implemented using ReactJS (Hooks) library and Java Spring Boot framew
 
 ### Project specification
 
-The main purpose of the application is to allow the user to view the offer and order food from the restaurant, then track status of the order. There are 3 user roles in the system with different capabilities:
+The main purpose of the application is to enable users to view restaurant offers, place food orders, then track the status of their orders, which can be updated by employees. The system consists of three user roles with different capabilities:
 - ADMIN
 - EMPLOYEE
 - USER
 
-The application can also be used by an unregistered user. He has the ability to:
-- register
-- order food (different meals with inserted quantities). By viewing the menu, he needs to select the type of meal, after which the complete offer for that type will be listed. By clicking on the button next to the selected meal, a modal window will appear, where he can insert quantity and the meal is placed in the cart. When he wants to confirm the final order, a new modal window appears where he enters the address and phone number, because the user is not logged in. After successfully ordering food, he receives a message containing a link, where he can track his order status by clicking on it.
+The application can also be accessed by unregistered users, who have the following abilities:
+- Register an account
+- Order food by selecting different meals and specifying quantities. The user can view the menu, choose a meal type, and see the complete offer for that type. By clicking on a selected meal, a modal window appears, allowing the user to enter the quantity and add the meal to the cart. To confirm the final order, a new modal window appears where the user enters their address and phone number since they are not logged in. After successfully placing an order, the user receives a message containing a link to track the order status.
 
-A registered user (with the *USER* role) logs into the system by entering his username and password. He has the ability to:
-- change personal data
-- orders food like a non-registered user, but there is no need to enter his address and phone number, because his data is already saved in the system.
-- gets a 10% discount on every order
-- view his active orders (with status *ORDERED* and *IN PREPARATION*)
-- view the history of his orders (with *IN DELIVERY* status)
+Registered users with the *USER* role can log into the system using their username and password. They have the following abilities:
+- Update their personal information
+- Order food similar to unregistered users, but without the need to enter their address and phone number since their data is already saved in the system.
+- Receive a 10% discount on every order
+- View their active orders (with *ORDERED* and *IN PREPARATION* status)
+- View the history of their orders (with *IN DELIVERY* status)
 
-A user with the *EMPLOYEE* role has the ability to:
-- reviews all incoming orders and changes their status to *IN PREPARATION* or *IN DELIVERY* depending on whether the orders are in the process of preparation or the delivery person has started delivering them.
-- view the history of all orders.
+Users with the *EMPLOYEE* role have the following abilities:
+- Review all incoming orders and change their status to *IN PREPARATION* or *IN DELIVERY*, depending on whether the orders are being prepared or in the process of  delivery.
+- View the history of all orders.
 
-A user with the *ADMIN* role has the ability to:
-- create, delete and update meal types in the database (including uploading images)
-- create, delete and update meals (including uploading images)
-- logically deletes users (status changes, data remains in the database)
-- view the order history
-- create, delete and update data for employees (users with *EMPLOYEE* role)
+Users with the *ADMIN* role have the following abilities:
+- Create, delete, and update meal types in the database (including uploading images)
+- Create, delete and update meals (including uploading images)
+- Logically delete users (change their status, their data remains in the database)
+- View the order history
+- Create, delete, and update employee data (users with the *EMPLOYEE* role)
 
 ### Application UI preview:
 
@@ -37,11 +37,11 @@ Every user can see meals after choosing the meal type first.
 
 ![menu2](https://user-images.githubusercontent.com/76042091/207375484-c348115b-9f37-46ea-8c4c-f1b886a171da.jpg)
 
-Users can add items (meals) to cart after they insert quantity.
+Users can add items (meals) to the cart after they insert quantity.
 
 ![pancakemenuadd](https://user-images.githubusercontent.com/76042091/207381480-321455da-eaa7-4957-855e-e980b8f99c00.jpg)
 
-After inserting quantity, item is successfully added to cart.
+After inserting quantity, item is successfully added to the cart.
 
 ![successaddtocart](https://user-images.githubusercontent.com/76042091/207573422-dee15923-7e98-42b8-8f10-348b217481b0.jpg)
 
