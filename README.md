@@ -84,6 +84,10 @@ Clicking on "Show items" button, employee can see all items from the (final) ord
 
 ![ацтивефиналордерсхоњ](https://user-images.githubusercontent.com/76042091/207574541-1210417e-8523-47a1-b0f8-4af1ce9d858e.jpg)
 
+All orders with status *IN DELIVERY* are placed in order history, they aren't considered active anymore
+
+![orderhistoryemployee](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/8fccf72e-cf72-4128-b612-a914d1bc9a57)
+
 Login component shows when the app starts.
 
 ![login2](https://user-images.githubusercontent.com/76042091/207374137-7b5acf55-8416-4b1c-9620-008cca1fd5de.jpg)
