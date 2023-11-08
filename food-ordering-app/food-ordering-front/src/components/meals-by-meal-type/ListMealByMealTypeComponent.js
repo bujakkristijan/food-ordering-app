@@ -6,6 +6,7 @@ import MealQuantityComponent from './MealQuantityComponent';
 import { addItem } from '../../store-redux/cart/cartSlice';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import './ListMealByMealTypeComponent.css';
 
 const ListMealByMealTypeComponent = () => {
 
@@ -92,9 +93,10 @@ const ListMealByMealTypeComponent = () => {
 
   return (
     <>
-    <div className='container'>
+    <div className='container-meal-by-meal-type'>
+            
+            <button id="btn-goTo-cart" className="btn btn-success mb-2" >Go to cart</button>
             <h2 className='text-center'>Meals</h2>
-            <button className="btn btn-success mb-2" >Go to cart</button>
             <table className='table table-hover tableElement'>
                 <thead className='thead-name'>
                     <tr>                      

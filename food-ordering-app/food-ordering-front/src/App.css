@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500&display=swap');
 
 .footer {
   position: fixed;
@@ -42,6 +42,8 @@ body {
   overflow-y: auto; 
   height: calc(100vh - 110px);
   overflow-x: hidden;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 /* #root {
@@ -55,7 +57,7 @@ body {
   display: block;
   height: 100vh;
   width: 100vw;
-  background-image: url('./images/backimage.jpg');
+  background-image: linear-gradient(rgba(255, 136, 164, 0.2), rgba(255, 136, 164, 0.2)), url('./images/backimage.jpg');
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
@@ -65,11 +67,28 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
 
+h2{
+  font-weight: 500 !important;
+  letter-spacing: 1px;
+}
 
+a{
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+button{
+  font-weight: 500 !important;
+  letter-spacing: 1px;
+}
+
+.swal2-confirm.swal2-styled.swal2-default-outline{
+  background-color: #198754 !important; /* yes button na swal alertu, ne treba na ovaj nacin, ali radi okej. */
+}
 
 
 
@@ -79,3 +98,23 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/********** SCROLL BAR START ************/
+
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+  background: green;
+}
+
+::-webkit-scrollbar-thumb {
+  background: red;
+  -webkit-border-radius: 1ex;
+  -webkit-box-shadow: 0px 1px 2px rgba(140, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+  background: green;
+}
+
+/********** SCROLL BAR END ************/

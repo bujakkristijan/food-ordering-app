@@ -1,22 +1,35 @@
-.mealPic{
+.container-meal-by-meal-type{
+    width: 80%;
+    margin: auto;
+}
+#btn-goTo-cart{
+    margin-top: 30px;
+}
+
+.btn-primary{
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+}
+.btn-secondary{
+    background-color: #ff3838 !important;
+    border-color: #ff3838 !important; 
+}
+/* .mealPic{
     
     height: 110px;
     width: 90%;
-    object-fit: cover; /* da ne razvuce sliku */
+    object-fit: cover;
      border: 2px rgb(173, 135, 135) solid ; 
     border-radius: 5px;
-    /*align-items: center;
-    text-align: center;
-    justify-content: center; */
+  
     margin-right: 0px;
     margin-left: 0px;
-    /* text-align: center;  */
+ 
 }
 
 .theadth{
     
-    /* justify-content: center; */
-    /* align-items: center; */
+   
     text-align: center;
     font-size: larger;
 }
@@ -28,15 +41,11 @@
 
 .td-content{
 
-/* text-align: center; */
  align-items: center;
  font-size: larger;
 }
 
-/* #table{
-    
-   
-}  */
+
 
 .tableElement{
     margin-top: 20px;
@@ -44,9 +53,7 @@
 
     border-radius: 30px !important;
     border: 3px solid; 
-    border-collapse: separate !important; /*mora ovo separate zbog bootstrapa, ne savije border, jer bootstrap setuje na collapse
-    /* border: 10px solid rgb(241, 0, 0) !important da pregazi bootstrapov border */
-    box-shadow: 0 0 15px 15px rgb(133, 127, 127);
-}
+    border-collapse: separate !important; /*mora ovo separate zbog bootstrapa, ne savije border, jer bootstrap setuje na collapse*/
     
-   
+    /* box-shadow: 0 0 15px 15px rgb(133, 127, 127); */
+/*}*/ 

@@ -112,8 +112,7 @@ const NavbarStyledComponent = () => {
                     My order history                   
                </Link>}
                 <Link className='registrationLink' to='/registration' >          
-                    Registration
-                    <div className='registrationLine'></div>                
+                    Registration          
                </Link>
                {localStorage.token == null && <Link id='signInBtn' className='btn btn-success' to='login'>
                     Sign in

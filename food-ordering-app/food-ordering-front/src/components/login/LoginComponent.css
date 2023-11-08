@@ -1,7 +1,43 @@
 #loginContainerId{
     
-    justify-content: center;
+    /* justify-content: center;
     align-items: center;
     /*margin-left: 190px; */
-    text-align: center;
+    /* text-align: center; */ 
+    background-color: white;
+    width: 400px;
+    padding: 30px;
+    border-radius: 30px;
+    border: 2px solid #dee2e6;
+    box-shadow: 0 0 15px 15px rgb(133, 127, 127);
+}
+
+
+.login-main-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container{
+    width: 400px !important;
+}
+
+.swal2-styled.swal2-confirm {
+    background-color: #ff3838;
+}
+
+#submitBtn{
+    font-size: 18px;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons-container > .btn{
+    flex: 1;
 }

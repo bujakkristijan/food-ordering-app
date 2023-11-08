@@ -220,9 +220,9 @@ const CartComponent = () => {
   return (
     <>
     <div className='container'>
-    <h2 className='text-center'>Items from cart</h2>
-    <button className="btn btn-success mb-2" onClick={() => checkIfLoggedInBeforeSubmit()}>Make final order</button>
-    <table id="table" className='table table-hover tableElement'>
+    {itemsFromCart.length !== 0 ? <h2 className='text-center'>Items from cart</h2> : <h2 className='text-center'>Cart is empty</h2>}
+    {itemsFromCart.length !== 0 && <button className="btn btn-success mb-2" onClick={() => checkIfLoggedInBeforeSubmit()}>Make final order</button>}
+    {itemsFromCart.length !== 0 && <table id="table" className='table table-hover tableElement'>
         <thead className='thead-name'>
             <tr>
                 <th className='theadth'>Image</th>
@@ -250,7 +250,7 @@ const CartComponent = () => {
                 </tr>
             )}
         </tbody>
-    </table>
+    </table>}
 </div>
 
 {/* <Modal show={show} onHide={handleClose}>

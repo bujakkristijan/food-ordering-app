@@ -1,3 +1,18 @@
-/*#registrationBtn{
-    font-size: x-large;
-}*/
+.registration-main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-registration{
+    width: 500px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 30px;
+    border: 2px solid #dee2e6;
+    box-shadow: 0 0 15px 15px rgb(133, 127, 127);
+}
+
+#registrationBtn{
+    font-size: 18px !important;
+}

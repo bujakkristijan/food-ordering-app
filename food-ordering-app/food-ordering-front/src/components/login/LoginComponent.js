@@ -75,44 +75,46 @@ const alertSuccess = () =>{
   }
 //card col-md-6 offset-md-3 offset-md-3' za formu siroko da je, 4 4 4 da je uze i centrirano lepo, ali po vertikali nzm kako da namestim
   return (
-    <div>
-      <br/> 
+    <div className='login-main-container'>
+     
         <div id='loginContainerId' className='loginContainer'>
-          <div className='row'>
-            <div className='card col-md-4 offset-md-4 offset-md-4'>
+         
+            {/* <div className='card col-md-4 offset-md-4 offset-md-4'> */}
+            
                 <h2 className='text-center'>Sign in</h2>
-              <div className='card-body'>
-                <form>
-                  <div className='form-group mb-2'>
-                    <label className='form-label'>Username: </label>
-                    <input  
-                        type="text"
-                        placeholder="Insert username" 
-                        name = "username" 
-                        className="form-control" 
-                        value={username}
-                        onChange = {(e) => setUsername(e.target.value)}
-                        > 
-                    </input>
+                <div className='card-body'>
+                  <form>
+                    <div className='form-group mb-2'>
+                      <label className='form-label'>Username: </label>
+                      <input  
+                          type="text"
+                          placeholder="Insert username" 
+                          name = "username" 
+                          className="form-control" 
+                          value={username}
+                          onChange = {(e) => setUsername(e.target.value)}
+                          > 
+                      </input>
+                    </div>
+                    <div className='form-group mb-2'>
+                      <label className='form-label'>Password: </label>
+                      <input  
+                          type="password"
+                          placeholder="Insert password" 
+                          name = "password" 
+                          className="form-control" 
+                          value={password}
+                          onChange = {(e) => setPassword(e.target.value)}
+                          >  
+                      </input>
+                    </div>
+                  <div className='buttons-container'>
+                    <button id='submitBtn'className='btn btn-success mt-2' onClick={(e) => submitLogin(e)}>Log in</button>
+                    <Link to="/registration" className='btn btn-danger mt-2' style={{marginLeft:"10px"}}>Register</Link> 
                   </div>
-                  <div className='form-group mb-2'>
-                    <label className='form-label'>Password: </label>
-                    <input  
-                        type="password"
-                        placeholder="Insert password" 
-                        name = "password" 
-                        className="form-control" 
-                        value={password}
-                        onChange = {(e) => setPassword(e.target.value)}
-                        >  
-                    </input>
-                  </div>
-                <button id='submitBtn'className='btn btn-success' onClick={(e) => submitLogin(e)}>Log in</button>
-                <Link to="/registration" className='btn btn-danger' style={{marginLeft:"5px"}}>Register</Link> 
-                </form>
-              </div>
-            </div>
-          </div>
+                  
+                  </form>
+                </div>
         </div>
         
     </div>

@@ -33,44 +33,17 @@
     align-items: center;
 }
 
-
-
-
-
-/*#employeeLink{
-    font-size: x-large;
-} */
-
-
-.registrationLine{
-    background-color: white;
-    height: 4px;
-    width: 100px;
-    border-radius: 50px;
-    
-}
-
-/*.registrationLine:hover{
-    background-color: green;
-} */
-
 .registrationLink{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: #fff;
+    color: rgb(177, 255, 177);
     
 }
 
 .myProfileLink{
-   /* display: flex; 
-    flex-direction: column;
-    */
-    /*justify-content: center; */
-    /*align-items: center; */
-    
     margin-right: 10px;
     text-decoration: none;
     color: #fff;
@@ -80,17 +53,21 @@
 
 .header{
     background: #ff3838;
-    height: 80px;
+    height: 100px;
     display: flex;
     /*justify-content: space-between; */
-    padding: 0.5rem calc((100vm - 1000px) / 2);
+    /* padding: 0.5rem calc((100vm - 1000px) / 2); */
+    padding: 10px 40px;
     z-index: 10;
     /* da krene od loga */
     justify-content: flex-start;
     position: sticky;
     top: 0; /*bez ovoga ne radi*/
 }
-     
+
+a{
+    font-size: 18px !important;
+}
 
 .navLink{
     color: #fff;
@@ -138,9 +115,7 @@
   /* Third Nav */
   justify-content: flex-end;
   width: 100vw; 
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+  gap: 10px;
 }
   
 

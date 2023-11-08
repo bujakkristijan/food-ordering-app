@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Swal from 'sweetalert2'
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import UserService from '../../services/UserService'
-import styles from './RegistrationComponent.css' // da se importuje css, bez ovog ne radi 
+import './RegistrationComponent.css' // da se importuje css, bez ovog ne radi 
 
 const RegistrationComponent = () => {
 
@@ -64,11 +64,11 @@ const alertSuccess = () =>{
   }
 
   return (
-    <div>
-      <br/> 
-        <div className='container-add-employee'>
-          <div className='row'>
-            <div className='card col-md-6 offset-md-3 offset-md-3'>
+    <div class="registration-main-container">
+      
+        
+          
+            <div className='card-registration'>
               {
                <h2 className='text-center'>Registration</h2>
               }
@@ -166,12 +166,11 @@ const alertSuccess = () =>{
                         >                    
                     </input>
                   </div>
-                  <button id='registrationBtn' className='btn btn-success' onClick={(e) => createUser(e)}>Submit</button>
-                  <Link to="/employees" className='btn btn-danger' style={{marginLeft:"5px"}}>Cancel</Link>
+                  <button id='registrationBtn' className='btn btn-success mt-2' onClick={(e) => createUser(e)}>Submit</button>
+                  <Link to="/employees" className='btn btn-danger mt-2' style={{marginLeft:"5px"}}>Cancel</Link>
                 </form>
               </div>
-            </div>
-          </div>
+          
         </div>    
     </div>
   )
