@@ -63,7 +63,7 @@ const ListMealTypeComponent = () => {
         setId(null); //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
     };
 
-    const handleShowEdit = (meal) => {
+    const handleShowEdit = (mealType) => {
         setShowEdit(true);
         setId(mealType.id);
         setTypeName(mealType.typeName);
