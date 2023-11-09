@@ -100,7 +100,7 @@ All orders with status *IN DELIVERY* are placed in order history, they aren't co
 
 Login component shows when the app starts.
 
-![sign-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/7b684fd6-3870-4a5d-acc5-3379a38666c7)
+![sign-in-smanjen-box-shadow](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/08aeac06-7dfb-42c4-9a8f-3c70cb620938)
 
 Logged-in users can access their profile page where they can see and change details if necessary.
 
@@ -108,7 +108,7 @@ Logged-in users can access their profile page where they can see and change deta
 
 Registration 
 
-![registration](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/11d95fa7-6b29-46b3-9cfa-cad973b8776d)
+![registration-smanjen-box-shadow](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/8a7ba048-c6c4-4042-932a-9eaac617f1ff)
 
 Alert if email or username already exists in the database.
 

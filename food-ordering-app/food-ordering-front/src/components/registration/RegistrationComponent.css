@@ -10,7 +10,8 @@
     padding: 30px;
     border-radius: 30px;
     border: 2px solid #dee2e6;
-    box-shadow: 0 0 15px 15px rgb(133, 127, 127);
+    /* box-shadow: 0 0 15px 15px rgb(133, 127, 127); */
+    box-shadow: 0 0 20px 0 rgb(0,0, 0, 0.6);
 }
 
 #registrationBtn{
