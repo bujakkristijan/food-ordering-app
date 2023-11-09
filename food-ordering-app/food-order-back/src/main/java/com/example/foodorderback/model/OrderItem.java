@@ -16,13 +16,9 @@ public class OrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
-	
-	
+
 	@OneToOne
 	public Meal meal;
-	
-	
-	
 	
 	//@JsonIgnore 
 	@ManyToOne
