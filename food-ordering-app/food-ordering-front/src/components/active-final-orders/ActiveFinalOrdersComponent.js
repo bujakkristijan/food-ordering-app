@@ -83,36 +83,37 @@ export const ActiveFinalOrdersComponent = () => {
             }
         })
     }
+    
+ /* STARA IDEJA KAKO CE EMPLOYEE DA MENJA STATUS PORUDZBINE */
+    // const handleHtmlDependingOnFinalOrderStatus = (activeFinalOrder) =>{
+    //     if(activeFinalOrder.status === "ORDERED"){
+    //         return  <td className='td-content'>
+    //                     <button className='btn btn-success' onClick={() => alertAreYouSureFinalOrderToDelivered(activeFinalOrder)}>Click if delivered</button>
+    //                 </td>
+    //     }
+    //     else if(activeFinalOrder.status === "DELIVERED"){
+    //         return <td className='td-content'>
+    //                 <h2>No action needeed</h2>
+    //                 </td>
+    //     }
+    // }
 
-    const handleHtmlDependingOnFinalOrderStatus = (activeFinalOrder) =>{
-        if(activeFinalOrder.status === "ORDERED"){
-            return  <td className='td-content'>
-                        <button className='btn btn-success' onClick={() => alertAreYouSureFinalOrderToDelivered(activeFinalOrder)}>Click if delivered</button>
-                    </td>
-        }
-        else if(activeFinalOrder.status === "DELIVERED"){
-            return <td className='td-content'>
-                    <h2>No action needeed</h2>
-                    </td>
-        }
-    }
 
-
-    const alertAreYouSureFinalOrderToDelivered = (activeFinalOrder) =>{
-        Swal.fire({
-          title: 'Are you sure?',
-          text: 'If you click yes, you will confirm that final order is delivered!',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, confirm it!'
-        }).then((result) => {
-          if (result.isConfirmed) {         
-            setFinalOrderToDelivered(activeFinalOrder.id)
-          }
-        })
-      }
+    // const alertAreYouSureFinalOrderToDelivered = (activeFinalOrder) =>{
+    //     Swal.fire({
+    //       title: 'Are you sure?',
+    //       text: 'If you click yes, you will confirm that final order is delivered!',
+    //       icon: 'warning',
+    //       showCancelButton: true,
+    //       confirmButtonColor: '#3085d6',
+    //       cancelButtonColor: '#d33',
+    //       confirmButtonText: 'Yes, confirm it!'
+    //     }).then((result) => {
+    //       if (result.isConfirmed) {         
+    //         setFinalOrderToDelivered(activeFinalOrder.id)
+    //       }
+    //     })
+    //   }
 
     const alertSuccess = () =>{
         Swal.fire({
