@@ -19,7 +19,17 @@ const navigate = useNavigate();
 const createUser = (e) => {
     e.preventDefault(); // da se ne bi osvezavala stranica svaki put kad se form submituje, tako kaze indijac na yt
     const user = {firstName, lastName, email, username, phoneNumber, password, address}
-    UserService.createUser(user).then((response) =>{
+    //validacija unosa
+    if(firstName.trim() === '' || lastName.trim() === ''
+      || email.trim() === '' || username.trim() === '' || phoneNumber.trim() === '' 
+      || password.trim() === '' || address.trim() === ''){
+       alertInvalid("invalidInput")
+    }
+    else if (validateEmail() == false){
+        alert("Invalid email!");
+    }
+    else{
+      UserService.createUser(user).then((response) =>{
         console.log(response.data);
         if(response.data.toString() == "success"){
           alertSuccess();
@@ -34,9 +44,10 @@ const createUser = (e) => {
       }).catch(error =>{
         console.log("Error: " + error);
       })
+    }
 }
 
-const alertSuccess = () =>{  
+  const alertSuccess = () =>{  
     Swal.fire({
       position: 'top',
       icon: 'success',
@@ -45,6 +56,12 @@ const alertSuccess = () =>{
       timer: 1500
     });
   }
+
+  const validateEmail = () => {
+    //treba bez ''
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const alertInvalid = (invalidText) =>{
     if(invalidText == "invalidInput"){
@@ -65,9 +82,6 @@ const alertSuccess = () =>{
 
   return (
     <div class="registration-main-container">
-      
-        
-          
             <div className='card-registration'>
               {
                <h2 className='text-center'>Registration</h2>

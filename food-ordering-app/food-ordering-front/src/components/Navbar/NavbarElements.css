@@ -105,6 +105,10 @@ a{
     width: 100vm;
     white-space: nowrap;
 }
+
+.navLink:hover, .registrationLink:hover {
+    color: #198754 !important;
+}
     
 
 

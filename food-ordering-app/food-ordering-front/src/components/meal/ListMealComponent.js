@@ -68,6 +68,9 @@ const ListMealComponent = () => {
     };
 
     const handleSubmitEdit = () => {
+        if(meal.name.trim() === "" || isNaN(parseInt(meal.price)) || parseInt(meal.price) < 0){
+            alert("Invalid input");
+        }
         MealService.updateMeal(meal).then((response) =>{
             const responseFromServer = response.data;
             if(responseFromServer == "success"){
@@ -79,26 +82,34 @@ const ListMealComponent = () => {
     }
 
     const handleSubmit = () => {
-        console.log("Meal" + meal);
-        //meal.setId(undefined);
-        //setId(undefined);
-       if(selectedFile != null && selectedFile != undefined){
-        fd.append('image', selectedFile);
-        fd.append('meal', JSON.stringify(meal));
-        console.log("Selected fileeee" + selectedFile);
-       }
-       else{
-        fd.append('image', '');
-        fd.append('meal', JSON.stringify(meal));
-       }
-        MealService.createMeal(fd).then((response) =>{
-            const responseFromServer = response.data;
-            if(responseFromServer == "valid"){
-                alert("Uspesno");
-                handleClose();
-                getAllMeals(); 
-            }
-        })
+        
+    if(meal.name.trim() === "" || isNaN(parseInt(meal.price)) || parseInt(meal.price) < 0){
+        alert("Invalid input");
+    }
+    else{
+        if(selectedFile != null && selectedFile != undefined){
+            fd.append('image', selectedFile);
+            fd.append('meal', JSON.stringify(meal));
+            console.log("Selected fileeee" + selectedFile);
+           }
+           else{
+            //mora img da ima, jer nece na back-u da se nastavi zahtev je ne sadrzi sliku. Morao bih verovatno drugi api endpoint da gadjam kad nema sliku
+            fd.append('image', selectedFile);
+            fd.append('meal', JSON.stringify(meal));
+           }
+            MealService.createMeal(fd).then((response) =>{
+                const responseFromServer = response.data;
+                if(responseFromServer === "valid"){
+                    alert("Uspesno");
+                    handleClose();
+                    getAllMeals(); 
+                }
+                else{
+                    alert("Failed to add new meal")
+                }
+            })
+        }
+
     }
 
 

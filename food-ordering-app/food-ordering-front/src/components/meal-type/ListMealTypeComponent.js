@@ -71,6 +71,9 @@ const ListMealTypeComponent = () => {
     };
 
     const handleSubmitEdit = () => {
+        if(mealType.typeName.trim() === "" || mealType.description.trim() === ""){
+            alert("Invalid input");
+        }
         MealTypeService.updateMealType(mealType).then((response) =>{
             const responseFromServer = response.data;
             if(responseFromServer == "success"){
@@ -82,17 +85,17 @@ const ListMealTypeComponent = () => {
     }
 
     const handleSubmit = () => {
-        console.log("MealType " + mealType);
-        //meal.setId(undefined);
-        //setId(undefined);
-       if(selectedFile != null && selectedFile != undefined){
-        fd.append('image', selectedFile);
-        fd.append('mealType', JSON.stringify(mealType));
-        console.log("Selected fileeee" + selectedFile);
-       }
+        if(mealType.typeName.trim() === "" || mealType.description.trim() === ""){
+            alert("Invalid input");
+        }
+        if(selectedFile != null && selectedFile != undefined){
+            fd.append('image', selectedFile);
+            fd.append('mealType', JSON.stringify(mealType));
+            console.log("Selected fileeee" + selectedFile);
+        }
        else{
-        fd.append('image', '');
-        fd.append('mealType', JSON.stringify(mealType));
+            fd.append('image', '');
+            fd.append('mealType', JSON.stringify(mealType));
        }
         MealTypeService.createMealType(fd).then((response) =>{
             const responseFromServer = response.data;

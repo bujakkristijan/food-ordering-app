@@ -20,43 +20,55 @@ const CreateEmployeeComponent = () => {
 
   //arrow function
   const createOrUpdateEmployee = (e) => {
-    e.preventDefault(); // da se ne bi osvezavala stranica svaki put kad se form submituje, tako kaze indijac na yt
+    e.preventDefault();
 
     const user = {firstName, lastName, email, username, phoneNumber, password, address}
-
-    //ako id sadrzi neku vrednost, odnosno ako je prosledjenja radi se update
-    if(id){
-      UserService.updateEmployee(id, user).then((response) =>{
-        if(response.data.toString() == "success"){
-          alertSuccess();
-          navigate("/employees");
-        }
-        else if(response.data.toString() == "invalidInput"){
-          alertInvalid(response.data.toString());
-        }
-        else if(response.data.toString() == "emailAlreadyExist"){
-          alertInvalid(response.data.toString());
-        }
-      }).catch(error =>{
-        console.log(error);
-      })
-    }else{
-      UserService.createEmployee(user).then((response) =>{
-        console.log(response.data);
-        if(response.data.toString() == "success"){
-          alertSuccess();
-          navigate("/employees");
-        }
-        else if(response.data.toString() == "invalidInput"){
-          alertInvalid(response.data.toString());
-        }
-        else if(response.data.toString() == "emailOrUsernameAlreadyExist"){
-          alertInvalid(response.data.toString());
-        }
-      }).catch(error =>{
-        console.log("Error: " + error);
-      })
-    } 
+    
+    if(firstName.trim() === '' || lastName.trim() === ''
+      || email.trim() === '' || username.trim() === '' || phoneNumber.trim() === '' 
+      || password.trim() === '' || address.trim() === ''){
+       alertInvalid("invalidInput")
+    }
+    else if (validateEmail() == false){
+        alert("Invalid email!");
+    }
+    else{
+      //ako id postoji, odnosno ako je prosledjen radi se izmena postojeceg
+      if(id){
+        UserService.updateEmployee(id, user).then((response) =>{
+          if(response.data.toString() == "success"){
+            alertSuccess();
+            navigate("/employees");
+          }
+          else if(response.data.toString() == "invalidInput"){
+            alertInvalid(response.data.toString());
+          }
+          else if(response.data.toString() == "emailAlreadyExist"){
+            alertInvalid(response.data.toString());
+          }
+        }).catch(error =>{
+          console.log(error);
+        })
+      }
+      //ako nije prosledjen id, radi se kreiranje novog
+      else{
+        UserService.createEmployee(user).then((response) =>{
+          console.log(response.data);
+          if(response.data.toString() == "success"){
+            alertSuccess();
+            navigate("/employees");
+          }
+          else if(response.data.toString() == "invalidInput"){
+            alertInvalid(response.data.toString());
+          }
+          else if(response.data.toString() == "emailOrUsernameAlreadyExist"){
+            alertInvalid(response.data.toString());
+          }
+        }).catch(error =>{
+          console.log("Error: " + error);
+        })
+      } 
+    }
   }
 
   const alertSuccess = () =>{
@@ -75,6 +87,12 @@ const CreateEmployeeComponent = () => {
       timer: 1500
     });
   }
+
+  const validateEmail = () => {
+    //treba bez ''
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const alertInvalid = (invalidText) =>{
     if(invalidText == "invalidInput"){
@@ -120,16 +138,15 @@ const title = () => {
 const usernameInput = () => {
   if(id){
     return <input  
-                        type="text"
-                        placeholder="Insert username" 
-                        name = "username" 
-                        className="form-control" 
-                        value={username}
-                        onChange = {(e) => setUsername(e.target.value)}
-                        disabled = {true}
-                        >
-                        
-                    </input>
+              type="text"
+              placeholder="Insert username" 
+              name = "username" 
+              className="form-control" 
+              value={username}
+              onChange = {(e) => setUsername(e.target.value)}
+              disabled = {true}
+              > 
+            </input>
   }
   else{
     return <input  
@@ -144,16 +161,6 @@ const usernameInput = () => {
   }
 }
 
-
-
-
-
-
-
-
-
-
-  //br da pomeri karticu od navbara
   return (
     <div>
       <br/> 
