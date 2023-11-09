@@ -82,7 +82,7 @@ After placing final order, the cart becomes empty
 
 ![empty-cart-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/13374910-a4f4-450b-bc70-f5ba6ea53977)
 
-Logged-in users can track their active orders (IN PREPARATION and ORDERED status) clicking on My active orders tab. Final orders with IN DELIVERY status will be visible clicking on Order history tab.
+Logged-in users can track their active orders (IN PREPARATION and ORDERED status) clicking on My active orders tab. Final orders with IN DELIVERY status will be visible clicking on My order history tab.
 
 ![my-active-final-orders-logged-in-user](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/a966cc39-c551-45a4-b080-8164112167b2)
 
