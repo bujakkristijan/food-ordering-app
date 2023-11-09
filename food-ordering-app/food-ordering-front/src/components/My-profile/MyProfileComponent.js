@@ -35,14 +35,17 @@ const MyProfileComponent = () => {
 
     const user = {firstNameEdit, setFirstNameEdit, lastNameEdit, setLastNameEdit, usernameEdit, setUsernameEdit, emailEdit, setEmailEdit, phoneNumberEdit, setPhoneNumberEdit, passwordEdit, setPasswordEdit,  addressEdit, setAddressEdit}
     const userEdit = { id, firstName: firstNameEdit, lastName: lastNameEdit, username: usernameEdit, email: emailEdit, phoneNumber: phoneNumberEdit, address: addressEdit, password: passwordEdit }
-    /*const [role, setRole] = useState(0) */
-    console.log(`firstName: ${firstName}`)
 
     const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        getCurrentUser(); 
+      }, []);
 
     const handleClose = () => {
         setShow(false);
         }
+
     const handleShow = () => {
         setShow(true)
         setFirstNameEdit(firstName);
@@ -54,71 +57,56 @@ const MyProfileComponent = () => {
         setAddressEdit(address);
     };
 
-        
-
-
-    useEffect(() => {
-
-        getCurrentUser();
-        console.log('test');
-        
-        
-      }, [firstName]) //kad je prazan dependendy, useEffect se izvrsi se samo kada se prvi put ucita komponenta, dok kada se promeni u ovom slucaju firstName, pozvace se svaki put
-
     const getCurrentUser = () =>{
         UserService.getCurrentUser().then((response) =>{
-            console.log("RESPONSE data : " + response.data.firstName)
-            console.log("RESPONSE: " + response)
             setId(response.data.id);
             setFirstName(response.data.firstName);
-            
-
             setLastName(response.data.lastName);
-            
-
             setEmail(response.data.email);
-            
-
             setPhoneNumber(response.data.phoneNumber);
-            
-
             setUsername(response.data.username);
-           
-
             setPassword(response.data.password);
-            
-
             setAddress(response.data.address);
-
             setRole(response.data.role);
-            
-            /*setRole(response.data.role.toString()); */
           }).catch(error =>{
             console.log(error)
-          })
+          });
     }
 
-   
     const handleSubmit = () => {
-        console.log(userEdit.id);
-        UserService.updateUser(userEdit).then((response) =>{
-            const responseFromServer = response.data;
-            if(responseFromServer == "success"){
-                alert("Uspeno");
-                getCurrentUser();
-            }
-        }).finally(()=> handleClose())
-        
+        //validacija unosa
+        if(firstNameEdit.trim() === '' || lastNameEdit.trim() === ''
+            || emailEdit.trim() === '' || usernameEdit.trim() === '' 
+            || phoneNumberEdit.trim() === '' 
+            || passwordEdit.trim() === '' || addressEdit.trim() === ''){
+            alert("Invalid input!");
+        }
+        else if (validateEmail() == false){
+            alert("Invalid email!");
+        }
+        else{
+            UserService.updateUser(userEdit).then((response) =>{
+                const responseFromServer = response.data;
+                if(responseFromServer == "success"){
+                    alert("Uspeno");
+                    getCurrentUser();
+                }
+            }).finally(()=> handleClose());
+        }
     }
+
+    const validateEmail = () => {
+        //treba bez ''
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(emailEdit);
+    };
     
 
   return (
     <>
-    <div> 
-        <div className="container">
-
+     
+    <div className="container">
         <div className="main-body">
-
             <div className="row gutters-sm">
                 <div className="col-md-4 mb-3">
                 <div className="card">
@@ -128,7 +116,7 @@ const MyProfileComponent = () => {
                         <div className="mt-3">
                         <h4>{firstName} {lastName}</h4>
                         <p className="text-secondary mb-1">Full Stack Developer</p>
-                        <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                        <p className="text-muted font-size-sm">{address}</p>
                         <Link className='btn btn-success' to={`/my-active-final-orders`}>Active orders</Link>
                         <Link className='btn btn-danger' style={{marginLeft:"5px"}} to={`/my-delivered-final-orders`}>Order history</Link>
                         </div>
@@ -245,9 +233,9 @@ const MyProfileComponent = () => {
                 </div>
                 </div>
             </div>
-            </div>
         </div>
     </div>
+    
     {/* NE MOZE MODAL.DIALOG, MORA MODAL SAMO */}
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
