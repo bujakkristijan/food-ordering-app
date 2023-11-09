@@ -60,6 +60,10 @@ Users that are not logged-in, need to insert details such as address and phone n
 
 ![not-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/9b99b590-538b-4055-a4a6-d911bb50bd72)
 
+Without inserting details, not logged-in users can't confirm the final order 
+
+![alert-insert-address-and-phone-number-not-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cf40cbc3-07b8-4013-8193-37998a8f347b)
+
 Not logged-in users can track their order status clicking on the link after the final order is placed.
 
 ![not-logged-in-link](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/482853e5-56c4-4aa1-808f-6fea3cb177cf)
@@ -77,6 +81,10 @@ Logged-in users get 10% discount on the final price of their order. Also they do
 After placing final order, the cart becomes empty
 
 ![empty-cart-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/13374910-a4f4-450b-bc70-f5ba6ea53977)
+
+Logged-in users can track their active orders (IN PREPARATION and ORDERED status) clicking on My active orders tab. Final orders with IN DELIVERY status will be visible clicking on Order history tab.
+
+![my-active-final-orders-logged-in-user](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/a966cc39-c551-45a4-b080-8164112167b2)
 
 Employee can see and change status of the final order depending on real status of the order, which user can track.
 

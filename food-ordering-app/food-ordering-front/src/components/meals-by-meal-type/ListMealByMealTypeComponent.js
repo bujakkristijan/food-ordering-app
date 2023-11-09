@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import MealService from '../../services/MealService'
 import { Modal, Button } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import MealQuantityComponent from './MealQuantityComponent';
 import { addItem } from '../../store-redux/cart/cartSlice';
 import { useDispatch } from 'react-redux';
@@ -30,6 +30,8 @@ const ListMealByMealTypeComponent = () => {
     const mealQuantityObj = {mealQuantity, setMealQuantity};
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getMealsByMealTypeId();
@@ -91,11 +93,15 @@ const ListMealByMealTypeComponent = () => {
         });
       }
 
+      const navigateToCart = () =>{
+        navigate("/cart");
+      }
+
   return (
     <>
     <div className='container-meal-by-meal-type'>
             
-            <button id="btn-goTo-cart" className="btn btn-success mb-2" >Go to cart</button>
+            <button id="btn-goTo-cart" className="btn btn-success mb-2" onClick={navigateToCart} >Go to cart</button>
             <h2 className='text-center'>Meals</h2>
             <table className='table table-hover tableElement'>
                 <thead className='thead-name'>
