@@ -42,7 +42,7 @@ Every user can see meals after choosing the meal type first.
 
 After choosing meal type, available meals will be listed.
 
-![menu-step-2](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/b0e59b49-4bcc-4cf7-b58c-c60aa3557fd3)
+![meals-by-meal-type-with-category](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/f1cbf613-ee86-4474-9c0f-69157f8a6434)
 
 Users can add items (meals) to the cart after they insert quantity.
 

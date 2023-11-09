@@ -59,6 +59,7 @@ const ListMealByMealTypeComponent = () => {
     const getMealsByMealTypeId = () =>{
         MealService.getMealsByMealTypeId(mealTypeId).then((response)=>{
             setMeals(response.data);
+            console.log("meals" + JSON.stringify(response.data));
         }).catch(error => {
             console.log(error);
         })
@@ -102,7 +103,7 @@ const ListMealByMealTypeComponent = () => {
     <div className='container-meal-by-meal-type'>
             
             <button id="btn-goTo-cart" className="btn btn-success mb-2" onClick={navigateToCart} >Go to cart</button>
-            <h2 className='text-center'>Meals</h2>
+            {meals.length !== 0 && <h2 className='text-center'>Category: {meals[0].mealType.typeName}</h2>}
             <table className='table table-hover tableElement'>
                 <thead className='thead-name'>
                     <tr>                      
