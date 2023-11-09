@@ -35,6 +35,7 @@ const CartComponent = () => {
   const itemObjToStore = { item, itemQuantity}
 
     useEffect(() => {
+      console.log("itemsfromcart" + JSON.stringify(itemsFromCart));
   }, [])
 
     const handleShowEdit = (itemFromCart) => {
@@ -240,6 +241,7 @@ const CartComponent = () => {
             <tr>
                 <th className='theadth'>Image</th>
                 <th className='theadth'>Name</th>
+                <th className='theadth'>Type</th>
                 <th className='theadth'>Price</th>
                 <th className='theadth'>Quantity</th>
                 <th className='theadth'>Action</th>               
@@ -253,6 +255,7 @@ const CartComponent = () => {
                       <img className='mealPic' src={"data:image/png;base64," + itemFromCart.meal.image} alt=''/>                   
                     </td>                       
                     <td className='td-content'>{itemFromCart.meal.name}</td>
+                    <td className='td-content'>{itemFromCart.meal.mealType}</td>
                     <td className='td-content'>{itemFromCart.meal.price}</td>
                     <td className='td-content'>{itemFromCart.quantity}</td>                    
                     <td className='td-content'>

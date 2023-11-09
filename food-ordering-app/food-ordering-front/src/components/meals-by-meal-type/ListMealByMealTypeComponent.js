@@ -22,8 +22,9 @@ const ListMealByMealTypeComponent = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [image, setImage] = useState('');
+    const [mealType, setMealType] = useState('');
 
-    const meal = {id, name, price, image};
+    const meal = {id, name, mealType, price, image};
 
     const orderItem = {meal, quantity: mealQuantity};
      
@@ -39,9 +40,11 @@ const ListMealByMealTypeComponent = () => {
 
     const handleShowMealQuantity = (meal) => {   
        //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
+        console.log("TYPEEEEE" + meal.mealType.typeName);
         setId(meal.id);
         setName(meal.name);
         setPrice(meal.price);
+        setMealType(meal.mealType.typeName);
         setImage(meal.image);
         setMealQuantity(1);
         setShow(true); 
@@ -53,6 +56,7 @@ const ListMealByMealTypeComponent = () => {
         setName('');
         setPrice('');
         setImage('');
+        setMealType('');
         setMealQuantity(1);
         }
 

@@ -54,7 +54,7 @@ After inserting quantity and submiting, item is successfully added to the cart.
 
 Clicking on cart button or icon in navigation, users can see items from the cart
 
-![items-from-cart](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/74c4a0bf-5be1-426a-a710-2849f1a15b13)
+![itemsfromcartwithtypeadded](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/07576463-cc41-4bcb-96b8-3df3e8088d02)
 
 Users that are not logged-in, need to insert details such as address and phone number.
 

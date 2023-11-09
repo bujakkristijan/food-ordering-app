@@ -81,6 +81,10 @@ a{
   letter-spacing: 1px;
 }
 
+/* td{
+  text-align: center;
+} */
+
 button{
   font-weight: 500 !important;
   letter-spacing: 1px;
