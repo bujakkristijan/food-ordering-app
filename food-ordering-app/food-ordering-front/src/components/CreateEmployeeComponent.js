@@ -18,7 +18,21 @@ const CreateEmployeeComponent = () => {
 
   const navigate = useNavigate();
 
-  //arrow function
+  //ako postoji id, znaci da se radi izmena i prvo se setuju podaci dobijeni od servera
+  useEffect(() => {
+    id && UserService.getEmployeeById(id).then((response) =>{
+      setFirstName(response.data.firstName);
+      setLastName(response.data.lastName);
+      setEmail(response.data.email);
+      setPhoneNumber(response.data.phoneNumber);
+      setUsername(response.data.username);
+      setPassword(response.data.password);
+      setAddress(response.data.address);
+    }).catch(error =>{
+      console.log(error)
+    })
+  }, [])
+
   const createOrUpdateEmployee = (e) => {
     e.preventDefault();
 
@@ -111,21 +125,6 @@ const CreateEmployeeComponent = () => {
     })
   }
 
-//zasto se ovo izvrsava samo kad je update ????
-useEffect(() => {
-  id && UserService.getEmployeeById(id).then((response) =>{
-    setFirstName(response.data.firstName);
-    setLastName(response.data.lastName);
-    setEmail(response.data.email);
-    setPhoneNumber(response.data.phoneNumber);
-    setUsername(response.data.username);
-    setPassword(response.data.password);
-    setAddress(response.data.address);
-  }).catch(error =>{
-    console.log(error)
-  })
-}, [])
-
 const title = () => {
   if(id){
     return <h2 className='text-center'>Update employee</h2>
@@ -150,14 +149,14 @@ const usernameInput = () => {
   }
   else{
     return <input  
-    type="text"
-    placeholder="Insert username" 
-    name = "username" 
-    className="form-control" 
-    value={username}
-    onChange = {(e) => setUsername(e.target.value)}
-    >
-    </input>
+              type="text"
+              placeholder="Insert username" 
+              name = "username" 
+              className="form-control" 
+              value={username}
+              onChange = {(e) => setUsername(e.target.value)}
+            >
+            </input>
   }
 }
 
@@ -181,8 +180,7 @@ const usernameInput = () => {
                         className="form-control" 
                         value={firstName}
                         onChange = {(e) => setFirstName(e.target.value)}
-                        >
-                        
+                        >     
                     </input>
                   </div>
 
@@ -195,8 +193,7 @@ const usernameInput = () => {
                         className="form-control" 
                         value={lastName}
                         onChange = {(e) => setLastName(e.target.value)}
-                        >
-                        
+                        > 
                     </input>
                   </div>
 
@@ -209,8 +206,7 @@ const usernameInput = () => {
                         className="form-control" 
                         value={email}
                         onChange = {(e) => setEmail(e.target.value)}
-                        >
-                        
+                        >    
                     </input>
                   </div>
 
@@ -223,8 +219,7 @@ const usernameInput = () => {
                         className="form-control" 
                         value={phoneNumber}
                         onChange = {(e) => setPhoneNumber(e.target.value)}
-                        >
-                        
+                        >   
                     </input>
                   </div>
 
@@ -245,7 +240,6 @@ const usernameInput = () => {
                         value={password}
                         onChange = {(e) => setPassword(e.target.value)}
                         >
-                        
                     </input>
                   </div>
 
@@ -259,7 +253,6 @@ const usernameInput = () => {
                         value={address}
                         onChange = {(e) => setAddress(e.target.value)}
                         >
-                        
                     </input>
                   </div>
 
@@ -270,7 +263,6 @@ const usernameInput = () => {
             </div>
           </div>
         </div>
-        
     </div>
   )
 }

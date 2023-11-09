@@ -33,7 +33,7 @@ function App() {
           <Routes>
             <Route path='/' element = {<LoginComponent/>}></Route> 
             <Route path='/employees' element = {<ListEmployeeComponent/>}></Route>
-            {role==="ADMIN" && <Route path='/create-employee' element = {<CreateEmployeeComponent/>}/>}
+            {role==="ADMIN" && <Route path='/create-employee' element = {<CreateEmployeeComponent/>}></Route>}
             <Route path='/edit-employee/:id' element = {<CreateEmployeeComponent/>}></Route>
             <Route path='/registration' element = {<RegistrationComponent/>}></Route>
             <Route path='/login' element = {<LoginComponent/>}></Route>

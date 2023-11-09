@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import UserService from '../../services/UserService'
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import Swal from 'sweetalert2'
-import styles from './MyProfileComponent.css'
+import './MyProfileComponent.css'
 import EditMyProfileComponent from './EditMyProfileComponent'
 import { Modal, Button } from 'react-bootstrap'
 
@@ -104,7 +104,6 @@ const MyProfileComponent = () => {
 
   return (
     <>
-     
     <div className="container">
         <div className="main-body">
             <div className="row gutters-sm">
