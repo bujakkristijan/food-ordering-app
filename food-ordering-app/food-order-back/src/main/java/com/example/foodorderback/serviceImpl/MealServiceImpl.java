@@ -45,7 +45,6 @@ public class MealServiceImpl implements MealService {
             .getId();
     }
 	
-	
 	@Override
 	public String isValidInput(Meal meal) {
 		if (meal.getPrice() < 1 
@@ -56,24 +55,24 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Override
-	public Meal save(Meal meal) {
-		return mealRepository.save(meal);
+	public String save(Meal meal) {
+		try {
+			mealRepository.save(meal);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
 	}
 
 	@Override
 	public List<MealDTO> findAll() {
 		List<Meal> allMealList = mealRepository.findAll();
-		
 		List<MealDTO> allMealDTOList = new ArrayList<MealDTO>();
 		MealDTO mealDTO = new MealDTO();
-
 		for (Meal meal : allMealList) {
 			//MealDTO mealDTO = MealMapper.INSTANCE.entityToDTO(meal);
-			mealDTO = new MealDTO(meal);
-			
-				allMealDTOList.add(mealDTO);
-		
-			
+			mealDTO = new MealDTO(meal);		
+			allMealDTOList.add(mealDTO);
 		}
 		return allMealDTOList;
 	}
@@ -95,7 +94,6 @@ public class MealServiceImpl implements MealService {
 
 	@Override
 	public Meal delete(Meal meal) {
-		
 		if (meal == null)
 			throw new IllegalArgumentException("Attempt to delete non-existing meal.");
 		mealRepository.delete(meal);
@@ -111,26 +109,22 @@ public class MealServiceImpl implements MealService {
 		return meal;
 	}
 
-	
-	
-	
-
 	@Override
 	public String editMeal(Meal meal) {
 		Meal m = mealRepository.findById(meal.getId()).get();
 		if (isValidInput(meal).equals("invalid")) {
 			return "invalid";
 		}
+		try {
+			m.setPrice(meal.getPrice());
+			m.setName(meal.getName());
+			m.setMealType(meal.getMealType());
+			mealRepository.save(m);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
 		
-		m.setPrice(meal.getPrice());
-		m.setName(meal.getName());
-		
-		m.setMealType(meal.getMealType());
-		
-		mealRepository.save(m);
-		return "success";
 	}
-
-	
 
 }

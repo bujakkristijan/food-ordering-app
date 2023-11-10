@@ -81,42 +81,50 @@ const ListMealComponent = () => {
         }
         MealService.updateMeal(meal).then((response) =>{
             const responseFromServer = response.data;
-            if(responseFromServer == "success"){
+            if(responseFromServer === "success"){
                 alert("Uspesno editovano");
                 handleCloseEdit();
                 getAllMeals();  
+            }
+            else if(responseFromServer === "invalid"){
+                alert("Invalid input");
+            }
+            else if(responseFromServer === "fail"){
+                alert("Failed to edit meal");
             }
         }) 
     }
 
     const handleSubmit = () => {
-        
-    if(meal.name.trim() === "" || isNaN(parseInt(meal.price)) || parseInt(meal.price) < 0){
-        alert("Invalid input");
-    }
-    else{
-        if(selectedFile != null && selectedFile != undefined){
-            fd.append('image', selectedFile);
-            fd.append('meal', JSON.stringify(meal));
-            console.log("Selected fileeee" + selectedFile);
-           }
-           else{
-            //mora img da ima, jer nece na back-u da se nastavi zahtev je ne sadrzi sliku. Morao bih verovatno drugi api endpoint da gadjam kad nema sliku
-            fd.append('image', selectedFile);
-            fd.append('meal', JSON.stringify(meal));
-           }
-            MealService.createMeal(fd).then((response) =>{
-                const responseFromServer = response.data;
-                if(responseFromServer === "valid"){
-                    alert("Uspesno");
-                    handleClose();
-                    getAllMeals(); 
-                }
-                else{
-                    alert("Failed to add new meal")
-                }
-            })
+        if(meal.name.trim() === "" || isNaN(parseInt(meal.price)) || parseInt(meal.price) < 0){
+            alert("Invalid input");
         }
+        else{
+            if(selectedFile != null && selectedFile != undefined){
+                fd.append('image', selectedFile);
+                fd.append('meal', JSON.stringify(meal));
+                console.log("Selected fileeee" + selectedFile);
+            }
+            else{
+                //mora img da ima, jer nece na back-u da se nastavi zahtev je ne sadrzi sliku. Morao bih verovatno drugi api endpoint da gadjam kad nema sliku
+                fd.append('image', selectedFile);
+                fd.append('meal', JSON.stringify(meal));
+            }
+                MealService.createMeal(fd).then((response) =>{
+                    const responseFromServer = response.data;
+                    if(responseFromServer === "success"){
+                        alert("Successfully added meal!");
+                        handleClose();
+                        getAllMeals(); 
+                    }
+                    else if(responseFromServer === "invalid"){
+                        alert("Invalid input")
+                    }
+                    else if(responseFromServer === "fail"){
+                        alert("Failed to add new meal")
+                    }
+                })
+            }
 
     }
 

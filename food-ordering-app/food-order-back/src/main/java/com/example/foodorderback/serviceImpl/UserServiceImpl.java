@@ -123,9 +123,6 @@ public class UserServiceImpl implements UserService {
 		authorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
 		Authentication authentication = new PreAuthenticatedAuthenticationToken(user.getId(), null, authorities);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//Long id = Long.parseLong(auth.getName());
-		
 	}
 
 
@@ -221,6 +218,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return true;
 	}
+	
 	@Override
 	public String updateUser(User u) {
 		try {
@@ -251,7 +249,6 @@ public class UserServiceImpl implements UserService {
 		}
 		
 	}
-	
 	
 	@Override
 	public LoginDTO generateToken(Login login) {

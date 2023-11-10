@@ -1,57 +1,57 @@
 import React, {useState} from 'react'
 import Swal from 'sweetalert2'
-import {Link, useNavigate, useParams} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import UserService from '../../services/UserService'
-import './RegistrationComponent.css' // da se importuje css, bez ovog ne radi 
+import './RegistrationComponent.css'
 
 const RegistrationComponent = () => {
 
-const [firstName, setFirstName] = useState('')
-const [lastName, setLastName] = useState('')
-const [username, setUsername] = useState('')
-const [email, setEmail] = useState('')
-const [phoneNumber, setPhoneNumber] = useState('')
-const [password, setPassword] = useState('')
-const [address, setAddress] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [password, setPassword] = useState('')
+  const [address, setAddress] = useState('')
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const createUser = (e) => {
-    e.preventDefault(); // da se ne bi osvezavala stranica svaki put kad se form submituje, tako kaze indijac na yt
-    const user = {firstName, lastName, email, username, phoneNumber, password, address}
-    //validacija unosa
-    if(firstName.trim() === '' || lastName.trim() === ''
-      || email.trim() === '' || username.trim() === '' || phoneNumber.trim() === '' 
-      || password.trim() === '' || address.trim() === ''){
-       alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
-    }
-    else if (validateEmail() === false){
-        alertInvalid("Invalid email! Make sure email is valid and try again!");
-    }
-    else if(!isValidNumber(phoneNumber)){
-        alertInvalid("Invalid phone number or it has less than 5 digits");
-    }
-    else{
-      UserService.createUser(user).then((response) =>{
-        console.log(response.data);
-        if(response.data.toString() === "success"){
-          alertSuccess("Successfully registered!");
-          navigate("/login");
-        }
-        else if(response.data.toString() === "invalid"){
-          alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
-        }
-        else if(response.data.toString() === "emailNotUnique"){
-          alertInvalid("Email already exists! Try again!");
-        }
-        else if(response.data.toString() === "usernameNotUnique"){
-          alertInvalid("Username already exists! Try again!");
-        }
-      }).catch(error =>{
-        console.log("Error: " + error);
-      })
-    }
-}
+  const createUser = (e) => {
+      e.preventDefault();
+      //validacija unosa
+      if(firstName.trim() === '' || lastName.trim() === ''
+        || email.trim() === '' || username.trim() === '' || phoneNumber.trim() === '' 
+        || password.trim() === '' || address.trim() === ''){
+        alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
+      }
+      else if (validateEmail() === false){
+          alertInvalid("Invalid email! Make sure email is valid and try again!");
+      }
+      else if(!isValidNumber(phoneNumber)){
+          alertInvalid("Invalid phone number or it has less than 5 digits");
+      }
+      else{
+        const user = {firstName, lastName, email, username, phoneNumber, password, address}
+        UserService.createUser(user).then((response) =>{
+          console.log(response.data);
+          if(response.data.toString() === "success"){
+            alertSuccess("Successfully registered!");
+            navigate("/login");
+          }
+          else if(response.data.toString() === "invalid"){
+            alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
+          }
+          else if(response.data.toString() === "emailNotUnique"){
+            alertInvalid("Email already exists! Try again!");
+          }
+          else if(response.data.toString() === "usernameNotUnique"){
+            alertInvalid("Username already exists! Try again!");
+          }
+        }).catch(error =>{
+          console.log("Error: " + error);
+        })
+      }
+  }
 
   const alertSuccess = (message) =>{  
     Swal.fire({
@@ -92,7 +92,7 @@ const createUser = (e) => {
   }
 
   return (
-    <div class="registration-main-container">
+    <div className="registration-main-container">
             <div className='card-registration'>
               {
                <h2 className='text-center'>Registration</h2>
@@ -195,7 +195,6 @@ const createUser = (e) => {
                   <Link to="/employees" className='btn btn-danger mt-2' style={{marginLeft:"5px"}}>Cancel</Link>
                 </form>
               </div>
-          
         </div>    
     </div>
   )

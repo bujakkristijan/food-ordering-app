@@ -14,7 +14,7 @@ public interface MealService {
 	
 	String isValidInput(Meal meal);
 	List<MealDTO> findAll();
-	Meal save(Meal meal);
+	String save(Meal meal);
 	
 	Meal delete(Meal meal);
 	Meal findOne(Long id);

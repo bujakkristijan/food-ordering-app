@@ -43,7 +43,6 @@ public class UserController {
 			responseToClient = userService.saveUser(user);
 			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 		}
-
 	}
 	
 	@RequestMapping(value = "/createEmployee", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -86,7 +85,7 @@ public class UserController {
 		if (userService.findOne(id) == null) {
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
-		// fronta se ne salje id i role, pa se ovde setuje
+		// sa fronta se ne salje id i role, pa se ovde setuje
 		User user = userService.findOne(id);
 		employeeDetails.setId(user.getId());
 		employeeDetails.setRole(user.getRole());

@@ -62,51 +62,27 @@ public class MealController {
 	@RequestMapping(value = "/createMeal", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<String> createMeal(@RequestParam("image") MultipartFile image, HttpServletRequest request) {
 		
-		System.out.println(request.getParameter("meal"));
-		
-		
+		System.out.println(request.getParameter("meal"));	
 		Gson g = new Gson();  
 		Meal meal = g.fromJson(request.getParameter("meal"), Meal.class);
-		System.out.println("MEALLLL " + meal);
+		System.out.println("MEAL " + meal);
 		
 		String responseToClient;
 		responseToClient = mealService.isValidInput(meal);
-		if (responseToClient.equals("valid")) {
-			/*try {
-				Long imageID = fileLocationService.save(image.getBytes(), image.getOriginalFilename());
-				//meal.setImageFSR(fileLocationService.find(imageID));
-				Image imageObj = imageService.findOne(imageID);
-				meal.setImage(imageObj);
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // za sliku
-			*/
-			/*String fileName = StringUtils.cleanPath(image.getOriginalFilename());
-			if(fileName.contains(".."))
-			{
-				System.out.println("not a a valid file");
-			}*/
+		if (!(responseToClient.equals("valid"))) {
+			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
+		}
+		else {
 			try {
 				meal.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
 				meal.setImageName(image.getOriginalFilename());
+				responseToClient = mealService.save(meal);
+				return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 			} catch (IOException e) {
-				e.printStackTrace();
+				responseToClient = "fail";
+				return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 			}
-			//meal.setImage(Base64.getEncoder().encodeToString(file.getBytes()))
-			mealService.save(meal);
-			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
-
-		} else {
-			responseToClient = "invalid";
-			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 		}
-
-
 	}
 	
 	@RequestMapping(value = "/updateMeal", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
