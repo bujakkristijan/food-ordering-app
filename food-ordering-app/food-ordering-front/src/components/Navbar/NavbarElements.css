@@ -9,8 +9,8 @@
 }
 
 .logo-cart{
-    height: 50px;
-    width: 50px;
+    height: 56px;
+    width: 56px;
     /*align-items: center;
     text-align: center;
     justify-content: center; */
@@ -19,8 +19,8 @@
 
 .number-cart{
     position: absolute;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     background-color: #5cb85c;
     border-radius: 20px;
     text-align: center;

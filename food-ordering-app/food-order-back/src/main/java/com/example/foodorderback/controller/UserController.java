@@ -26,8 +26,12 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
-
 	
+	@RequestMapping(value = "/preflightMask", method = RequestMethod.GET)
+	public ResponseEntity<String> getMask() {
+		return new ResponseEntity<>("mask", HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> createUser(@RequestBody User user) {
 		//UserDTO userDTO = UserMapper.INSTANCE.entityToDTO(user);

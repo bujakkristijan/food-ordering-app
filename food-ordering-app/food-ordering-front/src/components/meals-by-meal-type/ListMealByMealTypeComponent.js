@@ -79,29 +79,29 @@ const ListMealByMealTypeComponent = () => {
         console.log("orderitem" + JSON.stringify(orderItem));
         if(orderItem.quantity>0){
             dispatch(addItem(orderItem));
-            alertSuccess();
+            alertSuccess('Successfully added item to cart!');
             handleClose();
         }
         else{
-            alertInvalidInput();
+            alertInvalidInput('Invalid input, quantity must be positve number!');
         }
     }
 
-    const alertSuccess = () =>{
+    const alertSuccess = (message) =>{
         Swal.fire({
           position: 'top',
           icon: 'success',
-          title: 'Successfully added item to cart!',
+          title: message,
           showConfirmButton: false,
           timer: 1500
         });
       }
 
-      const alertInvalidInput =() =>{
+      const alertInvalidInput = (message) =>{
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Invalid input, quantity must be positve number!'  
+          text: message  
         });
       }
 

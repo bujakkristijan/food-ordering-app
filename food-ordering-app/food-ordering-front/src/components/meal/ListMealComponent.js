@@ -6,6 +6,7 @@ import { Modal, Button } from 'react-bootstrap'
 import CreateMealComponent from './CreateMealComponent'
 import EditMealComponent from './EditMealComponent';
 import './ListMealComponent.css';
+import UserService from '../../services/UserService';
 
 const ListMealComponent = () => {
 
@@ -29,8 +30,15 @@ const ListMealComponent = () => {
     const meal = {id, name, price, image, imageName, mealType, setName, setPrice, setImage, setImageName, setMealType}
 
     useEffect(() => {
-      getAllMeals();
+        getAllMeals();
+        // sendPreflightMaskThenMainRequest();
     }, [])
+
+    // const sendPreflightMaskThenMainRequest = () =>{
+    //     UserService.preflightMask().then((response) =>{
+    //         getAllMeals();
+    //     })
+    // }
     
     const getAllMeals = () =>{
         MealService.getAllMeals().then((response) =>{

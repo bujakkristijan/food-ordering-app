@@ -23,67 +23,88 @@ import OrderHistoryComponent from './components/order-history/OrderHistoryCompon
 import MyDeliveredFinalOrdersComponent from './components/my-delivered-final-orders/MyDeliveredFinalOrdersComponent';
 import ListUserComponent from './components/user/ListUserComponent';
 import jwtDecode from 'jwt-decode';
+import { Navigate } from 'react-router-dom';
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
-function App() {
-
-  const role = localStorage.role;
-  
+const PrivateRoute = ({ element, allowedRoles }) => {
+  const userRole = localStorage.getItem('role');
+  const navigate = useNavigate();
   useEffect(() => {
-   checkiIsTokenValid();
-  }, [])
-  
-  const checkiIsTokenValid = () =>{
-    if(localStorage.token){
+    checkIsTokenValid();
+  }, []);
+
+  const checkIsTokenValid = () => {
+    if (localStorage.token) {
       try {
         const decodedToken = jwtDecode(localStorage.token);
-        // Check if the token is expired
-        const currentTime = Date.now() / 1000; // Convert to seconds
+        const currentTime = Date.now() / 1000;
+
         if (decodedToken.exp < currentTime) {
-          // Token is expired, log out the user
           console.log('Token is expired');
-          localStorage.clear()
-        } else {
-          // Token is valid
-          console.log('Token is valid');
+          localStorage.clear();
         }
       } catch (error) {
-        // Error decoding the token
         console.error('Error decoding token:', error);
         localStorage.clear();
       }
     }
-    
+  };
+
+  if (!localStorage.token || !allowedRoles.includes(userRole)) {
+  // The use of setTimeout with a delay of 0 milliseconds
+  // is a common workaround in React to ensure that a function call is deferred
+  // until after the current JavaScript execution context has completed.
+
+  // In this case, React was warning you that you're calling navigate directly inside the useEffect,
+  // and it's advising you to move the navigation into a subsequent render. By using setTimeout with a delay of 0,
+  // you're essentially saying, "schedule this function to run in the next tick of the event loop,"
+  // allowing the component to fully render before attempting to navigate.
+
+  // This pattern is often used when you want to ensure that certain side effects, like navigation or state updates,
+  // happen after the current render cycle. It doesn't introduce an actual delay; instead,
+  // it allows the current JavaScript execution to finish, and the scheduled function will be executed in the next event loop cycle.
+  // While it's a common and generally safe pattern, it's always a good idea to use it judiciously and understand the reasons behind its use.
+  // In this case, it helps to avoid React warnings and ensures that navigation occurs after the component has been fully rendered.
+  alert("You don't have permission to access this page.");
+    setTimeout(() => {
+      navigate(-1); // vrati na prethodnu
+    }, 0);
+    // return <p style={{ textAlign: "center", fontSize: "26px" }}>You do not have permission to access this page.</p>;
   }
 
+  // Render the protected component
+  return element;
+};
+
+function App() {
   return (
-   
+    <>
       <Router>
-        <NavbarStyledComponent/>
-        <div className='router-view'>
+        <NavbarStyledComponent />
+        <div className="router-view">
           <Routes>
-            <Route path='/' element = {<LoginComponent/>}></Route> 
-            <Route path='/employees' element = {<ListEmployeeComponent/>}></Route>
-            {role==="ADMIN" && <Route path='/create-employee' element = {<CreateEmployeeComponent/>}></Route>}
-            <Route path='/edit-employee/:id' element = {<CreateEmployeeComponent/>}></Route>
-            <Route path='/registration' element = {<RegistrationComponent/>}></Route>
-            <Route path='/login' element = {<LoginComponent/>}></Route>
-            <Route path='/my-profile' element = {<MyProfileComponent/>}></Route>
-            <Route path='/meals' element = {<ListMealComponent/>}></Route>
-            <Route path='/menu' element = {<MenuMealTypeComponent/>}></Route>
-            <Route path='/meal-types' element = {<ListMealTypeComponent/>}></Route>
-            <Route path='/meals-by-meal-type/:mealTypeId' element = {<ListMealByMealTypeComponent/>}></Route>
-            <Route path='/cart' element = {<CartComponent/>}></Route>
-            <Route path='/final-order/:id' element = {<FinalOrderByIdComponent/>}></Route>
-            <Route path='/active-final-orders' element = {<ActiveFinalOrdersComponent/>}></Route>
-            <Route path='/my-active-final-orders' element = {<MyActiveFinalOrdersComponent/>}></Route>
-            <Route path='/my-delivered-final-orders' element = {<MyDeliveredFinalOrdersComponent/>}></Route>
-            <Route path='/order-history' element = {<OrderHistoryComponent/>}></Route>
-            <Route path='/users' element = {<ListUserComponent/>}></Route>
+            <Route path="/" element={<LoginComponent />} />
+            <Route path="/employees" element={<PrivateRoute element={<ListEmployeeComponent />} allowedRoles={['ADMIN']} />} />
+            <Route path="/create-employee" element={<PrivateRoute element={<CreateEmployeeComponent />} allowedRoles={['ADMIN']} />} />
+            <Route path="/edit-employee/:id" element={<PrivateRoute element={<CreateEmployeeComponent />} allowedRoles={['ADMIN']} />} />
+            <Route path="/registration" element={<RegistrationComponent />} />
+            <Route path="/login" element={<LoginComponent />} />
+            <Route path="/my-profile" element={<PrivateRoute element={<MyProfileComponent />} allowedRoles={['USER']} />} />
+            <Route path="/meals" element={<PrivateRoute element={<ListMealComponent />} allowedRoles={['ADMIN']} />} />
+            <Route path="/menu" element={<MenuMealTypeComponent />} />
+            <Route path="/meal-types" element={<PrivateRoute element={<ListMealTypeComponent />} allowedRoles={['ADMIN']} />} />
+            <Route path="/meals-by-meal-type/:mealTypeId" element={<ListMealByMealTypeComponent />} />
+            <Route path="/cart" element={<CartComponent />} />
+            <Route path="/final-order/:id" element={<FinalOrderByIdComponent />} />
+            <Route path="/active-final-orders" element={<PrivateRoute element={<ActiveFinalOrdersComponent />} allowedRoles={['ADMIN', 'EMPLOYEE']} />} />
+            <Route path="/my-active-final-orders" element={<PrivateRoute element={<MyActiveFinalOrdersComponent />} allowedRoles={['USER']} />} />
+            <Route path="/my-delivered-final-orders" element={<PrivateRoute element={<MyDeliveredFinalOrdersComponent />} allowedRoles={['USER']} />} />
+            <Route path="/order-history" element={<PrivateRoute element={<OrderHistoryComponent />} allowedRoles={['ADMIN', 'EMPLOYEE']} />} />
+            <Route path="/users" element={<PrivateRoute element={<ListUserComponent />} allowedRoles={['ADMIN']} />} />
           </Routes>
         </div>
-        <FooterComponent/>
+        <FooterComponent />
       </Router>
+    </>
   );
 }
-
 export default App;

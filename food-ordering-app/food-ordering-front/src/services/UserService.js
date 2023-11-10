@@ -37,6 +37,10 @@ class UserService{
     updateUser(user){
         return axios.put("http://localhost:8080/api/user/updateUser", user);
     }
+
+    preflightMask(){
+        return axios.get("http://localhost:8080/api/user/preflightMask");
+    }
 }
 
 export default new UserService();

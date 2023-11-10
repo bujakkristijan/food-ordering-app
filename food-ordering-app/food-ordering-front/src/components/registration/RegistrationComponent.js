@@ -23,23 +23,26 @@ const createUser = (e) => {
     if(firstName.trim() === '' || lastName.trim() === ''
       || email.trim() === '' || username.trim() === '' || phoneNumber.trim() === '' 
       || password.trim() === '' || address.trim() === ''){
-       alertInvalid("invalidInput")
+       alertInvalid("Invalid input, make sure everything is filed correctly and try again!")
     }
     else if (validateEmail() == false){
-        alert("Invalid email!");
+        alertInvalid("Invalid email! Make sure email is valid and try again!");
+    }
+    else if(!isValidNumber(phoneNumber)){
+        alertInvalid("Invalid phone number or it has less than 5 digits");
     }
     else{
       UserService.createUser(user).then((response) =>{
         console.log(response.data);
         if(response.data.toString() == "success"){
-          alertSuccess();
-          navigate("/employees");
+          alertSuccess("Successfully registered!");
+          navigate("/login");
         }
         else if(response.data.toString() == "invalidInput"){
-          alertInvalid(response.data.toString());
+          alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
         }
         else if(response.data.toString() == "emailOrUsernameAlreadyExist"){
-          alertInvalid(response.data.toString());
+          alertInvalid("Email or username already exists! Try again!");
         }
       }).catch(error =>{
         console.log("Error: " + error);
@@ -47,11 +50,11 @@ const createUser = (e) => {
     }
 }
 
-  const alertSuccess = () =>{  
+  const alertSuccess = (message) =>{  
     Swal.fire({
       position: 'top',
       icon: 'success',
-      title: 'Successfully registered!',
+      title: message,
       showConfirmButton: false,
       timer: 1500
     });
@@ -63,21 +66,26 @@ const createUser = (e) => {
     return emailRegex.test(email);
   };
 
-  const alertInvalid = (invalidText) =>{
-    if(invalidText == "invalidInput"){
-      var titleContent = "Invalid input, make sure everything is filed correctly and try again!";
-    }
-    else if(invalidText == "emailOrUsernameAlreadyExist"){
-      var titleContent = "Username or email already exist, try again!";
-    }
-    else if(invalidText == "emailAlreadyExist"){
-      var titleContent = "Email already exist, try again!";
-    }
+  const alertInvalid = (message) =>{
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: titleContent,
+      text: message,
     })
+  }
+
+  const isValidNumber = (input) => {
+    // ^\d{5,}$: Uses a regular expression to ensure that the input consists of at least 5 digits. 
+    // Here's a breakdown:
+    // ^: Asserts the start of the string.
+    // \d{5,}: Matches at least 5 digits (\d is a shorthand for a digit, and {5,} means at least 5 occurrences).
+    // $: Asserts the end of the string.
+    if(isNaN(input) || /^\d{5,}$/.test(input) === false){
+      return false;
+    }
+    else{
+      return true;
+    }
   }
 
   return (
@@ -158,7 +166,7 @@ const createUser = (e) => {
                   <div className='form-group mb-2'>
                     <label className='form-label'>Password: </label>
                     <input  
-                        type="text"
+                        type="password"
                         placeholder="Insert password" 
                         name = "password" 
                         className="form-control" 

@@ -7,6 +7,7 @@ import './ActiveFinalOrdersComponent.css';
 import ItemsByFinalOrderIdComponent from '../final-order-by-id/ItemsByFinalOrderIdComponent';
 import {Form} from 'react-bootstrap'
 import Moment from 'moment';
+import UserService from '../../services/UserService';
 
 export const ActiveFinalOrdersComponent = () => {
 
@@ -22,8 +23,15 @@ export const ActiveFinalOrdersComponent = () => {
     const statusOptions = ["ORDERED", "IN PREPARATION", "IN DELIVERY"];
 
     useEffect(() => {
-      getAllActiveFinalOrders();
+        getAllActiveFinalOrders();
+        // sendPreflightMaskThenMainRequest();
     }, [])
+
+    // const sendPreflightMaskThenMainRequest = () =>{
+    //     UserService.preflightMask().then((response) =>{
+    //         getAllActiveFinalOrders();
+    //     })
+    // }
 
     const getAllActiveFinalOrders = () =>{
         MealService.getAllActiveFinalOrders().then(response =>{
