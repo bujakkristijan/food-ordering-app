@@ -106,7 +106,7 @@ a{
     white-space: nowrap;
 }
 
-.navLink:hover, .registrationLink:hover {
+.myProfileLink:hover, .navLink:hover, .registrationLink:hover {
     color: #198754 !important;
 }
     

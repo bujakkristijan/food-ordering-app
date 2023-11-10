@@ -73,7 +73,10 @@ const CartComponent = () => {
          
       const submitFinalOrder = (itemsFromCartFinalOrder) =>{
         if((localStorage.token == null || localStorage.token == '') && (address.trim() === "" || phoneNumber.trim() === "")){
-          alertInvalidInput();
+          alertInvalidInput("Invalid input, please insert address and phone number");
+        }
+        else if(!isValidNumber(phoneNumber)){
+          alertInvalidInput("Invalid phone number or it has less than 5 digits");
         }
         else{
           MealService.sendItemsForFinalOrder(itemsFromCartFinalOrder).then((response) =>{
@@ -90,18 +93,32 @@ const CartComponent = () => {
                 }     
             }
             else{
-              alert("Failed to make final order! Try again!");
+              alertInvalidInput("Failed to make final order! Try again!");
             }
           })
         }
       }
 
-      const alertInvalidInput = () =>{
+      const alertInvalidInput = (message) =>{
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Invalid input, please insert address and phone number',
+          text: message,
         })
+      }
+
+      const isValidNumber = (input) => {
+        // ^\d{5,}$: Uses a regular expression to ensure that the input consists of at least 5 digits. 
+        // Here's a breakdown:
+        // ^: Asserts the start of the string.
+        // \d{5,}: Matches at least 5 digits (\d is a shorthand for a digit, and {5,} means at least 5 occurrences).
+        // $: Asserts the end of the string.
+        if(isNaN(input) || /^\d{5,}$/.test(input) === false){
+          return false;
+        }
+        else{
+          return true;
+        }
       }
 
       const checkIfLoggedInBeforeSubmit = () =>{
