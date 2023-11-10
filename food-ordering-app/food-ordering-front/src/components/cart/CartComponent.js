@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react'
 import Swal from 'sweetalert2';
 import MealService from '../../services/MealService'
 import { Modal, Button } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {editItem, deleteItem, deleteAllItems} from '../../store-redux/cart/cartSlice'
-
 import { useDispatch, useSelector } from 'react-redux';
 import EditItemQuantityComponent from './EditItemQuantityComponent';
 import InsertDetailsNotLoggedComponent from './InsertDetailsNotLoggedComponent';
@@ -12,7 +11,9 @@ import './CartComponent.css';
 
 const CartComponent = () => {
 
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [showEdit, setShowEdit] = useState(false);
   const [showInsertDetails, setShowInsertDetails] = useState(false);
 
@@ -63,8 +64,8 @@ const CartComponent = () => {
           if (result.isConfirmed) {
             dispatch(deleteItem(id));
             Swal.fire(
-              'Deactivated!',
-              'User has been deactivated.',
+              'Deleted!',
+              'Item has been deleted!',
               'success'
             )
           }
@@ -89,7 +90,8 @@ const CartComponent = () => {
                   alertFinalOrderStringCheckInfo(responseFromServer);
                 }
                 else{
-                  alertSuccessOrdered();
+                  alertSuccess("Successfully ordered items!");
+                  setTimeout(() => navigate("/my-active-final-orders"), 1500);
                 }     
             }
             else{
@@ -185,24 +187,14 @@ const CartComponent = () => {
       const editItemQuantity = () =>{
         dispatch(editItem(itemObjToStore));
         handleCloseEdit();
-        alertSuccessEdit();
+        alertSuccess("Successfully edited item quantity!");
       }
 
-      const alertSuccessEdit = () =>{
+      const alertSuccess = (message) =>{
         Swal.fire({
           position: 'top',
           icon: 'success',
-          title: 'Successfully edited item quantity!',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      }
-
-      const alertSuccessOrdered = () =>{
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: 'Successfully ordered items!',
+          title: message,
           showConfirmButton: false,
           timer: 1500
         });
