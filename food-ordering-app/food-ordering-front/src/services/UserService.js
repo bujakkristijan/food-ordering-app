@@ -1,7 +1,17 @@
 import axios from "axios";
 
+
 class UserService{
-    getAllEmployees(){
+    // sleep(ms) {
+    //     return new Promise(resolve => setTimeout(resolve, ms / 1000));
+    //   }
+
+    //async
+    getAllEmployees () {
+        // kada se osvezi stranica, da stopira jednu mikrosekundu, kako bi interceptor uspeo da stavi token u header=u
+        // mada je ovo los nacin da se to radi, pa zato ne stavljam
+        // treba prilikom svakog zahteva gde je potreban token, setovati token u header-u manuelno u kodu
+        // await this.sleep(1);
         return axios.get("http://localhost:8080/api/user/getAllEmployees");
     }
 
@@ -24,7 +34,6 @@ class UserService{
     deleteEmployee(employeeId){
         return axios.put("http://localhost:8080/api/user/deactivateUser/" + employeeId);
     }
-
 
     createUser(user){
         return axios.post("http://localhost:8080/api/user/registration", user);

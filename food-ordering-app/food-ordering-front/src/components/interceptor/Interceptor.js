@@ -2,6 +2,7 @@ import axios from "axios";
 export function jwtInterceptor() {
   // Add a request interceptor
 axios.interceptors.request.use(function (config) {
+  console.log("config: ", config);
     if (localStorage.token != '' && localStorage.token != null ) {
         const token = localStorage.token;
         // console.log("token from interceptor: " + token);
