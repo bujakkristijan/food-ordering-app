@@ -28,6 +28,7 @@ import { Navigate } from 'react-router-dom';
 const PrivateRoute = ({ element, allowedRoles }) => {
   const userRole = localStorage.getItem('role');
   const navigate = useNavigate();
+  
   useEffect(() => {
     checkIsTokenValid();
   }, []);
@@ -64,10 +65,11 @@ const PrivateRoute = ({ element, allowedRoles }) => {
   // it allows the current JavaScript execution to finish, and the scheduled function will be executed in the next event loop cycle.
   // While it's a common and generally safe pattern, it's always a good idea to use it judiciously and understand the reasons behind its use.
   // In this case, it helps to avoid React warnings and ensures that navigation occurs after the component has been fully rendered.
-  alert("You don't have permission to access this page.");
-    setTimeout(() => {
-      navigate(-1); // vrati na prethodnu
-    }, 0);
+  // alert("You don't have permission to access this page.");
+  //   setTimeout(() => {
+  //     navigate(-1); // vrati na prethodnu
+  //   }, 0);
+    return <p style={{ textAlign: "center", fontSize: "26px", fontWeight: "500"}}>You do not have permission to access this page.</p>;
     // return <p style={{ textAlign: "center", fontSize: "26px" }}>You do not have permission to access this page.</p>;
   }
 
