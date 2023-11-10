@@ -75,7 +75,7 @@ const CartComponent = () => {
         if((localStorage.token == null || localStorage.token == '') && (address.trim() === "" || phoneNumber.trim() === "")){
           alertInvalidInput("Invalid input, please insert address and phone number");
         }
-        else if(!isValidNumber(phoneNumber)){
+        else if((localStorage.token == null || localStorage.token == '') && !isValidNumber(phoneNumber)){
           alertInvalidInput("Invalid phone number or it has less than 5 digits");
         }
         else{
