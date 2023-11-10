@@ -72,11 +72,27 @@ public class UserServiceImpl implements UserService {
 		}
 		return usersDTO;
 	}
-
+	
 	@Override
-	public User save(User user) {
-
-		return userRepository.save(user);
+	public String saveUser(User user) {
+		try {
+			user.setRole(Role.USER);
+			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
+	}
+	
+	@Override
+	public String saveEmployee(User user) {
+		try {
+			user.setRole(Role.EMPLOYEE);
+			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
 	}
 
 	@Override
@@ -125,7 +141,10 @@ public class UserServiceImpl implements UserService {
 			return "invalid";
 		}
 		if (!isEmailUnique(user.getEmail())) {
-			return "not unique";
+			return "emailNotUnique";
+		}
+		else if (findByUsername(user.getUsername()) != null) {
+			return "usernameNotUnique";
 		}
 		return "valid";
 	}
@@ -139,37 +158,84 @@ public class UserServiceImpl implements UserService {
 				|| user.getAddress().trim().isEmpty() || user.getAddress() == null
 				|| user.getPassword().trim().isEmpty() || user.getPassword() == null
 				|| user.getPhoneNumber().trim().isEmpty() || !user.getEmail().matches("^(.+)@(.+)$")) {
-			return "invalidInput";
+			return "invalid";
 		}
-		List<User> allUsers = userRepository.findAll();
-		allUsers.remove(userRepository.findById(user.getId()).get());
-		for (User u : allUsers) {
-			if (u.getEmail().equals(user.getEmail())) {
-				return "emailAlreadyExist";
+		if (!isEmailUniqueUpdate(user)) {
+			return "emailNotUnique";
+		}
+		else if (!isUsernameUniqueUpdate(user)) {
+			return "usernameNotUnique";
 			}
+		
+		return "valid";
+	}
+	
+	@Override
+	public String validateEmployeeUpdate(User user) {
+		if (user.getEmail() == null || user.getEmail().trim().isEmpty() || user.getLastName() == null
+				|| user.getLastName().trim().isEmpty() || user.getFirstName() == null
+				|| user.getFirstName().trim().isEmpty() || user.getUsername() == null
+				|| user.getUsername().trim().isEmpty() || user.getPhoneNumber() == null
+				|| user.getAddress().trim().isEmpty() || user.getAddress() == null
+				|| user.getPassword().trim().isEmpty() || user.getPassword() == null
+				|| user.getPhoneNumber().trim().isEmpty() || !user.getEmail().matches("^(.+)@(.+)$")) {
+			return "invalid";
 		}
+		if (!isEmailUniqueUpdate(user)) {
+			return "emailNotUnique";
+		}
+		else if (!isUsernameUniqueUpdate(user)) {
+			return "usernameNotUnique";
+			}
+		
 		return "valid";
 	}
 
-	private boolean isEmailUnique(String emal) {
+	private boolean isEmailUnique(String email) {
 		List<User> allUsers = userRepository.findAll();
 		for (User u : allUsers) {
-			if (u.getEmail().equals(emal))
+			if (u.getEmail().equals(email))
 				return false;
 		}
 		return true;
 	}
-
+	
+	private boolean isEmailUniqueUpdate(User user) {
+		List<User> allUsers = userRepository.findAll();
+		allUsers.remove(userRepository.findById(user.getId()).get());
+		for (User u : allUsers) {
+			if (u.getEmail().equals(user.getEmail())) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean isUsernameUniqueUpdate(User user) {
+		List<User> allUsers = userRepository.findAll();
+		allUsers.remove(userRepository.findById(user.getId()).get());
+		for (User u : allUsers) {
+			if (u.getUsername().equals(user.getUsername())) {
+				return false;
+			}
+		}
+		return true;
+	}
 	@Override
 	public String updateUser(User u) {
-		User user = userRepository.findById(u.getId()).get();
-		user.setFirstName(u.getFirstName());
-		user.setLastName(u.getLastName());
-		user.setPassword(u.getPassword());
-		user.setPhoneNumber(u.getPhoneNumber());
-		user.setAddress(u.getAddress());
-		user.setEmail(u.getEmail());
-		userRepository.save(user);
+		try {
+			User user = userRepository.findById(u.getId()).get();
+			user.setFirstName(u.getFirstName());
+			user.setLastName(u.getLastName());
+			user.setPassword(u.getPassword());
+			user.setPhoneNumber(u.getPhoneNumber());
+			user.setAddress(u.getAddress());
+			user.setEmail(u.getEmail());
+			userRepository.save(user);
+		} catch (Exception e) {
+			return "fail";
+		}
+		
 		return "success";
 	}
 	

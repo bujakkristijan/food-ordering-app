@@ -79,17 +79,29 @@ const MyProfileComponent = () => {
             || emailEdit.trim() === '' || usernameEdit.trim() === '' 
             || phoneNumberEdit.trim() === '' 
             || passwordEdit.trim() === '' || addressEdit.trim() === ''){
-            alert("Invalid input!");
+            alertInvalid("Invalid input, make sure everything is filed correctly and try again!")
         }
-        else if (validateEmail() == false){
-            alert("Invalid email!");
+        else if (validateEmail() === false){
+            alertInvalid("Invalid email! Make sure email is valid and try again!");
+        }
+        else if(!isValidNumber(phoneNumber)){
+            alertInvalid("Invalid phone number or it has less than 5 digits");
         }
         else{
             UserService.updateUser(userEdit).then((response) =>{
                 const responseFromServer = response.data;
-                if(responseFromServer == "success"){
-                    alert("Uspeno");
+                if(responseFromServer === "success"){
+                    alertSuccess("Successfully edited profile!");
                     getCurrentUser();
+                }
+                else if(response.data.toString() === "invalid"){
+                    alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
+                }
+                else if(response.data.toString() === "emailNotUnique"){
+                    alertInvalid("Email already exists! Try again!");
+                }
+                else if(response.data.toString() === "usernameNotUnique"){
+                    alertInvalid("Username already exists! Try again!");
                 }
             }).finally(()=> handleClose());
         }
@@ -100,6 +112,38 @@ const MyProfileComponent = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(emailEdit);
     };
+
+    const alertInvalid = (message) =>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: message,
+        })
+      }
+
+      const alertSuccess = (message) =>{  
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: message,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+
+      const isValidNumber = (input) => {
+        // ^\d{5,}$: Uses a regular expression to ensure that the input consists of at least 5 digits. 
+        // Here's a breakdown:
+        // ^: Asserts the start of the string.
+        // \d{5,}: Matches at least 5 digits (\d is a shorthand for a digit, and {5,} means at least 5 occurrences).
+        // $: Asserts the end of the string.
+        if(isNaN(input) || /^\d{5,}$/.test(input) === false){
+          return false;
+        }
+        else{
+          return true;
+        }
+      }
     
 
   return (

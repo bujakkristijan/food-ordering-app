@@ -34,48 +34,29 @@ public class UserController {
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> createUser(@RequestBody User user) {
-		//UserDTO userDTO = UserMapper.INSTANCE.entityToDTO(user);
-		//UserDTO userDTO = new UserDTO();
-		String responseToClient;
-		if (userService.validateUser(user).equals("invalid")) {
-			//userDTO.setUserInvalidInput("yes");
-			responseToClient = "invalidInput";
-		} else if (userService.findByUsername(user.getUsername()) != null
-				|| userService.validateUser(user).equals("not unique")) {
-			//userDTO.setUserAlreadyExist("yes");
-			responseToClient = "emailOrUsernameAlreadyExist";
-		} else {
-			user.setRole(Role.USER); // po defaultu pri registraciji role se setuje na USER
-			//user.setPassword(user.getPassword());
-			userService.save(user);
-			//userDTO.setUserAdded("yes");
-			responseToClient = "success";
+		String responseToClient = userService.validateUser(user);
+		if (!(responseToClient.equals("valid"))) {
+			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 		}
-		return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
+		//ako je uspesno sacuvan user, saveUser metoda vraca "success", ako nije vraca "fail";
+		else {
+			responseToClient = userService.saveUser(user);
+			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
+		}
 
 	}
 	
 	@RequestMapping(value = "/createEmployee", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> createEmployee(@RequestBody User user) {
-		//UserDTO userDTO = UserMapper.INSTANCE.entityToDTO(user);
-		//UserDTO userDTO = new UserDTO();
-		String responseToClient;
-		if (userService.validateUser(user).equals("invalid")) {
-			//userDTO.setUserInvalidInput("yes");
-			responseToClient = "invalidInput";
-		} else if (userService.findByUsername(user.getUsername()) != null
-				|| userService.validateUser(user).equals("not unique")) {
-			//userDTO.setUserAlreadyExist("yes");
-			responseToClient = "emailOrUsernameAlreadyExist";
-		} else {
-			user.setRole(Role.EMPLOYEE); // po defaultu kada admin kreira zaposlenog, setuje se role na EMPLOYEE
-			//user.setPassword(user.getPassword());
-			userService.save(user);
-			//userDTO.setUserAdded("yes");
-			responseToClient = "success";
+		String responseToClient = userService.validateUser(user);
+		if (!(responseToClient.equals("valid"))) {
+			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 		}
-		return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
-
+		//ako je uspesno sacuvan user, saveUser metoda vraca "success", ako nije vraca "fail";
+		else {
+			responseToClient = userService.saveEmployee(user);
+			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
@@ -105,20 +86,14 @@ public class UserController {
 		if (userService.findOne(id) == null) {
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
-		// ovo sam dodao da ne puca, jer sa fronta ne salje id i role
+		// fronta se ne salje id i role, pa se ovde setuje
 		User user = userService.findOne(id);
 		employeeDetails.setId(user.getId());
 		employeeDetails.setRole(user.getRole());
-		String validationStatus = userService.validateUserUpdate(employeeDetails);
+		String validationStatus = userService.validateEmployeeUpdate(employeeDetails);
 		if (!validationStatus.equals("valid")) {
 			return new ResponseEntity<String>(validationStatus, HttpStatus.OK);
 		}
-		/*String response = userService.updateUser(u);
-		return new ResponseEntity<String>(response, HttpStatus.OK);
-		*/
-		
-		
-		
 		String response = userService.updateUser(employeeDetails);
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}

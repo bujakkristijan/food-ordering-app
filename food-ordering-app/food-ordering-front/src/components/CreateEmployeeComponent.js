@@ -41,24 +41,33 @@ const CreateEmployeeComponent = () => {
     if(firstName.trim() === '' || lastName.trim() === ''
       || email.trim() === '' || username.trim() === '' || phoneNumber.trim() === '' 
       || password.trim() === '' || address.trim() === ''){
-       alertInvalid("invalidInput")
+       alertInvalid("Invalid input, make sure everything is filled!")
     }
-    else if (validateEmail() == false){
-        alert("Invalid email!");
+    else if (validateEmail() === false){
+      alertInvalid("Invalid email! Try again!");
+    }
+    else if(!isValidNumber(phoneNumber)){
+      alertInvalid("Invalid phone number or it has less than 5 digits");
     }
     else{
       //ako id postoji, odnosno ako je prosledjen radi se izmena postojeceg
       if(id){
         UserService.updateEmployee(id, user).then((response) =>{
-          if(response.data.toString() == "success"){
-            alertSuccess();
+          if(response.data.toString() === "success"){
+            alertSuccess('Successfully updated employee!');
             navigate("/employees");
           }
-          else if(response.data.toString() == "invalidInput"){
-            alertInvalid(response.data.toString());
+          else if(response.data.toString() == "invalid"){
+            alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
           }
-          else if(response.data.toString() == "emailAlreadyExist"){
-            alertInvalid(response.data.toString());
+          else if(response.data.toString() === "emailNotUnique"){
+            alertInvalid("Email already exists! Try again!");
+          }
+          else if(response.data.toString() === "usernameNotUnique"){
+            alertInvalid("Username already exists! Try again!");
+          }
+          else if(response.data.toString() === "fail"){
+            alertInvalid("Sorry, failed to save new employee!");
           }
         }).catch(error =>{
           console.log(error);
@@ -68,15 +77,21 @@ const CreateEmployeeComponent = () => {
       else{
         UserService.createEmployee(user).then((response) =>{
           console.log(response.data);
-          if(response.data.toString() == "success"){
-            alertSuccess();
+          if(response.data.toString() === "success"){
+            alertSuccess('Successfully created employee!');
             navigate("/employees");
           }
-          else if(response.data.toString() == "invalidInput"){
-            alertInvalid(response.data.toString());
+          else if(response.data.toString() === "invalid"){
+            alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
           }
-          else if(response.data.toString() == "emailOrUsernameAlreadyExist"){
-            alertInvalid(response.data.toString());
+          else if(response.data.toString() === "emailNotUnique"){
+            alertInvalid("Email already exists! Try again!");
+          }
+          else if(response.data.toString() === "usernameNotUnique"){
+            alertInvalid("Username already exists! Try again!");
+          }
+          else if(response.data.toString() === "fail"){
+            alertInvalid("Sorry, failed to save new employee!");
           }
         }).catch(error =>{
           console.log("Error: " + error);
@@ -85,21 +100,18 @@ const CreateEmployeeComponent = () => {
     }
   }
 
-  const alertSuccess = () =>{
-    if(id){
-      var titleContent = 'Successfully updated employee!';
+  const isValidNumber = (input) => {
+    // ^\d{5,}$: Uses a regular expression to ensure that the input consists of at least 5 digits. 
+    // Here's a breakdown:
+    // ^: Asserts the start of the string.
+    // \d{5,}: Matches at least 5 digits (\d is a shorthand for a digit, and {5,} means at least 5 occurrences).
+    // $: Asserts the end of the string.
+    if(isNaN(input) || /^\d{5,}$/.test(input) === false){
+      return false;
     }
     else{
-      var titleContent = 'Successfully added employee!';
+      return true;
     }
-    Swal.fire({
-      position: 'top',
-      icon: 'success',
-      //title: 'Successfully added employee!',
-      title: titleContent,
-      showConfirmButton: false,
-      timer: 1500
-    });
   }
 
   const validateEmail = () => {
@@ -108,21 +120,22 @@ const CreateEmployeeComponent = () => {
     return emailRegex.test(email);
   };
 
-  const alertInvalid = (invalidText) =>{
-    if(invalidText == "invalidInput"){
-      var titleContent = "Invalid input, make sure everything is filed correctly and try again!";
-    }
-    else if(invalidText == "emailOrUsernameAlreadyExist"){
-      var titleContent = "Username or email already exist, try again!";
-    }
-    else if(invalidText == "emailAlreadyExist"){
-      var titleContent = "Email already exist, try again!";
-    }
+  const alertInvalid = (message) =>{
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: titleContent,
+      text: message,
     })
+  }
+
+  const alertSuccess = (message) =>{  
+    Swal.fire({
+      position: 'top',
+      icon: 'success',
+      title: message,
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
 
 const title = () => {

@@ -23,9 +23,9 @@ const createUser = (e) => {
     if(firstName.trim() === '' || lastName.trim() === ''
       || email.trim() === '' || username.trim() === '' || phoneNumber.trim() === '' 
       || password.trim() === '' || address.trim() === ''){
-       alertInvalid("Invalid input, make sure everything is filed correctly and try again!")
+       alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
     }
-    else if (validateEmail() == false){
+    else if (validateEmail() === false){
         alertInvalid("Invalid email! Make sure email is valid and try again!");
     }
     else if(!isValidNumber(phoneNumber)){
@@ -34,15 +34,18 @@ const createUser = (e) => {
     else{
       UserService.createUser(user).then((response) =>{
         console.log(response.data);
-        if(response.data.toString() == "success"){
+        if(response.data.toString() === "success"){
           alertSuccess("Successfully registered!");
           navigate("/login");
         }
-        else if(response.data.toString() == "invalidInput"){
+        else if(response.data.toString() === "invalid"){
           alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
         }
-        else if(response.data.toString() == "emailOrUsernameAlreadyExist"){
-          alertInvalid("Email or username already exists! Try again!");
+        else if(response.data.toString() === "emailNotUnique"){
+          alertInvalid("Email already exists! Try again!");
+        }
+        else if(response.data.toString() === "usernameNotUnique"){
+          alertInvalid("Username already exists! Try again!");
         }
       }).catch(error =>{
         console.log("Error: " + error);
