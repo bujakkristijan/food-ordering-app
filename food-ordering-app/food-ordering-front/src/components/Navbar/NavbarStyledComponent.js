@@ -26,7 +26,7 @@ const NavbarStyledComponent = () => {
                if(responseFromServer === "valid"){
                     clearLocalStorage();
                     alertSuccess();
-                    navigate("/menu");
+                    setTimeout(()=>navigate("/menu"), 1500);
                     dispatch(deleteAllItems());
                }
                else{

@@ -7,7 +7,8 @@ public class ItemFromCartDTO {
 	
 	//trebao sam cuvati trenutnu cenu meal-a kada se kreira orderItem, a ne da cuvam i posle je citam iz meal objekta
 	//jer ako se izmeni cena meal-a, izmenice se i cena za stare porudzbine !!!
-	//isto tako bolje da sam cuvao naziv meal-a u tom trenutku u bazi i slao nazad kao varijablu posle, umesto sto cuvam id meal-a !!!
+	//isto tako bolje da sam cuvao naziv meal-a u tom trenutku u bazi i slao nazad kao varijablu posle, umesto sto cuvam id meal-a
+	//pa posle ceo objekat saljem nazad, sto nije dobro !!!
 	//najbolje bi bilo slati samo varijable klijentu, a ne objekte
 	//jer se onda ulancaju objekti prilikom slanja i previse nepotrebnih podataka se posalje, sto nije dobro sigurno
 	//o ovome nisam razmisljao na pocetku, pa je ostalo tako sada

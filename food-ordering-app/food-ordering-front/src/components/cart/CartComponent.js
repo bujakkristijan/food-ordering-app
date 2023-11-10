@@ -61,7 +61,6 @@ const CartComponent = () => {
           confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            // deleteItemFromCart(id);
             dispatch(deleteItem(id));
             Swal.fire(
               'Deactivated!',
@@ -73,18 +72,15 @@ const CartComponent = () => {
       }
          
       const submitFinalOrder = (itemsFromCartFinalOrder) =>{
-        // console.log("items fo" + JSON.stringify(itemsFromCartFinalOrder));
         if((localStorage.token == null || localStorage.token == '') && (address.trim() === "" || phoneNumber.trim() === "")){
           alertInvalidInput();
         }
         else{
           MealService.sendItemsForFinalOrder(itemsFromCartFinalOrder).then((response) =>{
             const responseFromServer = response.data;
-            // alert("Response from server: " + responseFromServer);
             //ako je response razlicit od 0, znaci da je uspesno upisan final order i prosledjen id, po defaultu je 0
             if(responseFromServer != 0){
                 dispatch(deleteAllItems());
-                // console.log("cart posle birsanja ", itemsFromCart)
                 if(localStorage.token == null || localStorage.token == ''){
                   handleCloseInsertDetails();
                   alertFinalOrderStringCheckInfo(responseFromServer);
@@ -121,23 +117,17 @@ const CartComponent = () => {
         sumFinalPrice();
         setFinalPrice(finalPriceVar);
         setShowInsertDetails(true);
-        
       }
 
       const handleCloseInsertDetails = () =>{
         setShowInsertDetails(false);
         setAddress('');
         setPhoneNumber(''); 
-        // setFinalPrice(0);
-        // finalPriceVar = 0;
       }
     
-
       const alertAreYouSureFinalOrder = () =>{
         sumFinalPrice();
         setFinalPrice(finalPriceVar);
-        // console.log(JSON.stringify(finalPriceVar));
-        // console.log(finalPriceVar);
         let textStr;
         textStr = "Final price is: "+ finalPriceVar.toFixed(1) + " RSD. (10% OFF)! If you click yes, you will make final order!";
         Swal.fire({
@@ -150,11 +140,7 @@ const CartComponent = () => {
           confirmButtonText: 'Yes, make it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            // console.log("FINAL PRICE VAR " + finalPriceVar);
-            // console.log("OBJ " + JSON.stringify(itemsFromCartWhenLoggedWithFinalPrice));
-            // console.log("FINAL PRICE SETOVAН " + JSON.stringify(finalPrice));
             setFinalPrice(finalPriceVar);
-            // console.log("krajnja vrednost: ",itemsFromCartWhenLoggedWithFinalPrice)
             itemsFromCartWhenLoggedWithFinalPrice = { itemsFromCart, finalPrice: finalPriceVar}
             submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
           }
@@ -166,7 +152,6 @@ const CartComponent = () => {
 
       const sumFinalPrice = () =>{
         finalPriceVar = 0;
-        // console.log("items from cart" + itemsFromCart);
         if(localStorage.token == null || localStorage.token == ''){
           for(let i=0; i<itemsFromCart.length; i++){
             console.log(itemsFromCart[i].meal.price);
@@ -175,7 +160,6 @@ const CartComponent = () => {
         }
         else{
           for(let i=0; i<itemsFromCart.length; i++){
-            // console.log("items from cart for" + itemsFromCart[i].meal.price);
             finalPriceVar += (itemsFromCart[i].meal.price)*0.9*itemsFromCart[i].quantity;
           }
         }
@@ -206,31 +190,23 @@ const CartComponent = () => {
           timer: 1500
         });
       }
-      // const generateStringForOrderToCheckIfNotLoggedIn =(finalOrderId)=>{
-      //    let textStr = "localhost:3000/finalOrder/"+finalOrderId;
-      //    return textStr;
-      // }
 
       const alertFinalOrderStringCheckInfo = (finalOrderId) =>{
         let linkStr = "/final-order/"+finalOrderId;
         let textStr = "localhost:3000/final-order/"+finalOrderId;
-        // <Link to={`/final-order/${finalOrderId}`}>localhost:3000/final-order/{finalOrderId}</Link>
         Swal.fire({
           title: 'Successfully ordered items! You can check status opening this link',
           icon: 'success',
           html:
-          // <Link to={`/final-order/${finalOrderId}`}>localhost:3000/final-order/{finalOrderId}</Link>,
             `<a href=${linkStr}>${textStr}</a>`,
           showCloseButton: true,
           focusConfirm: false,
           confirmButtonText:
             '<i class="fa fa-thumbs-up"></i> Okay!',
           confirmButtonAriaLabel: 'Thumbs up, great!',
-          
         })
       }
 
-    
   return (
     <>
     <div className='container'>
@@ -269,22 +245,6 @@ const CartComponent = () => {
     </table>}
 </div>
 
-{/* <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-            <Modal.Title>Create new meal</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-            <CreateMealComponent meal={meal} file = {file}/>
-        </Modal.Body>
-
-        <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>Close</Button>
-            <Button variant="primary" onClick={handleSubmit}>Save changes</Button>
-        </Modal.Footer>
-    </Modal>
-    */
-}
     <Modal show={showEdit} onHide={handleCloseEdit}>
         <Modal.Header closeButton>
             <Modal.Title>Edit quantity</Modal.Title>
@@ -299,8 +259,7 @@ const CartComponent = () => {
             <Button variant="primary" onClick={()=>editItemQuantity()}>Save changes</Button>
         </Modal.Footer>
     </Modal> 
-    {/* ()=>dispatch(editItem(itemObjToStore)) */}
-
+  
     <Modal show={showInsertDetails} onHide={handleCloseInsertDetails}>
         <Modal.Header closeButton>
             <Modal.Title>Insert neccessary details</Modal.Title>
