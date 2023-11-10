@@ -120,7 +120,7 @@ const ListMealByMealTypeComponent = () => {
                     <tr>                      
                         <th className='theadth'>Image</th>
                         <th className='theadth'>Name</th>
-                        {/* <th className='theadth'>Type</th> */}
+                        <th className='theadth'>Type</th>
                         <th className='theadth'>Price</th>
                         <th className='theadth'>Action</th>
                     </tr>
@@ -133,7 +133,7 @@ const ListMealByMealTypeComponent = () => {
                               <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
                             </td>  
                             <td className='td-content'>{meal.name}</td>
-                            {/* <td className='td-content'>{meal.mealType.typeName}</td> */}
+                            <td className='td-content'>{meal.mealType.typeName}</td>
                             <td className='td-content'>{meal.price}</td>
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() =>handleShowMealQuantity(meal)}>Add to cart</button>    
