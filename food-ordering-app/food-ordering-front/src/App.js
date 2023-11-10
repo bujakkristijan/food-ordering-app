@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
 import ListEmployeeComponent from './components/ListEmployeeComponent';
 import RegistrationComponent from './components/registration/RegistrationComponent';
 import FooterComponent from './components/FooterComponent';
 /*import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; */
+import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import CreateEmployeeComponent from './components/CreateEmployeeComponent';
 import NavbarStyledComponent from './components/Navbar/NavbarStyledComponent';
@@ -20,16 +22,44 @@ import MyActiveFinalOrdersComponent from './components/my-active-final-orders/My
 import OrderHistoryComponent from './components/order-history/OrderHistoryComponent';
 import MyDeliveredFinalOrdersComponent from './components/my-delivered-final-orders/MyDeliveredFinalOrdersComponent';
 import ListUserComponent from './components/user/ListUserComponent';
-// <NavbarComponent/> ovo je bilo pre nego sto sam menjao
+import jwtDecode from 'jwt-decode';
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 function App() {
+
   const role = localStorage.role;
+  
+  useEffect(() => {
+   checkiIsTokenValid();
+  }, [])
+  
+  const checkiIsTokenValid = () =>{
+    if(localStorage.token){
+      try {
+        const decodedToken = jwtDecode(localStorage.token);
+        // Check if the token is expired
+        const currentTime = Date.now() / 1000; // Convert to seconds
+        if (decodedToken.exp < currentTime) {
+          // Token is expired, log out the user
+          console.log('Token is expired');
+          localStorage.clear()
+        } else {
+          // Token is valid
+          console.log('Token is valid');
+        }
+      } catch (error) {
+        // Error decoding the token
+        console.error('Error decoding token:', error);
+        localStorage.clear();
+      }
+    }
+    
+  }
+
   return (
-    // <div className='container-main'>
+   
       <Router>
         <NavbarStyledComponent/>
         <div className='router-view'>
-         
           <Routes>
             <Route path='/' element = {<LoginComponent/>}></Route> 
             <Route path='/employees' element = {<ListEmployeeComponent/>}></Route>
@@ -49,14 +79,10 @@ function App() {
             <Route path='/my-delivered-final-orders' element = {<MyDeliveredFinalOrdersComponent/>}></Route>
             <Route path='/order-history' element = {<OrderHistoryComponent/>}></Route>
             <Route path='/users' element = {<ListUserComponent/>}></Route>
-
           </Routes>
         </div>
-        
         <FooterComponent/>
       </Router>
-      
-    // </div>
   );
 }
 

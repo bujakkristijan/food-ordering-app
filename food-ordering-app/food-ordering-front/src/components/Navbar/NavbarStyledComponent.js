@@ -1,6 +1,5 @@
 import React, {useSelector} from 'react-redux';
-/*import { Nav, NavLink, Bars,NavMenu,NavBtn,NavBtnLink } from './NavbarElements' */
-import styles from './NavbarElements.css' // OVO MORA DA BI UCITAO CSS, IAKO SE STYLES NE KORISTI NIGDE DIREKTNO !!!!
+import './NavbarElements.css';
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import LoginService from '../../services/LoginService';
@@ -10,16 +9,13 @@ import { useDispatch } from 'react-redux';
 import {deleteAllItems} from '../../store-redux/cart/cartSlice'
 
 const NavbarStyledComponent = () => {
-     console.log("WWTTEFF")
+     console.log("check")
      const navigate = useNavigate();
      const dispatch = useDispatch();
-     // const role = localStorage.role;
-     //console.log("ROLE12: ",role)
      const cart = useSelector((state) => state.cart);
      let sumQuantityFromCartItems = 0;
      if(cart.length>0){
           for(let i = 0; i<cart.length; i++){
-               console.log("USAOOOO OPET OVDEEEEE");
                sumQuantityFromCartItems += cart[i].quantity;
          }
      }
@@ -60,24 +56,19 @@ const NavbarStyledComponent = () => {
           </Link>)
           }
         }
-     // const sumQuantityFromCartItems = cart.reduce((prev,curr)=>prev+=curr,0);
-     /*Link je brzi dosta od a elementa*/ 
   return (
         <div className='header'>
-            <Link to="/menu">
-              {/* <h1 className='logo'>Logo</h1> */}
-              <img className='logo' src={require('../../images/logo2.png')} alt=''/>  
-            </Link>
-           {/* <div/> */}
-           <div className='navMenu'>
-               {localStorage.role==="ADMIN" && <Link className='navLink' id='employeeLink' to='/employees' >
+               <Link to="/menu">
+                    <img className='logo' src={require('../../images/logo2.png')} alt=''/>  
+               </Link>
+               <div className='navMenu'>
+                    {localStorage.role==="ADMIN" && <Link className='navLink' id='employeeLink' to='/employees' >
                     Employees
                </Link>}
                
                 {
-                checkRole()/* <Link className='navLink' to='/employees' >
-                    Users
-               </Link> */}
+                checkRole()
+                }
               
                {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='navLink' to='/menu' >
                     Menu
@@ -97,11 +88,9 @@ const NavbarStyledComponent = () => {
            </div>
            <div className='navBtn'>
            {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='cartLink' to='/cart' >
-                 
                <div className='number-cart'>{sumQuantityFromCartItems}</div>
                <img className='logo-cart' src={require('../../images/cart2.png')} alt=''/>         
           </Link>}
-          {/* nzm sto nece da prikaze myprofile kad je role user a za employee radi */}
            {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-profile' >  
                  My Profile      
           </Link>}
@@ -117,7 +106,6 @@ const NavbarStyledComponent = () => {
                {localStorage.token == null && <Link id='signInBtn' className='btn btn-success' to='login'>
                     Sign in
                </Link>}
-               {/* proveriti zasto nije htelo da radi kad se doda ||  */}
                {localStorage.token != null && <button id='signOutBtn' className='btn btn-success' onClick={() => logout() }>
                     Sign out
                </button>}
