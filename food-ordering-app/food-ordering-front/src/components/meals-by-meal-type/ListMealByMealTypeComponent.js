@@ -22,9 +22,10 @@ const ListMealByMealTypeComponent = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [image, setImage] = useState('');
-    const [mealType, setMealType] = useState('');
+    const [mealType, setMealType] = useState(undefined);
 
     const meal = {id, name, mealType, price, image};
+    // const meal = {id, name, price, image};
 
     const orderItem = {meal, quantity: mealQuantity};
      
@@ -39,12 +40,17 @@ const ListMealByMealTypeComponent = () => {
     }, [])
 
     const handleShowMealQuantity = (meal) => {   
-       //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
-        console.log("TYPEEEEE" + meal.mealType.typeName);
+        //mora ovako da se setuje, kada se vrsi izmena, nakon toga zapamti id od starog pa radi izmenu
         setId(meal.id);
         setName(meal.name);
         setPrice(meal.price);
-        setMealType(meal.mealType.typeName);
+        // treba setMealType(meal.mealType) umesto setMealType(meal.mealType.typeName); ukoliko hocu da citam i mealType
+        // u tabeli na front-u, jer posle kada se salje na server-u, ne moze da parsira typeName sto dobije, pa bude bad request
+        // ili da menjam logiku na back-u za model, mada onda bi se sve zapetljalo
+        // bolje resenje bi bilo da ne saljem objekte vec varijable, jer se posle ulancaju objekti
+        // i dosta nepotrebnih podataka se salje
+        setMealType(meal.mealType)
+        // setMealType(meal.mealType.typeName);
         setImage(meal.image);
         setMealQuantity(1);
         setShow(true); 
@@ -56,7 +62,7 @@ const ListMealByMealTypeComponent = () => {
         setName('');
         setPrice('');
         setImage('');
-        setMealType('');
+        setMealType(undefined);
         setMealQuantity(1);
         }
 
@@ -70,6 +76,7 @@ const ListMealByMealTypeComponent = () => {
     }
 
     const handleAddItemToCart = () =>{    
+        console.log("orderitem" + JSON.stringify(orderItem));
         if(orderItem.quantity>0){
             dispatch(addItem(orderItem));
             alertSuccess();
@@ -113,7 +120,7 @@ const ListMealByMealTypeComponent = () => {
                     <tr>                      
                         <th className='theadth'>Image</th>
                         <th className='theadth'>Name</th>
-                        <th className='theadth'>Type</th>
+                        {/* <th className='theadth'>Type</th> */}
                         <th className='theadth'>Price</th>
                         <th className='theadth'>Action</th>
                     </tr>
@@ -126,7 +133,7 @@ const ListMealByMealTypeComponent = () => {
                               <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
                             </td>  
                             <td className='td-content'>{meal.name}</td>
-                            <td className='td-content'>{meal.mealType.typeName}</td>
+                            {/* <td className='td-content'>{meal.mealType.typeName}</td> */}
                             <td className='td-content'>{meal.price}</td>
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() =>handleShowMealQuantity(meal)}>Add to cart</button>    

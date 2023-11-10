@@ -74,7 +74,7 @@ const CartComponent = () => {
          
       const submitFinalOrder = (itemsFromCartFinalOrder) =>{
         // console.log("items fo" + JSON.stringify(itemsFromCartFinalOrder));
-        if(address.trim() === "" || phoneNumber.trim() === ""){
+        if((localStorage.token == null || localStorage.token == '') && (address.trim() === "" || phoneNumber.trim() === "")){
           alertInvalidInput();
         }
         else{
@@ -255,7 +255,7 @@ const CartComponent = () => {
                       <img className='mealPic' src={"data:image/png;base64," + itemFromCart.meal.image} alt=''/>                   
                     </td>                       
                     <td className='td-content'>{itemFromCart.meal.name}</td>
-                    <td className='td-content'>{itemFromCart.meal.mealType}</td>
+                    <td className='td-content'>{itemFromCart.meal.mealType.typeName}</td>
                     <td className='td-content'>{itemFromCart.meal.price}</td>
                     <td className='td-content'>{itemFromCart.quantity}</td>                    
                     <td className='td-content'>
