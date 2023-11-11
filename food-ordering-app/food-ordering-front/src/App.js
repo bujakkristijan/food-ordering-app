@@ -51,26 +51,7 @@ const PrivateRoute = ({ element, allowedRoles }) => {
   };
 
   if (!localStorage.token || !allowedRoles.includes(userRole)) {
-  // The use of setTimeout with a delay of 0 milliseconds
-  // is a common workaround in React to ensure that a function call is deferred
-  // until after the current JavaScript execution context has completed.
-
-  // In this case, React was warning you that you're calling navigate directly inside the useEffect,
-  // and it's advising you to move the navigation into a subsequent render. By using setTimeout with a delay of 0,
-  // you're essentially saying, "schedule this function to run in the next tick of the event loop,"
-  // allowing the component to fully render before attempting to navigate.
-
-  // This pattern is often used when you want to ensure that certain side effects, like navigation or state updates,
-  // happen after the current render cycle. It doesn't introduce an actual delay; instead,
-  // it allows the current JavaScript execution to finish, and the scheduled function will be executed in the next event loop cycle.
-  // While it's a common and generally safe pattern, it's always a good idea to use it judiciously and understand the reasons behind its use.
-  // In this case, it helps to avoid React warnings and ensures that navigation occurs after the component has been fully rendered.
-  // alert("You don't have permission to access this page.");
-  //   setTimeout(() => {
-  //     navigate(-1); // vrati na prethodnu
-  //   }, 0);
     return <p style={{ textAlign: "center", fontSize: "26px", fontWeight: "500"}}>You do not have permission to access this page.</p>;
-    // return <p style={{ textAlign: "center", fontSize: "26px" }}>You do not have permission to access this page.</p>;
   }
 
   // Render the protected component

@@ -10,7 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import { Provider } from 'react-redux';
 //test commit
-jwtInterceptor();
+// jwtInterceptor();
 const persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -21,7 +21,6 @@ root.render(
         <App/>
       </PersistGate>  
     </Provider>
-   
   </React.StrictMode>
 );
 
