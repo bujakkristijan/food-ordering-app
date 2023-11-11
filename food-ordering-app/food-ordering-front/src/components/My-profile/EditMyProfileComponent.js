@@ -87,19 +87,6 @@ const EditMyProfileComponent = (props) => {
                       >
                       </input>
                   </div>
-
-                  <div className='form-group'>
-                    <label className='form-label'>Password: </label>
-                    <input  
-                        type="text"
-                        placeholder="Insert password" 
-                        name = "password" 
-                        className="form-control"                 
-                        value={user.passwordEdit}
-                        onChange = {(e) => user.setPasswordEdit(e.target.value)}                 
-                        >                 
-                    </input>
-                  </div>        
                 </form>       
             </div>  
     </div>

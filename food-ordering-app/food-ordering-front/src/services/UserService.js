@@ -48,6 +48,11 @@ class UserService{
         return axios.put("http://localhost:8080/api/user/updateUser", user);
     }
 
+    changePassword(passwordObj){
+        TokenService.setTokenInHeader();
+        return axios.put("http://localhost:8080/api/user/changePassword", passwordObj);
+    }
+
 }
 
 export default new UserService();

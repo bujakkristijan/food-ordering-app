@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import './MyProfileComponent.css'
 import EditMyProfileComponent from './EditMyProfileComponent'
 import { Modal, Button } from 'react-bootstrap'
+import EditPasswordComponent from './EditPasswordComponent'
 
 const MyProfileComponent = () => {
 
@@ -33,10 +34,16 @@ const MyProfileComponent = () => {
 
     const [role, setRole] = useState('');
 
-    const user = {firstNameEdit, setFirstNameEdit, lastNameEdit, setLastNameEdit, usernameEdit, setUsernameEdit, emailEdit, setEmailEdit, phoneNumberEdit, setPhoneNumberEdit, passwordEdit, setPasswordEdit,  addressEdit, setAddressEdit}
-    const userEdit = { id, firstName: firstNameEdit, lastName: lastNameEdit, username: usernameEdit, email: emailEdit, phoneNumber: phoneNumberEdit, address: addressEdit, password: passwordEdit }
+    const user = {firstNameEdit, setFirstNameEdit, lastNameEdit, setLastNameEdit, usernameEdit, setUsernameEdit, emailEdit, setEmailEdit, phoneNumberEdit, setPhoneNumberEdit,  addressEdit, setAddressEdit}
+    const userEdit = { id, firstName: firstNameEdit, lastName: lastNameEdit, username: usernameEdit, email: emailEdit, phoneNumber: phoneNumberEdit, address: addressEdit}
 
     const [show, setShow] = useState(false);
+    const [showPassModal, setShowPassModal] = useState(false);
+
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+
+    let passwordObj = {oldPassword, newPassword, setNewPassword, setOldPassword};
 
     useEffect(() => {
         getCurrentUser(); 
@@ -46,16 +53,29 @@ const MyProfileComponent = () => {
         setShow(false);
         }
 
+    const handleClosePassModal = () => {
+        setShowPassModal(false);
+        setOldPassword('');
+        setNewPassword('');
+        }
+
+    const handleShowPassModal = () =>{
+        setShowPassModal(true);
+        setPasswordEdit(password);
+    }
+
     const handleShow = () => {
         setShow(true)
         setFirstNameEdit(firstName);
         setLastNameEdit(lastName);
         setEmailEdit(email);
         setPhoneNumberEdit(phoneNumber);
-        setPasswordEdit(password);
+        // setPasswordEdit(password);
         setUsernameEdit(username);
         setAddressEdit(address);
     };
+
+    
 
     const getCurrentUser = () =>{
         UserService.getCurrentUser().then((response) =>{
@@ -65,7 +85,7 @@ const MyProfileComponent = () => {
             setEmail(response.data.email);
             setPhoneNumber(response.data.phoneNumber);
             setUsername(response.data.username);
-            setPassword(response.data.password);
+            // setPassword(response.data.password);
             setAddress(response.data.address);
             setRole(response.data.role);
           }).catch(error =>{
@@ -73,12 +93,33 @@ const MyProfileComponent = () => {
           });
     }
 
+    const handleSubmitChangePass = () =>{
+        //validacija unosa
+        console.log("PROVERAAAAAAAAAAAAAAAAA" + oldPassword + " " + newPassword);
+        if(oldPassword.trim() === '' || newPassword.trim()===0 ){
+            alertInvalid("Invalid input, make sure everything is filed correctly and try again!")
+        }
+        else{
+            UserService.changePassword(passwordObj).then((response) =>{
+                const responseFromServer = response.data;
+                if(responseFromServer === "success"){
+                    alertSuccess("Successfully changed password!");
+                    getCurrentUser();
+                    handleClosePassModal();
+                }
+                else if(response.data.toString() === "fail"){
+                    alertInvalid("Your old and inserted password don't match! Try again");
+                }
+            })
+        }
+    }
+
     const handleSubmit = () => {
         //validacija unosa
+        console.log(firstNameEdit + " " + lastNameEdit + " " + emailEdit + " " + usernameEdit + " " + phoneNumberEdit + " " + addressEdit)
         if(firstNameEdit.trim() === '' || lastNameEdit.trim() === ''
             || emailEdit.trim() === '' || usernameEdit.trim() === '' 
-            || phoneNumberEdit.trim() === '' 
-            || passwordEdit.trim() === '' || addressEdit.trim() === ''){
+            || phoneNumberEdit.trim() === '' || addressEdit.trim() === ''){
             alertInvalid("Invalid input, make sure everything is filed correctly and try again!")
         }
         else if (validateEmail() === false){
@@ -160,7 +201,8 @@ const MyProfileComponent = () => {
                         <h4>{firstName} {lastName}</h4>
                         <p className="text-secondary mb-1">Full Stack Developer</p>
                         <p className="text-muted font-size-sm">{address}</p>
-                        <Link className='btn btn-success' to={`/my-active-final-orders`}>Active orders</Link>
+                        <button id="changePassBtn" className='btn btn-success'onClick={handleShowPassModal}>Change password</button>
+                        {/* <Link className='btn btn-success' to={`/my-active-final-orders`}>Active orders</Link> */}
                         <Link className='btn btn-danger' style={{marginLeft:"5px"}} to={`/my-delivered-final-orders`}>Order history</Link>
                         </div>
                     </div>
@@ -257,18 +299,18 @@ const MyProfileComponent = () => {
                         </div>
                     </div>
                     <hr></hr>
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-sm-3">
                         <h4 className="mb-0">Password</h4>
                         </div>
                         <div className="col-sm-9 text-secondary">
                             <label id="labelPassword">{password}</label>
                         </div>
-                    </div>
+                    </div> */}
                     <hr></hr>
                     <div className="row">
                         <div className="col-sm-12">
-                            <button className="btn btn-success" onClick={handleShow}>Edit password or profile</button>
+                            <button className="btn btn-success" onClick={handleShow}>Edit profile</button>
                             
                         </div>
                     </div>
@@ -292,6 +334,22 @@ const MyProfileComponent = () => {
         <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>Close</Button>
         <Button variant="primary" onClick={handleSubmit}>Save changes</Button>
+        </Modal.Footer>
+    </Modal>
+
+     {/* NE MOZE MODAL.DIALOG, MORA MODAL SAMO */}
+     <Modal show={showPassModal} onHide={handleClosePassModal}>
+        <Modal.Header closeButton>
+        <Modal.Title>Edit password</Modal.Title>
+        </Modal.Header>
+
+            <Modal.Body>
+                <EditPasswordComponent passwordObj = {passwordObj} handleSubmitChangePass={handleSubmitChangePass}/>
+            </Modal.Body>
+
+        <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>Close</Button>
+        <Button variant="primary" onClick={handleSubmitChangePass}>Save changes</Button>
         </Modal.Footer>
     </Modal>
     </>

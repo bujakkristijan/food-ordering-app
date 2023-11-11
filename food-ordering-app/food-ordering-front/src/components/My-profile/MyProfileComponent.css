@@ -60,3 +60,8 @@ body{
     font-size: large;
 }
 
+#changePassBtn{
+    font-size: 18px;
+    font-weight: 400 !important;
+}
+

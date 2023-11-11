@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.foodorderback.dto.PasswordDTO;
 import com.example.foodorderback.dto.UserDTO;
 import com.example.foodorderback.model.Role;
 import com.example.foodorderback.model.User;
@@ -71,12 +72,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateUser(@RequestBody User u) {
-		String validationStatus = userService.validateUserUpdate(u);
+	public ResponseEntity<String> updateUser(@RequestBody UserDTO userDTO) {
+		String validationStatus = userService.validateUserUpdate(userDTO);
 		if (!validationStatus.equals("valid")) {
 			return new ResponseEntity<String>(validationStatus, HttpStatus.OK);
 		}
-		String response = userService.updateUser(u);
+		String response = userService.updateUser(userDTO);
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
 	
@@ -93,7 +94,7 @@ public class UserController {
 		if (!validationStatus.equals("valid")) {
 			return new ResponseEntity<String>(validationStatus, HttpStatus.OK);
 		}
-		String response = userService.updateUser(employeeDetails);
+		String response = userService.updateEmployee(employeeDetails);
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
 	
@@ -122,5 +123,12 @@ public class UserController {
 		String response = userService.deactivateUser(id);
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/changePassword", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> changePassword(@RequestBody PasswordDTO passwordDTO) {
+			String responseToClient = userService.changePassword(passwordDTO);
+			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
+		}
+	
 	
 }

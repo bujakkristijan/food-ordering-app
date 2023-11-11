@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.foodorderback.dto.JWTLogin;
 import com.example.foodorderback.dto.LoginDTO;
+import com.example.foodorderback.dto.PasswordDTO;
 import com.example.foodorderback.dto.UserDTO;
 import com.example.foodorderback.model.Login;
 import com.example.foodorderback.model.Role;
@@ -149,13 +150,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String validateUserUpdate(User user) {
+	public String validateUserUpdate(UserDTO user) {
 		if (user.getEmail() == null || user.getEmail().trim().isEmpty() || user.getLastName() == null
 				|| user.getLastName().trim().isEmpty() || user.getFirstName() == null
 				|| user.getFirstName().trim().isEmpty() || user.getUsername() == null
 				|| user.getUsername().trim().isEmpty() || user.getPhoneNumber() == null
 				|| user.getAddress().trim().isEmpty() || user.getAddress() == null
-				|| user.getPassword().trim().isEmpty() || user.getPassword() == null
 				|| user.getPhoneNumber().trim().isEmpty() || !user.getEmail().matches("^(.+)@(.+)$")) {
 			return "invalid";
 		}
@@ -188,6 +188,32 @@ public class UserServiceImpl implements UserService {
 			}
 		
 		return "valid";
+	}
+	
+	
+	
+	private boolean isUsernameUniqueUpdate(UserDTO user) {
+		List<User> allUsers = userRepository.findAll();
+		allUsers.remove(userRepository.findById(user.getId()).get());
+		for (User u : allUsers) {
+			if (u.getUsername().equals(user.getUsername())) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+
+	
+	private boolean isEmailUniqueUpdate(UserDTO user) {
+		List<User> allUsers = userRepository.findAll();
+		allUsers.remove(userRepository.findById(user.getId()).get());
+		for (User u : allUsers) {
+			if (u.getEmail().equals(user.getEmail())) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private boolean isEmailUnique(String email) {
@@ -222,7 +248,24 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public String updateUser(User u) {
+	public String updateUser(UserDTO u) {
+		try {
+			User user = userRepository.findById(u.getId()).get();
+			user.setFirstName(u.getFirstName());
+			user.setLastName(u.getLastName());
+			user.setPhoneNumber(u.getPhoneNumber());
+			user.setAddress(u.getAddress());
+			user.setEmail(u.getEmail());
+			userRepository.save(user);
+		} catch (Exception e) {
+			return "fail";
+		}
+		
+		return "success";
+	}
+	
+	@Override
+	public String updateEmployee(User u) {
 		try {
 			User user = userRepository.findById(u.getId()).get();
 			user.setFirstName(u.getFirstName());
@@ -308,6 +351,35 @@ public class UserServiceImpl implements UserService {
 			responseToClient = "invalid";
 		}
 		return responseToClient;
+	}
+	
+	@Override
+	public String changePassword(PasswordDTO passwordDTO) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		User loggedUser = new User();
+		try {
+			loggedUser = getCurrentUser();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	
+		if(!(loggedUser.getPassword().equals(passwordDTO.getOldPassword()))) {
+			//proveri da li se enkriptovane lozinke podudaraju
+			if(encoder.matches(passwordDTO.getOldPassword(), loggedUser.getPassword()) == false) {
+				return "fail";
+			}
+			else {
+				loggedUser.setPassword(passwordDTO.getNewPassword());
+				userRepository.save(loggedUser);
+				return "success";
+			}
+		}
+		else {
+			loggedUser.setPassword(passwordDTO.getNewPassword());
+			userRepository.save(loggedUser);
+			return "success";
+			}
+		
 	}
 	
 	
