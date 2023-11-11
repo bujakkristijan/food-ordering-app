@@ -78,6 +78,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			user.setRole(Role.USER);
 			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+			userRepository.save(user);
 			return "success";
 		} catch (Exception e) {
 			return "fail";
@@ -89,6 +90,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			user.setRole(Role.EMPLOYEE);
 			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+			userRepository.save(user);
 			return "success";
 		} catch (Exception e) {
 			return "fail";
@@ -256,25 +258,40 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		
 		try {
-			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
+//			authenticationManager.authenticate(
+//					new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
 			User userFromDB = findByUsername(login.getUsername());
-			JWTLogin jwtDetails = new JWTLogin();
-			jwtDetails.setRole(userFromDB.getRole().toString());
-			jwtDetails.setUsername(userFromDB.getUsername());
-				String token = jwtUtil.generateToken(jwtDetails);
-				loginDTO = new LoginDTO(token, user, "no");
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			
+			//ako nisu iste lozinke (plain text iz input-a i u bazi, odnosno ona koja nije kriptovana proveri dalje
+			if(!(userFromDB.getPassword().equals(login.getPassword()))) {
+				//proveri da li se enkriptovane lozinke podudaraju
+				if(encoder.matches(login.getPassword(), userFromDB.getPassword()) == false) {
+					throw new Exception();
+				}
+				else {
+					JWTLogin jwtDetails = new JWTLogin();
+					jwtDetails.setRole(userFromDB.getRole().toString());
+					jwtDetails.setUsername(userFromDB.getUsername());
+					String token = jwtUtil.generateToken(jwtDetails);
+					loginDTO = new LoginDTO(token, "success");
+				}
+			}
+			else {
+				JWTLogin jwtDetails = new JWTLogin();
+				jwtDetails.setRole(userFromDB.getRole().toString());
+				jwtDetails.setUsername(userFromDB.getUsername());
+				String token = jwtUtil.generateToken(jwtDetails);
+				loginDTO = new LoginDTO(token, "success");
+			}	
 		} catch (Exception e) {
 			loginDTO = new LoginDTO();
-			loginDTO.setMessageInvalidUsernameOrPassword("yes");
-			loginDTO.setUser(user);
+			loginDTO.setMessage("fail");
 			return loginDTO;
 		}
 		if(user.isDeleted()) {
 			loginDTO = new LoginDTO();
-			loginDTO.setMessageInvalidUsernameOrPassword("deactivatedUser");
-			loginDTO.setUser(user);
+			loginDTO.setMessage("deactivatedUser");
 			return loginDTO;
 		}
 		return loginDTO;

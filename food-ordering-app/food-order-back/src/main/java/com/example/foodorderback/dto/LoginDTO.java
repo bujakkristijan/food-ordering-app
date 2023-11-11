@@ -1,32 +1,31 @@
 package com.example.foodorderback.dto;
 
-import com.example.foodorderback.model.User;
+
 
 public class LoginDTO {
 	
 	private String token;
-	private User user;
-	private String messageInvalidUsernameOrPassword;
+	
+	private String message;
 	
 	public LoginDTO() {
 		
 	}
 
-
-	public LoginDTO(String token, User user, String messageInvalidUsernameOrPassword) {
+	public LoginDTO(String token, String message) {
 		super();
 		this.token = token;
-		this.user = user;
-		this.messageInvalidUsernameOrPassword = messageInvalidUsernameOrPassword;
+		this.message = message;
+		
 	}
 
-	public String getMessageInvalidUsernameOrPassword() {
-		return messageInvalidUsernameOrPassword;
+	public String getMessage() {
+		return message;
 	}
 
 
-	public void setMessageInvalidUsernameOrPassword(String messageInvalidUsernameOrPassword) {
-		this.messageInvalidUsernameOrPassword = messageInvalidUsernameOrPassword;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 
@@ -36,14 +35,6 @@ public class LoginDTO {
 
 	public void setToken(String token) {
 		this.token = token;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }

@@ -23,15 +23,15 @@ const submitLogin = (e) =>{
     else{
       const loginParams = {username, password}
       LoginService.login(loginParams).then((response) =>{
-        responseFromServer = response.data.messageInvalidUsernameOrPassword.toString();
-        if(responseFromServer === "no"){
+        responseFromServer = response.data.message.toString();
+        if(responseFromServer === "success"){
             alertSuccess("Successfully signed in!");
             localStorage.token = response.data.token;
             const decodedToken = jwt_decode(response.data.token);
             localStorage.role = decodedToken.role; //stavlja se role u localstorage nakon sto se dekodira pomocu jwt-decode  
             setTimeout(() => navigateDependingOnRole(localStorage.role), 1500);
         }
-        else if(responseFromServer === "yes"){
+        else if(responseFromServer === "fail"){
             alertInvalid("Invalid username or password!");
         }
         else if(responseFromServer === "deactivatedUser"){
