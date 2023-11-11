@@ -262,8 +262,8 @@ public class UserServiceImpl implements UserService {
 //					new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
 			User userFromDB = findByUsername(login.getUsername());
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			
-			//ako nisu iste lozinke (plain text iz input-a i u bazi, odnosno ona koja nije kriptovana proveri dalje
+			//poredi se i enkriptovane lozinke i one koje nisu, jer kada sam dodavao rucno user-e u bazi da bih testirao, lozinke nisu enkriptovane bile, jedino zato radim i tu proveru
+			//ako nisu iste lozinke (plain text iz input-a i u bazi, odnosno ona koja nije kriptovana, proveri dalje
 			if(!(userFromDB.getPassword().equals(login.getPassword()))) {
 				//proveri da li se enkriptovane lozinke podudaraju
 				if(encoder.matches(login.getPassword(), userFromDB.getPassword()) == false) {
