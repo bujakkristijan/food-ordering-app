@@ -58,13 +58,21 @@ Clicking on cart button or icon in navigation, users can see items from the cart
 
 Users that are not logged-in, need to insert details such as address and phone number.
 
-![not-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/9b99b590-538b-4055-a4a6-d911bb50bd72)
+![insertemptyfinalorder](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/76d1030a-dc70-48cf-915c-05a7546854e9)
 
 Without inserting details, not logged-in users can't confirm the final order 
 
 ![alert-insert-address-and-phone-number-not-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cf40cbc3-07b8-4013-8193-37998a8f347b)
 
-Not logged-in users can track their order status clicking on the link after the final order is placed.
+Validation if inserted phone number is a number or it has less than 5 digits
+
+![invalidinputfinalorder](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/853c3ec5-a308-4461-9f1e-e2f6e19a1d4a)
+
+![cartordernotloggedinphonedigitcheck](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/b45639fa-e2f9-4f4f-85f7-ec0f7df88e81)
+
+After valid input, final order will be confirmed and not logged-in users can track its order status clicking on the link.
+
+![not-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/9b99b590-538b-4055-a4a6-d911bb50bd72)
 
 ![not-logged-in-link](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/482853e5-56c4-4aa1-808f-6fea3cb177cf)
 
@@ -102,15 +110,34 @@ Login component shows when the app starts.
 
 ![sign-in-smanjen-box-shadow](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/08aeac06-7dfb-42c4-9a8f-3c70cb620938)
 
-Logged-in users can access their profile page where they can see and change details if necessary.
+Logged-in users can access their profile page where they edit profile or change password if necessary.
 
-![my-profile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e9cc7c8b-04ab-450f-bca5-6e172ed1b107)
+![myprofilenew](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3726a172-61e1-4bee-9910-52f2c6417058)
+
+Edit profile
+
+![myprofileeditprofilenew](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6fd5b1dc-9f1d-4669-85d4-a73a11779670)
+
+When user wants to change password, he needs to insert old password.
+
+![myprofileoldnewpassword](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/0e8f8fdf-32ae-4226-b832-a874e01e32bf)
+
+If they not match, he won't be allowed to save new password.
+
+![myprofileoldnewpasswordalert](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/94c3e9d8-fb97-4ed9-be4d-5f1b97b4e5ec)
+
+If they match, password will be saved successfully (will be encripted and saved in database)
+
+![myprofilechangepasssuccess](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cd3c1d63-b951-44b6-b401-7baa21ee9b06)
 
 Registration 
 
 ![registration-smanjen-box-shadow](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/8a7ba048-c6c4-4042-932a-9eaac617f1ff)
 
-Alert if email or username already exists in the database.
+Validation and alert if username already exists in the database.
 
-![email-username-already-exist](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/04779c3e-5f60-4f30-9a41-3408cfbcbe00)
+![usernamealreadyexistsregistration](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6eb8aef9-176e-4ece-ab97-30ba3e746ba7)
 
+Validation and alert if email already exists in the database
+
+![emailalreadyexistsregistration](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/d0ac3d78-81ef-452f-9b3a-bac3e689c6b5)

@@ -298,7 +298,6 @@ const MyProfileComponent = () => {
                             {role}
                         </div>
                     </div>
-                    <hr></hr>
                     {/* <div className="row">
                         <div className="col-sm-3">
                         <h4 className="mb-0">Password</h4>

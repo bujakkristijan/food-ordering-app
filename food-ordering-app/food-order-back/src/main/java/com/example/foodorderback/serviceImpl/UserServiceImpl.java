@@ -363,19 +363,23 @@ public class UserServiceImpl implements UserService {
 			// TODO: handle exception
 		}
 	
+		//proveravaju se plain text sifre u bazi takodje jer nalozi za testiranje koje sam napravio na pocetku
+		//nemaju enkriptovane sifre. Sifre se enkriptuju nakon registracije korisnika i tako se cuvaju u bazi
 		if(!(loggedUser.getPassword().equals(passwordDTO.getOldPassword()))) {
 			//proveri da li se enkriptovane lozinke podudaraju
 			if(encoder.matches(passwordDTO.getOldPassword(), loggedUser.getPassword()) == false) {
 				return "fail";
 			}
 			else {
-				loggedUser.setPassword(passwordDTO.getNewPassword());
+				loggedUser.setPassword(new BCryptPasswordEncoder().encode(passwordDTO.getNewPassword()));
+//				loggedUser.setPassword(passwordDTO.getNewPassword());
 				userRepository.save(loggedUser);
 				return "success";
 			}
 		}
 		else {
-			loggedUser.setPassword(passwordDTO.getNewPassword());
+			loggedUser.setPassword(new BCryptPasswordEncoder().encode(passwordDTO.getNewPassword()));
+//			loggedUser.setPassword(passwordDTO.getNewPassword());
 			userRepository.save(loggedUser);
 			return "success";
 			}
