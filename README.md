@@ -118,15 +118,15 @@ Edit profile
 
 ![myprofileeditprofilenew](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6fd5b1dc-9f1d-4669-85d4-a73a11779670)
 
-When user wants to change password, he needs to insert old password.
+When user wants to change password, he needs to insert old password as well.
 
 ![myprofileoldnewpassword](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/0e8f8fdf-32ae-4226-b832-a874e01e32bf)
 
-If they not match, he won't be allowed to save new password.
+If inserted old password and password from the database don't match, he won't be allowed to save new password.
 
 ![myprofileoldnewpasswordalert](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/94c3e9d8-fb97-4ed9-be4d-5f1b97b4e5ec)
 
-If they match, password will be saved successfully (will be encripted and saved in database)
+If they match, new password will be saved successfully (will be encripted and saved in database)
 
 ![myprofilechangepasssuccess](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cd3c1d63-b951-44b6-b401-7baa21ee9b06)
 
