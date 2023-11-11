@@ -32,7 +32,7 @@ const RegistrationComponent = () => {
       }
       else{
         const user = {firstName, lastName, email, username, phoneNumber, password, address}
-        UserService.createUser(user).then((response) =>{
+        UserService.registration(user).then((response) =>{
           console.log(response.data);
           if(response.data.toString() === "success"){
             alertSuccess("Successfully registered!");

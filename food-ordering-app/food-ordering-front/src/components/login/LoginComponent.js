@@ -17,25 +17,29 @@ var responseFromServer;
 
 const submitLogin = (e) =>{
     e.preventDefault();
-    const loginParams = {username, password}
-    LoginService.login(loginParams).then((response) =>{
+    if(username.trim() === '' || password.trim() === ''){
+        alertInvalid("Invalid input, make sure everything is filed correctly and try again!");
+      }
+    else{
+      const loginParams = {username, password}
+      LoginService.login(loginParams).then((response) =>{
         responseFromServer = response.data.messageInvalidUsernameOrPassword.toString();
-        if(responseFromServer == "no"){
-            alertSuccess();
+        if(responseFromServer === "no"){
+            alertSuccess("Successfully signed in!");
             localStorage.token = response.data.token;
             const decodedToken = jwt_decode(response.data.token);
             localStorage.role = decodedToken.role; //stavlja se role u localstorage nakon sto se dekodira pomocu jwt-decode  
             setTimeout(() => navigateDependingOnRole(localStorage.role), 1500);
-           
         }
-        else if(responseFromServer == "yes"){
-            console.log(responseFromServer);
-            alertInvalid(responseFromServer)
+        else if(responseFromServer === "yes"){
+            alertInvalid("Invalid username or password!");
         }
-        else if(responseFromServer =="deactivatedUser"){
-            alertInvalid(responseFromServer);
+        else if(responseFromServer === "deactivatedUser"){
+            alertInvalid("Can't log in! User deactivated!");
         }
-    })
+      });
+    }
+    
 }
 
 const navigateDependingOnRole = (role) =>{
@@ -50,28 +54,21 @@ const navigateDependingOnRole = (role) =>{
   }
 }
 
-const alertSuccess = () =>{
+const alertSuccess = (message) =>{
     Swal.fire({
       position: 'top',
       icon: 'success',
-      title: 'Successfully signed in!',
+      title: message,
       showConfirmButton: false,
       timer: 1500
     });
   }
 
-  const alertInvalid = (invalidText) =>{
-    if(invalidText == "yes"){
-      var titleContent = "Invalid username or password!";
-    }
-    else if(invalidText == "deactivatedUser"){
-      var titleContent = "Can't log in! User deactivated!";
-    }
-    
+  const alertInvalid = (message) =>{
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: titleContent,
+      text: message,
     })
   }
 //card col-md-6 offset-md-3 offset-md-3' za formu siroko da je, 4 4 4 da je uze i centrirano lepo, ali po vertikali nzm kako da namestim

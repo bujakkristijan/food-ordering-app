@@ -1,55 +1,53 @@
 import axios from "axios";
+import TokenService from "./TokenService";
 
 
 class UserService{
-    // sleep(ms) {
-    //     return new Promise(resolve => setTimeout(resolve, ms / 1000));
-    //   }
 
-    //async
     getAllEmployees () {
-        // kada se osvezi stranica, da stopira jednu mikrosekundu, kako bi interceptor uspeo da stavi token u header=u
-        // mada je ovo los nacin da se to radi, pa zato ne stavljam
-        // treba prilikom svakog zahteva gde je potreban token, setovati token u header-u manuelno u kodu
-        // await this.sleep(1);
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/user/getAllEmployees");
     }
 
     getAllUsers(){
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/user/getAllUsers");
     }
 
     createEmployee(user){
+        TokenService.setTokenInHeader();
         return axios.post("http://localhost:8080/api/user/createEmployee", user);
     }
 
     getEmployeeById(employeeId){
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/user/" + employeeId);
     }
     //moze i samo employee da se salje, ne mora i id
     updateEmployee(employeeId, employee){
+        TokenService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/user/updateUserByIdAndDetails/" + employeeId, employee);
     }
     //logicko brisanje, setuje se isDeleted na true
     deleteEmployee(employeeId){
+        TokenService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/user/deactivateUser/" + employeeId);
     }
 
-    createUser(user){
+    registration(user){
         return axios.post("http://localhost:8080/api/user/registration", user);
     }
 
     getCurrentUser(){
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/user/getCurrentUser");
     }
 
     updateUser(user){
+        TokenService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/user/updateUser", user);
     }
 
-    preflightMask(){
-        return axios.get("http://localhost:8080/api/user/preflightMask");
-    }
 }
 
 export default new UserService();
