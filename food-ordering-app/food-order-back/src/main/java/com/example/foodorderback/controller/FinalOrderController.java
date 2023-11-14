@@ -57,6 +57,14 @@ public class FinalOrderController {
 		return new ResponseEntity<Long>(responseToClient, HttpStatus.OK);
 	}
 	
+//	@RequestMapping(value ="/createFinalOrderNotLoggedIn",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, 
+//			produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<Long> saveFinalOrderUserNotLoggedIn(@RequestBody OrderItemDTO orderItemDTO){
+//		Long responseToClient;		
+//		responseToClient = finalOrderService.makeFinalOrder(orderItemDTO);
+//		return new ResponseEntity<Long>(responseToClient, HttpStatus.OK);
+//	}
+//	
 	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)
 	public ResponseEntity<FinalOrder> getFinalOrderById(@PathVariable Long id){
 		FinalOrder finalOrder = new FinalOrder();

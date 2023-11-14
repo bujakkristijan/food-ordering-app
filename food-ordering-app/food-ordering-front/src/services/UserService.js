@@ -1,36 +1,52 @@
 import axios from "axios";
-import TokenService from "./TokenService";
+import AlertService from "./AlertService";
 
 
 class UserService{
 
+    setTokenInHeader(){
+        if (localStorage.token !== undefined && localStorage.token !== null) {
+            let tokenBearer = `Bearer ${localStorage.token}`;
+            axios.defaults.headers.common['Authorization'] = tokenBearer; 
+        }
+        else{
+            axios.defaults.headers.common['Authorization'] = null;
+        }
+    }
+
     getAllEmployees () {
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/user/getAllEmployees");
     }
 
     getAllUsers(){
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/user/getAllUsers");
     }
 
     createEmployee(user){
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.post("http://localhost:8080/api/user/createEmployee", user);
     }
 
     getEmployeeById(employeeId){
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/user/" + employeeId);
     }
     //moze i samo employee da se salje, ne mora i id
     updateEmployee(employeeId, employee){
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/user/updateUserByIdAndDetails/" + employeeId, employee);
     }
     //logicko brisanje, setuje se isDeleted na true
     deleteEmployee(employeeId){
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/user/deactivateUser/" + employeeId);
     }
 
@@ -39,17 +55,20 @@ class UserService{
     }
 
     getCurrentUser(){
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/user/getCurrentUser");
     }
 
     updateUser(user){
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/user/updateUser", user);
     }
 
     changePassword(passwordObj){
-        TokenService.setTokenInHeader();
+        // this.setTokenInHeader();
+        AlertService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/user/changePassword", passwordObj);
     }
 

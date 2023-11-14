@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
     protected void configure(HttpSecurity http) throws Exception {
 		http.cors().disable();
-		http.csrf().disable().authorizeRequests().antMatchers("/api/login", "/api/user/registration", "/api/finalOrder/createFinalOrder", "/api/meal/getMealsByMealTypeId/{id}", "/api/finalOrder/getOrderItemsByFinalOrderId/{id}","/api/finalOrder/getFinalOrderById/{id}", "/api/mealType/getAllMealTypes")
+		http.csrf().disable().authorizeRequests().antMatchers("/api/login", "/api/logout", "/api/finalOrder/createFinalOrderNotLoggedIn", "/api/user/registration", "/api/finalOrder/createFinalOrder", "/api/meal/getMealsByMealTypeId/{id}", "/api/finalOrder/getOrderItemsByFinalOrderId/{id}","/api/finalOrder/getFinalOrderById/{id}", "/api/mealType/getAllMealTypes")
         	.permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
