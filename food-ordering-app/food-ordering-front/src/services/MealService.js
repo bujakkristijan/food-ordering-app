@@ -3,43 +3,27 @@ import TokenService from "./TokenService";
 
 class MealService{
 
-    // mozda bi bilo najbolje u redux-store da stoji funkcija pa da se odatle pristupa u svim servisima
-    setTokenInHeader(){
-        if (localStorage.token !== undefined && localStorage.token !== null) {
-            let tokenBearer = `Bearer ${localStorage.token}`;
-            axios.defaults.headers.common['Authorization'] = tokenBearer; 
-        }
-        else{
-            axios.defaults.headers.common['Authorization'] = null;
-        }
-    }
-
     getAllMeals(){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/meal/getAllMeals");
     }
 
     createMeal(fd){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.post("http://localhost:8080/api/meal/createMeal", fd);
     }
 
     deleteMeal(mealId){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.delete("http://localhost:8080/api/meal/deleteMeal/" + mealId);
     }
 
     getAllMealTypes(){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/mealType/getAllMealTypes");
     }
 
     updateMeal(meal){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/meal/updateMeal", meal);
     }
@@ -49,7 +33,6 @@ class MealService{
     }
 
     sendItemsForFinalOrder(itemsFromCartFinalOrder){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.post("http://localhost:8080/api/finalOrder/createFinalOrder", itemsFromCartFinalOrder); 
     }
@@ -63,7 +46,6 @@ class MealService{
     }
 
     getAllActiveFinalOrders(){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllActiveFinalOrders");
     }
@@ -73,25 +55,21 @@ class MealService{
     // }
     
     getAllDeliveredFinalOrders(){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllDeliveredFinalOrders");
     }
 
     getMyActiveFinalOrders(){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllMyActiveFinalOrders");
     }
 
     getMyDeliveredFinalOrders(){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllMyDeliveredFinalOrders");
     }
 
    changeFinalOrderStatus(finalOrderWithStatusAndId){
-        // this.setTokenInHeader();
         TokenService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/finalOrder/changeStatus", finalOrderWithStatusAndId);
     }
