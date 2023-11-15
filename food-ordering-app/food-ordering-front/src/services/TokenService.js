@@ -1,6 +1,4 @@
-import axios from "axios";
-
-class AlertService{
+class TokenService{
     setTokenInHeader(){
         if (localStorage.token !== undefined && localStorage.token !== null) {
             let tokenBearer = `Bearer ${localStorage.token}`;
@@ -12,4 +10,4 @@ class AlertService{
     }
 }
 
-export default new AlertService();
+export default new TokenService();

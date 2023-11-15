@@ -1,5 +1,5 @@
 import axios from "axios";
-import AlertService from "./AlertService";
+import TokenService from "./TokenService";
 
 class MealTypeService{
 
@@ -18,19 +18,19 @@ class MealTypeService{
     }
     createMealType(fd){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.post("http://localhost:8080/api/mealType/createMealType", fd);
     }
 
     deleteMealType(mealTypeId){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.delete("http://localhost:8080/api/mealType/deleteMealType/" + mealTypeId);
     }
 
     updateMealType(mealType){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/mealType/updateMealType", mealType);
     }
 

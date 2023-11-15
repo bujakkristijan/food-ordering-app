@@ -5,7 +5,7 @@ import com.example.foodorderback.model.OrderItem;
 
 public class ItemFromCartDTO {
 	
-	//trebao sam cuvati trenutnu cenu meal-a kada se kreira orderItem, a ne da cuvam i posle je citam iz meal objekta
+	//trebao sam cuvati trenutnu cenu meal-a kada se kreira orderItem, a ne da je cuvam i posle citam iz meal objekta
 	//jer ako se izmeni cena meal-a, izmenice se i cena za stare porudzbine !!!
 	//isto tako bolje da sam slao nazad varijable koje su mi neophodne (naziv, ime tipa itd.) 
 	//umesto ceo objekat sto saljem nazad na osnovu meal id-a

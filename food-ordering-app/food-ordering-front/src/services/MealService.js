@@ -1,5 +1,5 @@
 import axios from "axios";
-import AlertService from "./AlertService";
+import TokenService from "./TokenService";
 
 class MealService{
 
@@ -16,31 +16,31 @@ class MealService{
 
     getAllMeals(){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/meal/getAllMeals");
     }
 
     createMeal(fd){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.post("http://localhost:8080/api/meal/createMeal", fd);
     }
 
     deleteMeal(mealId){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.delete("http://localhost:8080/api/meal/deleteMeal/" + mealId);
     }
 
     getAllMealTypes(){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/mealType/getAllMealTypes");
     }
 
     updateMeal(meal){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/meal/updateMeal", meal);
     }
 
@@ -50,7 +50,7 @@ class MealService{
 
     sendItemsForFinalOrder(itemsFromCartFinalOrder){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.post("http://localhost:8080/api/finalOrder/createFinalOrder", itemsFromCartFinalOrder); 
     }
 
@@ -64,7 +64,7 @@ class MealService{
 
     getAllActiveFinalOrders(){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllActiveFinalOrders");
     }
 
@@ -74,25 +74,25 @@ class MealService{
     
     getAllDeliveredFinalOrders(){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllDeliveredFinalOrders");
     }
 
     getMyActiveFinalOrders(){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllMyActiveFinalOrders");
     }
 
     getMyDeliveredFinalOrders(){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllMyDeliveredFinalOrders");
     }
 
    changeFinalOrderStatus(finalOrderWithStatusAndId){
         // this.setTokenInHeader();
-        AlertService.setTokenInHeader();
+        TokenService.setTokenInHeader();
         return axios.put("http://localhost:8080/api/finalOrder/changeStatus", finalOrderWithStatusAndId);
     }
 

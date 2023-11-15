@@ -20,6 +20,11 @@ public class OrderItem {
 	@OneToOne
 	public Meal meal;
 	
+	// trebalo bi ovako da cuvam umesto meal objekta, jer ako se izmeni meal u bazi, promenice se i vrednosti (npr cena i opis) u starim narudzbinama
+	// public String mealName;
+	// public String mealPrice;
+	// public String mealDescription
+	
 	//@JsonIgnore 
 	@ManyToOne
 	public FinalOrder finalOrder;

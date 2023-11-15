@@ -42,13 +42,6 @@ public class FinalOrderController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value = "/welcomeTest", method = RequestMethod.GET)
-	public String welcome() {
-		return "IDEMO NISSSS!!!";
-	}
-	
-	
-	
 	@RequestMapping(value ="/createFinalOrder",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Long> saveFinalOrderUser(@RequestBody OrderItemDTO orderItemDTO){
@@ -57,14 +50,6 @@ public class FinalOrderController {
 		return new ResponseEntity<Long>(responseToClient, HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value ="/createFinalOrderNotLoggedIn",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, 
-//			produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<Long> saveFinalOrderUserNotLoggedIn(@RequestBody OrderItemDTO orderItemDTO){
-//		Long responseToClient;		
-//		responseToClient = finalOrderService.makeFinalOrder(orderItemDTO);
-//		return new ResponseEntity<Long>(responseToClient, HttpStatus.OK);
-//	}
-//	
 	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)
 	public ResponseEntity<FinalOrder> getFinalOrderById(@PathVariable Long id){
 		FinalOrder finalOrder = new FinalOrder();
