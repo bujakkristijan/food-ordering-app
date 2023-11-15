@@ -33,6 +33,7 @@ class MealService{
     }
 
     sendItemsForFinalOrder(itemsFromCartFinalOrder){
+        // jedino ako je korisnik ulogovan, stavlja se token u header-u
         TokenService.setTokenInHeader();
         return axios.post("http://localhost:8080/api/finalOrder/createFinalOrder", itemsFromCartFinalOrder); 
     }

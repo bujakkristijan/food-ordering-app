@@ -30,7 +30,9 @@ const NavbarStyledComponent = () => {
                     dispatch(deleteAllItems());
                }
                else{
-                    alert("failed to logout");
+                    clearLocalStorage();
+                    alert("Server logout error!");
+                    navigate("/menu");
                }
           })
      }
