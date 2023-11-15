@@ -20,7 +20,7 @@ public class OrderItem {
 	@OneToOne
 	public Meal meal;
 	
-	// trebalo bi ovako da cuvam umesto meal objekta, jer ako se izmeni meal u bazi, promenice se i vrednosti (npr cena i opis) u starim narudzbinama
+	// trebalo je na ovaj nacin da cuvam vrednosti umesto sto samo cuvam meal_id u bazi, jer ako se izmeni meal naknadno u bazi, promenice se i vrednosti (npr cena i opis) u starim narudzbinama
 	// public String mealName;
 	// public String mealPrice;
 	// public String mealDescription
