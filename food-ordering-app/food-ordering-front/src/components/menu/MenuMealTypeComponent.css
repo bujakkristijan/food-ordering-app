@@ -17,7 +17,7 @@
     align-self: center;
     
     border: 2px solid grey;
-    border-radius: 10px;
+    border-radius: 20px;
     /*padding: 10px 10px; */
     padding-bottom: 20px;
     transition:  all .2s ease-in-out; /* mora da ovde stoji a ne u hover, jer kad se skloni nema izlaznog trasitiona */
@@ -42,8 +42,8 @@
     /* border: 3px solid rgb(216, 158, 158); */
     height: 170px;
     object-fit: cover;
-    border-top-right-radius: 10px; 
-    border-top-left-radius: 10px;
+    border-top-right-radius: 18px; 
+    border-top-left-radius: 18px;
     box-shadow: 0 5px 10px rgb(131, 131, 131);
 }
 
