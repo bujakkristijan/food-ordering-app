@@ -173,13 +173,13 @@ const CartComponent = () => {
         finalPriceVar = 0;
         if(localStorage.token == null || localStorage.token == ''){
           for(let i=0; i<itemsFromCart.length; i++){
-            console.log(itemsFromCart[i].meal.price);
-            finalPriceVar += itemsFromCart[i].meal.price*itemsFromCart[i].quantity;
+            console.log(itemsFromCart[i].mealPrice);
+            finalPriceVar += itemsFromCart[i].mealPrice*itemsFromCart[i].quantity;
           }
         }
         else{
           for(let i=0; i<itemsFromCart.length; i++){
-            finalPriceVar += (itemsFromCart[i].meal.price)*0.9*itemsFromCart[i].quantity;
+            finalPriceVar += (itemsFromCart[i].mealPrice)*0.9*itemsFromCart[i].quantity;
           }
         }
       }
@@ -226,6 +226,7 @@ const CartComponent = () => {
             <tr>
                 <th className='theadth'>Image</th>
                 <th className='theadth'>Name</th>
+                <th className='theadth'>Description</th>
                 <th className='theadth'>Type</th>
                 <th className='theadth'>Price</th>
                 <th className='theadth'>Quantity</th>
@@ -235,17 +236,18 @@ const CartComponent = () => {
         {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
         <tbody>
             {itemsFromCart.map(
-                itemFromCart => <tr key={itemFromCart.meal.id}>                    
+                itemFromCart => <tr key={itemFromCart.mealId}>                    
                     <td className='td-content-img'>                  
-                      <img className='mealPic' src={"data:image/png;base64," + itemFromCart.meal.image} alt=''/>                   
+                      <img className='mealPic' src={"data:image/png;base64," + itemFromCart.mealImage} alt=''/>                   
                     </td>                       
-                    <td className='td-content'>{itemFromCart.meal.name}</td>
-                    <td className='td-content'>{itemFromCart.meal.mealType.typeName}</td>
-                    <td className='td-content'>{itemFromCart.meal.price}</td>
+                    <td className='td-content'>{itemFromCart.mealName}</td>
+                    <td className='td-content desc'>{itemFromCart.mealDescription}</td>
+                    <td className='td-content'>{itemFromCart.mealTypeName}</td>
+                    <td className='td-content'>{itemFromCart.mealPrice}</td>
                     <td className='td-content'>{itemFromCart.quantity}</td>                    
                     <td className='td-content'>
                         <button className='btn btn-success' onClick={() =>handleShowEdit(itemFromCart)}>Update</button>
-                        <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(itemFromCart.meal.id)} 
+                        <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(itemFromCart.mealId)} 
                         style={{ marginLeft: "5px" }}>Delete</button> 
                     </td>
                 </tr>

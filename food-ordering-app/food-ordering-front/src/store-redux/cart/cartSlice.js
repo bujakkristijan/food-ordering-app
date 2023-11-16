@@ -11,7 +11,7 @@ export const cartSlice = createSlice({
         let alreadyExistMeal = 0
         
         for(let i=0; i<state.length; i++){
-          if(state[i].meal.id === action.payload.meal.id){
+          if(state[i].mealId === action.payload.mealId){
             state[i].quantity += action.payload.quantity
                 alreadyExistMeal = 1;
           }
@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
       
       editItem: (state, action) =>{
          for(let i=0; i<state.length; i++){
-           if(state[i].meal.id === action.payload.item.meal.id){
+           if(state[i].mealId === action.payload.item.mealId){
              state[i].quantity = action.payload.itemQuantity
              return;
           }
@@ -34,7 +34,7 @@ export const cartSlice = createSlice({
         for(let i=0; i<state.length; i++){
           console.log("usloo1: ",i, " ok: ",action.payload)
 
-           if(state[i].meal.id === action.payload){
+           if(state[i].mealId === action.payload){
              state.splice(i,1);
              console.log("usloo: ",i, " ok: ",action.payload)
           }

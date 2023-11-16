@@ -23,11 +23,15 @@ const ListMealByMealTypeComponent = () => {
     const [price, setPrice] = useState('');
     const [image, setImage] = useState('');
     const [mealType, setMealType] = useState(undefined);
+    const [imageName, setImageName] = useState('');
+
+    const [description, setDescription] = useState('');
 
     const meal = {id, name, mealType, price, image};
     // const meal = {id, name, price, image};
 
-    const orderItem = {meal, quantity: mealQuantity};
+    // const orderItem = {mealFromCartDTO, quantity: mealQuantity};
+    //const orderItem = {meal, quantity: mealQuantity};
      
     const mealQuantityObj = {mealQuantity, setMealQuantity};
 
@@ -52,6 +56,8 @@ const ListMealByMealTypeComponent = () => {
         setMealType(meal.mealType)
         // setMealType(meal.mealType.typeName);
         setImage(meal.image);
+        setImageName(meal.imageName);
+        setDescription(meal.description);
         setMealQuantity(1);
         setShow(true); 
     };
@@ -62,6 +68,8 @@ const ListMealByMealTypeComponent = () => {
         setName('');
         setPrice('');
         setImage('');
+        setImageName('');
+        setDescription('');
         setMealType(undefined);
         setMealQuantity(1);
         }
@@ -76,7 +84,8 @@ const ListMealByMealTypeComponent = () => {
     }
 
     const handleAddItemToCart = () =>{    
-        console.log("orderitem" + JSON.stringify(orderItem));
+        // console.log("orderitem" + JSON.stringify(orderItem));
+        let orderItem = {mealId: id, mealName: name, mealTypeName: mealType.typeName, mealDescription: description, mealImage: image, mealImageName: imageName, mealPrice: price, quantity: mealQuantity};
         if(orderItem.quantity>0){
             dispatch(addItem(orderItem));
             alertSuccess('Successfully added item to cart!');
@@ -120,6 +129,7 @@ const ListMealByMealTypeComponent = () => {
                     <tr>                      
                         <th className='theadth'>Image</th>
                         <th className='theadth'>Name</th>
+                        <th className='theadth'>Description</th>
                         <th className='theadth'>Type</th>
                         <th className='theadth'>Price</th>
                         <th className='theadth'>Action</th>
@@ -133,6 +143,7 @@ const ListMealByMealTypeComponent = () => {
                               <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
                             </td>  
                             <td className='td-content'>{meal.name}</td>
+                            <td className='td-content desc'>{meal.description}</td>
                             <td className='td-content'>{meal.mealType.typeName}</td>
                             <td className='td-content'>{meal.price}</td>
                             <td className='td-content'>

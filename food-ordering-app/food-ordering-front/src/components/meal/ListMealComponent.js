@@ -18,7 +18,11 @@ const ListMealComponent = () => {
     const [price, setPrice] = useState('');
     const [image, setImage] = useState('');
     const [imageName, setImageName] = useState('');
+
+    // ovo treba na bolji nacin, a ne ovako, mada ako se ne brise iz baze ovaj meal type, radice okej
     const [mealType, setMealType] = useState({id: 1, typeName: 'PIZZA'});
+
+    const [description, setDescription] = useState('');
 
     const [show, setShow] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
@@ -27,7 +31,7 @@ const ListMealComponent = () => {
 
     const file = {selectedFile, setSelectedFile};
 
-    const meal = {id, name, price, image, imageName, mealType, setName, setPrice, setImage, setImageName, setMealType}
+    const meal = {id, name, price, image, imageName, mealType, description, setDescription, setName, setPrice, setImage, setImageName, setMealType}
 
     useEffect(() => {
         getAllMeals();
@@ -52,6 +56,7 @@ const ListMealComponent = () => {
         setShow(false);
         meal.setName('');
         meal.setPrice('');
+        meal.setDescription('');
         meal.setMealType({id: 1, typeName: 'PIZZA'});
         }
 
@@ -60,6 +65,7 @@ const ListMealComponent = () => {
         //meal.setId(0);
         meal.setName('');
         meal.setPrice('');
+        meal.setDescription('');
         meal.setMealType({id: 1, typeName: 'PIZZA'});
         }
     const handleShow = () => {
@@ -73,6 +79,7 @@ const ListMealComponent = () => {
         setName(meal.name);
         setPrice(meal.price);
         setMealType(meal.mealType);
+        setDescription(meal.setDescription);
     };
 
     const handleSubmitEdit = () => {
@@ -96,7 +103,7 @@ const ListMealComponent = () => {
     }
 
     const handleSubmit = () => {
-        if(meal.name.trim() === "" || isNaN(parseInt(meal.price)) || parseInt(meal.price) < 0){
+        if(meal.name.trim() === "" || meal.description.trim() === "" || isNaN(parseInt(meal.price)) || parseInt(meal.price) < 0){
             alert("Invalid input");
         }
         else{
@@ -171,6 +178,7 @@ const ListMealComponent = () => {
                         <th className='theadth'>Image</th>
                         <th className='theadth'>Name</th>
                         <th className='theadth'>Type</th>
+                        <th className='theadth'>Description</th>
                         <th className='theadth'>Price</th>
                         <th className='theadth'>Action</th>
                     </tr>
@@ -185,6 +193,7 @@ const ListMealComponent = () => {
                             </td>  
                             <td className='td-content'>{meal.name}</td>
                             <td className='td-content'>{meal.mealType.typeName}</td>
+                            <td className='td-content'>{meal.description}</td>
                             <td className='td-content'>{meal.price}</td>                         
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() =>handleShowEdit(meal)}>Update</button>

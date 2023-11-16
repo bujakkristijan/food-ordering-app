@@ -1,0 +1,20 @@
+.mealPicModal{ 
+    /* height: 60px; */
+    height: 70px;
+    width: 120px;
+    object-fit: cover; /* da ne razvuce sliku */
+     border: 1px rgb(173, 135, 135) solid ; 
+    border-radius: 5px;
+    margin-right: 0px;
+    margin-left: 0px;
+
+}
+
+.td-content-img{
+    display: flex;
+    justify-content: center;
+}
+
+th{
+    white-space: nowrap;
+}

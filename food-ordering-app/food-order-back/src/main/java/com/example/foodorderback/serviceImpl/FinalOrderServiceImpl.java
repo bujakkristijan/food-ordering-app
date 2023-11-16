@@ -18,6 +18,7 @@ import com.example.foodorderback.model.User;
 import com.example.foodorderback.repository.FinalOrderRepository;
 import com.example.foodorderback.repository.OrderItemRepository;
 import com.example.foodorderback.service.FinalOrderService;
+import com.example.foodorderback.service.MealService;
 import com.example.foodorderback.service.UserService;
 
 @Service
@@ -31,6 +32,9 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	MealService mealService;
 	
 	@Override
 	public List<FinalOrderDTO> getAllActiveFinalOrders(){
@@ -171,7 +175,14 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 			
 			for(ItemFromCartDTO itc: orderItemDTO.getItemsFromCart()) {
 				OrderItem orderItem = new OrderItem();
-				orderItem.setMeal(itc.getMeal());
+				orderItem.setMeal(mealService.findOne(itc.getMealId()));
+				orderItem.setMealDescription(itc.getMealDescription());
+				orderItem.setMealImage(itc.getMealImage());
+				orderItem.setMealImageName(itc.getMealImageName());
+				orderItem.setMealName(itc.getMealName());
+				orderItem.setMealPrice(itc.getMealPrice());
+				orderItem.setMealTypeName(itc.getMealTypeName());
+				
 				orderItem.setQuantity(itc.getQuantity());
 				orderItem.setFinalOrder(savedFinalOrder);
 				orderItemRepository.save(orderItem);	

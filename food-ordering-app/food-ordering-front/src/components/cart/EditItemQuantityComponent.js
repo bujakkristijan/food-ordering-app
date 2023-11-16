@@ -15,8 +15,8 @@ const EditItemQuantityComponent = (props) => {
   return (
     <div>    
         <div className='container-add-meal'>
-                <h5>Meal: {itemFromCart?.meal.name}</h5>
-                <h5>Price: {itemFromCart?.meal.price},00 RSD</h5>
+                <h5>Meal: {itemFromCart?.mealName}</h5>
+                <h5>Price: {itemFromCart?.mealPrice},00 RSD</h5>
                 <form>
                   <div className='form-group mb-2'>
                     <h5 className='form-label'>Insert quantity: </h5>

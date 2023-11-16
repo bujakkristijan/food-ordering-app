@@ -44,6 +44,19 @@ const EditMealComponent = (props) => {
                   </div>
 
                   <div className='form-group mb-2'>
+                    <label className='form-label'>Description: </label>
+                    <input  
+                        type="text"
+                        placeholder="Insert description" 
+                        name = "description" 
+                        className="form-control" 
+                        value={meal.description}
+                        onChange = {(e) => meal.setDescription(e.target.value)}                       
+                        >                       
+                    </input>
+                  </div>
+
+                  <div className='form-group mb-2'>
                     <label className='form-label'>Price: </label>
                     <input  
                         type="text"

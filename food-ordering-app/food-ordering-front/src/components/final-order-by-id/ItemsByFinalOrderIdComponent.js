@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react'
+import React, {useEffect} from 'react';
+import './ItemsByFinalOrderIdComponent.css';
 
 const ItemsByFinalOrderIdComponent = (props) => {
 
@@ -9,19 +10,25 @@ const ItemsByFinalOrderIdComponent = (props) => {
             <table id="table" className='table table-bordered table-hover'>
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Meal name</th>
                         <th>Meal type</th>
-                        <th>Price for one</th>
+                        <th>Meal description</th>
+                        <th>Price</th>
                         <th>Quantity</th>
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
                 <tbody>
                     {orderItems.map(
-                        orderItem => <tr key={orderItem.meal.id}>
-                            <td>{orderItem.meal.name}</td>
-                            <td>{orderItem.meal.mealType.typeName}</td>
-                            <td>{orderItem.meal.price}</td>
+                        orderItem => <tr key={orderItem.mealId}>
+                            <td className='td-content-img'>
+                              <img className='mealPicModal' src={"data:image/png;base64," + orderItem.mealImage} alt=''/> 
+                            </td>
+                            <td>{orderItem.mealName}</td>
+                            <td>{orderItem.mealTypeName}</td>
+                            <td>{orderItem.mealDescription}</td>
+                            <td>{orderItem.mealPrice}</td>
                             <td>{orderItem.quantity}</td>
                         </tr>
                     )}

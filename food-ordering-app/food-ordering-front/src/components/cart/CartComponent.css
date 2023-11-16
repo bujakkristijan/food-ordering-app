@@ -31,4 +31,8 @@
     /* border: 10px solid rgb(241, 0, 0) !important da pregazi bootstrapov border */
     box-shadow: 0 0 15px 15px rgb(133, 127, 127);
 }
+
+.td-content.desc{
+    max-width: 300px;
+}
     

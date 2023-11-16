@@ -14,46 +14,16 @@
     background-color: #ff3838 !important;
     border-color: #ff3838 !important; 
 }
-/* .mealPic{
-    
-    height: 110px;
-    width: 90%;
-    object-fit: cover;
-     border: 2px rgb(173, 135, 135) solid ; 
-    border-radius: 5px;
-  
-    margin-right: 0px;
-    margin-left: 0px;
- 
-}
 
-.theadth{
-    
-   
-    text-align: center;
-    font-size: larger;
+.mealPic{
+    width: 240px !important;
 }
 
 .td-content-img{
-    display: flex; 
+    display: flex;
     justify-content: center;
 }
 
-.td-content{
-
- align-items: center;
- font-size: larger;
+.td-content.desc{
+    max-width: 300px;
 }
-
-
-
-.tableElement{
-    margin-top: 20px;
-    background-color: whitesmoke; 
-
-    border-radius: 30px !important;
-    border: 3px solid; 
-    border-collapse: separate !important; /*mora ovo separate zbog bootstrapa, ne savije border, jer bootstrap setuje na collapse*/
-    
-    /* box-shadow: 0 0 15px 15px rgb(133, 127, 127); */
-/*}*/ 

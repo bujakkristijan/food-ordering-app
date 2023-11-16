@@ -48,6 +48,7 @@ public class Meal {
 	private String image;
  	
  	private String imageName;
+ 	private String description;
  	//@OneToOne 
 	//private Image image;
  	
@@ -84,6 +85,14 @@ public class Meal {
 	public void setImage(Image image) {
 		this.image = image;
 	}*/
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public String getImageName() {
 		return imageName;

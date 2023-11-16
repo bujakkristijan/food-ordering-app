@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -21,10 +22,23 @@ public class OrderItem {
 	public Meal meal;
 	
 	// trebalo je na ovaj nacin da cuvam vrednosti umesto sto samo cuvam meal_id u bazi, jer ako se izmeni meal naknadno u bazi, promenice se i vrednosti (npr cena i opis) u starim narudzbinama
-	// public String mealName;
-	// public String mealPrice;
-	// public String mealDescription
+	public String mealName;
+	public int mealPrice;
+	public String mealDescription;
 	
+	@Lob
+	public String mealImage;
+	public String mealImageName;
+	public String mealTypeName;
+	
+	public String getMealTypeName() {
+		return mealTypeName;
+	}
+
+	public void setMealTypeName(String mealTypeName) {
+		this.mealTypeName = mealTypeName;
+	}
+
 	//@JsonIgnore 
 	@ManyToOne
 	public FinalOrder finalOrder;
@@ -36,17 +50,57 @@ public class OrderItem {
 		
 	}
 
-	public OrderItem(Long id, Meal meal,FinalOrder finalOrder, int quantity) {
-		super();
-		this.id = id;
-		this.meal = meal;
-		
-		this.finalOrder = finalOrder;
-		this.quantity = quantity;
-	}
+//	public OrderItem(Long id, Meal meal,FinalOrder finalOrder, int quantity) {
+//		super();
+//		this.id = id;
+//		this.meal = meal;
+//		
+//		this.finalOrder = finalOrder;
+//		this.quantity = quantity;
+//	}
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getMealName() {
+		return mealName;
+	}
+
+	public void setMealName(String mealName) {
+		this.mealName = mealName;
+	}
+
+	public int getMealPrice() {
+		return mealPrice;
+	}
+
+	public void setMealPrice(int mealPrice) {
+		this.mealPrice = mealPrice;
+	}
+
+	public String getMealDescription() {
+		return mealDescription;
+	}
+
+	public void setMealDescription(String mealDescription) {
+		this.mealDescription = mealDescription;
+	}
+
+	public String getMealImage() {
+		return mealImage;
+	}
+
+	public void setMealImage(String mealImage) {
+		this.mealImage = mealImage;
+	}
+
+	public String getMealImageName() {
+		return mealImageName;
+	}
+
+	public void setMealImageName(String mealImageName) {
+		this.mealImageName = mealImageName;
 	}
 
 	public void setId(Long id) {

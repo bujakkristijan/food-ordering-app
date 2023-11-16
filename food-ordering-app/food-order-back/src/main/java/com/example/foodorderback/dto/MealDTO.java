@@ -14,6 +14,7 @@ public class MealDTO {
 	
  	public Long id;
 	private MealType mealType;	
+// 	private String mealTypeName;
  	private String name;
  	private int price;
  	
@@ -22,6 +23,7 @@ public class MealDTO {
  	
  	private String image;
  	private String imageName;
+ 	private String description;
  	
  	public String getImage() {
 		return image;
@@ -36,17 +38,25 @@ public class MealDTO {
  	}
  	
  	public MealDTO(Meal meal) {
- 		this(meal.getId(), meal.getMealType(), meal.getName(), meal.getPrice(), meal.getImage(), meal.getImageName());
+// 		this(meal.getId(), meal.getMealType(), meal.getName(), meal.getPrice(), meal.getImage(), meal.getImageName());
+ 		this.id = meal.getId();
+// 		this.mealTypeName = meal.getMealType().getTypeName();
+ 		this.mealType = meal.getMealType();
+ 		this.name = meal.getName();
+ 		this.price = meal.getPrice();
+ 		this.image = meal.getImage();
+ 		this.imageName = meal.getImageName();
+ 		this.description = meal.getDescription();
  	}
  	
- 	public MealDTO(Long id, MealType mealType, String name, int price, String image, String imageName) {
- 		this.id = id;
- 		this.mealType = mealType;
- 		this.name = name;
- 		this.price = price;
- 		this.image = image;
- 		this.imageName = imageName;
- 	}
+// 	public MealDTO(Long id, MealType mealType, String name, int price, String image, String imageName) {
+// 		this.id = id;
+// 		this.mealType = mealType;
+// 		this.name = name;
+// 		this.price = price;
+// 		this.image = image;
+// 		this.imageName = imageName;
+// 	}
  	
  	/*public MealDTO(Meal meal) {
 
@@ -64,6 +74,30 @@ public class MealDTO {
 		this.imageFSR = imageFSR;
 	}*/
 
+//	public String getMealTypeName() {
+//		return mealTypeName;
+//	}
+//
+//	public void setMealTypeName(String mealTypeName) {
+//		this.mealTypeName = mealTypeName;
+//	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public MealType getMealType() {
+		return mealType;
+	}
+
+	public void setMealType(MealType mealType) {
+		this.mealType = mealType;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public String getImageName() {
 		return imageName;
 	}
@@ -80,13 +114,13 @@ public class MealDTO {
 		this.id = id;
 	}
 
-	public MealType getMealType() {
-		return mealType;
-	}
-
-	public void setMealType(MealType mealType) {
-		this.mealType = mealType;
-	}
+//	public MealType getMealType() {
+//		return mealType;
+//	}
+//
+//	public void setMealType(MealType mealType) {
+//		this.mealType = mealType;
+//	}
 
 	public String getName() {
 		return name;
