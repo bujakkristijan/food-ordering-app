@@ -4,10 +4,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
+    gap: 26px;
+    
 }
 
 .card-meal-type{
-    margin: 10px 10px 10px 10px;
+    /* margin: 10px 10px 10px 10px; */
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -21,7 +23,8 @@
     /*padding: 10px 10px; */
     padding-bottom: 20px;
     transition:  all .2s ease-in-out; /* mora da ovde stoji a ne u hover, jer kad se skloni nema izlaznog trasitiona */
-    background-color: white; 
+    background-color: rgb(245, 245, 245); 
+    box-shadow: 0 0 16px 0 rgb(0,0, 0, 0.6);
     
 }
 .card-meal-type:hover{
@@ -58,4 +61,18 @@
 
 .name-content{
     font-weight: 600;
+}
+
+.btn-see-items{
+    padding: 8px 22px;
+    background-color: #198754;
+    text-decoration: none;
+    color: rgb(245, 245, 245);
+    border-radius: 20px;
+    border: none;
+    font-size: 16px !important;
+}
+
+.btn-see-items:hover{
+    color: rgb(245, 245, 245);
 }
