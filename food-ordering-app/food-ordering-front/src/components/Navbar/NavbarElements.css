@@ -21,7 +21,7 @@
     position: absolute;
     width: 24px;
     height: 24px;
-    background-color: #5cb85c;
+    background-color: #198754;
     border-radius: 20px;
     text-align: center;
     color: white;
@@ -79,30 +79,12 @@ a{
     height: 100%;
     cursor: pointer;
 
-    /*&.active{
-        color: #ffffff;
-    } proveriti ovo kako se u css pise */ 
-    /*
-    &:hover {
-        transition: all 0.2s ease-in-out;
-        background: #fff;
-        color: #010606;
-      }
-      */
 }
     
-
-/*export const Bars = styled(FaBars)`
-    display: none;
-    color: #fff;
-`;
-
-*/
 
 .navMenu{
     display: flex;
     align-items: center;
-    /*margin-right: -24px; */
     width: 100vm;
     white-space: nowrap;
 }
@@ -117,59 +99,43 @@ a{
     display: flex;
   align-items: center;
   margin-right: 24px;
-  /* Third Nav */
   justify-content: flex-end;
   width: 100vw; 
   gap: 10px;
 }
   
-
-
-#signInBtn{
+.btn-login-logout{
     border-radius: 4px;
-  /*background: #256ce1; */
-  padding: 10px 22px;
-  color: #fff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  /* Second Nav */
-  margin-left: 24px;
-  
-}
-
-#signOutBtn{
-    border-radius: 4px;
-  /*background: #256ce1; */
-  padding: 10px 22px;
-  color: #fff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  /* Second Nav */
-  margin-left: 24px;
-  
-}
-
-#signInBtn:hover{
-   
+    /*background: #256ce1; */
+    padding: 10px 22px !important;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
     transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #010606;
-      
+    text-decoration: none;
+    /* Second Nav */
+    margin-left: 24px;
+    font-size: 20px;
+    background-color: #198754;
+    font-size: 18px !important;
+    
 }
 
-#signOutBtn:hover{
-   
-    transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #010606;
-      
+
+
+
+.btn-login-logout:hover{
+    color: whitesmoke;
+    background-color: #004726;
 }
+
+.icon-log{
+    fill: whitesmoke;
+    font-size: 20px;
+    margin-right: 8px;
+}
+
   
 
 

@@ -5,6 +5,9 @@ import Swal from 'sweetalert2'
 import './FinalOrderByIdComponent';
 import ItemsByFinalOrderIdComponent from './ItemsByFinalOrderIdComponent';
 import { Modal, Button } from 'react-bootstrap';
+import Moment from 'moment';
+import './FinalOrderByIdComponent.css';
+
 
 const FinalOrderByIdComponent = () => {
 
@@ -52,7 +55,7 @@ const FinalOrderByIdComponent = () => {
     return (
         <>
         <div className='container'>
-        <h2 className='text-center'>Final order with id: {id}</h2>
+        <div className='title-id-final-order'>Final order with id: {id}</div>
         <table id="table" className='table table-hover tableElement'>
             <thead className='thead-name'>
                 <tr>
@@ -60,6 +63,7 @@ const FinalOrderByIdComponent = () => {
                     <th className='theadth'>Address</th>
                     <th className='theadth'>Phone number</th>
                     <th className='theadth'>Final price</th>
+                    <th className='theadth'>Date and time</th>
                     <th className='theadth'>Status</th>
                     <th className='theadth'>Action</th>
                 </tr>
@@ -71,6 +75,7 @@ const FinalOrderByIdComponent = () => {
                         <td className='td-content'>{finalOrder.address}</td>
                         <td className='td-content'>{finalOrder.phoneNumber}</td>  
                         <td className='td-content'>{finalOrder.finalPrice}</td>
+                        <td className='td-content'>{Moment(finalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
                         <td className='td-content'>{finalOrder.status}</td>      
                         <td className='td-content'>
                             <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>

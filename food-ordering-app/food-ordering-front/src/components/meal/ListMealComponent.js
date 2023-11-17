@@ -79,7 +79,7 @@ const ListMealComponent = () => {
         setName(meal.name);
         setPrice(meal.price);
         setMealType(meal.mealType);
-        setDescription(meal.setDescription);
+        setDescription(meal.description);
     };
 
     const handleSubmitEdit = () => {

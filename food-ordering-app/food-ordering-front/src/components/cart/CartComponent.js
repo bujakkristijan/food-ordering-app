@@ -220,47 +220,14 @@ const CartComponent = () => {
     <>
     <div className='cart-main-container'>
     {itemsFromCart.length !== 0 ? <div className='cart-title'>
-              Items from cart
-              <svg className='cart-icon-svg-title' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
-              </div> 
-              : 
-              <div className='text-center'>Cart is empty</div>}
-    {itemsFromCart.length !== 0 && <button className="btn btn-success mb-2" onClick={() => checkIfLoggedInBeforeSubmit()}>Make final order</button>}
-    {itemsFromCart.length !== 0 && <table id="table" className='table table-hover tableElement'>
-        <thead className='thead-name'>
-            <tr>
-                <th className='theadth'>Image</th>
-                <th className='theadth'>Name</th>
-                <th className='theadth'>Description</th>
-                <th className='theadth'>Type</th>
-                <th className='theadth'>Price</th>
-                <th className='theadth'>Quantity</th>
-                <th className='theadth'>Action</th>               
-            </tr>
-        </thead>
-        {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
-        <tbody>
-            {itemsFromCart.map(
-                itemFromCart => <tr key={itemFromCart.mealId}>                    
-                    <td className='td-content-img'>                  
-                      <img className='mealPic' src={"data:image/png;base64," + itemFromCart.mealImage} alt=''/>                   
-                    </td>                       
-                    <td className='td-content'>{itemFromCart.mealName}</td>
-                    <td className='td-content desc'>{itemFromCart.mealDescription}</td>
-                    <td className='td-content'>{itemFromCart.mealTypeName}</td>
-                    <td className='td-content'>{itemFromCart.mealPrice}</td>
-                    <td className='td-content'>{itemFromCart.quantity}</td>                    
-                    <td className='td-content'>
-                        <button className='btn btn-success' onClick={() =>handleShowEdit(itemFromCart)}>Update</button>
-                        <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(itemFromCart.mealId)} 
-                        style={{ marginLeft: "5px" }}>Delete</button> 
-                    </td>
-                </tr>
-            )}
-        </tbody>
-    </table>} 
+      Items from cart
+      <svg className='cart-icon-svg-title' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+      </div> 
+      : 
+      <div className='cart-title'>Cart is empty</div>
+    }
 
-    <div className='cart-container'>
+    {itemsFromCart.length !== 0 && <div className='cart-container'>
     {
       itemsFromCart.map((itemFromCart) => {
           return(
@@ -303,7 +270,12 @@ const CartComponent = () => {
           )
       })
     }
-    </div>
+
+        {itemsFromCart.length !== 0 && <button className="btn-send-final-order" onClick={() => checkIfLoggedInBeforeSubmit()}>
+        Send final order
+        <svg className='icon-send-final-order' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+        </button>}
+    </div>}
 
 
 

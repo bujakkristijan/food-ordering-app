@@ -1,4 +1,5 @@
 import axios from "axios";
+import TokenService from "./TokenService";
 
 class LoginService{
     login(loginParams){
@@ -6,6 +7,7 @@ class LoginService{
     }
 
     logout(){
+        TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/logout");
     }
 }

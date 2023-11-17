@@ -89,7 +89,7 @@ const ListMealByMealTypeComponent = () => {
         if(orderItem.quantity>0){
             dispatch(addItem(orderItem));
             alertSuccess('Successfully added item to cart!');
-            handleClose();
+            setTimeout(() => handleClose(), 1500) ;
         }
         else{
             alertInvalidInput('Invalid input, quantity must be positve number!');
@@ -122,37 +122,13 @@ const ListMealByMealTypeComponent = () => {
     <>
     <div className='container-meal-by-meal-type'>
             
-            <button id="btn-goTo-cart" className="btn btn-success mb-2" onClick={navigateToCart} >Go to cart</button>
-            {meals.length !== 0 && <h2 className='text-center'>Category: {meals[0].mealType.typeName}</h2>}
-            <table className='table table-hover tableElement'>
-                <thead className='thead-name'>
-                    <tr>                      
-                        <th className='theadth'>Image</th>
-                        <th className='theadth'>Name</th>
-                        <th className='theadth'>Description</th>
-                        <th className='theadth'>Type</th>
-                        <th className='theadth'>Price</th>
-                        <th className='theadth'>Action</th>
-                    </tr>
-                </thead>
-                {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
-                <tbody>
-                    {meals.map(
-                        meal => <tr key={meal.id}>
-                            <td className='td-content-img'>
-                              <img className='mealPic' src={"data:image/png;base64," + meal.image} alt=''/> 
-                            </td>  
-                            <td className='td-content'>{meal.name}</td>
-                            <td className='td-content desc'>{meal.description}</td>
-                            <td className='td-content'>{meal.mealType.typeName}</td>
-                            <td className='td-content'>{meal.price}</td>
-                            <td className='td-content'>
-                                <button className='btn btn-success' onClick={() =>handleShowMealQuantity(meal)}>Add to cart</button>    
-                            </td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+            
+            {meals.length !== 0 && <div className='meal-type-title'>
+                    <div className='meal-type-title-text'>
+                        <div className='meal-type-title-desc'>Category: </div>
+                        {meals[0].mealType.typeName}
+                    </div>
+                </div>}
 
             <div className='container-meals-by-meal-type'>
                 {
@@ -177,6 +153,12 @@ const ListMealByMealTypeComponent = () => {
                     })
                 }
             </div>
+
+            <button className="btn-go-to-cart" onClick={navigateToCart}>
+                Go to cart
+                <svg className='cart-icon' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+            </button>
+          
 
         </div>
 
