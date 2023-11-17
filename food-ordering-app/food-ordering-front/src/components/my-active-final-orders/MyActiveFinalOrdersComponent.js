@@ -49,7 +49,7 @@ const MyActiveFinalOrdersComponent = () => {
   return (
     <>
     <div className='container'>
-            <h2 className='text-center'>My active final orders</h2>
+            <div className='title-my-active-final-orders'>My active final orders</div>
             <table id='table' className='table table-hover tableElement'>
                 <thead className='thead-name'>
                     <tr>
@@ -71,7 +71,7 @@ const MyActiveFinalOrdersComponent = () => {
                             <td className='td-content'>{activeFinalOrder.phoneNumber}</td>
                             <td className='td-content'>{Moment(activeFinalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
                             <td className='td-content'>{activeFinalOrder.status}</td>
-                            <td className='td-content'>{activeFinalOrder.finalPrice}</td>                         
+                            <td className='td-content'>{activeFinalOrder.finalPrice},00 RSD</td>                         
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                             </td>

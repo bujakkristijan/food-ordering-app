@@ -42,3 +42,18 @@
 .buttons-container > .btn{
     flex: 1;
 }
+
+.title-login{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    align-items: center;
+}
+
+.icon-log-login{
+    font-size: 30px;
+    margin-right: 10px;
+    fill: #198754;
+}

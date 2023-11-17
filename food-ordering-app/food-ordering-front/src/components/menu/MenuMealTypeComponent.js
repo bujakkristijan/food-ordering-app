@@ -31,7 +31,7 @@ const getAllMealTypes = () =>{
                         <div className='description-container'>
                             <p>{mealType.description}</p>
                         </div>
-                        <Link className='btn-see-items' to={`/meals-by-meal-type/${mealType.id}`}>See items</Link>
+                        <Link className='btn-see-items' to={`/meals-by-meal-type/${mealType.id}`}>See offers</Link>
                     </div>
                 )
             })

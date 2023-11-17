@@ -28,3 +28,19 @@
     /* border: 10px solid rgb(241, 0, 0) !important da pregazi bootstrapov border */
     box-shadow: 0 0 15px 15px rgb(133, 127, 127);
 }
+
+.title-order-history{
+    padding: 20px 30px;
+    background: rgb(245, 245, 245);
+    width: 400px;
+    margin: auto;
+    color: black;
+    font-size: 28px;
+    font-weight: 500;
+    border-radius: 20px;
+
+    border: 2px solid grey;
+    box-shadow: 0 0 16px 0 rgb(0,0, 0, 0.6);
+    text-align: center;
+    margin-bottom: 30px;
+}

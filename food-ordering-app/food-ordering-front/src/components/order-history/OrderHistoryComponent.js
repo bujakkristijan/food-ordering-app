@@ -47,7 +47,7 @@ const OrderHistoryComponent = () => {
   return (
    <>
     <div className='container'>
-        <h2 className='text-center'>Order history</h2>
+        <div className='title-order-history'>Order history</div>
         <table id='table' className='table table-hover tableElement'>
             <thead className='thead-name'>
                 <tr>

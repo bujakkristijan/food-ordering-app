@@ -28,7 +28,7 @@ const ItemsByFinalOrderIdComponent = (props) => {
                             <td>{orderItem.mealName}</td>
                             <td>{orderItem.mealTypeName}</td>
                             <td>{orderItem.mealDescription}</td>
-                            <td>{orderItem.mealPrice}</td>
+                            <td>{orderItem.mealPrice},00 RSD</td>
                             <td>{orderItem.quantity}</td>
                         </tr>
                     )}

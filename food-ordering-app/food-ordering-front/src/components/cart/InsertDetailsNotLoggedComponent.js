@@ -14,7 +14,7 @@ const InsertDetailsNotLoggedComponent = (props) => {
   return (
     <div> 
         <div className='container-add-meal'>
-                <h5>Final price: {finalPrice} RSD </h5>
+                <h5>Final price: {finalPrice},00 RSD </h5>
                 <form>
                   <div className='form-group mb-2'>
                     <h5 className='form-label'>Insert address: </h5>

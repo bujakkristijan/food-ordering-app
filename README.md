@@ -38,106 +38,110 @@ Users with the *ADMIN* role have the following abilities:
 
 Every user can see meals after choosing the meal type first.
 
-![menu](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/4e8e1083-c715-4ab2-b662-172c41da275b)
+![menu1](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6c7d7f12-3c9c-4468-a852-4ab86007aad7)
 
 After choosing meal type, available meals will be listed.
 
-![meals-by-meal-type-with-category](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/f1cbf613-ee86-4474-9c0f-69157f8a6434)
+![meals-by-meal-type-2](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/f5a035ce-15e4-4d51-a7c3-9d46588ce03b)
 
 Users can add items (meals) to the cart after they insert quantity.
 
-![menu-step-3](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/5c581145-229e-4acb-b9ad-59c4108d1631)
+![insertquantity-3](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/26266a2d-1bbd-434c-8c94-0e130f1b89da)
 
 After inserting quantity and submiting, item is successfully added to the cart.
 
-![added-to-cart](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/0b96b709-91a5-4a77-9020-150881ac6dcf)
+![succesitemtocart-4](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/1476eac9-5402-45b4-b779-682be40099fc)
 
 Clicking on cart button or icon in navigation, users can see items from the cart
 
-![itemsfromcartwithtypeadded](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/07576463-cc41-4bcb-96b8-3df3e8088d02)
+![itemsfromcart-5](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/b58e1892-4b15-4fb4-8642-23e1ee4dbd48)
 
 Users that are not logged-in, need to insert details such as address and phone number.
 
-![insertemptyfinalorder](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/76d1030a-dc70-48cf-915c-05a7546854e9)
+![insertdetails6](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/91d25217-7850-43ca-a456-65cbb633bc5d)
 
 Without inserting details, not logged-in users can't confirm the final order 
 
-![alert-insert-address-and-phone-number-not-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cf40cbc3-07b8-4013-8193-37998a8f347b)
+![insertdetailserror-7](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/c1d2d890-bb07-4dbf-81be-8ce2c57015d1)
 
 Validation if inserted phone number is a number or it has less than 5 digits
 
-![invalidinputfinalorder](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/853c3ec5-a308-4461-9f1e-e2f6e19a1d4a)
+![insertdetailserror-8](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/c3cfa865-1695-4826-91b7-b8e59ff6f64b)
 
-![cartordernotloggedinphonedigitcheck](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/b45639fa-e2f9-4f4f-85f7-ec0f7df88e81)
+![inserterror-9](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/96519369-7deb-40e5-9702-bbcf5516373d)
 
 After valid input, final order will be confirmed and not logged-in users can track its order status clicking on the link.
 
-![not-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/9b99b590-538b-4055-a4a6-d911bb50bd72)
+![insertdetailsvalid-10](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/157bdc03-eae4-43e0-a836-3de4c75e3b33)
 
-![not-logged-in-link](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/482853e5-56c4-4aa1-808f-6fea3cb177cf)
+![successorder11](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/d3835623-ab9d-4091-9914-30a888e7e699)
 
 Clicking on "Show items" button, user can see all items from the (final) order that he ordered.
 
-![not-logged-link-clicked](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/0a90888e-2fe5-46b6-942b-16a4b5956544)
+![finalorderbyid-12](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/9bc7e1a5-8426-4ee4-988b-4683a9711abc)
 
-![not-logged-show-items](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/ebb30f4a-8eb4-423c-962b-9d5155085ab4)
+![showitems-13](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e2d3a6d8-eaf5-4edb-8a64-0d67d9bb6811)
 
 Logged-in users get 10% discount on the final price of their order. Also they don't need to insert details, such as address and phone number, because it's stored in data base after registration. Logged-in users also have more tabs and options.
 
-![logged-in-cart-final-order](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/56baafbd-02bc-4c96-842b-04ab694e0601)
+![loggedinuser-14](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/1fa0e012-b078-4ff3-928c-520b5dd5dd9d)
 
 After placing final order, the cart becomes empty
 
-![empty-cart-logged-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/13374910-a4f4-450b-bc70-f5ba6ea53977)
+![emptycart15](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/742d65a0-a0fb-4c21-b290-24b5e317d956)
 
 Logged-in users can track their active orders (IN PREPARATION and ORDERED status) clicking on My active orders tab. Final orders with IN DELIVERY status will be visible clicking on My order history tab.
 
-![my-active-final-orders-logged-in-user](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/a966cc39-c551-45a4-b080-8164112167b2)
+![myactive-finalorders-16](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/4d2247db-f7c8-4dc0-9b0a-b927ed4ac006)
+
+Clicking on "Show items" button, user can see his ordered items
+
+![activefinalEXCEPTION-16](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/73833908-1718-4e60-b542-812b59e296fd)
 
 Employee can see and change status of the final order depending on real status of the order, which user can track.
 
-![employee-change-status](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/19ee2d3b-2637-4945-8ad2-cd80d82f8911)
+![activeemployee-17](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3c2e4956-7441-4e20-9e4d-ab833a6366bb)
 
 Clicking on "Show items" button, employee can see all items from the (final) order.
 
-![employee-show-items](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/18a25357-20d1-4bf2-90a8-007d4032f43d)
+![active-show-items-18](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/58a6b728-fb16-445e-b79d-a62fc5905827)
 
 All orders with status *IN DELIVERY* are placed in order history, they aren't considered active anymore
 
-![employee-order-history](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cd8c23f5-49b5-4015-86a8-32fcb4917159)
+![orderhistory-19](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/dfb17f00-06b3-4058-92ca-eebad5d7f466)
 
 Login component shows when the app starts.
 
-![sign-in-smanjen-box-shadow](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/08aeac06-7dfb-42c4-9a8f-3c70cb620938)
+![signin-20](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3dffb74f-0746-478a-94c4-cbe22caf9d92)
 
 Logged-in users can access their profile page where they edit profile or change password if necessary.
 
-![myprofilenew](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3726a172-61e1-4bee-9910-52f2c6417058)
+![profile-21](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/57ec5781-eb6a-4679-b972-94f3b3e8ee46)
 
 Edit profile
 
-![myprofileeditprofilenew](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6fd5b1dc-9f1d-4669-85d4-a73a11779670)
+![editprofile22](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/7da5d0b8-122a-4d8a-b6f1-cadc07736076)
 
 When user wants to change password, he needs to insert old password as well.
 
-![myprofileoldnewpassword](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/0e8f8fdf-32ae-4226-b832-a874e01e32bf)
+![oldnewpass-22](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/5264f532-4233-4500-99df-9eb48b72bee0)
 
 If inserted old password and password from the database don't match, he won't be allowed to save new password.
 
-![myprofileoldnewpasswordalert](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/94c3e9d8-fb97-4ed9-be4d-5f1b97b4e5ec)
+![pass-23](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/7e8d623d-362b-4e05-8410-40006e6e4899)
 
 If they match, new password will be saved successfully (will be encripted and saved in database)
 
-![myprofilechangepasssuccess](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cd3c1d63-b951-44b6-b401-7baa21ee9b06)
+![changepass-24](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/81c3a174-bc1a-479c-ba7f-43e242342e73)
 
 Registration 
 
-![registration-smanjen-box-shadow](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/8a7ba048-c6c4-4042-932a-9eaac617f1ff)
+![registration-25](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/2992abc6-f037-484f-905e-f2d6cb50a59a)
 
 Validation and alert if username already exists in the database.
 
-![usernamealreadyexistsregistration](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6eb8aef9-176e-4ece-ab97-30ba3e746ba7)
+![username-26](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e0a08321-d4f5-42ab-a52c-35b0b427f83c)
 
 Validation and alert if email already exists in the database
 
-![emailalreadyexistsregistration](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/d0ac3d78-81ef-452f-9b3a-bac3e689c6b5)
+![emailexist-27](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3e6e7006-5e0f-41bc-b438-49fe9b5ce346))
