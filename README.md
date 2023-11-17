@@ -36,7 +36,7 @@ Users with the *ADMIN* role have the following abilities:
 
 ### Application UI preview:
 
-Every user can see meals after choosing the meal type first.
+Every user can see meals (offers) after choosing specific meal type.
 
 ![menu1](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6c7d7f12-3c9c-4468-a852-4ab86007aad7)
 
@@ -144,4 +144,4 @@ Validation and alert if username already exists in the database.
 
 Validation and alert if email already exists in the database
 
-![emailexist-27](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3e6e7006-5e0f-41bc-b438-49fe9b5ce346))
+![emailexist-27](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3e6e7006-5e0f-41bc-b438-49fe9b5ce346)

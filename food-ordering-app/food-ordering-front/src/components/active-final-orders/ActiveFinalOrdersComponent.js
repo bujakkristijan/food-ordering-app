@@ -153,7 +153,7 @@ export const ActiveFinalOrdersComponent = () => {
                         <th className='theadth'>Phone number</th>
                         <th className='theadth'>Date</th>
                         <th className='theadth'>Status</th>
-                        <th className='theadth'>Final price (RSD)</th>
+                        <th className='theadth'>Final price</th>
                         <th className='theadth'>Orders</th>
                         <th className='theadth'>Change status</th>                       
                     </tr>
@@ -180,7 +180,7 @@ export const ActiveFinalOrdersComponent = () => {
                         <Form.Select className='selectStatus' value={JSON.stringify(activeFinalOrder.status)} onChange={(e)=>changeFinalOrderStatus(activeFinalOrder.id, JSON.parse(e.target.value))}>
                                             {statusOptions.map((statusOption)=> {
                                             return (
-                                                <option key={activeFinalOrder.id} value={JSON.stringify(statusOption)} >{statusOption}</option>
+                                                <option className='option' key={activeFinalOrder.id} value={JSON.stringify(statusOption)} >{statusOption}</option>
                                             )
                                             })}                       
                         </Form.Select>
