@@ -34,7 +34,12 @@ const NavbarStyledComponent = () => {
                     alert("Server logout error!");
                     navigate("/menu");
                }
-          })
+          }).catch(error =>{
+               console.log(error);
+               clearLocalStorage();
+               alert("Some error occured!");
+               navigate("/menu");
+             })
      }
 
      const clearLocalStorage = () =>{
