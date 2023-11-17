@@ -270,14 +270,16 @@ const CartComponent = () => {
               </div> 
               
               <div className='item-info-container'>
-                <div className='item-name'>
+                <div className='item-name-container'>
+                  <div className='item-name-text'>
                   {itemFromCart.mealName}
+                  </div>
+                  <div className='item-type-text'>
+                    ({itemFromCart.mealTypeName})
+                  </div>
                 </div>
                 <div className='item-description'>
                   {itemFromCart.mealDescription}
-                </div>
-                <div className='item-type'>
-                  {itemFromCart.mealTypeName}
                 </div>
                 <div className='item-price'>
                   {itemFromCart.mealPrice},00 RSD

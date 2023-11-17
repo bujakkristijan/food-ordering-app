@@ -103,13 +103,22 @@
     margin-left: 20px;
 }
 
-.item-name{
+.item-name-container{
     min-width: 150px;
     max-width: 150px;
+   
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.item-name-text{
     font-size: 20px;
     font-weight: 500;
-    display: flex;
-    align-items: center;
+}
+
+.item-type-text{
+    font-size: 16px;
 }
 
 .item-type{
@@ -185,7 +194,7 @@
     fill: whitesmoke;
 }
 
-@media(max-width: 1300px){
+@media(max-width: 1500px){
     .item-action-container{
         flex-direction: column;
         justify-content: center;
