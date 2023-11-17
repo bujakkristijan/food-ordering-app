@@ -253,7 +253,8 @@ const CartComponent = () => {
                 </tr>
             )}
         </tbody>
-    </table>}
+    </table>} 
+
 </div>
 
     <Modal show={showEdit} onHide={handleCloseEdit}>
