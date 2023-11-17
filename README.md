@@ -36,11 +36,11 @@ Users with the *ADMIN* role have the following abilities:
 
 ### Application UI preview:
 
-Every user can see meals (offers) after choosing specific meal type.
+Users first need to select the specific category, then they can see complete offers for that category.
 
 ![menu1](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6c7d7f12-3c9c-4468-a852-4ab86007aad7)
 
-After choosing meal type, available meals will be listed.
+After choosing category (meal type), available meals (offers) will be listed.
 
 ![meals-by-meal-type-2](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/f5a035ce-15e4-4d51-a7c3-9d46588ce03b)
 
