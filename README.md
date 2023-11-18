@@ -17,7 +17,7 @@ The application can also be accessed by unregistered users, who have the followi
 - After successfully placing the final order, users will receive a message containing a link to track the status of their order
 
 Registered users with the *USER* role can log into the system using their username and password. They have the following abilities:
-- Update his personal information
+- Update their personal information
 - Order food similar to unregistered users, but without the need to enter their address and phone number since their data is already saved in the system.
 - Receive a 10% discount on every order
 - View their active orders (with *ORDERED* and *IN PREPARATION* status)
