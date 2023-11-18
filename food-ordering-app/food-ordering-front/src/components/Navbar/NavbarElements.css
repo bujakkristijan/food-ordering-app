@@ -49,7 +49,7 @@
     color: white;
     height: 100px;
     display: flex;
-    padding: 10px 40px;
+    padding: 10px 4%;
     z-index: 10;
     justify-content: flex-start;
     position: sticky;
@@ -67,7 +67,7 @@ a{
     display: flex;
     align-items: center;
     text-decoration: none;
-    padding: 0 1rem;
+    padding-left: 26px;
     height: 100%;
     cursor: pointer;
 
