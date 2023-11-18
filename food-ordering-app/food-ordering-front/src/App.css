@@ -43,20 +43,14 @@ body {
 
 .router-view {
   overflow-y: auto; 
-  height: calc(100vh - 110px);
+  /* header je 100px a footer 30px, mada treba na drugi nacin staviti sliku za pozadinu svakako... */
+  height: calc(100vh - 100px - 30px);
   overflow-x: hidden;
   padding-top: 30px;
   padding-bottom: 50px;
 }
 
-/* #root {
-  height: 100%;
-  width: 100%;
-  position: relative;
-} */
-
-#root:before{
-  /* position: relative; */
+.router-view::before{
   display: block;
   height: 100vh;
   width: 100vw;
@@ -72,6 +66,30 @@ body {
   z-index: -1;
   opacity: 0.35;
 }
+
+/* #root {
+  height: 100%;
+  width: 100%;
+  position: relative;
+} */
+
+/* #root:before{
+ 
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(255, 136, 164, 0.2), rgba(255, 136, 164, 0.2)), url('./images/backimage.jpg');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.35;
+} */
 
 
 h2{
