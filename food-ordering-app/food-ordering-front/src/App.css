@@ -30,20 +30,13 @@
   margin-bottom: 50px;
 }
 
-/* .container-main {
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-}  */
-
 body {
   overflow: hidden;
 }
 
 .router-view {
   overflow-y: auto; 
-  /* header je 100px a footer 30px, mada treba na drugi nacin staviti sliku za pozadinu svakako... */
+  /* header je 100px a footer 30px*/
   height: calc(100vh - 100px - 30px);
   overflow-x: hidden;
   padding-top: 30px;
@@ -52,7 +45,9 @@ body {
 
 .router-view::before{
   display: block;
-  height: 100vh;
+  /* height: 100vh; */
+  /* header je 100px a footer 30px*/
+  height: calc(100vh - 100px - 30px);
   width: 100vw;
   background-image: linear-gradient(rgba(255, 136, 164, 0.2), rgba(255, 136, 164, 0.2)), url('./images/backimage.jpg');
   background-repeat: repeat;
@@ -61,7 +56,9 @@ body {
   background-attachment: fixed;
   content: "";
   position: absolute;
-  top: 0;
+  /* top: 0; */
+  /* 100px jer je header toliko */
+  top: 100px;
   left: 0;
   z-index: -1;
   opacity: 0.35;

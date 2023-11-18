@@ -46,16 +46,14 @@
 
 .header{
     background: #ff3838;
+    color: white;
     height: 100px;
     display: flex;
-    /*justify-content: space-between; */
-    /* padding: 0.5rem calc((100vm - 1000px) / 2); */
     padding: 10px 40px;
     z-index: 10;
-    /* da krene od loga */
     justify-content: flex-start;
     position: sticky;
-    top: 0; /*bez ovoga ne radi*/
+    top: 0;
     box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     align-items: center;
 }
