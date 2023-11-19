@@ -28,8 +28,9 @@ const CartComponent = () => {
   const [finalPrice, setFinalPrice] = useState(0);
 
   const itemsFromCart = useSelector((state) => state.cart);
-  let itemsFromCartWhenLoggedWithFinalPrice = { itemsFromCart, finalPrice}
   const itemsFromCartFinalOrder = { itemsFromCart, address, phoneNumber, finalPrice, setAddress, setPhoneNumber };
+
+  let itemsFromCartData;
 
   //ako nije ulogovan mora da unese adresu i br telefona
   
@@ -72,32 +73,16 @@ const CartComponent = () => {
         })
       }
          
-      const submitFinalOrder = (itemsFromCartFinalOrder) =>{
-        if((localStorage.token == null || localStorage.token == '') && (address.trim() === "" || phoneNumber.trim() === "")){
+      const submitFinalOrder = () =>{
+        //moze i bez ove provere za token jer svakako ova metoda se poziva samo nakon unosenja adrese i broja telefona u modalu kada korisnik nije ulogovan
+        if((localStorage.token === null || localStorage.token === undefined) && (address.trim() === "" || phoneNumber.trim() === "")){
           alertInvalidInput("Invalid input, please insert address and phone number");
         }
-        else if((localStorage.token == null || localStorage.token == '') && !isValidNumber(phoneNumber)){
+        else if((localStorage.token === null || localStorage.token === undefined) && !isValidNumber(phoneNumber)){
           alertInvalidInput("Invalid phone number or it has less than 5 digits");
         }
         else{
-          MealService.sendItemsForFinalOrder(itemsFromCartFinalOrder).then((response) =>{
-            const responseFromServer = response.data;
-            //ako je response razlicit od 0, znaci da je uspesno upisan final order i prosledjen id, po defaultu je 0
-            if(responseFromServer != 0){
-                dispatch(deleteAllItems());
-                if(localStorage.token == null || localStorage.token == ''){
-                  handleCloseInsertDetails();
-                  alertFinalOrderStringCheckInfo(responseFromServer);
-                }
-                else{
-                  alertSuccess("Successfully ordered items!");
-                  setTimeout(() => navigate("/my-active-final-orders"), 1500);
-                }     
-            }
-            else{
-              alertInvalidInput("Failed to make final order! Try again!");
-            }
-          })
+          alertAreYouSureFinalOrder();
         }
       }
 
@@ -124,7 +109,7 @@ const CartComponent = () => {
       }
 
       const checkIfLoggedInBeforeSubmit = () =>{
-        if(localStorage.token == null || localStorage.token == ''){
+        if(localStorage.token === null || localStorage.token === undefined){
           handleShowInsertDetails();
         }
         else{
@@ -148,7 +133,15 @@ const CartComponent = () => {
         sumFinalPrice();
         setFinalPrice(finalPriceVar);
         let textStr;
-        textStr = "Final price is: "+ finalPriceVar.toFixed(1) + " RSD. (10% OFF)! If you click yes, you will make final order!";
+        if(localStorage.token === null || localStorage.token === undefined){
+          textStr = "Final price is: "+ finalPriceVar.toFixed(2) + " RSD! If you click yes, you will make final order!";
+          itemsFromCartData = { itemsFromCart, address, phoneNumber, finalPrice: finalPriceVar};
+          
+        }
+        else{
+          textStr = "Final price is: "+ finalPriceVar.toFixed(2) + " RSD (10% OFF)! If you click yes, you will make final order!";
+          itemsFromCartData = { itemsFromCart, finalPrice: finalPriceVar};
+        }
         Swal.fire({
           title: 'Are you sure?',
           text: textStr,
@@ -159,12 +152,32 @@ const CartComponent = () => {
           confirmButtonText: 'Yes, make it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            setFinalPrice(finalPriceVar);
-            itemsFromCartWhenLoggedWithFinalPrice = { itemsFromCart, finalPrice: finalPriceVar}
-            submitFinalOrder(itemsFromCartWhenLoggedWithFinalPrice);
+            sendFinalOrderAndHandleRepsonseFromServer(itemsFromCartData);
           }
           else{
             finalPriceVar = 0;
+          }
+        })
+      }
+
+      const sendFinalOrderAndHandleRepsonseFromServer = (finalOrderDetails) =>{
+        MealService.sendItemsForFinalOrder(finalOrderDetails).then((response) =>{
+          const responseFromServer = response.data;
+          //ako je response razlicit od 0, znaci da je uspesno upisan final order i prosledjen id, po defaultu je 0
+          if(responseFromServer != 0){
+              dispatch(deleteAllItems());
+              // bude undefined u stvari, null == undefined ce biti true, null === undefined je false. mogu i proveriti samo sa == null
+              if(localStorage.token === null || localStorage.token === undefined){
+                handleCloseInsertDetails();
+                alertFinalOrderStringCheckInfo(responseFromServer);
+              }
+              else{
+                alertSuccess("Successfully ordered items!");
+                setTimeout(() => navigate("/my-active-final-orders"), 1500);
+              }     
+          }
+          else{
+            alertInvalidInput("Failed to make final order! Try again!");
           }
         })
       }
@@ -307,8 +320,8 @@ const CartComponent = () => {
         </Modal.Body>
 
         <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-            <Button variant="primary" onClick={() => submitFinalOrder(itemsFromCartFinalOrder)}>Confirm final order</Button>
+            <Button variant="secondary" onClick={handleCloseInsertDetails}>Close</Button>
+            <Button variant="primary" onClick={() => submitFinalOrder()}>Confirm final order</Button>
         </Modal.Footer>
     </Modal> 
     </>
