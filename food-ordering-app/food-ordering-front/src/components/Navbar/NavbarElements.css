@@ -43,7 +43,6 @@
     
 }
 
-
 .header{
     background: #ff3838;
     color: white;
@@ -86,7 +85,6 @@ a{
 }
     
 
-
 .navBtn{
     display: flex;
   align-items: center;
@@ -108,13 +106,12 @@ a{
     text-decoration: none;
     /* Second Nav */
     margin-left: 24px;
-    font-size: 20px;
     background-color: #198754;
     font-size: 18px !important;
+    font-weight: 500;
+    letter-spacing: 1px !important;
     
 }
-
-
 
 
 .btn-login-logout:hover{
