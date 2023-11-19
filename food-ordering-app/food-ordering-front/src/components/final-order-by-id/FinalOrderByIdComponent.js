@@ -74,7 +74,7 @@ const FinalOrderByIdComponent = () => {
                         {/* <td>{finalOrder.id}</td> */}
                         <td className='td-content'>{finalOrder.address}</td>
                         <td className='td-content'>{finalOrder.phoneNumber}</td>  
-                        <td className='td-content'>{finalOrder.finalPrice}</td>
+                        <td className='td-content'>{finalOrder.finalPrice.toFixed(2)} RSD</td>
                         <td className='td-content'>{Moment(finalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
                         <td className='td-content'>{finalOrder.status}</td>      
                         <td className='td-content'>
