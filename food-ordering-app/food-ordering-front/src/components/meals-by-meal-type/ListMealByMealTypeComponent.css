@@ -166,9 +166,10 @@
 
 .meal-type-title-text{
     
-    padding: 10px 20px;
+    padding: 10px 40px;
     background: rgb(245, 245, 245);
-    width: 360px;
+    /* width: 280px; */
+    width: fit-content;
     margin: auto;
     color: black;
     font-size: 28px;
