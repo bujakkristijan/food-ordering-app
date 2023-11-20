@@ -157,8 +157,6 @@
 
 .item-action-container{
     display: flex;
-    height: 40px;
-    /* flex-direction: column; */
     justify-content: right;
     margin-right: 0;
     margin-left: auto;
@@ -168,7 +166,6 @@
 .button-icon-container{
     padding: 8px 18px;
     border-radius: 20px;
-    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -244,6 +241,10 @@
     width: 30% !important;
 }
 
+.action-icon-mobile{
+    display: none;
+}
+
 
 @media(max-width: 1530px){
     .item-action-container{
@@ -263,11 +264,87 @@
     .item-price{
         max-width: 100px;
     }
+    .cart-item-container{
+        width: 90%;
+    }
 
 }
 
-@media(max-width: 900px){
+@media(max-width: 1180px){
+    /* samo za mobile screen size se pojavljuje */
+    .action-icon-mobile{
+        display: block;  
+    }
+
+    .action-icon-mobile.update{
+        height: 32px;
+        fill: #198754;
+        /* margin-bottom: 12px; */
+        
+    }
+    .action-icon-mobile.delete{
+        height: 32px;
+        fill: #dc3545;
+       
+    }
+    /* sakrivam za desktop */
+    .button-icon-container{
+        display: none;
+    }
+
+    .cart-item-container{
+        width: 95%;
+    }
     .modalCustomEdit{
         width: 80% !important;
     }
+
+    .item-info-container{
+        flex-direction: column;
+        width: 50%;
+        gap: 4px;
+    }
+
+    .item-meal-pic{
+        width: 80px;
+        height: 80px;
+    }
+
+    .item-name-text{
+        font-size: 18px;
+    }
+    .item-type-text{
+        font-size: 16px;
+    }
+
+    .item-description{
+        font-size: 14px;
+        width: auto;
+    }
+
+    .item-price{
+        font-size: 16px;
+    }
+    .item-quantity{
+        font-size: 18px;
+    }
+
+    .item-action-container{
+       flex-direction: column;
+       gap: 24px;
+       margin: auto;
+    }
+
+    .cart-title{
+        width: 95%;
+    }
+
+    
 }
+
+@media(max-width: 400px){
+    .item-info-container{
+        margin-right: 0;
+    }
+}
+
