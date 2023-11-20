@@ -241,6 +241,10 @@
     width: 30% !important;
 }
 
+.modalCustomInsertDetails{
+    width: 30% !important;
+}
+
 .action-icon-mobile{
     display: none;
 }
@@ -296,6 +300,10 @@
         width: 95%;
     }
     .modalCustomEdit{
+        width: 80% !important;
+    }
+
+    .modalCustomInsertDetails{
         width: 80% !important;
     }
 

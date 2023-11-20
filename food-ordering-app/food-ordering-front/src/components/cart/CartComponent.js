@@ -313,7 +313,7 @@ const CartComponent = () => {
         </Modal.Footer>
     </Modal> 
   
-    <Modal show={showInsertDetails} onHide={handleCloseInsertDetails}>
+    <Modal show={showInsertDetails} onHide={handleCloseInsertDetails} dialogClassName="modalCustomInsertDetails" className="d-flex align-items-center justify-content-center">
         <Modal.Header closeButton>
             <Modal.Title>Insert neccessary details</Modal.Title>
         </Modal.Header>
