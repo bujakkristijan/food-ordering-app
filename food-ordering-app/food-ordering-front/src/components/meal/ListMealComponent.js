@@ -20,7 +20,8 @@ const ListMealComponent = () => {
     const [imageName, setImageName] = useState('');
 
     // ovo treba na bolji nacin, a ne ovako, mada ako se ne brise iz baze ovaj meal type, radice okej
-    const [mealType, setMealType] = useState({id: 1, typeName: 'PIZZA'});
+    // const [mealType, setMealType] = useState({id: 1, typeName: 'PIZZA'});
+    const [mealType, setMealType] = useState(undefined);
 
     const [description, setDescription] = useState('');
 
@@ -35,18 +36,12 @@ const ListMealComponent = () => {
 
     useEffect(() => {
         getAllMeals();
-        // sendPreflightMaskThenMainRequest();
     }, [])
-
-    // const sendPreflightMaskThenMainRequest = () =>{
-    //     UserService.preflightMask().then((response) =>{
-    //         getAllMeals();
-    //     })
-    // }
     
     const getAllMeals = () =>{
         MealService.getAllMeals().then((response) =>{
             setMeals(response.data);
+            if(response.data[0].mealType) setMealType(response.data[0].mealType);
         }).catch(error =>{
             console.log(error);
         })
@@ -57,7 +52,8 @@ const ListMealComponent = () => {
         meal.setName('');
         meal.setPrice('');
         meal.setDescription('');
-        meal.setMealType({id: 1, typeName: 'PIZZA'});
+        meal.setMealType(meals[0].mealType);
+        // meal.setMealType({id: 1, typeName: 'PIZZA'});
         }
 
     const handleCloseEdit = () => {
@@ -66,7 +62,8 @@ const ListMealComponent = () => {
         meal.setName('');
         meal.setPrice('');
         meal.setDescription('');
-        meal.setMealType({id: 1, typeName: 'PIZZA'});
+        meal.setMealType(meals[0].mealType);
+        // meal.setMealType({id: 1, typeName: 'PIZZA'});
         }
     const handleShow = () => {
         setShow(true);
