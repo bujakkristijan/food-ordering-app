@@ -6,8 +6,8 @@
 
 .cartLink{
     position: relative;
-    margin-right: 24px;
-    margin-left: auto;
+    /* margin-right: 24px;
+    margin-left: auto; */
 }
 
 .logo-cart{
@@ -71,9 +71,11 @@
 }
 
 .myProfileLink{
-    margin-right: 26px;
+    /* margin-right: 26px; */
     text-decoration: none;
     color: #fff;
+    display: flex;
+    justify-content: center;
     
 }
 
@@ -100,7 +102,7 @@ a{
     display: flex;
     align-items: center;
     text-decoration: none;
-    padding-left: 26px;
+    /* padding-left: 26px; */
     height: 100%;
     cursor: pointer;
 
@@ -126,6 +128,8 @@ a{
     white-space: nowrap;
     margin-left: 30px;
     margin-right: auto;
+    justify-content: center;
+    gap: 30px;
 }
 
 .myProfileLink:hover, .navLink:hover, .navLinkMenu:hover {
@@ -137,6 +141,7 @@ a{
     display: flex;
     align-items: center;
     margin-right: 24px;
+    margin-left: 28px;
     justify-content: flex-end;
     /* width: 100vw;  */
     gap: 10px;
@@ -176,6 +181,12 @@ a{
 .x-icon, .bars-icon{
     display: none;
 }
+
+.nav-links-buttons-container{
+    margin-left: auto;
+    /* margin-right: 24px; */
+}
+
 
   
 
