@@ -71,7 +71,7 @@
 }
 
 .myProfileLink{
-    margin-right: 10px;
+    margin-right: 26px;
     text-decoration: none;
     color: #fff;
     
@@ -171,6 +171,10 @@ a{
     fill: whitesmoke;
     font-size: 20px;
     margin-right: 8px;
+}
+
+.x-icon, .bars-icon{
+    display: none;
 }
 
   

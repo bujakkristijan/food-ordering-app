@@ -64,7 +64,7 @@ const NavbarStyledComponent = () => {
           }
         }
   return (
-        <div className='header'>
+     <div className='header'>
                <Link to="/menu">
                     <img className='logo' src={require('../../images/logo2.png')} alt=''/>  
                </Link>
@@ -72,27 +72,37 @@ const NavbarStyledComponent = () => {
                     Menu
                </Link>}
                <div className='navMenu'>
+                    {localStorage.role==="ADMIN" && <svg class="x-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>}
                     {localStorage.role==="ADMIN" && <Link className='navLink' id='employeeLink' to='/employees' >
                     Employees
-               </Link>}
+                    </Link>}
+                    {
+                    checkRole()
+                    }
                
-                {
-                checkRole()
-                }
-              
-               {(localStorage.role==="ADMIN" || localStorage.role ==="EMPLOYEE") && <Link className='navLink' to='/order-history' >
-                    Order history
-               </Link>}
-               {localStorage.role==="ADMIN" && <Link className='navLink' to='/meals' >
-                    Meals
-               </Link>}
-               {localStorage.role==="ADMIN" && <Link className='navLink' to='/meal-types' >
-                    Meal types
-               </Link>}
-               {localStorage.role==="EMPLOYEE" && <Link className='navLink' to='/active-final-orders' >
-                    Active orders
-               </Link>}
-           </div>
+                    {(localStorage.role==="ADMIN" || localStorage.role ==="EMPLOYEE") && <Link className='navLink' to='/order-history' >
+                         Order history
+                    </Link>}
+                    {localStorage.role==="ADMIN" && <Link className='navLink' to='/meals' >
+                         Meals
+                    </Link>}
+                    {localStorage.role==="ADMIN" && <Link className='navLink' to='/meal-types' >
+                         Meal types
+                    </Link>}
+                    {localStorage.role==="EMPLOYEE" && <Link className='navLink' to='/active-final-orders' >
+                         Active orders
+                    </Link>}
+                    {localStorage.role==="USER" && <svg class="x-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>}
+                    {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-profile' >  
+                         My Profile      
+                    </Link>}
+                    {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-active-final-orders' >
+                         My active orders                   
+                    </Link>}
+                    {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-delivered-final-orders' >                  
+                         My order history                   
+                    </Link>}
+               </div>
 
            {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='cartLink' to='/cart' >
                <div className='number-cart-div'>
@@ -102,17 +112,7 @@ const NavbarStyledComponent = () => {
                {/* <img className='logo-cart' src={require('../../images/cart2.png')} alt=''/>          */}
           </Link>}
 
-           <div className='navBtn'>
-           
-           {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-profile' >  
-                 My Profile      
-          </Link>}
-               {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-active-final-orders' >
-                    My active orders                   
-               </Link>}
-               {localStorage.role==="USER" && <Link className='myProfileLink' to='/my-delivered-final-orders' >                  
-                    My order history                   
-               </Link>}
+          <div className='navBtn'>
                 <Link className='registrationLink' to='/registration' > 
                 <svg className='icon-registration-nav' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>         
                     Sign up          
@@ -125,8 +125,9 @@ const NavbarStyledComponent = () => {
                <svg className="icon-log" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
                     Sign out
                </button>}
-           </div>
-        </div>
+          </div>
+          <svg class="bars-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+     </div>
   )
 }
 
