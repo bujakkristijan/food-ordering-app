@@ -112,7 +112,7 @@ All orders with status *IN DELIVERY* are placed in order history, they aren't co
 
 Login component shows when the app starts.
 
-![signin-20](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3dffb74f-0746-478a-94c4-cbe22caf9d92)
+![signinnewpic20](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/395d31e7-e4d4-4f00-bf04-0157d3d02a23)
 
 Logged-in users can access their profile page where they edit profile or change password if necessary.
 

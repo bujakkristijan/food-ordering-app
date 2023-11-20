@@ -1,4 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Sora:wght@400;500&display=swap'); */
+
+* {
+  font-family: 'Sora', sans-serif;
+  /* font-family: 'Poppins'; */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+}
 
 .footer {
   position: fixed;
@@ -14,24 +27,12 @@
 }
 
 .header {
-  /* top: 0;
-  position: fixed; */
-
-
   color: white;
   background-color: rgb(255, 58, 58);
 }
 
-.logo {
-  font-size: x-large;
-}
-
 .container-add-employee {
   margin-bottom: 50px;
-}
-
-body {
-  overflow: hidden;
 }
 
 .router-view {
@@ -45,7 +46,6 @@ body {
 
 .router-view::before{
   display: block;
-  /* height: 100vh; */
   /* header je 100px a footer 30px*/
   height: calc(100vh - 100px - 30px);
   width: 100vw;
@@ -56,52 +56,15 @@ body {
   background-attachment: fixed;
   content: "";
   position: absolute;
-  /* top: 0; */
-  /* 100px jer je header toliko */
   top: 100px;
   left: 0;
   z-index: -1;
   opacity: 0.35;
 }
 
-/* #root {
-  height: 100%;
-  width: 100%;
-  position: relative;
-} */
-
-/* #root:before{
- 
-  display: block;
-  height: 100vh;
-  width: 100vw;
-  background-image: linear-gradient(rgba(255, 136, 164, 0.2), rgba(255, 136, 164, 0.2)), url('./images/backimage.jpg');
-  background-repeat: repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 0.35;
-} */
-
-
-h2{
-  font-weight: 500 !important;
-  letter-spacing: 1px;
-}
-
 a{
-  /* font-weight: 500; */
   letter-spacing: 1px;
 }
-
-/* td{
-  text-align: center;
-} */
 
 button{
   font-weight: 500 !important;
@@ -112,14 +75,10 @@ button{
   background-color: #198754 !important; /* yes button na swal alertu, ne treba na ovaj nacin, ali radi okej. */
 }
 
-
-
-* {
-  font-family: 'Sora', sans-serif;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.swal2-title{
+  font-weight: 500 !important; /* bude po defaultu 600 izgleda sada iz nekog razloga, kao da je pre bio 500, pa sad stavljam da bude isto kao pre */
 }
+
 
 /********** SCROLL BAR START ************/
 

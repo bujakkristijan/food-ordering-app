@@ -30,17 +30,40 @@
     background-color: #ff3838;
 }
 
-#submitBtn{
+.card-body.login{
+    padding-bottom: 0;
+}
+
+.login-submit-btn{
     font-size: 18px;
-}
-
-.buttons-container{
+    padding: 6px 20px;
+    border-radius: 20px;
+    background-color: #198754;
+    border: none;
+    color: whitesmoke;
+    margin: 20px auto 12px auto;
     display: flex;
-    justify-content: space-around;
+    box-shadow: 0 2px 6px rgb(0, 0, 0, 0.3);
 }
 
-.buttons-container > .btn{
-    flex: 1;
+.registration-div{
+    display: flex;
+    justify-content: center;
+}
+
+.registration-link{
+    font-size: 16px !important;
+    color: #ff3838;
+    font-weight: 500;
+}
+
+.registration-link:hover{
+    color: #d00000;
+}
+
+.login-input{
+    border-radius: 10px !important;
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.3);
 }
 
 .title-login{

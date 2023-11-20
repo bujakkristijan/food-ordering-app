@@ -172,7 +172,7 @@
     width: fit-content;
     margin: auto;
     color: black;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
     border-radius: 20px;
 
@@ -185,6 +185,6 @@
 
 .meal-type-title-desc{
     color: rgb(74, 74, 74);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
 }
