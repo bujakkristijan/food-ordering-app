@@ -195,21 +195,92 @@ a{
 }
 
 @media(max-width: 1200px){
-    .nav-links-container{
+
+    .x-icon, .bars-icon{
+        display: block;
+        height: 36px;
+        fill: whitesmoke;
+    }
+
+    
+
+    .nav-links-buttons-container{
         position: fixed;
-        background-color: var(--sign-up-btn-color);
+        background-color: red;
         height: 100vh;
         width: 200px;
         top: 0;
-        right: -200px;
-        
+        right: -280px;     
         z-index: 50;
         transition: 1s;
         text-align: center;
+        /* display: block; */
+        display: block;
     }
-    .nav-buttons-container{
-       display: none;
 
+    .navLink{
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .navMenu{
+        display: block;
+        margin: 0;
+        
+    }
+
+    .navBtn{
+        display: block;
+        margin: 0;
+    }
+    .btn-login-logout{
+        width: 70%;
+        display: block;
+        margin: auto;
+        font-size: 14px !important;
+        margin-top: 12px;
+    }
+    .registrationLink{
+        width: 70%;
+        margin: auto;
+        font-size: 14px !important;
+    }
+
+    .myProfileLink{
+        margin: 20px 0;
+        font-size: 14px;
+        letter-spacing: 0;
+    }
+
+    
+
+    .x-icon{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        
+    }
+
+
+    .bars-icon{
+        margin-right: 6px;
+        margin-left: 26px;
+    }
+
+    .logo{
+        margin-left: 6px;
+    }
+
+    .navLinkMenu{
+        margin-left: 16px;
+    }
+
+    .navBtn{
+        margin-top: 100px;
+    }
+
+    .navMenu{
+        margin-top: 100px;
     }
 }
 
