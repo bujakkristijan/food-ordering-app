@@ -4,18 +4,27 @@
     margin-left: 24px;
 }
 
-.logo-cart{
-    height: 56px;
-    width: 56px;
-    margin-right: 5px;
+.cartLink{
+    position: relative;
 }
 
-.number-cart{
+.logo-cart{
+    height: 38px;
+    /* width: 56px; */
+    margin-right: 12px;
+    fill: whitesmoke;
+    transform: scaleX(-1); /* da rotira ikonicu */
+    z-index: 0;
+}
+
+.number-cart-div{
     position: absolute;
-    width: 24px;
-    height: 24px;
+    top: -14px;
+    left: -12px;
+    width: 28px;
+    height: 28px;
     background-color: #198754;
-    border-radius: 20px;
+    border-radius: 50%;
     text-align: center;
     color: white;
     text-decoration: none;
@@ -24,6 +33,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+    line-height: 24px;
+}
+
+.number-cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
 }
 
 .registrationLink{
