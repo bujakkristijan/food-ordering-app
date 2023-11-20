@@ -188,3 +188,14 @@
     font-size: 18px;
     font-weight: 400;
 }
+
+.modalCustomInsert{
+    width: 30% !important;
+}
+
+@media(max-width: 900px){
+    .modalCustomInsert{
+        width: 80% !important;
+    }
+}
+

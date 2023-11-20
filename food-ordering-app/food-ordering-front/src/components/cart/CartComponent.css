@@ -225,6 +225,11 @@
     margin-left: 10px;
 }
 
+.modalCustomEdit{
+    width: 30% !important;
+}
+
+
 @media(max-width: 1530px){
     .item-action-container{
         flex-direction: column;
@@ -242,5 +247,11 @@
 @media(max-width: 1400px){
     .item-price{
         max-width: 100px;
+    }
+}
+
+@media(max-width: 900px){
+    .modalCustomEdit{
+        width: 80% !important;
     }
 }

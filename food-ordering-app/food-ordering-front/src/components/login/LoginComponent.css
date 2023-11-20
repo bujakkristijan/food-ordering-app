@@ -80,3 +80,23 @@
     margin-right: 10px;
     fill: #198754;
 }
+
+@media(max-width: 800px){
+    #loginContainerId{
+        width: 80%;
+    }
+
+    .registration-div{
+        font-size: 12px;
+        letter-spacing: 0;
+       
+    }
+    .registration-label{
+        width: fit-content;
+    }
+
+    .registration-link{
+        font-size: 12px !important;
+        letter-spacing: 0;
+    }
+}

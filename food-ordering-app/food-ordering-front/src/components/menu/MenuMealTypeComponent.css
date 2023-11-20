@@ -76,3 +76,14 @@
 .btn-see-items:hover{
     color: rgb(245, 245, 245);
 }
+
+@media(max-width: 900px){
+    /* i u list meal by meal type nasledi ovo za mobile screen size */
+    .card-meal-type{
+        width: 85%;
+    }
+
+    .description-container{
+        width: 90%;
+    }
+}

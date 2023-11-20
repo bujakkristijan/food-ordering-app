@@ -162,7 +162,7 @@ const ListMealByMealTypeComponent = () => {
 
         </div>
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} dialogClassName="modalCustomInsert" className="d-flex align-items-center justify-content-center">
         <Modal.Header closeButton>
             <Modal.Title>Insert quantity</Modal.Title>
         </Modal.Header>

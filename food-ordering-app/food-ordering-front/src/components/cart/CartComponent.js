@@ -295,7 +295,7 @@ const CartComponent = () => {
 
 </div>
 
-    <Modal show={showEdit} onHide={handleCloseEdit}>
+    <Modal show={showEdit} onHide={handleCloseEdit} dialogClassName="modalCustomEdit" className="d-flex align-items-center justify-content-center">
         <Modal.Header closeButton>
             <Modal.Title>Edit quantity</Modal.Title>
         </Modal.Header>
