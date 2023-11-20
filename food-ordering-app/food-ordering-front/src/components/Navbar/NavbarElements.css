@@ -6,12 +6,14 @@
 
 .cartLink{
     position: relative;
+    margin-right: 24px;
+    margin-left: auto;
 }
 
 .logo-cart{
     height: 38px;
     /* width: 56px; */
-    margin-right: 12px;
+    /* margin-right: 12px; */
     fill: whitesmoke;
     transform: scaleX(-1); /* da rotira ikonicu */
     z-index: 0;
@@ -108,7 +110,7 @@ a{
   align-items: center;
   margin-right: 24px;
   justify-content: flex-end;
-  width: 100vw; 
+  /* width: 100vw;  */
   gap: 10px;
 }
   
