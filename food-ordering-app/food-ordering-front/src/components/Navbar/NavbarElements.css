@@ -48,12 +48,26 @@
 
 .registrationLink{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     color: rgb(177, 255, 177);
+    font-weight: 500;
+    padding: 10px 20px;
+    border: 2px solid rgb(177, 255, 177) ;
+    border-radius: 12px;
     
+}
+
+.registrationLink:hover{
+    color: rgb(177, 255, 177);
+    background-color: rgb(159, 0, 0);
+}
+
+.icon-registration-nav{
+    font-size: 20px;
+    fill: rgb(177, 255, 177);
+    margin-right: 6px;
 }
 
 .myProfileLink{
@@ -91,6 +105,18 @@ a{
     cursor: pointer;
 
 }
+
+.navLinkMenu{
+    font-size: 20px;
+    font-weight: 500 !important;
+    letter-spacing: 2px;
+    color: white;
+    margin-left: 24px;
+
+    text-decoration: none;
+}
+
+
     
 
 .navMenu{
@@ -98,26 +124,28 @@ a{
     align-items: center;
     width: 100vm;
     white-space: nowrap;
+    margin-left: 30px;
+    margin-right: auto;
 }
 
-.myProfileLink:hover, .navLink:hover, .registrationLink:hover {
+.myProfileLink:hover, .navLink:hover, .navLinkMenu:hover {
     color: #198754 !important;
 }
     
 
 .navBtn{
     display: flex;
-  align-items: center;
-  margin-right: 24px;
-  justify-content: flex-end;
-  /* width: 100vw;  */
-  gap: 10px;
+    align-items: center;
+    margin-right: 24px;
+    justify-content: flex-end;
+    /* width: 100vw;  */
+    gap: 10px;
 }
   
 .btn-login-logout{
-    border-radius: 4px;
+    border-radius: 12px;
     /*background: #256ce1; */
-    padding: 10px 22px !important;
+    padding: 12px 20px !important;
     color: #fff;
     outline: none;
     border: none;
@@ -125,7 +153,7 @@ a{
     transition: all 0.2s ease-in-out;
     text-decoration: none;
     /* Second Nav */
-    margin-left: 24px;
+    /* margin-left: 24px; */
     background-color: #198754;
     font-size: 18px !important;
     font-weight: 500;

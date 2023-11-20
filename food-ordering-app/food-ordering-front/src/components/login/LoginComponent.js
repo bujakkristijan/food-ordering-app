@@ -113,7 +113,7 @@ const alertSuccess = (message) =>{
                     {/* <Link id="registrationBtn" to="/registration" className='btn btn-danger mt-2' style={{marginLeft:"10px"}}>Register</Link>  */}
                   <div className='registration-div'>
                     <div className='registration-label'>Don't have an account?&nbsp;</div>
-                    <Link className='registration-link' to='/registration'>Register</Link>
+                    <Link className='registration-link' to='/registration'>Sign up</Link>
                   </div>
                   
                   </form>
