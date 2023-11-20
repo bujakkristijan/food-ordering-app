@@ -54,8 +54,9 @@ const FinalOrderByIdComponent = () => {
 
     return (
         <>
-        <div className='container'>
+        <div className='container-final-order'>
         <div className='title-id-final-order'>Final order with id: {id}</div>
+        <div className='table-responsive-container'>
         <table id="table" className='table table-hover tableElement'>
             <thead className='thead-name'>
                 <tr>
@@ -78,14 +79,15 @@ const FinalOrderByIdComponent = () => {
                         <td className='td-content'>{Moment(finalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
                         <td className='td-content'>{finalOrder.status}</td>      
                         <td className='td-content'>
-                            <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
+                            <button className='btn-show-items' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
                         </td>
                     </tr>
             </tbody>
         </table>
+        </div>
     </div>
 
-    <Modal size='lg' centered show={show} onHide={handleClose}>
+    <Modal centered show={show} onHide={handleClose} dialogClassName="modalCustomShowItems">
     <Modal.Header closeButton>
         <Modal.Title>Ordered items</Modal.Title>
     </Modal.Header>

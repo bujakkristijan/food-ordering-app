@@ -17,4 +17,31 @@
 
 th{
     white-space: nowrap;
+    font-size: 14px;
+}
+
+/* td{
+    font-size: 14px;
+} */
+
+.table-responsive-container{
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+@media(max-width: 1100px){
+    th{
+        font-size: 14px !important;
+
+    }
+    td
+    {font-size: 14px !important;
+    }
+
+}
+
+@media(max-width: 600px){
+    .mealPicModal{
+        width: 90px;
+    }
 }

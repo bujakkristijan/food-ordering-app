@@ -6,7 +6,8 @@ const ItemsByFinalOrderIdComponent = (props) => {
     const orderItems = props.orderItemsList;
 
   return (
-    <div className='container'>     
+    <div className='container-modal-show-items'>     
+        <div className='table-responsive-container'>
             <table id="table" className='table table-bordered table-hover'>
                 <thead>
                     <tr>
@@ -34,6 +35,7 @@ const ItemsByFinalOrderIdComponent = (props) => {
                     )}
                 </tbody>
             </table>
+            </div>
         </div>
   )
 }
