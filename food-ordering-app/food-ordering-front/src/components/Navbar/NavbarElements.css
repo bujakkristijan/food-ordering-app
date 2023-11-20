@@ -8,6 +8,7 @@
     position: relative;
     /* margin-right: 24px;
     margin-left: auto; */
+    margin-left: auto;
 }
 
 .logo-cart{
@@ -86,7 +87,7 @@
     display: flex;
     padding: 10px 4%;
     z-index: 10;
-    justify-content: flex-start;
+    justify-content: space-between;
     position: sticky;
     top: 0;
     box-shadow: 0 2px 20px rgba(0,0,0,0.3);
@@ -124,7 +125,6 @@ a{
 .navMenu{
     display: flex;
     align-items: center;
-    width: 100vm;
     white-space: nowrap;
     margin-left: 30px;
     margin-right: auto;
@@ -183,8 +183,34 @@ a{
 }
 
 .nav-links-buttons-container{
-    margin-left: auto;
+    /* margin-left: auto; */
+    display: flex;
     /* margin-right: 24px; */
+}
+
+@media(max-width: 1300px){
+    .navMenu{
+        gap: 18px;
+    }
+}
+
+@media(max-width: 1200px){
+    .nav-links-container{
+        position: fixed;
+        background-color: var(--sign-up-btn-color);
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        
+        z-index: 50;
+        transition: 1s;
+        text-align: center;
+    }
+    .nav-buttons-container{
+       display: none;
+
+    }
 }
 
 
