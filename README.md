@@ -40,7 +40,7 @@ The application has responsive design for users who order food.
 
 Users first need to select the specific category, then they can see complete offers for that category.
 
-![1-menu](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/91a3d168-6b12-41cc-8c0d-eb6b70347521)
+![1-menu-replaced](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/aa5e1993-563a-4683-99df-615e19afeb01)
 
 ![2-menu-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/456b9692-e857-4809-a0e1-8e78808c059e)
 ![2-menu-mobile-2](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/c705659c-287d-4ce3-9fcf-1d648f6bd4a8)
