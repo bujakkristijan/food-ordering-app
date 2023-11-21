@@ -127,7 +127,10 @@
 
 .action-container{
     /* flex: 1; */
-    width: 140px;
+    /* width: 140px; */
+    display: flex;
+    margin-right: 14px;
+    
 }
 
 .label-desc, .label-content, .show-items-btn{
@@ -149,6 +152,15 @@
     background-color: #198754;
     color: whitesmoke;
     border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgb(0, 0, 0, 0.3);
+}
+
+.show-items-icon{
+    height: 20px;
+    fill: whitesmoke;
 }
 
 @media(max-width: 1500px){
@@ -161,10 +173,20 @@
     .info-main-container{
         gap: 20px;
     }
+    .show-items-btn{
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 14px;
+        
+    }
+
+    .show-items-icon{
+        height: 18px;
+    }
 
 }
 
-@media(max-width: 1380px){
+@media(max-width: 1420px){
     .info-main-container{
         gap: 12px;
     }
@@ -189,7 +211,7 @@
     }
 } */
 
-@media(max-width: 1140px){
+@media(max-width: 1180px){
     .info-main-container{
        display: flex;
        flex-direction: column;
@@ -218,6 +240,9 @@
         font-size: 14px;
         font-weight: 400;
         padding: 10px 22px !important;
+        /* white-space: nowrap !important; */
+        /* na 164px tekst bude u istom redu, na 163px vec ne, nzm sto nece sa nowrap da radi, za desktop radi okej, za telefone se prelama samo iz nekog raloga  */
+        min-width: 164px;
     }
 
     .title-my-active-final-orders{
@@ -225,5 +250,13 @@
     }
     .action-container{
         margin-top: 18px;
+        margin-right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .show-items-icon{
+        height: 18px;
     }
 }

@@ -189,7 +189,7 @@
     }
 } */
 
-@media(max-width: 1140px){
+@media(max-width: 1180px){
     .info-main-container{
        display: flex;
        flex-direction: column;
