@@ -48,9 +48,9 @@ const MyActiveFinalOrdersComponent = () => {
 
   return (
     <>
-    <div className='container'>
+    <div className='container-my-active-final-orders'>
             <div className='title-my-active-final-orders'>My active final orders</div>
-            <table id='table' className='table table-hover tableElement'>
+            {/* <table id='table' className='table table-hover tableElement'>
                 <thead className='thead-name'>
                     <tr>
                         <th className='theadth'>ID</th>
@@ -62,7 +62,6 @@ const MyActiveFinalOrdersComponent = () => {
                         <th className='theadth'>Orders</th>
                     </tr>
                 </thead>
-                {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
                 <tbody>
                     {myActiveFinalOrders.map(
                         activeFinalOrder => <tr key={activeFinalOrder.id}>
@@ -75,14 +74,47 @@ const MyActiveFinalOrdersComponent = () => {
                             <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                             </td>
-                            {/* <td className='td-content'>
-                                <button className='btn btn-success' onClick={() => setFinalOrderToDelivered(activeFinalOrder.id)}>Click if delivered</button>
-                            </td> */}
                         </tr>
                     )}
                 </tbody>
-            </table>
+            </table> */}
+        <div className='final-order-main-container'>
+         {myActiveFinalOrders.map(
+                        activeFinalOrder => <div className='final-order-card-container' key={activeFinalOrder.id}>
+                    <div className='info-main-container'>
+                        <div id='idcont' className='info-container id'>
+                            <label className='label-desc'>ID:</label>
+                            <label className='label-content'>{activeFinalOrder.id}</label>
+                        </div>
+                        <div className='info-container'>
+                            <label className='label-desc'>Address:</label>
+                            <label className='label-content'>{activeFinalOrder.address}</label>
+                        </div>
+                        <div id="phonenumbercont" className='info-container phone-number'>
+                            <label className='label-desc'>Phone:</label>
+                            <label className='label-content'>{activeFinalOrder.phoneNumber}</label>
+                        </div>
+                        <div id="finalpricecont" className='info-container final-price'>
+                            <label className='label-desc'>Price:</label>
+                            <label className='label-content'>{activeFinalOrder.finalPrice},00 RSD</label>
+                        </div>
+                        <div id="datecont" className='info-container date'>
+                            <label className='label-desc'>Date:</label>
+                            <label className='label-content'>{Moment(activeFinalOrder.date).format("YYYY-MM-DD HH:mm:ss")}</label>
+                        </div>
+                        <div id="statuscont" className='info-container status'>
+                            <label className='label-desc'>Status:</label>
+                            <label className='label-content'>{activeFinalOrder.status}</label>
+                        </div>
+                    </div>
+                        <div className='action-container'>
+                            <button className='show-items-btn' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
+                        </div>
+                </div>
+            )}
         </div>
+        
+    </div>
 
         <Modal size='lg' centered show={show} onHide={handleClose}>
         <Modal.Header closeButton>

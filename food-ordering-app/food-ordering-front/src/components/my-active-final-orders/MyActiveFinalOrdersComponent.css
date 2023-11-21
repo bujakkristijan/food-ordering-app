@@ -32,7 +32,7 @@
 .title-my-active-final-orders{
     padding: 20px 30px;
     background: rgb(245, 245, 245);
-    width: 400px;
+    width: fit-content;
     margin: auto;
     color: black;
     font-size: 28px;
@@ -43,4 +43,187 @@
     box-shadow: 0 0 16px 0 rgb(0,0, 0, 0.6);
     text-align: center;
     margin-bottom: 30px;
+}
+
+.final-order-main-container{
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+}
+
+
+.final-order-card-container{
+    width: 80%;
+    margin: auto;
+    background-color: #198754;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 20px;
+    border: 1px solid rgb(218, 218, 218);
+    box-shadow: 0 0 16px 0 rgb(0,0, 0, 0.6);
+    border-radius: 20px;
+    justify-content: space-between;
+}
+
+.info-main-container{
+    display: flex;
+    /* flex: 1; */
+    flex-direction: row;
+    gap: 26px;
+    /* width: fit-content; */
+}
+
+.action-container{
+    display: flex;
+    justify-content: center;
+}
+
+.info-container.id{
+    /* flex: 0; */
+    /* width: fit-content; */
+    /* width: 36px; */
+}
+/* 
+.info-container.phone-number{
+    width: 130px;
+}
+
+.info-container.status{
+    width: 180px;
+}
+
+/* .info-conatiner.final-price{
+    width: 120px;
+} */
+
+#idcont{
+   
+    min-width: 36px;
+    max-width: 36px; 
+}
+
+#phonenumbercont{
+    min-width: 130px;
+    max-width: 130px;
+}
+
+#datecont{
+    min-width: 180px;
+    max-width: 180px;
+} 
+
+#finalpricecont{
+    min-width: 140px;
+    max-width: 140px;
+}
+
+#statuscont{
+    min-width: 170px;
+    max-width: 170px;
+}
+
+
+.action-container{
+    /* flex: 1; */
+    width: 140px;
+}
+
+.label-desc, .label-content, .show-items-btn{
+    white-space: nowrap;
+}
+
+.label-desc{
+    color: rgb(101, 101, 101);
+}
+
+.label-content{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.show-items-btn{
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #198754;
+    color: whitesmoke;
+    border: none;
+}
+
+@media(max-width: 1500px){
+    .label-desc{
+        font-size: 12px;
+    }
+    .label-content{
+        font-size: 14px !important;
+    }
+    .info-main-container{
+        gap: 20px;
+    }
+
+}
+
+@media(max-width: 1380px){
+    .info-main-container{
+        gap: 12px;
+    }
+    #statuscont{
+        min-width: 130px;
+    }
+    #datecont{
+        min-width: 150px
+    }
+    #finalpricecont{
+        min-width: 100px;
+    }
+    #phonenumbercont{
+        min-width: 100px
+    }
+}
+
+/* @media(max-width: 1380px){
+    .info-main-container{
+        flex-direction: column;
+        gap: 6px;
+    }
+} */
+
+@media(max-width: 1140px){
+    .info-main-container{
+       display: flex;
+       flex-direction: column;
+    }
+
+    .label-desc{
+        font-size: 16px;
+        min-width: 80px;
+    }
+
+    .label-content{
+        font-size: 16px !important;
+    }
+    .info-container{
+        flex-direction: row !important;
+        align-items: center;
+    }
+    .show-items-btn{
+        white-space: wrap !important;
+    }
+    .final-order-card-container{
+        gap: 0;
+        flex-direction: column;
+    }
+    .show-items-btn{
+        font-size: 14px;
+        font-weight: 400;
+        padding: 10px 22px !important;
+    }
+
+    .title-my-active-final-orders{
+        font-size: 20px;
+    }
+    .action-container{
+        margin-top: 18px;
+    }
 }

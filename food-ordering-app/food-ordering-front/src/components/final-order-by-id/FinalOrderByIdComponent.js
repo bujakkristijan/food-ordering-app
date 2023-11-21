@@ -56,35 +56,62 @@ const FinalOrderByIdComponent = () => {
         <>
         <div className='container-final-order'>
         <div className='title-id-final-order'>Final order with id: {id}</div>
-        <div className='table-responsive-container'>
-        <table id="table" className='table table-hover tableElement'>
-            <thead className='thead-name'>
-                <tr>
-                    {/* <th>Order ID</th> */}
-                    <th className='theadth'>Address</th>
-                    <th className='theadth'>Phone number</th>
-                    <th className='theadth'>Final price</th>
-                    <th className='theadth'>Date and time</th>
-                    <th className='theadth'>Status</th>
-                    <th className='theadth'>Action</th>
-                </tr>
-            </thead>
-            {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
-            <tbody>
-                    <tr>
-                        {/* <td>{finalOrder.id}</td> */}
-                        <td className='td-content'>{finalOrder.address}</td>
-                        <td className='td-content'>{finalOrder.phoneNumber}</td>  
-                        <td className='td-content'>{finalOrder.finalPrice},00 RSD</td>
-                        <td className='td-content'>{Moment(finalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
-                        <td className='td-content'>{finalOrder.status}</td>      
-                        <td className='td-content'>
-                            <button className='btn-show-items' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
-                        </td>
+        {/* <div className='table-responsive-container'>
+            <table id="table" className='table table-hover tableElement'>
+                <thead className='thead-name'>
+                    <tr>          
+                        <th className='theadth'>Address</th>
+                        <th className='theadth'>Phone number</th>
+                        <th className='theadth'>Final price</th>
+                        <th className='theadth'>Date and time</th>
+                        <th className='theadth'>Status</th>
+                        <th className='theadth'>Action</th>
                     </tr>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td className='td-content'>{finalOrder.address}</td>
+                            <td className='td-content'>{finalOrder.phoneNumber}</td>  
+                            <td className='td-content'>{finalOrder.finalPrice},00 RSD</td>
+                            <td className='td-content'>{Moment(finalOrder.date).format("YYYY-MM-DD HH:mm:ss") }</td>
+                            <td className='td-content'>{finalOrder.status}</td>      
+                            <td className='td-content'>
+                                <button className='btn-show-items' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div> */}
+
+        <div className='final-order-card-container'>
+            <div className='info-main-container'>
+                <div className='info-container'>
+                    <label className='label-desc'>Address:</label>
+                    <label className='label-content'>{finalOrder.address}</label>
+                </div>
+                <div className='info-container'>
+                    <label className='label-desc'>Phone:</label>
+                    <label className='label-content'>{finalOrder.phoneNumber}</label>
+                </div>
+                <div className='info-container'>
+                    <label className='label-desc'>Price:</label>
+                    <label className='label-content'>{finalOrder.finalPrice},00 RSD</label>
+                </div>
+                <div className='info-container'>
+                    <label className='label-desc'>Date:</label>
+                    <label className='label-content'>{Moment(finalOrder.date).format("YYYY-MM-DD HH:mm:ss")}</label>
+                </div>
+                <div className='info-container'>
+                    <label className='label-desc'>Status:</label>
+                    <label className='label-content'>{finalOrder.status}</label>
+                </div>
+            </div>
+            <div className='action-container'>
+                <button className='show-items-btn' onClick={() => handleShowItemsByFinalOrderId(finalOrder.id)}>Show items</button>
+            </div>
+            
         </div>
+
     </div>
 
     <Modal centered show={show} onHide={handleClose} dialogClassName="modalCustomShowItems">
