@@ -96,7 +96,6 @@ Clicking on "Show items" button, user can see all items from the (final) order t
 
 ![17-final-order-by-id-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/bba08758-0c57-4c75-bc3a-4f2f115f417d)
 ![19-show-items-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/8d4fea1c-df71-4fd8-bd96-c2f0bd5a1def)
-![20-show-items-mobile-2](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e2ee3507-f9fd-4438-82d1-416c145208cf)
 
 Logged-in users get 10% discount on the final price of their order. Also they don't need to insert details, such as address and phone number, because it's stored in data base after registration. Logged-in users also have more tabs and options.
 
