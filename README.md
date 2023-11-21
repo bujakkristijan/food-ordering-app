@@ -132,7 +132,6 @@ Login component shows when the app starts.
 ![31-sign-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/fc20e0fe-39e4-4445-923a-870fe8b7b05c)
 
 ![32-sign-in-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e710a3e8-3368-45fc-a1a3-259892eec269)
-![33-sign-in-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/319e67dd-d16e-4ddb-9bd5-1ec1c01f0f6c)
 ![33-signed-in-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/b75c0253-a1a8-45bd-a5a5-b86e5bfdb9a4)
 
 Logged-in users can access their profile page where they edit profile or change password if necessary.
