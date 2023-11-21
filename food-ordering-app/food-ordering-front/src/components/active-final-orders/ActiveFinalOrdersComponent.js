@@ -169,7 +169,7 @@ export const ActiveFinalOrdersComponent = () => {
                             <td className='td-content'>{activeFinalOrder.status}</td>
                             <td className='td-content'>{activeFinalOrder.finalPrice},00</td>                                                     
                             <td className='td-content'>
-                                <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
+                                <button className='btn btn-success' style={{whiteSpace: "nowrap"}} onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                             </td>
                             {/* <td className='td-content'>
                                 <button className='btn btn-success' onClick={() => setFinalOrderToDelivered(activeFinalOrder.id)}>Click if delivered</button>

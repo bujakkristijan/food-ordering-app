@@ -65,3 +65,13 @@ body{
     font-weight: 400 !important;
 }
 
+.modalEditProfile, .modalEditPassword{
+    width: 50% !important;
+}
+
+@media(max-width: 900px){
+    .modalEditProfile, .modalEditPassword{
+        width: 90% !important;
+    }
+}
+

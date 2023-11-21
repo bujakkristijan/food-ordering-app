@@ -69,7 +69,7 @@ const OrderHistoryComponent = () => {
                         <td className='td-content'>{activeFinalOrder.phoneNumber}</td>
                         <td className='td-content'> {Moment(activeFinalOrder.date).format("YYYY-MM-DD HH:mm:ss") } </td>
                         <td className='td-content'>{activeFinalOrder.status}</td>
-                        <td className='td-content'>{activeFinalOrder.finalPrice}</td>    
+                        <td className='td-content'>{activeFinalOrder.finalPrice},00</td>    
                         <td className='td-content'>
                             <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                         </td>

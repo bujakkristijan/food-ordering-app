@@ -321,7 +321,7 @@ const MyProfileComponent = () => {
     </div>
     
     {/* NE MOZE MODAL.DIALOG, MORA MODAL SAMO */}
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} dialogClassName="modalEditProfile" className="d-flex align-items-center justify-content-center">
         <Modal.Header closeButton>
         <Modal.Title>Edit profile</Modal.Title>
         </Modal.Header>
@@ -337,7 +337,7 @@ const MyProfileComponent = () => {
     </Modal>
 
      {/* NE MOZE MODAL.DIALOG, MORA MODAL SAMO */}
-     <Modal show={showPassModal} onHide={handleClosePassModal}>
+     <Modal show={showPassModal} onHide={handleClosePassModal} dialogClassName="modalEditPassword" className="d-flex align-items-center justify-content-center">
         <Modal.Header closeButton>
         <Modal.Title>Edit password</Modal.Title>
         </Modal.Header>

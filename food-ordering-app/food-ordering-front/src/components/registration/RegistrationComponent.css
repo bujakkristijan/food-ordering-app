@@ -32,3 +32,10 @@
     margin-right: 10px;
     fill: #198754;
 }
+
+@media(max-width: 900px){
+    .card-registration{
+        width: 90%;
+        margin: auto;
+    }
+}
