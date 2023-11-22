@@ -1,0 +1,59 @@
+.quantity-container{
+    display: flex; 
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+    /* text-align: center; */
+}
+
+.meal-container{
+    width: fit-content;
+    /* margin: auto; */
+}
+
+.meal-info-container{
+    margin: auto;
+    width: fit-content;
+    text-align: left;
+}
+.label-meal-info{
+    color: rgb(102, 102, 102); 
+    font-size: 20px; 
+    width: 70px;
+    
+}
+
+.label-meal-value{
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.value-label{
+    font-size: 30px;
+    
+}
+
+.btn-increase, .btn-decrease{
+    /* height: 30px; */
+    width: 45px;
+    border-radius: 50%;
+    border: none;
+}
+
+.btn-increase{
+    background-color: rgb(253, 215, 215);
+}
+
+.btn-decrease{
+    background-color: rgb(210, 255, 210);
+}
+
+.icon-minus{
+    fill: rgb(0, 94, 0);
+    font-size: 20px;
+}
+
+.icon-plus{
+    fill: rgb(135, 0, 0);
+    font-size: 20px;
+}

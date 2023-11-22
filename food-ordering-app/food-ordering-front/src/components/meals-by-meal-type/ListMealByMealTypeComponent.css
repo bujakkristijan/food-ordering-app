@@ -209,5 +209,8 @@
     .modalCustomInsert{
         width: 80% !important;
     }
+    .title-empty-meal-type{
+        font-size: 16px;
+    }
 }
 

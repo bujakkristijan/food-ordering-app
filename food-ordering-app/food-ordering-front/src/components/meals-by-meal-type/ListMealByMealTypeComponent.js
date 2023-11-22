@@ -122,7 +122,7 @@ const ListMealByMealTypeComponent = () => {
       }
 
   return (
-    <>
+    <> 
     {dataFetchingComplete && meals.length === 0 && <div className='title-empty-meal-type'>Sorry, there are no offers for this category</div>}
     {meals.length !== 0 && <div className='container-meal-by-meal-type'>
             <div className='meal-type-title'>
