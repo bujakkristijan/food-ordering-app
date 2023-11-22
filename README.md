@@ -18,7 +18,7 @@ The application can also be accessed by unregistered users, who have the followi
 
 Registered users with the *USER* role can log into the system using their username and password. They have the following abilities:
 - Update their personal information
-- Order food similar to unregistered users, but without the need to enter their address and phone number since their data is already saved in the system.
+- Order food similar to unregistered users, but without the need to enter their address and phone number since their data is already saved in the database.
 - Receive a 10% discount on every order
 - View their active orders (with *ORDERED* and *IN PREPARATION* status)
 - View the history of their orders (with *IN DELIVERY* status)
@@ -34,7 +34,7 @@ Users with the *ADMIN* role have the following abilities:
 - View the order history
 - Create, delete, and update employee data (users with the *EMPLOYEE* role)
 
-The application has responsive design for users who order food.
+Application has fully responsive design for users who order the food.
 
 ### Application UI preview:
 
@@ -60,7 +60,7 @@ After inserting quantity and submiting, item is successfully added to the cart.
 
 ![6-success-insert-quantity](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/77a77e2c-6553-465b-bf67-b382c80b9516)
 
-Clicking on cart button or icon in navigation, users can see items from the cart
+Clicking on cart button or icon in navigation, users can see items in the cart
 
 ![7-cart](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/ebaea060-225c-4f3c-b1af-856158997a48)
 
@@ -89,7 +89,7 @@ After valid input, final order will be confirmed and not logged-in users can tra
 
 ![15-link-success-order](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/2224c2d7-f3d7-4b5c-a3d8-4e778df9d9d9)
 
-Clicking on "Show items" button, user can see all items from the (final) order that he ordered.
+Clicking on *Show items* button, user can see all items from the (final) order that he ordered.
 
 ![16-final-order-by-id](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/f2265ea6-817a-4e0c-af36-e9f5a55b367e)
 ![18-show-items](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/ff0767a7-8a3d-434b-ae01-0765005b4540)
@@ -97,16 +97,16 @@ Clicking on "Show items" button, user can see all items from the (final) order t
 ![17-final-order-by-id-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/bba08758-0c57-4c75-bc3a-4f2f115f417d)
 ![19-show-items-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/8d4fea1c-df71-4fd8-bd96-c2f0bd5a1def)
 
-Logged-in users get 10% discount on the final price of their order. Also they don't need to insert details, such as address and phone number, because it's stored in data base after registration. Logged-in users also have more tabs and options.
+Logged-in users get 10% discount on the final price of their order. Also they don't need to insert details, such as address and phone number, because it's stored in the database after registration. Logged-in users also have more tabs and options.
 
 ![21-are-you-sure-logged](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/87415774-a552-49e0-8eb0-dfac7f14b9e9)
 
 ![22-are-you-sure-mobile-1](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cb331a7a-8f87-4a55-b78b-0aeb9d142215)
 ![23-are-you-sure-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/9488ef9e-1911-4ee5-9895-5a78d9277e5f)
 
-Logged-in users can track their active orders (IN PREPARATION and ORDERED status) clicking on My active orders tab. Final orders with IN DELIVERY status will be visible clicking on My order history tab.
+Logged-in users can track their active orders (*IN PREPARATION* and *ORDERED* status) clicking on *My active orders tab*. Final orders with *IN DELIVERY* status will be visible clicking on *My order history* tab.
 
-Clicking on "Show items" button, user can see his ordered items
+Clicking on *Show items* button, user can see his ordered items
 
 ![24-my-active-final-orders](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e969ee1e-734a-4b61-892e-088335864172)
 
@@ -119,7 +119,7 @@ Employee can see and change status of the final order depending on real status o
 
 ![28-employee-active-final-orders](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/f871f506-e523-4dab-adae-263e00e3000d)
 
-Clicking on "Show items" button, employee can see all items from the (final) order.
+Clicking on *Show items* button, employee can see all items from the (final) order.
 
 ![29-employee-active-final-orders](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/d90255a5-68b3-40d5-8b7a-b6d690c91951)
 
@@ -153,7 +153,7 @@ If inserted old password and password from the database don't match, he won't be
 
 ![39-edit-password-dontmatch](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/18241d38-396c-47f5-a7f8-d0167deae796)
 
-If they match, new password will be saved successfully (will be encripted and saved in database)
+If they match, new password will be saved successfully (will be encripted and saved in the database)
 
 ![40-edit-pass-success](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/b3ce4dc2-61cb-4f24-a6cb-0d4dc9f0edc8)
 
