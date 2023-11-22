@@ -52,8 +52,8 @@ After choosing category (meal type), available meals (offers) will be listed.
 ![4-menu-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/fd00e68c-9014-435e-8204-de3202aeefc8)
 ![4-menu-mobile-2](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e5933445-b8f0-4254-8b2c-605b6494ab6d)
 
-Users can add items (meals) to the cart after they insert quantity.
-After inserting quantity and submiting, item is successfully added to the cart.
+Users can add items (meals) to the cart after they specify quantity. Default and minimum value for quantity is 1 and users can't go below that value. 
+After clicking on *Confirm* button, item is successfully added to the cart.
 
 ![5-insert-quantity-new](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/ce6693b9-97de-4c61-bd3c-87aae0f6f6b7)
 ![6-success-insert-quantity-new](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/23081500-83aa-483b-a98f-9434baaace2e)
