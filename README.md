@@ -43,7 +43,7 @@ Users first need to select the specific category, then they can see complete off
 ![1-menu-replaced](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/aa5e1993-563a-4683-99df-615e19afeb01)
 
 ![2-menu-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/456b9692-e857-4809-a0e1-8e78808c059e)
-![2-menu-mobile-2-second](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/b215e41f-e8be-4587-a140-6571552a7f0c)
+![2-menu-mobile-2-second](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/9ceffe04-2998-4741-b5bb-8f8556fbda8b)
 
 After choosing category (meal type), available meals (offers) will be listed.
 
@@ -132,7 +132,7 @@ Login component shows when the app starts.
 ![31-sign-in](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/fc20e0fe-39e4-4445-923a-870fe8b7b05c)
 
 ![32-sign-in-mobile](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e710a3e8-3368-45fc-a1a3-259892eec269)
-![33-signed-in-mobile-3](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/9ce1ce45-1eb2-4cb6-b101-4babee47b80d)
+![33-signed-in-mobile-3](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/dc0a1fcf-36bd-4dd3-84cf-86a29ff60845)
 
 Logged-in users can access their profile page where they edit profile or change password if necessary.
 
