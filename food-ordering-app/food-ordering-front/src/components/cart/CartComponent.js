@@ -323,8 +323,8 @@ const CartComponent = () => {
         </Modal.Body>
 
         <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseInsertDetails}>Close</Button>
             <Button variant="primary" onClick={() => submitFinalOrder()}>Confirm final order</Button>
+            <Button variant="secondary" onClick={handleCloseInsertDetails}>Close</Button>
         </Modal.Footer>
     </Modal> 
     </>

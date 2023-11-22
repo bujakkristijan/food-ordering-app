@@ -83,7 +83,7 @@ const NavbarStyledComponent = () => {
                <img className='logo' src={require('../../images/logo2.png')} alt=''/>  
           </Link>
           {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='navLinkMenu' to='/menu' >
-               Menu
+               MENU
           </Link>}
           {localStorage.role!="ADMIN" && localStorage.role!="EMPLOYEE" && <Link className='cartLink' to='/cart' >
                     <div className='number-cart-div'>

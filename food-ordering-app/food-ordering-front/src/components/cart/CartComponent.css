@@ -175,6 +175,11 @@
     background-color: #dc3545;
 }
 
+.button-icon-container:hover{
+    cursor: pointer;
+}
+
+
 .btn-action{
     /* width: 200px; */
     /* background-color: #198754; */
