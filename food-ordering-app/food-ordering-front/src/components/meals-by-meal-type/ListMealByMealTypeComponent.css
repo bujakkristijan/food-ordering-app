@@ -193,6 +193,18 @@
     width: 30% !important;
 }
 
+.title-empty-meal-type{
+    /* text-align: center; */
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: whitesmoke;
+    width: fit-content;
+    margin: auto;
+    font-weight: 500;
+    border-radius: 10px;
+    border: 2px solid rgb(108, 108, 108);
+}
+
 @media(max-width: 900px){
     .modalCustomInsert{
         width: 80% !important;
