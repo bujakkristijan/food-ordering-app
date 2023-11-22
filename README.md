@@ -53,12 +53,13 @@ After choosing category (meal type), available meals (offers) will be listed.
 ![4-menu-mobile-2](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e5933445-b8f0-4254-8b2c-605b6494ab6d)
 
 Users can add items (meals) to the cart after they insert quantity.
-
-![5-insert-quantity](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/b6e56c69-0a4a-4b47-a970-25c75e24299c)
-
 After inserting quantity and submiting, item is successfully added to the cart.
 
-![6-success-insert-quantity](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/77a77e2c-6553-465b-bf67-b382c80b9516)
+![5-insert-quantity-new](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/ce6693b9-97de-4c61-bd3c-87aae0f6f6b7)
+![6-success-insert-quantity-new](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/23081500-83aa-483b-a98f-9434baaace2e)
+
+![5-insert-quantity-mobile-new](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/fd34b04d-71a3-4060-82a3-24cfb3fb37ec)
+![6-success-insert-quantity-mobile-new](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3f1399f5-e7d1-4cd8-ac89-14350ef750b7)
 
 Clicking on cart button or icon in navigation, users can see items in the cart
 
