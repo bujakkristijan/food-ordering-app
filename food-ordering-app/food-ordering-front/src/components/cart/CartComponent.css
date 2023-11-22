@@ -243,6 +243,10 @@
     display: none;
 }
 
+.modal-footer{
+    justify-content: center !important;
+}
+
 
 @media(max-width: 1530px){
     .item-action-container{

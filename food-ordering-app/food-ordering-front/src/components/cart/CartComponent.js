@@ -308,8 +308,8 @@ const CartComponent = () => {
         </Modal.Body>
 
         <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
             <Button variant="primary" onClick={()=>editItemQuantity()}>Save changes</Button>
+            <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
         </Modal.Footer>
     </Modal> 
   
