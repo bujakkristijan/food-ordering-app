@@ -7,17 +7,13 @@ const EditItemQuantityComponent = (props) => {
    const itemFromCart = props.itemFromCart;
    const itemQuantity = props.itemQuantity
    const setItemQuantity = props.setItemQuantity;
-//    const [itemQuantity, setItemQuantity] = useState(itemFromCart.quantity);
-//   const {itemFromCart} = props; 
-  // const {user} = props !!!!
-  // className = 'form-control', bootstrapov input forme, da lepse izgleda
 
   return (
     <div className='main-quantity-container'>
     <div className='meal-info-container'>
       <div className='meal-container'>
           <label className='label-meal-info'>Meal:</label>
-          {/* mora ovako sa ? inace puca cim se zatvori prozor, jer se vrv setuje na item na null a onda renderuje se u modalu ponovo, ili iih mogao da proverim da li je itemFromCart != null   */}
+          {/* mora ovako sa ? inace puca cim se zatvori modal, jer se vrv setuje item na null a onda renderuje u modalu ponovo, ili bih mogao da proverim da li je itemFromCart != null   */}
           <label className='label-meal-value'>{itemFromCart?.mealName}</label>
       </div>
 
