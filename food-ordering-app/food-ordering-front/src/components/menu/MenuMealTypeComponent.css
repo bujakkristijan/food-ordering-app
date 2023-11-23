@@ -71,6 +71,10 @@
     border-radius: 20px;
     border: none;
     font-size: 16px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 }
 
 .btn-see-items:hover{
