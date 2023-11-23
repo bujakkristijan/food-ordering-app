@@ -28,9 +28,9 @@ Users with the *EMPLOYEE* role have the following abilities:
 - View the history of all orders.
 
 Users with the *ADMIN* role have the following abilities:
-- Create, delete, and update meal types in the database (including uploading images)
-- Create, delete and update meals (including uploading images)
-- Logically delete users (change their status, their data remains in the database)
+- Create, delete (logically) and update meal types in the database (including uploading images)
+- Create, delete (logically) and update meals (including uploading images)
+- Logically delete users (change their isDeleted status, their data remains in the database)
 - View the order history
 - Create, delete, and update employee data (users with the *EMPLOYEE* role)
 
