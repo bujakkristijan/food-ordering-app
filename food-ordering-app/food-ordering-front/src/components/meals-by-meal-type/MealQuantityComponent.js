@@ -11,7 +11,7 @@ const MealQuantityComponent = (props) => {
   
   return (
         <div className='main-quantity-container'>
-            <div className='meal-info-container'>
+            <div className='meal-info-modal-container'>
               <div className='meal-container'>
                   <label className='label-meal-info'>Meal:</label>
                   <label className='label-meal-value'>{meal.name}</label>

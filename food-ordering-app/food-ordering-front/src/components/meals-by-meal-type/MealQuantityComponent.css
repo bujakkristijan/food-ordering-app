@@ -11,7 +11,7 @@
     /* margin: auto; */
 }
 
-.meal-info-container{
+.meal-info-modal-container{
     margin: auto;
     width: fit-content;
     text-align: left;
@@ -41,19 +41,21 @@
 }
 
 .btn-increase{
-    background-color: rgb(253, 215, 215);
+    background-color: rgb(210, 255, 210);
+    
 }
 
 .btn-decrease{
-    background-color: rgb(210, 255, 210);
+    background-color: rgb(253, 215, 215);
 }
 
 .icon-minus{
-    fill: rgb(0, 94, 0);
+    fill: rgb(135, 0, 0);
     font-size: 20px;
 }
 
 .icon-plus{
-    fill: rgb(135, 0, 0);
+    fill: rgb(0, 94, 0);
+    
     font-size: 20px;
 }
