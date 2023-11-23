@@ -13,7 +13,7 @@ class MealTypeService{
 
     deleteMealType(mealTypeId){
         TokenService.setTokenInHeader();
-        return axios.delete("http://localhost:8080/api/mealType/deleteMealType/" + mealTypeId);
+        return axios.put("http://localhost:8080/api/mealType/deleteMealType/" + mealTypeId);
     }
 
     updateMealType(mealType){

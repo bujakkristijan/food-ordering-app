@@ -22,12 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.foodorderback.dto.MealDTO;
-import com.example.foodorderback.model.Image;
 import com.example.foodorderback.model.Meal;
 import com.example.foodorderback.model.Role;
 import com.example.foodorderback.model.User;
-import com.example.foodorderback.service.FileLocationService;
-import com.example.foodorderback.service.ImageService;
 import com.example.foodorderback.service.MealService;
 import com.google.gson.Gson;
 
@@ -39,12 +36,6 @@ public class MealController {
 	
 	@Autowired
 	MealService mealService;
-	
-	@Autowired 
-	ImageService imageService;
-	
-	 @Autowired
-	 FileLocationService fileLocationService;
 	
 	@RequestMapping(value = "/getAllMeals", method = RequestMethod.GET)
 	public ResponseEntity<List<MealDTO>> getAllMeals() {
@@ -91,18 +82,9 @@ public class MealController {
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/deleteMeal/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/deleteMeal/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<String> delete(@PathVariable Long id) {
-		String responseToClient;
-		Meal meal = mealService.findOne(id);
-
-		if (meal == null) {
-			responseToClient = "fail";
-			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
-		}
-
-		mealService.delete(meal);
-		responseToClient = "success";
+		String responseToClient = mealService.delete(id);;
 		return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 	}
 

@@ -16,20 +16,21 @@ public class OrderItem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 
 	@OneToOne
-	public Meal meal;
+	private Meal meal;
 	
-	// trebalo je na ovaj nacin da cuvam vrednosti umesto sto samo cuvam meal_id u bazi, jer ako se izmeni meal naknadno u bazi, promenice se i vrednosti (npr cena i opis) u starim narudzbinama
-	public String mealName;
-	public int mealPrice;
-	public String mealDescription;
+	
+	private String mealName;
+	// mozda bi bilo bolje BigDecimal da se cuva u bazi umesto int
+	private int mealPrice;
+	private String mealDescription;
 	
 	@Lob
-	public String mealImage;
-	public String mealImageName;
-	public String mealTypeName;
+	private String mealImage;
+	private String mealImageName;
+	private String mealTypeName;
 	
 	public String getMealTypeName() {
 		return mealTypeName;
@@ -41,7 +42,7 @@ public class OrderItem {
 
 	//@JsonIgnore 
 	@ManyToOne
-	public FinalOrder finalOrder;
+	private FinalOrder finalOrder;
 	
 	//private Date orderDate;
 	private int quantity;

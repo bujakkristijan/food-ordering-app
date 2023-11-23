@@ -18,14 +18,6 @@ public class UserDTO {
 	private boolean deleted;
 	private String password;
 	
-	//server messages to client
-	/*private String userAlreadyExist;
-	private String userAdded;
-	private String userInvalidInput;
-	*/
-	
-	
-	
 	public UserDTO() {
 		
 	}

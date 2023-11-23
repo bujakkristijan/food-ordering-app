@@ -1,9 +1,5 @@
 package com.example.foodorderback.serviceImpl;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,12 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.foodorderback.dto.MealDTO;
-import com.example.foodorderback.model.Image;
 import com.example.foodorderback.model.Meal;
-import com.example.foodorderback.repository.FileSystemRepository;
-import com.example.foodorderback.repository.ImageDbRepository;
 import com.example.foodorderback.repository.MealRepository;
-import com.example.foodorderback.service.FileLocationService;
 import com.example.foodorderback.service.MealService;
 
 
@@ -26,25 +18,7 @@ public class MealServiceImpl implements MealService {
 	
 	@Autowired
 	MealRepository mealRepository;
-	
-	@Autowired
-	FileSystemRepository fileSystemRepository;
-	
-	
-    @Autowired
-    ImageDbRepository imageDbRepository;
     
-    @Autowired
-	FileLocationService fileLocationService;
-    
-    @Override
-    public Long saveImage(byte[] bytes, String imageName) {
-        String location = fileSystemRepository.save(bytes, imageName);
-
-        return imageDbRepository.save(new Image(imageName, location))
-            .getId();
-    }
-	
 	@Override
 	public String isValidInput(Meal meal) {
 		if (meal.getPrice() < 1 
@@ -71,8 +45,10 @@ public class MealServiceImpl implements MealService {
 		MealDTO mealDTO = new MealDTO();
 		for (Meal meal : allMealList) {
 			//MealDTO mealDTO = MealMapper.INSTANCE.entityToDTO(meal);
-			mealDTO = new MealDTO(meal);		
-			allMealDTOList.add(mealDTO);
+			if(meal.isDeleted() == false) {
+				mealDTO = new MealDTO(meal);		
+				allMealDTOList.add(mealDTO);
+			}
 		}
 		return allMealDTOList;
 	}
@@ -84,7 +60,7 @@ public class MealServiceImpl implements MealService {
 		List<MealDTO> mealsByMealTypeIdDTO = new ArrayList<MealDTO>();
 		MealDTO mealDTO = new MealDTO();
 		for(Meal meal: allMealList) {
-			if(meal.getMealType().getId() == mealTypeId) {
+			if(meal.getMealType().getId() == mealTypeId && meal.isDeleted() == false) {
 				mealDTO = new MealDTO(meal);
 				mealsByMealTypeIdDTO.add(mealDTO);
 			}
@@ -93,11 +69,15 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Override
-	public Meal delete(Meal meal) {
-		if (meal == null)
-			throw new IllegalArgumentException("Attempt to delete non-existing meal.");
-		mealRepository.delete(meal);
-		return meal;
+	public String delete(Long mealId) {
+		try {
+			Meal meal = mealRepository.findById(mealId).get();
+			meal.setDeleted(true);
+			mealRepository.save(meal);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
 	}
 
 	@Override

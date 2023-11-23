@@ -15,12 +15,9 @@ public interface MealService {
 	String isValidInput(Meal meal);
 	List<MealDTO> findAll();
 	String save(Meal meal);
-	
-	Meal delete(Meal meal);
+	String delete(Long mealId);
 	Meal findOne(Long id);
 	String editMeal(Meal meal);
-	Long saveImage(byte[] content, String imageName);
-	
 	List<MealDTO> getMealsByMealTypeId(Long id);
 	
 

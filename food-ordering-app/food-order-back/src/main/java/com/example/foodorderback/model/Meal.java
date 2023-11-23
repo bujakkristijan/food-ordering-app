@@ -28,14 +28,9 @@ public class Meal {
  	@GeneratedValue(strategy = GenerationType.IDENTITY)
  	public Long id;
  	
-
-	//@ManyToOne
 	@OneToOne
 	private MealType mealType;
-	
-	
-	
-	
+
 //	@JsonIgnore
 //	@OneToMany(mappedBy="meal" ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 //	private List<OrderItem> orders = new ArrayList<OrderItem>();
@@ -49,13 +44,11 @@ public class Meal {
  	
  	private String imageName;
  	private String description;
- 	//@OneToOne 
-	//private Image image;
+ 	private boolean isDeleted;
  	
- 	//@Transient
- 	//FileSystemResource imageFSR;
- 	
- 	public Meal() {
+ 
+
+	public Meal() {
  		
  	}
 
@@ -66,25 +59,15 @@ public class Meal {
 		this.name = name;
 		this.price = price;
 		this.imageName = imageName;
-		//this.image = image;
-		//this.imageFSR = imageFSR;
+	}
+	
+	public boolean isDeleted() {
+		return isDeleted;
 	}
 
-	/*public FileSystemResource getImageFSR() {
-		return imageFSR;
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
-
-	public void setImageFSR(FileSystemResource imageFSR) {
-		this.imageFSR = imageFSR;
-	} */
-
-	/*public Image getImage() {
-		return image;
-	}
-
-	public void setImage(Image image) {
-		this.image = image;
-	}*/
 
 	public String getDescription() {
 		return description;

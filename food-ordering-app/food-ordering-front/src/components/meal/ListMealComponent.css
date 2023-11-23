@@ -31,6 +31,8 @@
     /* text-align: center; */
      align-items: center;
      font-size: larger;
+     white-space: wrap !important;
+     
     }
     
     /* #table{

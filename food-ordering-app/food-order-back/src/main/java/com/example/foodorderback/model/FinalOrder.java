@@ -25,7 +25,6 @@ public class FinalOrder {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
 	
-	
 	@ManyToOne
 	private User user;
 	

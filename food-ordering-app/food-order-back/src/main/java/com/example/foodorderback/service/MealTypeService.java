@@ -15,5 +15,5 @@ public interface MealTypeService {
 	public MealType save(MealType mealType);
 	public String editMealType(MealType mealType);
 	public MealType findOne(Long id);
-	public MealType delete(MealType mealType);
+	public String delete(Long mealTypeId);
 }

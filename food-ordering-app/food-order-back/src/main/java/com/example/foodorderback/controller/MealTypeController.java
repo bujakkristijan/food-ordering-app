@@ -44,23 +44,19 @@ public class MealTypeController {
 	public ResponseEntity<String> createMeal(@RequestParam("image") MultipartFile image, HttpServletRequest request) {
 		
 		System.out.println(request.getParameter("mealType"));
-		
-		
+			
 		Gson g = new Gson();  
 		MealType mealType = g.fromJson(request.getParameter("mealType"), MealType.class);
-		
-		
+		// ovo bi trebalo u servis da se stavi sve, a ne ovde da stoji		
 		String responseToClient;
 		responseToClient = mealTypeService.isValidInput(mealType);
-		if (responseToClient.equals("valid")) {
-			
+		if (responseToClient.equals("valid")) {		
 			try {
 				mealType.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
 				mealType.setImageName(image.getOriginalFilename());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			//meal.setImage(Base64.getEncoder().encodeToString(file.getBytes()))
 			mealTypeService.save(mealType);
 			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 
@@ -77,18 +73,9 @@ public class MealTypeController {
 	}
 	
 	
-	@RequestMapping(value = "/deleteMealType/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/deleteMealType/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<String> delete(@PathVariable Long id) {
-		String responseToClient;
-		MealType mealType = mealTypeService.findOne(id);
-
-		if (mealType == null) {
-			responseToClient = "fail";
-			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
-		}
-
-		mealTypeService.delete(mealType);
-		responseToClient = "success";
+		String responseToClient = mealTypeService.delete(id);;
 		return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 	}
 	

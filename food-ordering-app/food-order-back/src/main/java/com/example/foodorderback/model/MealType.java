@@ -18,16 +18,18 @@ public class MealType {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 	
-	public String typeName;
+	private String typeName;
 	
 	@Lob
-	public String image;
+	private String image;
 	
-	public String imageName;
+	private String imageName;
 	
-	public String description;
+	private String description;
+	
+	private boolean isDeleted;
 	
 	/*@JsonIgnore
 	@OneToMany(mappedBy="mealType" ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
@@ -37,14 +39,7 @@ public class MealType {
 	public MealType() {
 		
 	}
-	
 
-	/*public MealType(Long id, String typeName, List<Meal> meals) {
-		super();
-		this.id = id;
-		this.typeName = typeName;
-		this.meals = meals;
-	} */
 	public MealType(Long id, String typeName, String image, String imageName, String description) {
 		super();
 		this.id = id;
@@ -54,6 +49,14 @@ public class MealType {
 		this.description = description;
 		
 	} 
+	
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
 
 	public String getImageName() {

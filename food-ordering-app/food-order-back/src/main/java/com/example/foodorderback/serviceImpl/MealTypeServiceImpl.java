@@ -25,7 +25,9 @@ public class MealTypeServiceImpl implements MealTypeService{
 		List<MealType> allMealTypes = mealTypeRepository.findAll();
 		List<MealTypeDTO> allMealTypesDTO = new ArrayList<MealTypeDTO>();
 		for(MealType mealType: allMealTypes) {
-			allMealTypesDTO.add(new MealTypeDTO(mealType));
+			if(mealType.isDeleted() == false) {
+				allMealTypesDTO.add(new MealTypeDTO(mealType));
+			}	
 		}
 		return allMealTypesDTO;
 	}
@@ -45,12 +47,15 @@ public class MealTypeServiceImpl implements MealTypeService{
 	}
 	
 	@Override
-	public MealType delete(MealType mealType) {
-		
-		if (mealType == null)
-			throw new IllegalArgumentException("Attempt to delete non-existing meal type.");
-		mealTypeRepository.delete(mealType);
-		return mealType;
+	public String delete(Long mealTypeId) {
+		try {
+			MealType mealType = mealTypeRepository.findById(mealTypeId).get();
+			mealType.setDeleted(true);
+			mealTypeRepository.save(mealType);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
 	}
 
 	@Override
@@ -62,26 +67,16 @@ public class MealTypeServiceImpl implements MealTypeService{
 		return mealType;
 	}
 
-	
-	
-	
-
 	@Override
 	public String editMealType(MealType mealType) {
 		MealType mt = mealTypeRepository.findById(mealType.getId()).get();
 		if (isValidInput(mealType).equals("invalid")) {
 			return "invalid";
 		}
-		
 		mt.setTypeName(mealType.getTypeName());
-		mt.setDescription(mealType.getDescription());
-		
-		
-		
+		mt.setDescription(mealType.getDescription());	
 		mealTypeRepository.save(mt);
 		return "success";
-	}
-
-	
+	}	
 
 }
