@@ -61,7 +61,7 @@ After clicking on *Confirm* button, item is successfully added to the cart.
 ![9](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/f3e7ada8-e794-468c-9b85-f29edb5d9778)
 ![10](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/3707e695-44ee-434c-b5df-5fb9e3c06791)
 
-Clicking on cart button or icon in navigation, users can see items in the cart
+Clicking on the cart button or icon in the navigation, users can see items from the cart.
 
 ![11](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e24b2caf-209a-4574-9bad-bb80c5fc9bc5)
 
