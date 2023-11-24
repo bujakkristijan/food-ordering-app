@@ -1,4 +1,6 @@
-### Food ordering application 
+### Food ordering application - Bachelor Project
+
+This project was initiated during my bachelor's studies. Even though I've finished my studies, I'm still working on and improving the app, adding new features to make it better.
 
 Project is implemented using ReactJS (Hooks) library and Java Spring Boot framework (Hibernate, Spring Secuirty with JSON Web token, REST API) with some additional libraries (Bootstrap, AXIOS, Sweetalert, Redux and few more).
 
