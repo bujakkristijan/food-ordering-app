@@ -35,7 +35,7 @@ public class ItemFromCartDTO {
 		this.mealTypeName = orderItem.getMealTypeName();
 		this.mealDescription = orderItem.getMealDescription();
 		//this.mealImage = orderItem.getMealImage();
-		// na ovaj nacin setujem sliku jer necu da je cuvam u bazi svaki put prilikom kreiranja order-a ako budem radio deployment, uzimam iz meal objekta, jer ce se dosta memorije zauzimati verovatno
+		// na ovaj nacin setujem sliku ako budem radio deployment jer necu da je cuvam u bazi svaki put prilikom kreiranja orderItema-a, uzimam iz meal objekta, jer ce se dosta memorije zauzimati verovatno
 		this.mealImage = orderItem.getMeal().getImage();
 		this.mealImageName = orderItem.getMealImageName();
 		this.mealPrice = orderItem.getMealPrice();

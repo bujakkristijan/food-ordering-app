@@ -177,7 +177,8 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 				OrderItem orderItem = new OrderItem();
 				orderItem.setMeal(mealService.findOne(itc.getMealId()));
 				orderItem.setMealDescription(itc.getMealDescription());
-				//da ne bih punio bazu sa slikama jer dosta zauzimaju ako budem radio deployment
+				//ne cuvam sliku u bazi prilikom kreiranja order item-a da ne bih punio bazu sa slikama jer dosta zauzimaju ako budem radio deployment
+				//umesto toga slika ce se ucitavati iz meal tabele prilikom slanja orderItem-a klijentu
 				//orderItem.setMealImage(itc.getMealImage());
 				orderItem.setMealImageName(itc.getMealImageName());
 				orderItem.setMealName(itc.getMealName());
