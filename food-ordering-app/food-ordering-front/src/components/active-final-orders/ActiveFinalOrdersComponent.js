@@ -155,7 +155,7 @@ export const ActiveFinalOrdersComponent = () => {
                         <th className='theadth'>Status</th>
                         <th className='theadth'>Final price</th>
                         <th className='theadth'>Orders</th>
-                        <th className='theadth'>Change status</th>                       
+                        {localStorage.role === "EMPLOYEE" && <th className='theadth'>Change status</th>}                       
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -177,13 +177,13 @@ export const ActiveFinalOrdersComponent = () => {
                             {/* {
                                 handleHtmlDependingOnFinalOrderStatus(activeFinalOrder)
                             } */}
-                        <Form.Select className='selectStatus' value={JSON.stringify(activeFinalOrder.status)} onChange={(e)=>changeFinalOrderStatus(activeFinalOrder.id, JSON.parse(e.target.value))}>
+                        {localStorage.role === "EMPLOYEE" && <Form.Select className='selectStatus' value={JSON.stringify(activeFinalOrder.status)} onChange={(e)=>changeFinalOrderStatus(activeFinalOrder.id, JSON.parse(e.target.value))}>
                                             {statusOptions.map((statusOption)=> {
                                             return (
                                                 <option className='option' key={activeFinalOrder.id} value={JSON.stringify(statusOption)} >{statusOption}</option>
                                             )
                                             })}                       
-                        </Form.Select>
+                        </Form.Select>}
                         </tr>
                     )}
                 </tbody>

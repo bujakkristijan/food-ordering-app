@@ -116,7 +116,7 @@ const NavbarStyledComponent = () => {
                     {localStorage.role==="ADMIN" && <Link className='navLink' to='/meal-types' >
                          Meal types
                     </Link>}
-                    {localStorage.role==="EMPLOYEE" && <Link className='navLink' to='/active-final-orders' onClick={() => {
+                    {(localStorage.role==="EMPLOYEE" || localStorage.role==="ADMIN") && <Link className='navLink' to='/active-final-orders' onClick={() => {
                                                                                 if (window.innerWidth < 1200) {
                                                                                      hideMenu();
                                                                                 }}}>
