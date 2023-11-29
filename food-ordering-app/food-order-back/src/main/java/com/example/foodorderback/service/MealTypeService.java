@@ -12,7 +12,7 @@ import com.example.foodorderback.model.MealType;
 public interface MealTypeService {
 	public List<MealTypeDTO> getAllMealTypes();
 	public String isValidInput(MealType mealType);
-	public MealType save(MealType mealType);
+	public String save(MealType mealType);
 	public String editMealType(MealType mealType);
 	public MealType findOne(Long id);
 	public String delete(Long mealTypeId);

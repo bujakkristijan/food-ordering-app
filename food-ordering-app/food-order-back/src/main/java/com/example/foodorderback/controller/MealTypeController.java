@@ -54,10 +54,10 @@ public class MealTypeController {
 			try {
 				mealType.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
 				mealType.setImageName(image.getOriginalFilename());
+				responseToClient = mealTypeService.save(mealType);
 			} catch (IOException e) {
-				e.printStackTrace();
+				responseToClient = "fail";
 			}
-			mealTypeService.save(mealType);
 			return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
 
 		} else {

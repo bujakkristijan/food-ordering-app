@@ -137,4 +137,10 @@ public class FinalOrderController {
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/deleteFinalOrder/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable Long id) {
+		String responseToClient = finalOrderService.delete(id);;
+		return new ResponseEntity<String>(responseToClient, HttpStatus.OK);
+	}
+	
 }

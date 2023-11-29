@@ -42,8 +42,14 @@ public class MealTypeServiceImpl implements MealTypeService{
 	}
 
 	@Override
-	public MealType save(MealType mealType) {
-		return mealTypeRepository.save(mealType);
+	public String save(MealType mealType) {
+		try {
+			mealTypeRepository.save(mealType);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
+		
 	}
 	
 	@Override

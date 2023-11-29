@@ -214,17 +214,31 @@ public class FinalOrderServiceImpl implements FinalOrderService{
 	public String changeFinalOrderStatus (FinalOrderIdAndStatusDTO foIdStatus) {
 		String responseToClient = "fail";
 		try {
-			FinalOrder finalOrder = findOne(foIdStatus.getActiveOrderId());
-			
-			finalOrder.setStatus(foIdStatus.getStatus());
-			
-			
-			
+			FinalOrder finalOrder = findOne(foIdStatus.getActiveOrderId());			
+			finalOrder.setStatus(foIdStatus.getStatus());	
 			finalOrderRepository.save(finalOrder);
 			responseToClient = "success";
 		} catch (Exception e) {
 			return responseToClient;
 		}
 		return responseToClient;
+	}
+	
+	@Override
+	public String delete(Long finalOrderId) {
+		try {
+			FinalOrder finalOrder = finalOrderRepository.findById(finalOrderId).get();
+			List<OrderItem> allOrderItems = new ArrayList<OrderItem>();
+			allOrderItems = orderItemRepository.findAll();
+			for(OrderItem oi: allOrderItems) {
+				if(oi.getFinalOrder().getId() == finalOrderId) {
+					orderItemRepository.delete(oi);
+				}
+			}
+			finalOrderRepository.delete(finalOrder);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
 	}
 }

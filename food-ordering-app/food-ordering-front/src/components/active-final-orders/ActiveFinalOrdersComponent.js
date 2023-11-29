@@ -81,7 +81,7 @@ export const ActiveFinalOrdersComponent = () => {
         MealService.changeFinalOrderStatus(finalOrderWithStatusAndId).then((response)=>{
             const responseFromServer = response.data;
             if(responseFromServer === "success"){
-                alertSuccess();
+                alertSuccess('Successfully changed status!');
                 getAllActiveFinalOrders();
                 activeOrderIdLet = 0;
             }
@@ -123,11 +123,41 @@ export const ActiveFinalOrdersComponent = () => {
     //     })
     //   }
 
-    const alertSuccess = () =>{
+    const alertAreYouSureDelete = (id) =>{
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "If you click yes, final order will be deleted from the database!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            deleteFinalOrder(id);
+          }
+        })
+      }
+
+      const deleteFinalOrder = (finalOrderId) =>{
+        MealService.deleteFinalOrder(finalOrderId).then((response) =>{
+            if(response.data === "success"){
+                alertSuccess("Successfully deleted final order and all its order items!");
+                getAllActiveFinalOrders();
+            }
+            else if(response.data === "fail"){
+                alertFail();
+            } 
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    const alertSuccess = (message) =>{
         Swal.fire({
           position: 'top',
           icon: 'success',
-          title: 'Successfully changed status!',
+          title: message,
           showConfirmButton: false,
           timer: 1500
         });
@@ -155,7 +185,8 @@ export const ActiveFinalOrdersComponent = () => {
                         <th className='theadth'>Status</th>
                         <th className='theadth'>Final price</th>
                         <th className='theadth'>Orders</th>
-                        {localStorage.role === "EMPLOYEE" && <th className='theadth'>Change status</th>}                       
+                        {localStorage.role === "EMPLOYEE" && <th className='theadth'>Change status</th>} 
+                        {localStorage.role === "ADMIN" && <th className='theadth'>Action</th>}                      
                     </tr>
                 </thead>
                 {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -177,13 +208,17 @@ export const ActiveFinalOrdersComponent = () => {
                             {/* {
                                 handleHtmlDependingOnFinalOrderStatus(activeFinalOrder)
                             } */}
-                        {localStorage.role === "EMPLOYEE" && <Form.Select className='selectStatus' value={JSON.stringify(activeFinalOrder.status)} onChange={(e)=>changeFinalOrderStatus(activeFinalOrder.id, JSON.parse(e.target.value))}>
-                                            {statusOptions.map((statusOption)=> {
-                                            return (
-                                                <option className='option' key={activeFinalOrder.id} value={JSON.stringify(statusOption)} >{statusOption}</option>
-                                            )
-                                            })}                       
-                        </Form.Select>}
+                            {localStorage.role === "EMPLOYEE" && <Form.Select className='selectStatus' value={JSON.stringify(activeFinalOrder.status)} onChange={(e)=>changeFinalOrderStatus(activeFinalOrder.id, JSON.parse(e.target.value))}>
+                                                {statusOptions.map((statusOption)=> {
+                                                return (
+                                                    <option className='option' key={activeFinalOrder.id} value={JSON.stringify(statusOption)} >{statusOption}</option>
+                                                )
+                                                })}                       
+                            </Form.Select>}
+                            <td className='td-content'>                 
+                            {localStorage.role === "ADMIN" && <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(activeFinalOrder.id)}
+                                style={{marginLeft:"5px"}}>Delete</button>}
+                            </td>     
                         </tr>
                     )}
                 </tbody>

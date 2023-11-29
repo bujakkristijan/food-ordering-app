@@ -99,10 +99,16 @@ const ListMealTypeComponent = () => {
        }
         MealTypeService.createMealType(fd).then((response) =>{
             const responseFromServer = response.data;
-            if(responseFromServer == "valid"){
-                alert("Uspesno");
+            if(responseFromServer === "success"){
+                alert("Succesfully created meal type (category)!");
                 handleClose();
                 getAllMealTypes();    
+            }
+            else if(responseFromServer === "fail"){
+                alert("Failted to create meal type!")
+            }
+            else if(responseFromServer === "invalid"){
+                alert("Invalid input! Try again!");
             }
         })
     }
@@ -110,7 +116,13 @@ const ListMealTypeComponent = () => {
 
     const deleteMealType = (mealTypeId) =>{
         MealTypeService.deleteMealType(mealTypeId).then((response) =>{
-            getAllMealTypes();
+            if(response.data === "success"){
+                alert("Succesfully deleted meal type (category)!");
+                getAllMealTypes();
+            }
+            else if(response.data === "fail"){
+                alert("Failed to delete meal type (category)!");
+            }
         }).catch(error => {
             console.log(error);
         })
@@ -128,11 +140,6 @@ const ListMealTypeComponent = () => {
           }).then((result) => {
             if (result.isConfirmed) {
               deleteMealType(id);
-              Swal.fire(
-                'Deleted!',
-                'Meal type has been deleted.',
-                'success'
-              )
             }
           })
         }

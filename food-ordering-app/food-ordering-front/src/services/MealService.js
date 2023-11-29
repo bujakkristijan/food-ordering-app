@@ -77,7 +77,7 @@ class MealService{
 
     deleteFinalOrder(finalOrderId){
         TokenService.setTokenInHeader();
-        return axios.put("http://localhost:8080/api/finalOrder/deleteFinalOrder/" + finalOrderId);
+        return axios.delete("http://localhost:8080/api/finalOrder/deleteFinalOrder/" + finalOrderId);
     }
 
 }

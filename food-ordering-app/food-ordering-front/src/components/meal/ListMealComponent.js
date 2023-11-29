@@ -134,9 +134,14 @@ const ListMealComponent = () => {
 
 
     const deleteMeal = (mealId) =>{
-        console.log("ID EMPLOYEE: " + mealId);
         MealService.deleteMeal(mealId).then((response) =>{
-            getAllMeals();
+            if(response.data === "success"){
+                alert("Succesfully deleted meal!");
+                getAllMeals();
+            }
+            else if(response.data === "fail"){
+                alert("Failed to delete meal!");
+            }     
         }).catch(error => {
             console.log(error);
         })
@@ -154,11 +159,6 @@ const ListMealComponent = () => {
           }).then((result) => {
             if (result.isConfirmed) {
               deleteMeal(id);
-              Swal.fire(
-                'Deleted!',
-                'Meal has been deleted.',
-                'success'
-              )
             }
           })
         }

@@ -21,5 +21,6 @@ public interface FinalOrderService {
 	List<FinalOrderDTO> getAllMyActiveFinalOrders(Long currentUserId);
 	List<FinalOrderDTO> getAllMyDeliveredFinalOrders(Long currentUserId);
 	String changeFinalOrderStatus (FinalOrderIdAndStatusDTO foIdStatus);
+	String delete(Long finalOrderId);
 
 }
