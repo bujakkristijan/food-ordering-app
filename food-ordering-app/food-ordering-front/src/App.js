@@ -1,16 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
-import ListEmployeeComponent from './components/ListEmployeeComponent';
+import ListEmployeeComponent from './components/employee/ListEmployeeComponent';
 import RegistrationComponent from './components/registration/RegistrationComponent';
-import FooterComponent from './components/FooterComponent';
+import FooterComponent from './components/footer/FooterComponent';
 /*import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; */
 import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import CreateEmployeeComponent from './components/CreateEmployeeComponent';
-import NavbarStyledComponent from './components/Navbar/NavbarStyledComponent';
+import CreateEmployeeComponent from './components/employee/CreateEmployeeComponent';
 import LoginComponent from './components/login/LoginComponent';
-import MyProfileComponent from './components/My-profile/MyProfileComponent';
+import MyProfileComponent from './components/my-profile/MyProfileComponent';
 import ListMealComponent from './components/meal/ListMealComponent';
 import MenuMealTypeComponent from './components/menu/MenuMealTypeComponent';
 import ListMealTypeComponent from './components/meal-type/ListMealTypeComponent';
@@ -24,6 +22,7 @@ import MyDeliveredFinalOrdersComponent from './components/my-delivered-final-ord
 import ListUserComponent from './components/user/ListUserComponent';
 import jwtDecode from 'jwt-decode';
 import { Navigate } from 'react-router-dom';
+import NavbarComponent from './components/navbar/NavbarComponent';
 //od V6, nema SWITCH, vec je zamenjeno sa ROUTES, component sa element i nije vise {ListUserComponent} vec {<ListUserComponent/>}
 const PrivateRoute = ({ element, allowedRoles }) => {
   const userRole = localStorage.getItem('role');
@@ -62,7 +61,7 @@ function App() {
   return (
     <>
       <Router>
-        <NavbarStyledComponent />
+        <NavbarComponent/>
         <div className="router-view">
           <Routes>
             <Route path="/" element={<LoginComponent />} />

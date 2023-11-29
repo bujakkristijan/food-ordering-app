@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import UserService from '../services/UserService';
+import UserService from '../../services/UserService';
 import Swal from 'sweetalert2';
 import './ListEmployeeComponent.css';
 

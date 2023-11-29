@@ -1,14 +1,12 @@
 import React, {useSelector} from 'react-redux';
-import './NavbarElements.css';
+import './NavbarComponent.css';
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
 import LoginService from '../../services/LoginService';
 import Swal from 'sweetalert2'
-import { Button } from 'bootstrap';
 import { useDispatch } from 'react-redux';
 import {deleteAllItems} from '../../store-redux/cart/cartSlice'
 
-const NavbarStyledComponent = () => {
+const NavbarComponent = () => {
      console.log("check")
      const navigate = useNavigate();
      const dispatch = useDispatch();
@@ -173,4 +171,4 @@ const NavbarStyledComponent = () => {
   )
 }
 
-export default NavbarStyledComponent
+export default NavbarComponent

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import UserService from '../services/UserService'
+import UserService from '../../services/UserService'
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import Swal from 'sweetalert2'
 
