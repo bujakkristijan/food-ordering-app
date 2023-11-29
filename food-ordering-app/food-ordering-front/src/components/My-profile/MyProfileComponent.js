@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import UserService from '../../services/UserService'
-import {Link, useNavigate, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import './MyProfileComponent.css'
 import EditMyProfileComponent from './EditMyProfileComponent'
@@ -95,7 +95,6 @@ const MyProfileComponent = () => {
 
     const handleSubmitChangePass = () =>{
         //validacija unosa
-        console.log("PROVERAAAAAAAAAAAAAAAAA" + oldPassword + " " + newPassword);
         if(oldPassword.trim() === '' || newPassword.trim()===0 ){
             alertInvalid("Invalid input, make sure everything is filed correctly and try again!")
         }
@@ -186,7 +185,6 @@ const MyProfileComponent = () => {
         }
       }
     
-
   return (
     <>
     <div className="container">
