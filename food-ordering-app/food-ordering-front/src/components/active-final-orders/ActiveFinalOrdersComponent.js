@@ -126,7 +126,7 @@ export const ActiveFinalOrdersComponent = () => {
     const alertAreYouSureDelete = (id) =>{
         Swal.fire({
           title: 'Are you sure?',
-          text: "If you click yes, final order will be deleted from the database!",
+          text: `If you click yes, final order with ID: ${id} will be deleted from the database!`,
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',

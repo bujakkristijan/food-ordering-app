@@ -122,7 +122,8 @@ Clicking on *Show items* button, user can see his ordered items
 
 Admin have option to delete final order and all its ordered items from the database, but he doesn't have an option to change status as employee can do (same component shows for both roles, but they don't have same available actions).
 
-![exc-admin-delete](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/e1666b77-dc0f-4ea0-a027-b2e807f4ea24)
+![exc-admin-delete](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/09b9db37-eddc-4921-9841-05ff9cb6ae2a)
+![exc-admin-delete-2](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/6b2599bb-689d-412b-918f-3a773325242d)
 
 Employee can see and change status of the final order depending on real status of the order, which user can track (but they can't delete them as Admin can do).
 
