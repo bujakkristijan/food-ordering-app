@@ -44,6 +44,54 @@ const OrderHistoryComponent = () => {
         })
     }
 
+    const alertAreYouSureDelete = (id) =>{
+        Swal.fire({
+          title: 'Are you sure?',
+          text: `If you click yes, final order with ID: ${id} will be deleted from the database!`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            deleteFinalOrder(id);
+          }
+        })
+      }
+
+      const deleteFinalOrder = (finalOrderId) =>{
+        MealService.deleteFinalOrder(finalOrderId).then((response) =>{
+            if(response.data === "success"){
+                alertSuccess("Successfully deleted final order and all its order items!");
+                getAllDeliveredFinalOrders();
+            }
+            else if(response.data === "fail"){
+                alertFail();
+            } 
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    const alertSuccess = (message) =>{
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: message,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+
+      const alertFail =() =>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'      
+        });
+      }
+
   return (
    <>
     <div className='container'>
@@ -58,6 +106,7 @@ const OrderHistoryComponent = () => {
                     <th className='theadth'>Status</th>
                     <th className='theadth'>Final price</th>
                     <th className='theadth'>Orders</th>
+                    {localStorage.role === "ADMIN" && <th className='theadth'>Action</th>}
                 </tr>
             </thead>
             {/*mora src={"data:image/png;base64," + meal.image}, ne moze samo src={meal.image}  */}
@@ -73,6 +122,10 @@ const OrderHistoryComponent = () => {
                         <td className='td-content'>
                             <button className='btn btn-success' onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                         </td>
+                        <td className='td-content'>                 
+                            {localStorage.role === "ADMIN" && <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(activeFinalOrder.id)}
+                                style={{marginLeft:"5px"}}>Delete</button>}
+                        </td> 
                     </tr>
                 )}
             </tbody>
