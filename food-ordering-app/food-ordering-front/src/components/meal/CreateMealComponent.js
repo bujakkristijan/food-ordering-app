@@ -93,24 +93,6 @@ const CreateMealComponent = (props) => {
                         >                       
                     </input>
                   </div>       
-                {/*
-                  <div className='form-group mb-2'>
-                    <label className='form-label'>Upload picture: </label>
-                    <input  
-                        type="text"
-                        placeholder="Insert phone number" 
-                        name = "phoneNumber" 
-                        className="form-control" 
-                        
-                        value={user.phoneNumberEdit}
-                        onChange = {(e) => user.setPhoneNumberEdit(e.target.value)}
-                        
-                        >
-                        
-                    </input>
-                  </div>
-                  */
-                }        
                 </form>             
             </div>      
     </div>
