@@ -105,19 +105,6 @@ public class FinalOrderController {
 		return new ResponseEntity<List<FinalOrderDTO>>(allMyDeliveredFinalOrders, HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value ="/getFinalOrderById/{id}", method = RequestMethod.GET)
-//	public ResponseEntity<FinalOrderNotLoggedDTO> getFinalOrderById(@PathVariable Long id){
-//		FinalOrderNotLoggedDTO finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
-//		try {
-//			FinalOrder finalOrder = finalOrderService.findOne(id);
-//			finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO(finalOrder);
-//		} catch (Exception e) {
-//			finalOrderNotLoggedDTO = new FinalOrderNotLoggedDTO();
-//		}
-//		
-//		return new ResponseEntity<FinalOrderNotLoggedDTO>(finalOrderNotLoggedDTO, HttpStatus.OK);
-//	}
-	
 	@RequestMapping(value ="/getOrderItemsByFinalOrderId/{id}", method = RequestMethod.GET)
 	public ResponseEntity<List<ItemFromCartDTO>> getOrderItemsByFinalOrderId(@PathVariable Long id){
 		List<ItemFromCartDTO> itemsFromCartByFinalOrderId = new ArrayList<ItemFromCartDTO>();

@@ -18,8 +18,6 @@ import com.example.foodorderback.service.UserService;
 @RequestMapping(value = "/api")
 public class LoginController {
 	
-	
-	
 	@Autowired
 	private UserService userService;
 	

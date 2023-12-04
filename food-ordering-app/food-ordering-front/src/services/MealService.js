@@ -50,10 +50,6 @@ class MealService{
         TokenService.setTokenInHeader();
         return axios.get("http://localhost:8080/api/finalOrder/getAllActiveFinalOrders");
     }
-
-    // setFinalOrderToDelivered(finalOrderId){
-    //     return axios.put("http://localhost:8080/api/finalOrder/setFinalOrderToDelivered/" + finalOrderId);
-    // }
     
     getAllDeliveredFinalOrders(){
         TokenService.setTokenInHeader();

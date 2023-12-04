@@ -24,7 +24,7 @@ const FinalOrderByIdComponent = () => {
     const getFinalOrderById = (id) =>{
         MealService.getFinalOrderById(id).then((response) =>{
             setFinalOrder(response.data);
-            //alert("FinalOrder " + JSON.stringify(finalOrder));           
+            alert("FinalOrder " + JSON.stringify(response.data));           
             // alert("Setovani order itemsi", JSON.stringify(orderItemsByFinalOrderId));
         });
         // alert("FinalOrder kasnije" + JSON.stringify(finalOrder));      

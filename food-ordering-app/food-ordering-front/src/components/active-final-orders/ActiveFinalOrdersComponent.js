@@ -7,7 +7,6 @@ import './ActiveFinalOrdersComponent.css';
 import ItemsByFinalOrderIdComponent from '../final-order-by-id/ItemsByFinalOrderIdComponent';
 import {Form} from 'react-bootstrap'
 import Moment from 'moment';
-import UserService from '../../services/UserService';
 
 export const ActiveFinalOrdersComponent = () => {
 
@@ -24,14 +23,7 @@ export const ActiveFinalOrdersComponent = () => {
 
     useEffect(() => {
         getAllActiveFinalOrders();
-        // sendPreflightMaskThenMainRequest();
     }, [])
-
-    // const sendPreflightMaskThenMainRequest = () =>{
-    //     UserService.preflightMask().then((response) =>{
-    //         getAllActiveFinalOrders();
-    //     })
-    // }
 
     const getAllActiveFinalOrders = () =>{
         MealService.getAllActiveFinalOrders().then(response =>{
@@ -52,24 +44,9 @@ export const ActiveFinalOrdersComponent = () => {
 
     const getOrderItemsByFinalOrderId = (finalOrderId) =>{
         MealService.getOrderItemsByFinalOrderId(finalOrderId).then((response) =>{
-            //alert("RESPONSE ORDER ITEMS " + JSON.stringify(response.data));
             setOrderItemsByFinalOrderId(response.data);
-            console.log('s');
         }).catch(error =>{
             console.log(error);
-        })
-    }
-
-    const setFinalOrderToDelivered = (finalOrderId) =>{
-        MealService.setFinalOrderToDelivered(finalOrderId).then((response) =>{
-            const responseFromServer = response.data;
-            if(responseFromServer === "success"){
-                alertSuccess();
-                getAllActiveFinalOrders();
-            }
-            else{
-                alertFail();
-            }
         })
     }
 
@@ -91,37 +68,6 @@ export const ActiveFinalOrdersComponent = () => {
             }
         })
     }
-    
- /* STARA IDEJA KAKO CE EMPLOYEE DA MENJA STATUS PORUDZBINE */
-    // const handleHtmlDependingOnFinalOrderStatus = (activeFinalOrder) =>{
-    //     if(activeFinalOrder.status === "ORDERED"){
-    //         return  <td className='td-content'>
-    //                     <button className='btn btn-success' onClick={() => alertAreYouSureFinalOrderToDelivered(activeFinalOrder)}>Click if delivered</button>
-    //                 </td>
-    //     }
-    //     else if(activeFinalOrder.status === "DELIVERED"){
-    //         return <td className='td-content'>
-    //                 <h2>No action needeed</h2>
-    //                 </td>
-    //     }
-    // }
-
-
-    // const alertAreYouSureFinalOrderToDelivered = (activeFinalOrder) =>{
-    //     Swal.fire({
-    //       title: 'Are you sure?',
-    //       text: 'If you click yes, you will confirm that final order is delivered!',
-    //       icon: 'warning',
-    //       showCancelButton: true,
-    //       confirmButtonColor: '#3085d6',
-    //       cancelButtonColor: '#d33',
-    //       confirmButtonText: 'Yes, confirm it!'
-    //     }).then((result) => {
-    //       if (result.isConfirmed) {         
-    //         setFinalOrderToDelivered(activeFinalOrder.id)
-    //       }
-    //     })
-    //   }
 
     const alertAreYouSureDelete = (id) =>{
         Swal.fire({
@@ -202,12 +148,6 @@ export const ActiveFinalOrdersComponent = () => {
                             <td className='td-content'>
                                 <button className='btn btn-success' style={{whiteSpace: "nowrap"}} onClick={() => handleShowItemsByFinalOrderId(activeFinalOrder.id)}>Show items</button>
                             </td>
-                            {/* <td className='td-content'>
-                                <button className='btn btn-success' onClick={() => setFinalOrderToDelivered(activeFinalOrder.id)}>Click if delivered</button>
-                            </td> */}
-                            {/* {
-                                handleHtmlDependingOnFinalOrderStatus(activeFinalOrder)
-                            } */}
                             {localStorage.role === "EMPLOYEE" && <Form.Select className='selectStatus' value={JSON.stringify(activeFinalOrder.status)} onChange={(e)=>changeFinalOrderStatus(activeFinalOrder.id, JSON.parse(e.target.value))}>
                                                 {statusOptions.map((statusOption)=> {
                                                 return (
